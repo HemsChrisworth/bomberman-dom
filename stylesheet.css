@@ -1,0 +1,14 @@
+#body {
+    background-color: #101010;
+}
+
+#logo {
+    color: rgb(255, 230, 0);
+}
+
+#welcome {
+    background-color: #212121;
+    width: 60%;
+    margin: 0 auto;
+    color: rgb(219, 219, 219)
+}
