@@ -6,17 +6,25 @@
     <link rel="stylesheet" href="stylesheet.css">
     <title>Bomberman</title>
 </head>
-<body id="body">
+<body class="body">
     <header>
         <h1 id="logo">Bomberman</h1>
     </header>
-    <div id="welcome">
+    <div id="welcome" class="welcomescreens">
         <p>Welcome to the game!</p>
         <span>Choose your nickname:</span>
         <form id="chooseName">
             <input type="text">
-            <input type="submit">
+            <input type="submit" value="Start!">
         </form>
+    </div>
+    <div id="waiting" class="welcomescreens">
+        <span>Waiting... 20 seconds</span>
+        <span>People ready: 1</span>
+    </div>
+    <div id="countdowntostart" class="welcomescreens">
+        <span>Game starts in...</span>
+        <span>10</span> <!--redirects to game.html when 0-->
     </div>
 </body>
 </html>
