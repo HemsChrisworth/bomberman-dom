@@ -5,6 +5,14 @@
 #logo {
     color: rgb(255, 230, 0);
     text-align: center;
+    font-size: 30px;
+    margin-top: 0px;
+}
+
+#gameheader {
+    margin-bottom: 10px;
+    margin-top: 0px;
+    height: 50px;
 }
 
 .welcomescreens {
@@ -21,11 +29,13 @@
 #chat {
     color: rgb(219, 219, 219);
     margin-left: 20px;
+    border: 1px solid gray;
+    padding: 10px;
 }
 
 #chatmessagearea {
     border: 1px solid gray;
-    height: 300px;
+    height: 350px;
     margin-bottom: 10px;
 }
 
@@ -39,4 +49,19 @@
     flex-direction: row;
     margin-right: 20%;
     margin-left: 20%;
+}
+
+#gamepanel {
+    border: 1px solid gray;
+    color: rgb(219, 219, 219);
+}
+
+#gamedata {
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+#gamescreen {
+    width: 576px;
+    height: 384px;
 }
