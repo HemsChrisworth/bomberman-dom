@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/logger"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wshub"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/queries"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/logger"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers/wshub"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/db/sqlite/queries"
 
 	"github.com/gorilla/websocket"
 )

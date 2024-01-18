@@ -7,7 +7,7 @@ import (
 	"io"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/bomberman-dombackend/application"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/application"
 	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers/wshub"
 	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/helpers"
 
