@@ -1,14 +1,42 @@
-#body {
+.body {
     background-color: #101010;
 }
 
 #logo {
     color: rgb(255, 230, 0);
+    text-align: center;
 }
 
-#welcome {
+.welcomescreens {
+    display: flex;
+    flex-direction: column;
     background-color: #212121;
     width: 60%;
     margin: 0 auto;
-    color: rgb(219, 219, 219)
+    color: rgb(219, 219, 219);
+    padding: 30px;
+    margin-bottom: 10px;
+}
+
+#chat {
+    color: rgb(219, 219, 219);
+    margin-left: 20px;
+}
+
+#chatmessagearea {
+    border: 1px solid gray;
+    height: 300px;
+    margin-bottom: 10px;
+}
+
+#chatform {
+    display: flex;
+    flex-direction: row;
+}
+
+#game {
+    display: flex;
+    flex-direction: row;
+    margin-right: 20%;
+    margin-left: 20%;
 }
