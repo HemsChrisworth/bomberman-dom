@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dombackend/application"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/db/sqlite/models"
 )
 
 type LoginStatus byte

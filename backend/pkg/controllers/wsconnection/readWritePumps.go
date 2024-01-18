@@ -7,11 +7,11 @@ import (
 	"io"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wshub"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/helpers"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dombackend/application"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers/wshub"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/helpers"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/webmodel"
 	"github.com/gorilla/websocket"
 )
 

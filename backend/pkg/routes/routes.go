@@ -7,12 +7,12 @@ import (
 	"net/http"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/logger"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wsconnection"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/errorhandle"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/handlers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/session"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/application"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/logger"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers/wsconnection"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/errorhandle"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/handlers"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/session"
 )
 
 func routerMiddleware(app *application.Application, next http.Handler) http.Handler { // middleware, to check authentication

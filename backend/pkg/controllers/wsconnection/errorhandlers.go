@@ -6,8 +6,8 @@ import (
 	"runtime"
 	"runtime/debug"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/application"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/webmodel"
 )
 
 // WSError sends to the front-end side websocket connection `conn` a message of  type 'ERROR'  with the Payload= `errmessage`. It also logs the `errmessage` and `err` to the app.ErrLog logger.
