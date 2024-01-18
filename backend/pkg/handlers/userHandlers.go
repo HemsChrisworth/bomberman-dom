@@ -7,13 +7,13 @@ import (
 	"net/http"
 	"strings"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/errorhandle"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/helpers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/session"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/application"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/db/sqlite/models"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/errorhandle"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/helpers"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/session"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/webmodel"
 )
 
 func RegisterUser(app *application.Application) http.Handler {

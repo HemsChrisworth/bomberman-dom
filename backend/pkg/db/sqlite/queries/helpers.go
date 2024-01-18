@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"log"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/db/sqlite/models"
 )
 
 type DBModel struct {

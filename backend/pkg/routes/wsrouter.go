@@ -3,10 +3,10 @@ package routes
 import (
 	"errors"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wsconnection"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/application"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers/wsconnection"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/webmodel"
 )
 
 const (
