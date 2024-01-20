@@ -1,10 +1,9 @@
 document.getElementById('chooseName').addEventListener('submit', startWaiting);
 
 function startWaiting(event) { // the function brings user to the waiting room screen
-    console.log("herere");
     event.preventDefault();
     document.querySelector("#welcome").style.display = "none";
-    document.querySelector("#waiting").style.display = "block";
+    document.querySelector("#waiting").style.display = "flex";
     countdown20sec();
 }
 
@@ -17,7 +16,7 @@ function countdown20sec() {
         document.querySelector("#waiting20sec").innerHTML = waiting20sec;
         if (waiting20sec === 0) { // This function works when go to 10 sec counter, change to => (if (waiting20sec === 0) || (playerCount === 4))
             document.querySelector("#waiting").style.display = "none";
-            document.querySelector("#countdowntostart").style.display = "block";
+            document.querySelector("#countdowntostart").style.display = "flex";
             countdown10sec()
             return;
         }
