@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
+    <script type="module" src="design.js"></script>
     <title>Bomberman</title>
 </head>
 <body class="body">
@@ -13,18 +14,18 @@
     <div id="welcome" class="welcomescreens">
         <p>Welcome to the game!</p>
         <span>Choose your nickname:</span>
-        <form id="chooseName">
+        <form id="chooseName" onsubmit="startWaiting(event)">
             <input type="text">
             <input type="submit" value="Start!">
         </form>
     </div>
     <div id="waiting" class="welcomescreens">
-        <span>Waiting... 20 seconds</span>
+        <span>Waiting... <span id="waiting20sec"></span> seconds</span>
         <span>People ready: 1</span>
     </div>
     <div id="countdowntostart" class="welcomescreens">
         <span>Game starts in...</span>
-        <span>10</span> <!--redirects to game.html when 0-->
+        <span id="waiting10sec"></span> <!--redirects to game.html when 0-->
     </div>
 </body>
 </html>

@@ -9,6 +9,16 @@
     margin-top: 0px;
 }
 
+#welcome {
+    display: block;
+}
+#waiting {
+    display: none;
+}
+#countdowntostart {
+    display: none;
+}
+
 #gameheader {
     margin-bottom: 10px;
     margin-top: 0px;
