@@ -5,30 +5,27 @@ import (
 	"net/http"
 	"time"
 
-	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/logger"
 	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers/wshub"
-	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/db/sqlite/queries"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/logger"
 
 	"github.com/gorilla/websocket"
 )
 
 type Application struct {
-	ErrLog  *log.Logger
-	InfoLog *log.Logger
-	Hub      *wshub.Hub
-	DBModel  *queries.DBModel
-	Upgrader websocket.Upgrader
-	Server   *http.Server
+	ErrLog      *log.Logger
+	InfoLog     *log.Logger
+	Hub         *wshub.Hub
+	WaitingRoom *wshub.Room
+	Upgrader    websocket.Upgrader
+	Server      *http.Server
 }
 
-func New(dbModel *queries.DBModel, serverAddress string) *Application {
+func New(serverAddress string) *Application {
 	application := &Application{}
 
 	application.ErrLog, application.InfoLog = logger.CreateLoggers()
 
 	application.Hub = wshub.NewHub()
-
-	application.DBModel = dbModel
 
 	application.Upgrader = websocket.Upgrader{
 		ReadBufferSize:  1024,
@@ -36,9 +33,8 @@ func New(dbModel *queries.DBModel, serverAddress string) *Application {
 		CheckOrigin: func(r *http.Request) bool {
 			origin := r.Header.Get("Origin")
 			return origin == "http://localhost:8080" || origin == "http://127.0.0.1:8080"
-			//return true
+			// return true
 		},
-		// TODO setorigin
 	}
 
 	application.Server = &http.Server{

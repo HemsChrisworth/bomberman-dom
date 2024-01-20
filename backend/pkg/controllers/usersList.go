@@ -4,50 +4,23 @@ import (
 	"errors"
 	"fmt"
 
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/application"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wsconnection"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/controllers/wshub"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/db/sqlite/models"
-	"01.kood.tech/git/Hems_Chrisworth/social-network/backend/pkg/webmodel"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/application"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers/wsconnection"
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/webmodel"
 )
-
-/*
-sends the list of online users to the current user
-and the current user's online status to the other users
-*/
-func SendOnlineUsers(app *application.Application, currConnection *wsconnection.UsersConnection) error {
-	onlineUsers := app.Hub.GetOnlineUsers()
-
-	err := sendOnlineUsersToCurrentUser(app, currConnection, onlineUsers)
-	if err != nil && !errors.Is(err, webmodel.ErrWarning) {
-		return currConnection.WSError(app, fmt.Sprintf("sending list of online users to the user %s faild", currConnection.Session.User), err)
-	}
-
-	// send the new online user to their followers/ings
-
-	err = SendUserStatusToUsers(app, webmodel.UserOnline)(app, currConnection, webmodel.WSMessage{})
-	if err != nil {
-		return errors.Join(webmodel.ErrWarning, err)
-	}
-
-	return nil
-}
 
 /*
 sends the list of users in chat to the new joined user
 and the new user's joined status to the other users in chat
 */
-func SendChattingUsers(app *application.Application, currConnection *wsconnection.UsersConnection) error {
-	onlineUsers := app.Hub.GetOnlineUsers()
-
-	err := sendUsersInChatToCurrentUser(app, currConnection, onlineUsers)
+func SendListOfUsersInRoom(app *application.Application, currConnection *wsconnection.UsersConnection) error {
+	err := sendListOfUsersInRoomToCurrentUser(app, currConnection)
 	if err != nil && !errors.Is(err, webmodel.ErrWarning) {
-		return currConnection.WSError(app, fmt.Sprintf("sending list of users in chat to the user %s faild", currConnection.Session.User), err)
+		return currConnection.WSError(fmt.Sprintf("sending list of users in the room '%s' to the user %s faild", currConnection.Client.Room.ID, currConnection.Client.UserName), err)
 	}
 
-	// send the new user to the chat members
-
-	err = SendUserStatusToChatMembers(app, webmodel.UserJoinedChat)(app, currConnection, webmodel.WSMessage{})
+	// send the new user to the room members
+	err = SendUserToRoomMembers(webmodel.UserJoinedRoom)(currConnection, webmodel.WSMessage{})
 	if err != nil {
 		return errors.Join(webmodel.ErrWarning, err)
 	}
@@ -56,64 +29,21 @@ func SendChattingUsers(app *application.Application, currConnection *wsconnectio
 }
 
 /*
-sends list of online users
+sends list of users in room to the current user
 */
-func sendOnlineUsersToCurrentUser(app *application.Application, currConnection *wsconnection.UsersConnection, onlineUsers wshub.MapID) error {
-	users, err := app.DBModel.GetFilteredFollowsOrderedByMessagesToGivenUser(onlineUsers, currConnection.Client.UserID)
-	if err != nil {
-		return currConnection.WSError(app, "get the users from DB failed", err)
-	}
-
-	_, err = currConnection.SendSuccessMessage(app, webmodel.OnlineUsers, users)
-	return err
-}
-
-/*
-sends list of users in chat to the current user
-*/
-func sendUsersInChatToCurrentUser(app *application.Application, currConnection *wsconnection.UsersConnection, onlineUsers wshub.MapID) error {
+func sendListOfUsersInRoomToCurrentUser(app *application.Application, currConnection *wsconnection.UsersConnection) error {
 	users := currConnection.Client.Room.GetUsersInRoom()
 
-	_, err := currConnection.SendSuccessMessage(app, webmodel.ChattingUsers, users)
+	_, err := currConnection.SendSuccessMessage(webmodel.UsersInRoom, users)
 	return err
-}
-
-/*
-sends current user's status (on/offline) to their follows
-*/
-func SendUserStatusToUsers(app *application.Application, statusType string) wsconnection.FuncReplier {
-	return func(app *application.Application, currConnection *wsconnection.UsersConnection, wsMessage webmodel.WSMessage) error {
-		currentUser := models.UserBase{ID: currConnection.Client.UserID, UserName: currConnection.Client.UserName}
-
-		users, err := app.DBModel.GetFollows(currConnection.Client.UserID)
-		if err != nil {
-			return currConnection.WSError(app, "getFollows from DB failed", err)
-		}
-
-		usersID := make([]string, len(users))
-		for i, user := range users {
-			usersID[i] = user.ID
-		}
-
-		_, _, err = currConnection.SendMessageToUsers(app, usersID, statusType, currentUser)
-		if err != nil {
-			return currConnection.WSError(app, "SendMessageToUsers failed", err)
-		}
-		return nil
-	}
 }
 
 /*
 sends current user's status (join/quit chat) to users in the user's chat room
 */
-func SendUserStatusToChatMembers(app *application.Application, statusType string) wsconnection.FuncReplier {
-	return func(app *application.Application, currConnection *wsconnection.UsersConnection, wsMessage webmodel.WSMessage) error {
-		currentUser := models.UserBase{ID: currConnection.Client.UserID, UserName: currConnection.Client.UserName}
-
-		_, _, err := currConnection.SendMessageToClientRoom(app, statusType, currentUser)
-		if err != nil {
-			return currConnection.WSError(app, "SendMessageToClientRoom failed", err)
-		}
-		return nil
+func SendUserToRoomMembers(statusType string) wsconnection.FuncReplier {
+	return func(currConnection *wsconnection.UsersConnection, wsMessage webmodel.WSMessage) error {
+		_, _, err := currConnection.SendMessageToClientRoom(statusType, currConnection.Client.UserName)
+		return err
 	}
 }

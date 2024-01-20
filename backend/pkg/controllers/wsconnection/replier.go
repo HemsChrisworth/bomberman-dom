@@ -1,31 +1,36 @@
 package wsconnection
 
 import (
-	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/application"
+	"log"
+
+	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/controllers/wshub"
 	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/webmodel"
 )
 
 type Replier interface {
-	SendReply(app *application.Application, currConnection *UsersConnection, wsMessage webmodel.WSMessage) error
+	SendReply(currConnection *UsersConnection, wsMessage webmodel.WSMessage) error
 }
 
 type (
-	FuncReplyCreator func(*application.Application, *UsersConnection, webmodel.WSMessage) (any, error)
-	FuncReplier      func(*application.Application, *UsersConnection, webmodel.WSMessage) error
+	FuncReplyCreator func(*UsersConnection, webmodel.WSMessage) (any, error)
+	FuncReplier      func(*UsersConnection, webmodel.WSMessage) error
 )
-type WSmux map[string]Replier
 
-var Repliers WSmux
+type WSmux struct {
+	WShandlers      map[string]Replier
+	InfoLog, ErrLog *log.Logger
+	Hub             *wshub.Hub
+}
 
-func (fRC FuncReplyCreator) SendReply(app *application.Application, currConnection *UsersConnection, wsMessage webmodel.WSMessage) error {
-	replyData, err := fRC(app, currConnection, wsMessage)
+func (fRC FuncReplyCreator) SendReply(currConnection *UsersConnection, wsMessage webmodel.WSMessage) error {
+	replyData, err := fRC(currConnection, wsMessage)
 	if err != nil {
 		return err
 	}
 
-	return currConnection.SendReply(app, wsMessage, replyData)
+	return currConnection.SendReply(wsMessage, replyData)
 }
 
-func (fR FuncReplier) SendReply(app *application.Application, currConnection *UsersConnection, wsMessage webmodel.WSMessage) error {
-	return fR(app, currConnection, wsMessage)
+func (fR FuncReplier) SendReply(currConnection *UsersConnection, wsMessage webmodel.WSMessage) error {
+	return fR(currConnection, wsMessage)
 }

@@ -18,7 +18,6 @@ func NewSafeClientsMap() *SafeClientsMap {
 
 type Room struct {
 	ID         string          `json:"id"`
-	Type       string          `json:"name,omitempty"`
 	Clients    *SafeClientsMap `json:"-"`
 	Registered chan bool
 }
@@ -105,8 +104,8 @@ func (sm *SafeRoomsMap) RRange(act func(key string, value *Room)) {
 /*
 creates a new room and registers it in the hub
 */
-func NewRoom(hub *Hub, ID, typeOfRoom string) (*Room, bool) {
-	room := createRoom(hub, ID, typeOfRoom)
+func NewRoom(hub *Hub, ID string) (*Room, bool) {
+	room := createRoom(hub, ID)
 
 	hub.RegisterRoomToHub(room)
 	// Wait for client registration to complete
@@ -114,39 +113,57 @@ func NewRoom(hub *Hub, ID, typeOfRoom string) (*Room, bool) {
 	return room, ok
 }
 
-func createRoom(hub *Hub, ID,typeOfRoom string) *Room {
+func createRoom(hub *Hub, ID string) *Room {
 	return &Room{
-		ID: ID,
-		Type:       typeOfRoom,
+		ID:         ID,
 		Clients:    NewSafeClientsMap(),
 		Registered: make(chan bool),
 	}
 }
 
 func (r *Room) isThereClient(client *Client) bool {
-	_, ok := r.Clients.Get(client.UserID)
+	_, ok := r.Clients.Get(client.UserName)
 	return ok
 }
 
 func (r *Room) DeleteClient(client *Client) {
 	if r.isThereClient(client) {
-		r.Clients.Delete(client.UserID)
+		r.Clients.Delete(client.UserName)
 	}
 }
 
-func (r *Room) GetUsersInRoom() []struct{ ID, UserName string } {
+func (r *Room) GetUsersInRoom() []string {
 	r.Clients.RLock()
 	defer r.Clients.RUnlock()
 
-	users := make([]struct{ ID, UserName string }, len(r.Clients.items))
+	users := make([]string, len(r.Clients.items))
 	i := 0
 	for _, client := range r.Clients.items {
-		users[i].ID = client.UserID
-		users[i].UserName = client.UserName
+		users[i] = client.UserName
 		i++
 	}
 
 	return users
+}
+
+/**
+returns number of users in the room
+*/
+func (r *Room) Size() int {
+	return r.Clients.Len()
+}
+
+func (r *Room) ContainsUser(UserName string) bool {
+	r.Clients.RLock()
+	defer r.Clients.RUnlock()
+
+	for _, client := range r.Clients.items {
+		if client.UserName == UserName {
+			return true
+		}
+	}
+
+	return false
 }
 
 func (r *Room) String() string {
