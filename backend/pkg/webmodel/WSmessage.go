@@ -10,17 +10,12 @@ import (
 const (
 	ERROR = "ERROR"
 
-	UsersInRoom    = "usersInRoom"
-	UserJoinedRoom = "userJoinedRoom"
-	UserQuitChat   = "userQuitChat"
-	InputChatMessage       = "inputChatMessage"
-	SendMessageToChat      = "sendMessageToChat"
-	UserOffline = "offlineUser"
-
-	OnlineUsers = "onlineUsers"
-	UserOnline  = "newOnlineUser"
+	UsersInRoom       = "usersInRoom"
+	UserJoinedRoom    = "userJoinedRoom"
+	SendMessageToChat = "sendMessageToChat"
+	InputChatMessage  = "inputChatMessage"
+	UserQuitChat = "userQuitChat"
 )
-
 
 var ErrWarning = errors.New("Warning")
 

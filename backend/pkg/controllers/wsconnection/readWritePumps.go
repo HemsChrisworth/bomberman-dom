@@ -158,7 +158,7 @@ func (uc *UsersConnection) deleteClientAndSendUserOffline() error {
 		if err != nil {
 			return err
 		}
-		return uc.WsServer.WShandlers[webmodel.UserOffline].SendReply(uc, webmodel.WSMessage{Type: webmodel.UserOffline, Payload: roomID})
+		return uc.WsServer.WShandlers[webmodel.UserQuitChat].SendReply(uc, webmodel.WSMessage{Type: webmodel.UserQuitChat, Payload: roomID})
 	}
 	return nil
 }
