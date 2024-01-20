@@ -92,7 +92,7 @@ gets user's name from the request's url.
 URL must be  "/joinRoom?name=<userName>"
 */
 func getChatParams(url *url.URL) (userName string, err error) {
-	userName = url.Query().Get("id")
+	userName = url.Query().Get("name")
 	if userName == "" {
 		err = fmt.Errorf("no name specified")
 	}
