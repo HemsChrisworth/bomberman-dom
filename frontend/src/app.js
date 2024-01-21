@@ -9,12 +9,10 @@ import { WelcomeScreenC } from './components/welcomeScreenC.js';
 
 //export const router = createRouter(routes);
 
-export const App = new Frame() // create a new Frame, all virtual Elements will be added to it
+export const App = new Frame(welcomeScreen) // create a new Frame, all virtual Elements will be added to it
 
 App.useEvents("click", "keydown", "dblclick") // REQUIRED
 
 //reactives.push(updateReactiveValues)
 
 App.mount(document.getElementById('app'))
-
-App.addVElement(welcomeScreen);
