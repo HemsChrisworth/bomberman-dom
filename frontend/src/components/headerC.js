@@ -5,9 +5,9 @@ export const HeaderC = new VElement({
         tag: 'header',
         children: [
             new VElement({
-                tag: 'h1',
-                attrs: { id: 'logo' },
-                content: 'Bomberman'
+                tag: 'img',
+                attrs: { id: 'logo', src: './src/assets/images/Bomberman_logo.png' }
             })
         ]
 });
+
