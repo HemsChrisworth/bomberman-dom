@@ -1,26 +1,34 @@
 import { VElement } from "./VElement.js";
 
-/** creates virtual Application instance
-* 
-* @method useEvents - declare list of DOM events you want to use
-* @method createElement - create a new virtual element and add it to the Frame as a child
-* @method addVElement - add the given virtual element to the Frame as a child
-* @method render - render the Frame (corresponding virtual Element) to the DOM Element
-* @method mount - mount the Frame (corresponding virtual Element) to the given DOM Element (replace the existing DOM Element with rendered virtual Element)
-* @method getState - return (corresponding virtual Element) as object - TODO ? useless?
-* @protected @property _state - the virtual Element representing the Frame
-* @property DOMEvents - declared list of DOM events you want to use, read only
-* @property children - list of this VElement's children
-*
-*
+/**
+ * Creates a virtual Application instance.
+ * 
+ * @class
+ * @param {VElement} [vElem] - Optional. If provided, it is used as the root 
+ *                             element of the Frame. If not provided, defaults 
+ *                             to creating a new VElement with a div tag and an 
+ *                             ID of "app", serving as the root element.
+ * 
+ * @method useEvents - Declare list of DOM events you want to use.
+ * @method createElement - Create a new virtual element and add it to the Frame as a child.
+ * @method addVElement - Add the given virtual element to the Frame as a child.
+ * @method render - Render the Frame (corresponding virtual Element) to the DOM Element.
+ * @method mount - Mount the Frame (corresponding virtual Element) to the given DOM Element 
+ *                 (replace the existing DOM Element with rendered virtual Element).
+ * @method getState - Return (corresponding virtual Element) as object. TODO: Assess if needed.
+ *
+ * @protected 
+ * @property _state - The virtual Element representing the Frame.
+ * @property DOMEvents - Declared list of DOM events you want to use, read only.
+ * @property children - List of this VElement's children.
  */
+
 export class Frame {
-  constructor(
-    vElem = { tag: "div", attrs: { id: "app" }, content: "", children: [] }
-  ) {
-    /**@protected*/ this._state = new VElement(vElem);
-    this._DOMevents = [];
-    //TODO ?  pointless? -  this.dependencies = {}
+  constructor(vElem = null) {
+      this._state = vElem || new VElement({
+          tag: "div", attrs: { id: "app" }, content: "", children: []
+      });
+      this._DOMevents = [];
   }
 
   /**
