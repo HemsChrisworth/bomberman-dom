@@ -4,8 +4,17 @@ import (
 	"fmt"
 	"path/filepath"
 
+	"github.com/google/uuid"
 	"golang.org/x/crypto/bcrypt"
 )
+
+func GenerateNewUUID() (string, error) {
+	uuid, err := uuid.NewRandom()
+	if err != nil {
+		return "", err
+	}
+	return uuid.String(), nil // convert 16 byte uuid into string
+}
 
 func HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
@@ -30,7 +39,6 @@ func ShortMessage(message []byte) []byte {
 }
 
 func FindFile(targetDir string, pattern string) string {
-
 	matches, err := filepath.Glob(targetDir + pattern)
 	if err != nil {
 		fmt.Println(err)

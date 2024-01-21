@@ -8,7 +8,6 @@ import (
 
 // Client is a middleman between the websocket connection and the hub.
 type Client struct {
-	UserID   string
 	UserName string
 	Room     *Room
 
@@ -22,9 +21,8 @@ type Client struct {
 }
 
 // TODO use this in the correct place
-func NewClient(hub *Hub, userID, userName string, room *Room, conn *websocket.Conn, receivedMessages chan []byte, clientRegistered chan bool)( *Client, bool) {
+func NewClient(hub *Hub, userName string, room *Room, conn *websocket.Conn, receivedMessages chan []byte, clientRegistered chan bool)( *Client, error) {
 	client := &Client{
-		UserID:   userID,
 		UserName: userName,
 		Room:     room,
 		Conn:     conn,
@@ -45,7 +43,10 @@ func NewClient(hub *Hub, userID, userName string, room *Room, conn *websocket.Co
 	hub.RegisterClientToHub(client)
 	// Wait for client registration to complete
 	ok:=<-client.Registered
-	return client, ok
+	if !ok {
+		return nil,  fmt.Errorf("cannot create a client: room id '%s' does not exist", room.ID)
+	}
+	return client, nil
 }
 
 func (c *Client) WriteMessage(message []byte) {
@@ -54,5 +55,5 @@ func (c *Client) WriteMessage(message []byte) {
 }
 
 func (c *Client) String() string {
-	return fmt.Sprintf("addr: %p || User ID:'%s' || connection: %p || channels: clientRegistered %p  |  ReceivedMessages %p", c, c.UserID, c.Conn, c.Registered, c.ReceivedMessages)
+	return fmt.Sprintf("addr: %p || User:'%s' || connection: %p || channels: clientRegistered %p  |  ReceivedMessages %p", c, c.UserName, c.Conn, c.Registered, c.ReceivedMessages)
 }
