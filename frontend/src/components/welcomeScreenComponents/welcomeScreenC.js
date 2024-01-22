@@ -2,16 +2,17 @@ import { VElement } from "../../../../framework/VElement.js";
 import { PLAYER_NAME_FORM_INPUT } from "../../js_modules/consts/consts.js";
 import { Player } from "../../js_modules/models/playersModel.js";
 import { playerList } from "../../js_modules/playerList.js";
+import { mainView } from "../../mainView.js";
 import { welcomeScreen } from "../../views/launchView.js";
+import { chatC } from "../chatC.js";
 import { waitingScreenC } from "./waitingScreenC.js";
 
 function loadWaitingScreen(playerName) {
-  
+  mainView.addChild(chatC)
   playerList.addPlayer(new Player(playerName));
   welcomeScreen.delChild(WelcomeScreenC._vId);
   welcomeScreen.addChild(waitingScreenC);
   console.log(playerList.players)
-  loadChat()
 }
 
 

@@ -1,6 +1,6 @@
 
-import { VElement } from "../../../framework/VElement";
-import { CHAT_MESSAGE_FORM_INPUT_NAME } from "../js_modules/consts/consts";
+import { VElement } from "../../../framework/VElement.js";
+import { CHAT_MESSAGE_FORM_INPUT_NAME } from "../js_modules/consts/consts.js";
 
 export const chatMessageArea = new VElement({
     tag: 'div',
