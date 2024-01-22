@@ -59,16 +59,26 @@ export class Frame {
    */
   useEvents(...events) {
     this._DOMevents = events;
-
     this._DOMeventsListener = ($elem) => {
       // this func is called in the mount method
       this._DOMevents.forEach((DOMevent) => {
+        let preventDefault = false
+        if (DOMevent.includes(".prevent")) {
+          DOMevent = DOMevent.split('.')[0]
+          preventDefault = true
+        }
         $elem.addEventListener(DOMevent, ($event) => {
-          // native listener will stop propagation and default behavior, and emit the corresponding event for the corresponding virtual Element
           $event.stopPropagation();
-          //$event.preventDefault(); // TODO need to make this optional to prevent breaking things
           const vElemUuid = $event.target.getAttribute("vID");
-          this._state.getChild(vElemUuid)?.emit(`@${DOMevent}`, $event); // suppose all event in virtual elements have names started with @
+          if (preventDefault) {
+            $event.preventDefault();
+            this._state.getChild(vElemUuid)?.emit(`@${DOMevent}.prevent`, $event); // suppose all event in virtual elements have names started with @
+          } else {
+            this._state.getChild(vElemUuid)?.emit(`@${DOMevent}`, $event); // suppose all event in virtual elements have names started with @
+          }
+          // native listener will stop propagation and default behavior, and emit the corresponding event for the corresponding virtual Element
+          
+          
         });
       });
     };

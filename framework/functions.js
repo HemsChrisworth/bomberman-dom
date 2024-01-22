@@ -12,7 +12,7 @@ export const reactives = []
 
 export function updateReactives() {
     reactives.forEach(reactive => {
-        reactive()
+        reactive = reactive
     })
 }
 

@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stylesheet.css">
-    <title>Bomberman</title>
-</head>
-<body class="body">
-    <header id="gameheader">
-        <p id="logo">Bomberman</p>
-    </header>
-    <div id="game">
+import { VElement } from "../../../../framework/VElement";
+
+export const gameBoxC = new VElement({
+    tag: 'div',
+    attrs: {id: 'game'},
+    children: []
+})
+
+/* <div id="game">
         <div id="gamepanel">
             <div id="gamedata">
                 <span class="gameinfo">hearts & FPS</span>
@@ -31,6 +27,4 @@
                 <input type="submit" value="Send">
             </form>
         </div>
-    </div>
-</body>
-</html>
+    </div> */
