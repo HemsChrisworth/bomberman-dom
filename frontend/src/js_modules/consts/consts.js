@@ -1,1 +1,2 @@
-export const PLAYER_NAME_FORM_INPUT = 'playerName'
+export const PLAYER_NAME_FORM_INPUT = 'playerName',
+CHAT_MESSAGE_FORM_INPUT_NAME = 'chatMessage'

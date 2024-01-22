@@ -6,3 +6,8 @@ export class Tile {
         this.passable = passable;
     }
 }
+
+
+class Bomb extends Tile {
+    
+}
