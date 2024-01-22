@@ -1,11 +1,10 @@
-import { ref } from "vue";
-import {payloadModel} from "../models/payloadModel"
-import { wsResponseRouter } from "../../router/ws_response_router";
+
+import {payloadModel} from "../models/payloadModel.js"
+import { wsResponseRouter } from "../../router/ws_response_router.js";
 
 export default class Socket {
   constructor() {
     this.connection = new WebSocket("ws://temp"); // to prevent some errors in components
-    this.loaded = ref(false);
   }
   launchWebsocket(url) {
     this.connection = new WebSocket(`ws://localhost:8000/${url}`);

@@ -1,4 +1,4 @@
-import Socket from "./models/webSocketModel"
+import Socket from "./models/webSocketModel.js"
 
 const ws = new Socket()
 

@@ -9,7 +9,8 @@ import { waitingScreenC } from "./waitingScreenC.js";
 
 function loadWaitingScreen(playerName) {
   mainView.addChild(chatC)
-  playerList.addPlayer(new Player(playerName));
+  // submit player name to ws connection, add player in ws_response_router
+  
   welcomeScreen.delChild(WelcomeScreenC._vId);
   welcomeScreen.addChild(waitingScreenC);
   console.log(playerList.players)
