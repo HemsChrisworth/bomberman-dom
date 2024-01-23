@@ -69,7 +69,7 @@ export class VElement {
 
             }
 
-            if (typeof vElemObj.children !== "object") {
+            if (!(vElemObj.children instanceof  Array)) {
                 vElemObj.children = {};
             }
 
