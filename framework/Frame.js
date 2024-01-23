@@ -25,6 +25,7 @@ import { VElement } from "./VElement.js";
 
 export class Frame {
   constructor(vElem = null) {
+    console.log("new Frame")
       this._state = vElem || new VElement({
           tag: "div", attrs: { id: "app" }, content: "", children: []
       });
