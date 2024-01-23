@@ -41,9 +41,7 @@ export default class Socket {
     if (data.result == "success") {
       wsResponseRouter[event](data); // routes the data to a handler based on the event
     } else {
-      if (event == "getUserProfile") {
-        window.location.href = "/userNotFound";
-      }
+      
       throw new Error("Failed to complete operation: ", data);
     }
   }

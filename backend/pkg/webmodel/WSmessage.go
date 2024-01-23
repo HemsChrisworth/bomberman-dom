@@ -11,10 +11,12 @@ const (
 	ERROR = "ERROR"
 
 	UsersInRoom       = "usersInRoom"
-	UserJoinedRoom    = "userJoinedRoom"
+	RegisterNewPlayer = "registerNewPlayer"
 	SendMessageToChat = "sendMessageToChat"
 	InputChatMessage  = "inputChatMessage"
-	UserQuitChat = "userQuitChat"
+	UserQuitChat      = "userQuitChat"
+
+	PlayerAction = "playerAction"
 )
 
 var ErrWarning = errors.New("Warning")

@@ -15,7 +15,8 @@ func CreateChatWsRoutes(app *application.Application) wsconnection.WSmux { // ws
 	}
 	wsServer.WShandlers = map[string]wsconnection.Replier{
 		webmodel.SendMessageToChat: controllers.ReplySendMessageToChat(app),
-		webmodel.UserQuitChat:       wsconnection.FuncReplier(controllers.SendUserToRoomMembers(webmodel.UserQuitChat)),
+		webmodel.PlayerAction:      controllers.ReplyPlayerAction(app),
+		webmodel.UserQuitChat:      wsconnection.FuncReplier(controllers.SendUserToRoomMembers(webmodel.UserQuitChat)),
 	}
 
 	return wsServer

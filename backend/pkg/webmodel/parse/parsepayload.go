@@ -31,3 +31,9 @@ func PayloadToChatMessage(payload json.RawMessage) (webmodel.ChatMessage, error)
 	err := json.Unmarshal(payload, &message)
 	return message, err
 }
+
+func PayloadToAction(payload json.RawMessage) (webmodel.PlrAction, error) {
+	var action webmodel.PlrAction
+	err := json.Unmarshal(payload, &action)
+	return action, err
+}
