@@ -1,1 +1,1 @@
-export const gameScreen = []
+export const gameTiles = []

@@ -2,6 +2,7 @@ import { Frame } from '../../framework/Frame.js';
 import { mainView } from './mainView.js';
 import { welcomeScreen } from './views/launchView.js';
 import { countdown20sec } from '../design.js';
+import { testCreateMap, testRenderMap } from './test/test.js';
 
 //export const router = createRouter(routes);
 
@@ -15,3 +16,4 @@ App.mount(document.getElementById('app'))
 
 App.addVElement(mainView);
 
+testRenderMap()
