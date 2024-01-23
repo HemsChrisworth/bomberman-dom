@@ -5,10 +5,23 @@ import { playerList } from "../js_modules/playerList";
 
 export const wsResponseRouter = {
   usersInRoom(payload) {
+    //TODO show users list
     onlineUserTracker.value.renderNewOnlineUser(payload);
   },
   
   registerNewPlayer(payload) {
     playerList.addPlayer(new Player(payload.data));
-  }
+  },
+
+  sendMessageToChat(payload) {
+    //TODO
+  },
+
+  playerAction(payload) {
+    //TODO
+  },
+  
+  inputChatMessage(payload) {
+    //TODO
+  },
 };

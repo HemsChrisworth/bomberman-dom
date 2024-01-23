@@ -39,11 +39,11 @@ if there is a **request error**, the reply will be like:
 		*to creator*	payload.data: "sent"
 		*to recepients* webmodel.ChatMessage with type  **inputChatMessage**
 
-*Type*:  **PlayerAction**  
+*Type*:  **playerAction**  
 	*request payload*:   action string
 	*reply payload.data:* 
 		*to creator*	payload.data: "sent"
-		*to recepients* webmodel.PlrAction with type  **PlayerAction**
+		*to recepients* webmodel.PlrAction with type  **playerAction**
 		{
 			playerName  string
 			action      string
