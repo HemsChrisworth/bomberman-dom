@@ -13,7 +13,7 @@ function loadWaitingScreen(playerName) {
   mainView.addChild(chatC)
   // submit player name to ws connection, add player in ws_response_router
   
-  welcomeScreen.delChild(WelcomeScreenC._vId);
+  welcomeScreen.delChild(WelcomeScreenC.vId);
   welcomeScreen.addChild(waitingScreenC);
   /*if (waiting20sec === 0) { // + add (.. || playerCount === 4)
     welcomeScreen.delChild(waitingScreenC);
