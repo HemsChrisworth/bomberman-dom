@@ -75,7 +75,7 @@ export class VElement {
             {
                 get: (stateObj, key) => {
                     throttleFunction(updateReactives(), 1000)
-                    
+
                     return stateObj[key]
                 },
                 /** allows to set properties tag, arggs, content, children. Any other will be ignored. value for children property is VElement[], which will be converted to Map
@@ -90,7 +90,7 @@ export class VElement {
                     }
 
                     if (key === 'tag') {
-                        
+
                         stateObj.tag = value;
                         if (this.$elem instanceof Element) {
                             const $oldElm = this.$elem //neeed to keep the old $elem because after render (in the next row) it will be renewed
@@ -120,7 +120,7 @@ export class VElement {
 
                     // works if we assign a Map or undefined as children
                     if (key === 'children') {
-                        
+
                         const oldChildren = stateObj.children;
                         if (value == null || (value instanceof Map && stateObj.tag)) {
                             stateObj.children = value;
@@ -260,9 +260,9 @@ export class VElement {
         }
 
         if (this.state.children) {
-          this.state.children.forEach((child) => {
-            $elem.appendChild(child.render().$elem);
-          }); 
+            this.state.children.forEach((child) => {
+                $elem.appendChild(child.render().$elem);
+            });
         }
 
         this.$elem.setAttribute('vId', this.vId);
@@ -373,7 +373,7 @@ export class VElement {
      */
     delAttr(key) {
         this.state.attrs.delete(key);
-        if (this.$elem){
+        if (this.$elem) {
             this.$elem.removeAttribute(key);
         }
         return this;
@@ -401,7 +401,11 @@ export class VElement {
      * @returns 
      */
     emit(eventType, $event) {
-        this._events[eventType]?.forEach((callback) => callback(this, $event));
+        this._events[eventType]?.forEach((callback) => {
+            if (eventType.endsWith(".prevent")) { $event.preventDefault(); }
+            callback(this, $event)
+        });
+
         return this;
     }
 }
