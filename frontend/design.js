@@ -1,4 +1,6 @@
-document.getElementById('chooseName').addEventListener('submit', startWaiting);
+//document.getElementById('chooseName').addEventListener('submit', startWaiting);
+import { waitingTimer20secC } from "./src/components/welcomeScreenComponents/waitingScreenC.js"
+import { t10seccountdownC } from "./src/components/welcomeScreenComponents/waitingScreenC.js"
 
 function startWaiting(event) { // the function brings user to the waiting room screen
     event.preventDefault();
@@ -7,13 +9,13 @@ function startWaiting(event) { // the function brings user to the waiting room s
     countdown20sec();
 }
 
-let waiting20sec = 4; // CHANGE to 20!
-let waiting10sec = 4; // Change to 10!
+export let waiting20sec = 21; // CHANGE to 21!
+export let waiting10sec = 11; // Change to 11!
 
-function countdown20sec() {
+export function countdown20sec() {
     if (waiting20sec > 0) {
         waiting20sec--;
-        document.querySelector("#waiting20sec").innerHTML = waiting20sec;
+        waitingTimer20secC.content = waiting20sec;
         if (waiting20sec === 0) { // This function works when go to 10 sec counter, change to => (if (waiting20sec === 0) || (playerCount === 4))
             document.querySelector("#waiting").style.display = "none";
             document.querySelector("#countdowntostart").style.display = "flex";
@@ -24,12 +26,12 @@ function countdown20sec() {
     }
 }
 
-function countdown10sec() {
+export function countdown10sec() {
     if (waiting10sec > 0) {
         waiting10sec--;
-        document.querySelector("#waiting10sec").innerHTML = waiting10sec;
+        t10seccountdownC.content = waiting10sec;
         if (waiting10sec === 0) {
-            window.location.href = "game.html";
+            //window.location.href = "game.html"; = NEEDS TO OPEN THE GAME
             return;
         }
         setTimeout(countdown10sec, 1000);
