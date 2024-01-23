@@ -1,3 +1,4 @@
+import { MAP_TILE_SIZE } from "../../consts/consts";
 
 export class Map {
     /**
@@ -7,7 +8,7 @@ export class Map {
     constructor(levelMap) { // outer circle is just blocks
         this.columns = levelMap[0].length
         this.rows = levelMap.length
-        this.tileSize = 32 // depends on sprite sheet ig
+        this.tileSize = MAP_TILE_SIZE // depends on sprite sheet ig
         this.levelMap = levelMap
     }
     renderMap(VElement) {
