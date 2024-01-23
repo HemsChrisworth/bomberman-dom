@@ -7,8 +7,7 @@ import { welcomeScreen } from "../../views/launchView.js";
 import { chatC } from "../chatC.js";
 import { waitingScreenC } from "./waitingScreenC.js";
 import { waitingScreen10secC } from "./waitingScreenC.js";
-import { waiting20sec } from "../../../design.js";
-import { waiting10sec } from "../../../design.js";
+import { countdown10sec, countdown20sec} from "../../../design.js";
 
 function loadWaitingScreen(playerName) {
   mainView.addChild(chatC)
@@ -25,12 +24,14 @@ function loadWaitingScreen(playerName) {
     }
   }*/
   console.log(playerList.players)
+  countdown10sec();
+  countdown20sec();
 }
 
 
 
 const formChildren = [
-    new VElement({ tag: 'input', attrs: { type: 'text' , id: 'chooseusername', name: PLAYER_NAME_FORM_INPUT}}),
+    new VElement({ tag: 'input', attrs: { required:"", type: 'text' , id: 'chooseusername', name: PLAYER_NAME_FORM_INPUT}}),
     new VElement({ tag: 'input',
     attrs: { type: 'submit', id: "startgame", value: 'Start!' },
 })

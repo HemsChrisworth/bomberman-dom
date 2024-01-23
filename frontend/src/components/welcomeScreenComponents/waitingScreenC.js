@@ -60,5 +60,4 @@ export const waitingScreenC = new VElement({
   ]
 });
 
-countdown10sec();
-countdown20sec();
+
