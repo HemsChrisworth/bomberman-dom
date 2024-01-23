@@ -8,7 +8,7 @@ import { testCreateMap, testRenderMap } from './test/test.js';
 
 export const App = new Frame() // create a new Frame, all virtual Elements will be added to it
 
-App.useEvents("click", "keydown", "submit.prevent") // REQUIRED
+App.useEvents("click", "keydown", "submit") // REQUIRED
 
 //reactives.push(updateReactiveValues)
 
