@@ -2,7 +2,7 @@ import { VElement } from "../../../../framework/VElement.js"
 
 export class Player { // add all player properties here, for example image, movements etc
     constructor(name) {
-        this.x = 0
+        this.x = 0 // have x and y randomly allocated
         this.y = 0
         this.name = name
         this.lives = 3
