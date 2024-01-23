@@ -129,10 +129,9 @@ export class VElement {
                                 this.$elem = patch(this.$elem);
                             }
                         }
-
                     }
-
-                    return stateObj[key]
+                    stateObj[key] = value;
+                    return true 
                 },
             }
         );

@@ -1,5 +1,13 @@
 import { VElement } from "../../../../../framework/VElement.js";
 
+const testGameScreen = new VElement({
+  tag: "img",
+  attrs: {
+    src: "https://img.y8.com/cloud/y8-thumbs/103/big.gif",
+    style: "width: 576px; height: 384px;",
+  },
+});
+
 const gameData = new VElement({
     tag: 'div',
     attrs: {id: 'gamedata'},
@@ -11,14 +19,11 @@ const gameData = new VElement({
     ]
 })
 
-const gameScreen = new VElement({
+export const mainGameScreen = new VElement({ // here we add all the tiles of the game as VElement children
   tag: "div",
   attrs: { id: "gamescreen" },
-  children: [
-    new VElement({
-      tag: "img",
-      attrs: { src: "https://img.y8.com/cloud/y8-thumbs/103/big.gif", style: "width: 576px; height: 384px;" },
-    }),
+  children: [ // tiles
+    //testGameScreen
   ],
 });
 
@@ -28,6 +33,6 @@ export const gamePanelC = new VElement({
     attrs: {id: 'gamepanel'},
     children: [
         gameData,
-        gameScreen
+        mainGameScreen
     ]
 })

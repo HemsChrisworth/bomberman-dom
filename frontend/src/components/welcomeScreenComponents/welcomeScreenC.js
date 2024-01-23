@@ -6,6 +6,8 @@ import { mainView } from "../../mainView.js";
 import { welcomeScreen } from "../../views/launchView.js";
 import { chatC } from "../chatC.js";
 import { waitingScreenC } from "./waitingScreenC.js";
+import { waitingScreen10secC } from "./waitingScreenC.js";
+import { countdown10sec, countdown20sec} from "../../../design.js";
 
 function loadWaitingScreen(playerName) {
   mainView.addChild(chatC)
@@ -13,15 +15,25 @@ function loadWaitingScreen(playerName) {
   
   welcomeScreen.delChild(WelcomeScreenC._vId);
   welcomeScreen.addChild(waitingScreenC);
+  /*if (waiting20sec === 0) { // + add (.. || playerCount === 4)
+    welcomeScreen.delChild(waitingScreenC);
+    welcomeScreen.addChild(waitingScreen10secC);
+    if (waiting10sec === 0) { 
+      welcomeScreen.delChild(waitingScreen10secC);
+
+    }
+  }*/
   console.log(playerList.players)
+  countdown10sec();
+  countdown20sec();
 }
 
 
 
 const formChildren = [
-    new VElement({ tag: 'input', attrs: { type: 'text' , name: PLAYER_NAME_FORM_INPUT}}),
+    new VElement({ tag: 'input', attrs: { required:"", type: 'text' , id: 'chooseusername', name: PLAYER_NAME_FORM_INPUT}}),
     new VElement({ tag: 'input',
-    attrs: { type: 'submit', value: 'Start!' },
+    attrs: { type: 'submit', id: "startgame", value: 'Start!' },
 })
 ];
 
@@ -39,8 +51,8 @@ export const WelcomeScreenC = new VElement({
     tag: 'div',
     attrs: { id: 'welcome', class: 'welcomescreens' },
     children: [
-        new VElement({ content: 'Welcome to the game!' }),
-        new VElement({ content: 'Choose your nickname:' }),
+        new VElement({ tag: 'p', attrs: { id: "welcometothegame" }, content: 'Welcome to the game!' }),
+        new VElement({ tag: 'span', attrs: { class: "welcometext" }, content: 'Choose your nickname:' }),
         formElement
     ]
 });
