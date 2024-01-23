@@ -534,11 +534,13 @@ function isIterable(obj) {
 
 function styleObjectFromString(str) {
     const styleObj = {};
-    const styles = str.trim().split(';');
+    str= str.replace(/[\s\r\n]+/g," ");
+   
+    const styles = str.split(';');
     for (const style of styles) {
-        const [prop, value] = style.split(': ');
+        const [prop, value] = style.split(':');
         if (prop && value) {
-            styleObj[prop] = value;
+            styleObj[prop.trim()] = value.trim();
         }
     }
     return styleObj;
