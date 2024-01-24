@@ -8,6 +8,16 @@ const testGameScreen = new VElement({
   },
 });
 
+export const mainGameScreen = new VElement({
+  // here we add all the tiles of the game as VElement children
+  tag: "div",
+  attrs: { id: "gamescreen" },
+  children: [
+    // tiles
+    //testGameScreen
+  ],
+});
+
 /*const gameData = new VElement({
     tag: 'div',
     attrs: {id: 'gamedata'},
@@ -19,13 +29,7 @@ const testGameScreen = new VElement({
     ]
 })*/
 
-export const mainGameScreen = new VElement({ // here we add all the tiles of the game as VElement children
-  tag: "div",
-  attrs: { id: "gamescreen" },
-  children: [ // tiles
-    //testGameScreen
-  ],
-});
+
 
 
 /*export const gamePanelC = new VElement({

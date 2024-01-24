@@ -1,7 +1,6 @@
 import { VElement } from "../../framework/VElement.js";
 import { gameBoxC } from "./components/gameScreenComponents/gameBoxC.js";
 import { HeaderC } from "./components/headerC.js";
-import { gameScreen } from "./views/gameView.js";
 import { welcomeScreen } from "./views/launchView.js";
 
 export const mainView = new VElement({

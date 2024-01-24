@@ -1,5 +1,5 @@
-import ChatC from "../../components/chatC"
-import Socket from "./webSocketModel";
+import ChatC from "../../components/chatC.js"
+import Socket from "./webSocketModel.js";
 
 export class ChatModel {
     constructor() {
