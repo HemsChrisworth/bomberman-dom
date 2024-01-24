@@ -10,6 +10,7 @@ import { countdown10sec, countdown20sec} from "../../../design.js";
 import { ChatModel } from "../../js_modules/models/chatModel.js";
 
 function loadWaitingScreen(playerName) {
+  console.debug(playerName);
   const chat = new ChatModel
   chat.launch(playerName)
   mainView.addChild(chat.chatC)

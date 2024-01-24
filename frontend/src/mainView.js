@@ -8,8 +8,8 @@ export const mainView = new VElement({
     tag: 'div',
     attrs: {id: "main"},
     children: [
-        //HeaderC, welcomeScreen
-        HeaderC, gameBoxC
+        HeaderC, welcomeScreen
+        // HeaderC, gameBoxC
         // can put chatC into this component as well so view changes don't affect the chat element
     ]
 }) //gameScreen

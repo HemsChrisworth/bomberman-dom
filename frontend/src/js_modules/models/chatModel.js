@@ -1,5 +1,5 @@
-import { createChatC, createChatMessageArea } from "../../components/chatC"
-import Socket from "./webSocketModel";
+import { createChatC, createChatMessageArea } from "../../components/chatC.js"
+import Socket from "./webSocketModel.js";
 
 export class ChatModel {
     constructor() {
@@ -10,6 +10,6 @@ export class ChatModel {
 
     launch(playerName) {
         this.socket = new Socket
-        this.socket.launchWebsocket(`/joinGame?name=${playerName}`);
+        this.socket.launchWebsocket(`joinGame?name=${playerName}`);
     }
 }

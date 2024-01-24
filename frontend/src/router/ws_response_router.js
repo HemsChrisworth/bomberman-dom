@@ -1,11 +1,12 @@
-import { Player } from "../js_modules/models/playersModel";
-import { playerList } from "../js_modules/playerList";
+import { Player } from "../js_modules/models/playersModel.js";
+import { playerList } from "../js_modules/playerList.js";
 
 // routes the response from websocket to various functions for components
 
 export const wsResponseRouter = {
   usersInRoom(payload) {
     //TODO show users list
+    console.log("handle usersInRoom message with payload:", payload);
     onlineUserTracker.value.renderNewOnlineUser(payload);
   },
   

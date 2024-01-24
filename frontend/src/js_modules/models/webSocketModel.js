@@ -31,9 +31,10 @@ export default class Socket {
     rawMessages.forEach((rawMessage) => {
       try {
         const message = JSON.parse(rawMessage);
+        if (message.type === "ERROR") {throw new Error(`${message.payload.result}:  ${message.payload.data}`);}
         this.emit(message.type, message.payload);
       } catch (error) {
-        console.error("Unable to parse JSON string:", error);
+        console.error("error in websocket handleMessages: ", error);
       }
     });
   };
@@ -43,7 +44,7 @@ export default class Socket {
       wsResponseRouter[event](data); // routes the data to a handler based on the event
     } else {
       
-      throw new Error("Failed to complete operation: ", data);
+      throw new Error(`Failed to complete ${event}: ${data}`);
     }
   }
   closeWebsocket() {
