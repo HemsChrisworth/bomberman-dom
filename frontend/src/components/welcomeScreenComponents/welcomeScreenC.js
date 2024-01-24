@@ -31,7 +31,7 @@ function loadWaitingScreen(playerName) {
 
 
 const formChildren = [
-    new VElement({ tag: 'input', attrs: { required:"", type: 'text' , id: 'chooseusername', name: PLAYER_NAME_FORM_INPUT}}),
+    new VElement({ tag: 'input', attrs: { required:"", type: 'text' , id: 'chooseusername', autocomplete: "off" , name: PLAYER_NAME_FORM_INPUT}}),
     new VElement({ tag: 'input',
     attrs: { type: 'submit', id: "startgame", value: 'Start!' },
 })

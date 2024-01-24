@@ -8,7 +8,7 @@ const testGameScreen = new VElement({
   },
 });
 
-const gameData = new VElement({
+/*const gameData = new VElement({
     tag: 'div',
     attrs: {id: 'gamedata'},
     children: [
@@ -17,7 +17,7 @@ const gameData = new VElement({
             attrs: {class: 'gameinfo'}
         })
     ]
-})
+})*/
 
 export const mainGameScreen = new VElement({ // here we add all the tiles of the game as VElement children
   tag: "div",
@@ -28,11 +28,11 @@ export const mainGameScreen = new VElement({ // here we add all the tiles of the
 });
 
 
-export const gamePanelC = new VElement({
+/*export const gamePanelC = new VElement({
     tag: 'div',
     attrs: {id: 'gamepanel'},
     children: [
         gameData,
         mainGameScreen
     ]
-})
+})*/

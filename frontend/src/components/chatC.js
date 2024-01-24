@@ -34,11 +34,11 @@ export const chatC = new VElement({
       children: [
         new VElement({
           tag: "input",
-          attrs: { type: "text", name:  CHAT_MESSAGE_FORM_INPUT_NAME},
+          attrs: { type: "text", id: "chattextarea" , autocomplete: "off" , name:  CHAT_MESSAGE_FORM_INPUT_NAME},
         }),
         new VElement({
           tag: "input",
-          attrs: { type: "Submit" , value: "Send message"},
+          attrs: { type: "Submit" , id: "sendmessagebutton" , class: "material-symbols-outlined" , value: "send" },
         }),
       ],
       '@submit.prevent' : (velem, event) => {
