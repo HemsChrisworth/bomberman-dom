@@ -20,7 +20,7 @@ func SendListOfUsersInRoom(app *application.Application, currConnection *wsconne
 	}
 
 	// send the new user to the room members
-	err = SendUserToRoomMembers(webmodel.UserJoinedRoom)(currConnection, webmodel.WSMessage{})
+	err = SendUserToRoomMembers(webmodel.RegisterNewPlayer)(currConnection, webmodel.WSMessage{})
 	if err != nil {
 		return errors.Join(webmodel.ErrWarning, err)
 	}

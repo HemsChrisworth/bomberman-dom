@@ -18,6 +18,40 @@ export function updateReactives() {
 
 /**
  * 
+ * @param {{}} oldStyle 
+ * @param {{}} newStyle 
+ */
+export function diffStyle(oldStyle, newStyle) {
+    const patches = []
+
+    // set new styles for elem
+    for (const [k, v] of Object.entries(newStyle)) {
+        patches.push($node => {
+            $node.style[k] = v;
+            return $node;
+        })
+    }
+
+    // delete old styles
+    for (const k of Object.keys(oldStyle)) {
+        if (!(k in newStyle)) {
+            patches.push($node => {
+                $node.style[k] = null;
+                return $node;
+            })
+        }
+    }
+
+    return $node => {
+        for (const patch of patches) {
+            patch($node)
+        }
+        return $node;
+    }
+}
+
+/**
+ * 
  * @param {{}} oldAttrs 
  * @param {{}} newAttrs 
  */

@@ -1,5 +1,5 @@
 
-import { diffAttrs, diffChildren, updateReactives } from './functions.js';
+import { diffAttrs, diffStyle, diffChildren, updateReactives } from './functions.js';
 import { throttleFunction } from './helpers.js';
 
 /** virtualElements that represents DOM elements
@@ -9,6 +9,7 @@ import { throttleFunction } from './helpers.js';
  * @property {object} state -  objece representing html state
  * @property {string} state.tag -  html tag
  * @property {object} state.attrs -  html attrs
+ * @property {object} state.style -  html style
  * @property {string} state.content -  html content
  * @property {Map.<vElement.vId, vElement>} state.children -  Map of virtual Elements children
  * @property {object} events -  (read only) object's key is the event name (starting with '@'), value is callback function that will be called when the event is emitted
@@ -17,6 +18,8 @@ import { throttleFunction } from './helpers.js';
  * @method getChild - get child recursively by its vId
  * @method setAttr - add/replace(with the same names) virtual element's attributes 
  * @method delAttr  - remove attribute with given name
+ * @method setStyle - add/replace(with the same names) virtual element's style attributes
+ * @method delStyle  - remove style attributes with given name
  * @method addClass - adds className to the class attribute of this vElement
  * @method addChild - add new child to the virtual element
  * @method delChild - remove a child with given vId from the virtual element's children Map
@@ -42,20 +45,38 @@ export class VElement {
      * @param {object|string}  [vElemObj={ tag: "div", attrs: {}, content: "", children: [] }] - object representing the element, defaul is { tag: "div", attrs: {}, content: "", children: [] } 
      * @param {string} [vElem.tag='div']  - ex. 'div', 'span' etc, default value is 'div'
      * @param {{}=} vElem.attrs - ex. `{id: 'container'}` , attribute vID is reserved for internal use only (keep id of the corresponding vElement)
+     * @param {{}|string=} vElem.style - ex. `{display: 'none'}` or "display: none" , style  attribute
      * @param {string= } vElem.content  - plain text or html
      * @param {VElement[]|undefined} vElem.children  can add children recursively by making new Elements in the children Map
      */
-    constructor(vElemObj = { tag: "div", attrs: {}, content: "", children: [] }) {
+    constructor(vElemObj = { tag: "div", attrs: {}, style: {}, content: "", children: [] }) {
         this._vId = crypto.randomUUID();
 
         // for non string elements attributes and children are not null to prevent checking them in all methods and functions 
         if (typeof vElemObj === "object") {
-            if (vElemObj.attrs == null) {
+            if (typeof vElemObj.attrs !== "object") {
                 vElemObj.attrs = {};
             }
-            if (vElemObj.children == null) {
+            switch (typeof vElemObj.style) {
+                case "string":
+                    vElemObj.style = styleObjectFromString(vElemObj.style);
+                    break;
+                case "object":
+                    break;
+                default:
+                    vElemObj.style = {};
+                    break;
+
+            }
+
+            if (!(vElemObj.children instanceof  Array)) {
                 vElemObj.children = {};
             }
+
+            Object.assign(vElemObj.style, separateStyle(vElemObj.attrs));
+
+            // vElemObj.attrs.style = vElemObj.style;
+
         }
 
         if (typeof vElemObj === "string") {
@@ -69,6 +90,7 @@ export class VElement {
             {
                 tag: vElemObj.tag,
                 attrs: vElemObj.attrs,
+                style: vElemObj.style,
                 content: vElemObj.content, // need this to keep string vElement, becaose can't create Proxy of string
                 children: preparedChildren ? new Map(preparedChildren) : undefined,
             },
@@ -117,6 +139,17 @@ export class VElement {
                             this.$elem = patch(this.$elem)
                         }
                     }
+                    if (key === 'style') {
+                        console.log('in proxy set style');
+                        const oldStyle = stateObj.style;
+                        stateObj.style = value;
+                        if (this.$elem instanceof Element) {
+                            console.log('in proxy set style loop');
+
+                            const patch = diffStyle(oldStyle, stateObj.style);
+                            this.$elem = patch(this.$elem)
+                        }
+                    }
 
                     // works if we assign a Map or undefined as children
                     if (key === 'children') {
@@ -131,7 +164,7 @@ export class VElement {
                         }
                     }
                     stateObj[key] = value;
-                    return true 
+                    return true
                 },
             }
         );
@@ -170,7 +203,10 @@ export class VElement {
         return this.state.tag;
     }
     get attrs() {
-        return this.state.attrs;
+        return { ...this.state.attrs, style: stringFromStyleObject(this.state.style) };
+    }
+    get style() {
+        return this.state.style;
     }
     get content() {
         return this.state.content;
@@ -187,7 +223,25 @@ export class VElement {
         return this.state.tag = value;
     }
     set attrs(value) {
+        const newStyle = separateStyle(value);
+        if (newStyle) {
+            this.state.style = newStyle
+        }
         return this.state.attrs = value;
+    }
+    set style(value) {
+        switch (typeof value) {
+            case "string":
+                value = styleObjectFromString(value);
+                break;
+            case "object":
+                break;
+            default:
+                value = {};
+                break;
+
+        }
+        return this.state.style = value;
     }
     set content(value) {
         return this.state.content = value;
@@ -255,6 +309,10 @@ export class VElement {
             $elem.setAttribute(k, v);
         }
 
+        for (const [k, v] of Object.entries(this.state.style)) {
+            $elem.style[k] = v;
+        }
+
         if (this.state.content !== undefined && this.state.content !== '') {
             $elem.innerHTML = this.state.content;
         }
@@ -291,6 +349,24 @@ export class VElement {
             if (this.$elem instanceof Element) {
                 for (const [k, v] of Object.entries(attrs)) {
                     this.$elem.setAttribute(k, v);
+                }
+            }
+        }
+        return this;
+    }
+
+    /** adds/replaces(with the same names) virtual element's style 
+     * 
+     * @param {object.<string, string>} styleObj - attributes of the element
+     * @returns 
+     */
+    setStyle(styleObj = {}) {
+        if (this.state.tag) {
+            if (typeof styleObj === 'string') { styleObj = styleObjectFromString(styleObj); }
+            Object.assign(this.state.style, styleObj)
+            if (this.$elem instanceof Element) {
+                for (const [k, v] of Object.entries(styleObj)) {
+                    this.$elem.style[k] = v;
                 }
             }
         }
@@ -372,9 +448,21 @@ export class VElement {
      * @returns
      */
     delAttr(key) {
-        this.state.attrs.delete(key);
+        delete this.state.attrs[key];
         if (this.$elem) {
             this.$elem.removeAttribute(key);
+        }
+        return this;
+    }
+    /** remove attribute with given name
+     * 
+     * @param {string} key - name of the attribute
+     * @returns
+     */
+    delStyle(key) {
+        delete this.state.style[key];
+        if (this.$elem) {
+            this.$elem.style[key] = null;
         }
         return this;
     }
@@ -442,4 +530,35 @@ function isIterable(obj) {
         return false;
     }
     return typeof obj[Symbol.iterator] === 'function';
+}
+
+function styleObjectFromString(str) {
+    const styleObj = {};
+    str= str.replace(/[\s\r\n]+/g," ");
+   
+    const styles = str.split(';');
+    for (const style of styles) {
+        const [prop, value] = style.split(':');
+        if (prop && value) {
+            styleObj[prop.trim()] = value.trim();
+        }
+    }
+    return styleObj;
+}
+
+function stringFromStyleObject(styleObj = {}) {
+    return Object.entries(styleObj).reduce((str, style) => {
+        return str.concat(style.join(': '), '; ');
+    }, "")
+}
+
+function separateStyle(attrs) {
+    let style;
+    for (const [key, val] of Object.entries(attrs)) {
+        if (key === 'style') {
+            style = styleObjectFromString(val);
+            delete attrs.style;
+        }
+    }
+    return style;
 }

@@ -24,7 +24,7 @@ if there is a **request error**, the reply will be like:
 	*request payload*:  - 
 	*reply payload.data:* []userName string
  
-*Type*:  **userJoinedRoom** (sends handler JoinRoom - a new user to users in the room)
+*Type*:  **registerNewPlayer** (sends handler JoinGame - a new user to users in the room)
 	*request payload*:  - 
 	*reply payload.data:* userName
 
@@ -38,6 +38,16 @@ if there is a **request error**, the reply will be like:
 	*reply payload.data:* 
 		*to creator*	payload.data: "sent"
 		*to recepients* webmodel.ChatMessage with type  **inputChatMessage**
+
+*Type*:  **playerAction**  
+	*request payload*:   action string
+	*reply payload.data:* 
+		*to creator*	payload.data: "sent"
+		*to recepients* webmodel.PlrAction with type  **playerAction**
+		{
+			playerName  string
+			action      string
+		}
 
 *Type*:  **inputChatMessage** (sends ReplySendMessageToChat)
 	*request payload*:  -  (sent along with reply to **sendMessageToChat**)
