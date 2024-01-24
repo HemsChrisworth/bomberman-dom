@@ -8,3 +8,13 @@ INFO - App:  2024/01/24 11:57:04.654219 User 'tt' joined  room 'id: b993fc1b-59a
 INFO - App:  2024/01/24 11:57:04.654285 write message {"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}
 INFO - App:  2024/01/24 11:57:04.654300 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}' to client addr: 0xc0001a0000 || User:'tt' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
 INFO - App:  2024/01/24 11:57:04.654334 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"tt"}}' to client addr: 0xc0001a0000 || User:'tt' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/24 12:37:45.573630 The chat Hub is running...
+INFO - App:  2024/01/24 12:37:53.994671 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/24 12:37:53.994777 New client in room 'id: 5d7287f3-d49b-4b29-8e77-0c29cd8d28c0' is created: addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/24 12:37:53.994974 User 'tt' joined  room 'id: 5d7287f3-d49b-4b29-8e77-0c29cd8d28c0' 
+INFO - App:  2024/01/24 12:37:53.995072 write message {"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}
+INFO - App:  2024/01/24 12:37:53.995146 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}' to client addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/24 12:37:53.995204 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"tt"}}' to client addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/24 12:40:29.793305 Message received from js: { }
+ 
+INFO - App:  2024/01/24 13:01:19.463537 WritePump closed connection 0xc0001662c0
