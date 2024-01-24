@@ -2,7 +2,7 @@
 import { VElement } from "../../../framework/VElement.js";
 import { CHAT_MESSAGE_FORM_INPUT_NAME } from "../js_modules/consts/consts.js";
 
-function ChatMessageArea() {
+export function createChatMessageArea() {
   return new VElement({
     tag: 'div',
     attrs: { id: 'chatmessagearea' },
@@ -18,7 +18,7 @@ function ChatMessageArea() {
 }
 
 
-export default function ChatC() {
+export function createChatC() {
   return new VElement({
     tag: "div",
     attrs: { id: "chat" },
@@ -29,7 +29,7 @@ export default function ChatC() {
         attrs: { id: 'chatheader' },
         content: 'Chat'
       }),
-      ChatMessageArea(),
+      //ChatMessageArea(), will be added in chatModel.js
       // chat form
       new VElement({
         tag: "form",

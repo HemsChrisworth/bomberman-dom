@@ -1,5 +1,5 @@
-import Socket from "./models/webSocketModel.js"
+// import Socket from "./models/webSocketModel.js"
 
-const ws = new Socket()
+// const ws = new Socket()
 
-export default ws
+// export default ws // - wsconnection is in chatModel

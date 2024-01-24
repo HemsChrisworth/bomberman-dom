@@ -4,6 +4,7 @@ import { wsResponseRouter } from "../../router/ws_response_router.js";
 
 export default class Socket {
   constructor() {
+    //TODO try to rid of this
     this.connection = new WebSocket("ws://temp"); // to prevent some errors in components
   }
   launchWebsocket(url) {
