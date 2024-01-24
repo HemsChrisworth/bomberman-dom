@@ -39,6 +39,9 @@ func logErrorAndCloseConn(app *application.Application, conn *websocket.Conn, er
 
 func JoinGame(app *application.Application, wsReplyersSet wsconnection.WSmux) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Access-Control-Allow-Credentials", "true")
+		w.Header().Add("Access-Control-Allow-Headers", "*")
+		w.Header().Add("Access-Control-Allow-Origin", "http://localhost:8080")
 		// create chat and join current user to it
 		var err error
 

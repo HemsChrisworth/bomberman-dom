@@ -1,0 +1,10 @@
+INFO - App:  2024/01/24 11:40:32.729674 The chat Hub is running...
+INFO - App:  2024/01/24 11:52:00.293660 The chat Hub is running...
+INFO - App:  2024/01/24 11:53:14.042566 GET /joinGame?name=tt
+INFO - App:  2024/01/24 11:56:55.142566 The chat Hub is running...
+INFO - App:  2024/01/24 11:57:04.653994 connection 0xc000192000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/24 11:57:04.654080 New client in room 'id: b993fc1b-59a6-4f2b-8200-9e45d3d7cbdd' is created: addr: 0xc0001a0000 || User:'tt' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/24 11:57:04.654219 User 'tt' joined  room 'id: b993fc1b-59a6-4f2b-8200-9e45d3d7cbdd' 
+INFO - App:  2024/01/24 11:57:04.654285 write message {"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}
+INFO - App:  2024/01/24 11:57:04.654300 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}' to client addr: 0xc0001a0000 || User:'tt' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/24 11:57:04.654334 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"tt"}}' to client addr: 0xc0001a0000 || User:'tt' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060

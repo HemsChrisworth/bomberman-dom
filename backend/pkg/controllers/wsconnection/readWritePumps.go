@@ -3,7 +3,6 @@ package wsconnection
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"io"
 	"time"
 
@@ -57,7 +56,7 @@ func (uc *UsersConnection) ReadPump() {
 	for {
 		var message webmodel.WSMessage
 		err := uc.Client.Conn.ReadJSON(&message)
-		fmt.Printf("Message received from js: %s\n ", message)
+		uc.WsServer.InfoLog.Printf("Message received from js: %s\n ", message)
 		if err != nil {
 			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
 				uc.WsServer.ErrLog.Printf("websocket connection %p to '%s' was unexpected closed: %#v", uc.Client.Conn, uc.Client.Conn.LocalAddr(), err)
@@ -100,7 +99,7 @@ func (uc *UsersConnection) WritePump() {
 		chann := uc.Client.ReceivedMessages
 		select {
 		case message, ok := <-chann:
-			// fmt.Printf("write message %s\n", message)
+			uc.WsServer.InfoLog.Printf("write message %s\n", message)
 			if !ok {
 				// The hub closed the channel.
 				uc.Client.Conn.WriteMessage(websocket.CloseMessage, []byte{})
