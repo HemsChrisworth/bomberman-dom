@@ -1,5 +1,5 @@
 import { MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
-import { gameTiles } from "../../gameScreen.js";
+import { gameTiles } from "../../gameTiles.js";
 import { Tile } from "./tileModel.js";
 
 export class GameMap {
