@@ -470,8 +470,7 @@ export class VElement {
             const regexp = new RegExp(className, 'g');
             console.log("delClass: " + className, regexp, 'attrs.class: ' + this.state.attrs.class);
             this.state.attrs.class = this.state.attrs.class.replace(regexp, "");
-        } this.state.attrs.class.replace(regexp, "");
-
+        }
         if (this.$elem instanceof Element) {
             this.$elem.classList.remove(className);
         }

@@ -1,6 +1,7 @@
 
 import { payloadModel } from "../models/payloadModel.js"
 import { wsResponseRouter } from "../../router/ws_response_router.js";
+import { mainView } from "../../app.js";
 
 export default class Socket {
   constructor(url) {
@@ -27,7 +28,15 @@ export default class Socket {
     rawMessages.forEach((rawMessage) => {
       try {
         const message = JSON.parse(rawMessage);
-        if (message.type === "ERROR") { throw new Error(`${message.payload.result}:  ${message.payload.data}`); }
+        if (message.type === "ERROR") {
+          if (message.payload?.result === 'DuplicateUser') {
+            mainView.showError('user with this name already exists');
+            mainView.chatModel.stop();
+            mainView.delCurrentPlayer();
+            return
+          }
+          else { throw new Error(`${message.payload.result}:  ${message.payload.data}`); }
+        }
         this.emit(message.type, message.payload);
       } catch (error) {
         console.error("error in websocket handleMessages: ", error);
@@ -36,7 +45,7 @@ export default class Socket {
   };
   emit(event, payload) {
     console.log("Type: ", event, " Payload:", payload); // for troubleshooting
-      wsResponseRouter[event](payload); // routes the data to a handler based on the event
+    wsResponseRouter[event](payload); // routes the data to a handler based on the event
   }
   closeWebsocket() {
     this.connection.close();

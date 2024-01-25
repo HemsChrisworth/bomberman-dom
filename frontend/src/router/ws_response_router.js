@@ -15,11 +15,8 @@ export const wsResponseRouter = {
     }
 
     if (!isSuccessPayload(payload)) {
-      if (payload.data === "duplicate user name") {
-        mainView.showError('user with this name already exists');
-        mainView.chatModel.stop();
-        mainView.delCurrentPlayer();
-      }
+      console.error(payload);
+     
       return
     }
     console.log("handle usersInRoom message with payload:", payload);
