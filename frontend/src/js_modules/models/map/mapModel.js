@@ -21,7 +21,7 @@ export class GameMap {
         const [spriteOffsetX, spriteOffsetY] =
           this.getSpritePositions(tileIndex);
 
-        console.log(spriteOffsetX, spriteOffsetY);
+        //console.log(spriteOffsetX, spriteOffsetY);
         const x = column * this.tileSize;
         const y = row * this.tileSize;
         this.createTile(x, y, spriteOffsetX, spriteOffsetY);

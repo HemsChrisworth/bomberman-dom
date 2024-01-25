@@ -615,3 +615,11 @@ INFO - App:  2024/01/25 19:36:33.680169 write message {"type":"registerNewPlayer
 INFO - App:  2024/01/25 19:36:33.680225 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frg"}}' to client addr: 0xc00009d5f0 || User:'fr' || connection: 0xc0001166e0 || channels: clientRegistered 0xc00008e5a0  |  ReceivedMessages 0xc0000a8420
 INFO - App:  2024/01/25 19:36:33.680208 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr","frg"]}}' to client addr: 0xc00007cbd0 || User:'frg' || connection: 0xc000219080 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070720
 INFO - App:  2024/01/25 19:36:33.680289 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frg"}}' to client addr: 0xc00007cbd0 || User:'frg' || connection: 0xc000219080 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070720
+INFO - App:  2024/01/25 23:33:13.804897 The chat Hub is running...
+INFO - App:  2024/01/25 23:33:21.540030 WaitingRoom created, id: id: 645bc06d-f67b-48bd-9027-f8d2fda8c59d
+INFO - App:  2024/01/25 23:35:31.517366 connection 0xc0000a42c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 23:35:31.517457 New client in room 'id: 645bc06d-f67b-48bd-9027-f8d2fda8c59d' is created: addr: 0xc0000961b0 || User:'yui' || connection: 0xc0000a42c0 || channels: clientRegistered 0xc00002c180  |  ReceivedMessages 0xc00008a300
+INFO - App:  2024/01/25 23:35:31.517829 User 'yui' joined  room 'id: 645bc06d-f67b-48bd-9027-f8d2fda8c59d' 
+INFO - App:  2024/01/25 23:35:31.517866 write message {"type":"usersInRoom","payload":{"result":"success","data":["yui"]}}
+INFO - App:  2024/01/25 23:35:31.517958 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["yui"]}}' to client addr: 0xc0000961b0 || User:'yui' || connection: 0xc0000a42c0 || channels: clientRegistered 0xc00002c180  |  ReceivedMessages 0xc00008a300
+INFO - App:  2024/01/25 23:35:31.518050 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"yui"}}' to client addr: 0xc0000961b0 || User:'yui' || connection: 0xc0000a42c0 || channels: clientRegistered 0xc00002c180  |  ReceivedMessages 0xc00008a300

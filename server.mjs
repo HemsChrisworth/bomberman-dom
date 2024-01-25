@@ -37,7 +37,7 @@ const server = http.createServer((request, response) => {
       // response.write(JSON.stringify(responseBody));
       // response.end();
       let path;
-      console.log(url)
+      //console.log(url)
       switch (true) {
         case url === "/":
           path = indexPage;
