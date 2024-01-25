@@ -1,8 +1,5 @@
 import { VElement } from "../../../framework/VElement.js";
-import { WelcomeScreenC } from '../components/welcomeScreenComponents/welcomeScreenC.js';
+import { createWelcomeScreenC } from '../components/welcomeScreenComponents/welcomeScreenC.js';
 
-export const welcomeScreen = new VElement({
-        tag: 'div',
-        attrs: {class: 'body' },
-        children: [WelcomeScreenC]
-      });
+// TODO remove
+// moved to welcomeScreenC

@@ -7,9 +7,9 @@ export class ChatModel {
         this.chatMessageArea = createChatMessageArea();
         this.chatC.addChild(this.chatMessageArea);
     }
+    get vElement() { return this.chatC; }
 
     launch(playerName) {
-        this.socket = new Socket
-        this.socket.launchWebsocket(`joinGame?name=${playerName}`);
+        this.socket = new Socket(`joinGame?name=${playerName}`);
     }
 }
