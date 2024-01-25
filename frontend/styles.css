@@ -55,6 +55,15 @@ body {
     margin: 0 auto;
 }
 
+.errormessage{
+    display: flex;
+    color: red;
+}
+
+.hide{
+    display: none;
+}
+
 #chooseName {
     display: flex;
     flex-direction: column;

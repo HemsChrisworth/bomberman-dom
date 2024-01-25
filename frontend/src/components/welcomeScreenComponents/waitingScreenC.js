@@ -1,16 +1,21 @@
 import { VElement } from "../../../../framework/VElement.js";
 import { reactives } from "../../../../framework/functions.js";
-import { playerList } from "../../js_modules/playerList.js";
 
 const yes = () => { console.log("yeeee") }
 
 
 reactives.push(yes)
 
+export function createPlayerC(playerName){
+  return new VElement({
+    tag: 'p',
+    content: `${playerName}`,
+  }); 
+}
 export function createWaitingListC() {
   return new VElement({
     tag: 'span',
-    content: `People ready: ${Object.keys(playerList.players).length}`,
+    content: `People ready: `,
   });
 }
 
@@ -60,12 +65,12 @@ export function createWaitingScreen10secC(t10seccountdownC) {
   });
 }
 
-export function createWaitingScreenC(WaitingListC, waitingTimer20secC, t10seccountdownC) {
+export function createWaitingScreenC(waitingListC, waitingTimer20secC, t10seccountdownC) {
   return new VElement({
     tag: "div",
     attrs: { id: 'waiting', class: 'welcomescreens' },
     children: [
-      WaitingListC,
+      waitingListC,
       createWaitingTimerC(waitingTimer20secC),
       createWaitingScreen10secC(t10seccountdownC),
     ]

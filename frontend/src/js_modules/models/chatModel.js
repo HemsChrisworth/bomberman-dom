@@ -12,4 +12,8 @@ export class ChatModel {
     launch(playerName) {
         this.socket = new Socket(`joinGame?name=${playerName}`);
     }
+
+    stop(){
+        this.socket.closeWebsocket();
+    }
 }

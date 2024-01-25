@@ -34,14 +34,9 @@ export default class Socket {
       }
     });
   };
-  emit(event, data) {
-    //console.log("Type: ", event, " Payload:", data); // for troubleshooting
-    if (data.result == "success") {
-      wsResponseRouter[event](data); // routes the data to a handler based on the event
-    } else {
-
-      throw new Error(`Failed to complete ${event}: ${data}`);
-    }
+  emit(event, payload) {
+    console.log("Type: ", event, " Payload:", payload); // for troubleshooting
+      wsResponseRouter[event](payload); // routes the data to a handler based on the event
   }
   closeWebsocket() {
     this.connection.close();

@@ -1,32 +1,5 @@
 import { VElement } from "../../../../framework/VElement.js";
 import { PLAYER_NAME_FORM_INPUT } from "../../js_modules/consts/consts.js";
-import { Player } from "../../js_modules/models/playersModel.js";
-import { playerList } from "../../js_modules/playerList.js";
-import { ChatModel } from "../../js_modules/models/chatModel.js";
-import { WelcomeScreenModel } from "../../js_modules/models/welcomeScreenModel.js";
-import { mainView } from "../../app.js";
-
-function loadWaitingScreen(playerName) {
-    console.debug(playerName);
-    const chatModel = mainView.addChatView();
-    chatModel.launch(playerName);
-    const welcomeScreenModel = mainView.currentViewModel;
-    // submit player name to ws connection, add player in ws_response_router
-    welcomeScreenModel.showWaitingScreen()
-    /*if (waiting20sec === 0) { // + add (.. || playerCount === 4)
-        welcomeScreen.delChild(waitingScreenC);
-        welcomeScreen.addChild(waitingScreen10secC);
-        if (waiting10sec === 0) { 
-            welcomeScreen.delChild(waitingScreen10secC);
-            
-        }
-    }*/
-    console.log(playerList.players)
-    mainView.currentViewModel.countdown10sec();
-    mainView.currentViewModel.countdown20sec();
-}
-
-
 
 function createFormChildren() {
     return [
@@ -38,7 +11,7 @@ function createFormChildren() {
     ];
 }
 
-function createFormElement() {
+function createFormElement(registerplayer) {
     return new VElement({
         tag: "form",
         attrs: { id: "chooseName" },
@@ -46,19 +19,25 @@ function createFormElement() {
         "@submit.prevent": (velem, event) => {
             const playerName = event.target[PLAYER_NAME_FORM_INPUT].value;
 
-            loadWaitingScreen(playerName)
+            registerplayer(playerName)
         },
     });
 }
-
-export function createRegisterScreenC() {
+export function createErrorMessageC(){
+    return new VElement({
+        tag: 'div',
+        attrs: { id: 'error', class: 'errormessage hide' },
+    });
+}
+export function createRegisterScreenC(registerplayer, errorMessageC) {
     return new VElement({
         tag: 'div',
         attrs: { id: 'welcome', class: 'welcomescreens' },
         children: [
             new VElement({ tag: 'p', attrs: { id: "welcometothegame" }, content: 'Welcome to the game!' }),
             new VElement({ tag: 'span', attrs: { class: "welcometext" }, content: 'Choose your nickname:' }),
-            createFormElement(),
+            errorMessageC,
+            createFormElement(registerplayer),
         ]
     });
 }

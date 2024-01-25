@@ -146,7 +146,8 @@ func (r *Room) GetUsersInRoom() []string {
 	return users
 }
 
-/**
+/*
+*
 returns number of users in the room
 */
 func (r *Room) Size() int {

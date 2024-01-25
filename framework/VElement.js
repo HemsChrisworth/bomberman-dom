@@ -20,7 +20,8 @@ import { throttleFunction } from './helpers.js';
  * @method delAttr  - remove attribute with given name
  * @method setStyle - add/replace(with the same names) virtual element's style attributes
  * @method delStyle  - remove style attributes with given name
- * @method addClass - adds className to the class attribute of this vElement
+ * @method addClass - add className to the class attribute of this vElement
+ * @method delClass - remove className from the class attribute of this vElement
  * @method addChild - add new child to the virtual element
  * @method delChild - remove a child with given vId from the virtual element's children Map
  * @method on - add listener (callback) to an event
@@ -69,7 +70,7 @@ export class VElement {
 
             }
 
-            if (!(vElemObj.children instanceof  Array)) {
+            if (!(vElemObj.children instanceof Array)) {
                 vElemObj.children = {};
             }
 
@@ -384,6 +385,10 @@ export class VElement {
         } else {
             this.state.attrs.class = className;
         }
+
+        if (this.$elem instanceof Element) {
+            this.$elem.classList.add(className);
+        }
         return this;
     }
 
@@ -452,6 +457,25 @@ export class VElement {
         if (this.$elem) {
             this.$elem.removeAttribute(key);
         }
+        return this;
+    }
+
+    /** remove class with given name
+     * 
+     * @param {string} className - class' name to remove
+     * @returns
+     */
+    delClass(className) {
+        if (this.state.attrs.class) {
+            const regexp = new RegExp(className, 'g');
+            console.log("delClass: " + className, regexp, 'attrs.class: ' + this.state.attrs.class);
+            this.state.attrs.class = this.state.attrs.class.replace(regexp, "");
+        } this.state.attrs.class.replace(regexp, "");
+
+        if (this.$elem instanceof Element) {
+            this.$elem.classList.remove(className);
+        }
+
         return this;
     }
     /** remove attribute with given name
@@ -534,8 +558,8 @@ function isIterable(obj) {
 
 function styleObjectFromString(str) {
     const styleObj = {};
-    str= str.replace(/[\s\r\n]+/g," ");
-   
+    str = str.replace(/[\s\r\n]+/g, " ");
+
     const styles = str.split(';');
     for (const style of styles) {
         const [prop, value] = style.split(':');

@@ -1,18 +1,53 @@
 import { createWelcomeScreenC } from "../../components/welcomeScreenComponents/welcomeScreenC.js";
-import { createRegisterScreenC } from "../../components/welcomeScreenComponents/registerScreenC.js";
-import { createWaitingScreenC } from "../../components/welcomeScreenComponents/waitingScreenC.js"
+import { createErrorMessageC, createRegisterScreenC } from "../../components/welcomeScreenComponents/registerScreenC.js";
+import { createPlayerC, createWaitingScreenC } from "../../components/welcomeScreenComponents/waitingScreenC.js"
 import { createT10seccountdownC, createWaitingListC, createWaitingScreen10secC, createWaitingTimer20secC } from "../../components/welcomeScreenComponents/waitingScreenC.js";
+import { ChatModel } from "./chatModel.js";
+import { mainView } from "../../app.js";
 
 //this object contains components that could be used in other components
 export class WelcomeScreenModel {
     constructor() {
         this.welcomeScreenC = createWelcomeScreenC();
-        this.registerScreenC = createRegisterScreenC();
+        this.errorMessageC = createErrorMessageC();
+        this.registerScreenC = createRegisterScreenC(this.registerplayer, this.errorMessageC);
         this.welcomeScreenC.addChild(this.registerScreenC);
     }
 
     get vElement() {
         return this.welcomeScreenC
+    }
+
+    showError = (text) => {
+        this.errorMessageC.content = text;
+        this.errorMessageC.delClass('hide');
+    }
+
+    hideError = () => {
+        this.errorMessageC.addClass('hide');
+    }
+
+    registerplayer = (playerName) => {
+        this.hideError();
+        mainView.createCurrentPlayer(playerName);
+        mainView.chatModel.launch(playerName);
+    }
+
+    loadWaitingScreen = () => {
+        this.showWaitingScreen()
+        this.countdown10sec(11);
+        this.countdown20sec(21);
+    }
+    /**
+     * 
+     * @param {Player} player 
+     */
+    addPlayer(player) {
+        this.waitingListC.addChild(createPlayerC(player.name));
+    }
+
+    addChatComponent = (chatC) => {
+        this.welcomeScreenC.addChild(chatC);
     }
 
     showWaitingScreen = () => {
@@ -25,21 +60,21 @@ export class WelcomeScreenModel {
         this.welcomeScreenC.addChild(this.waitingScreen);
     }
 
-    countdown10sec = () => {
-        let waiting10sec = 11; // Change to 11!
+    countdown10sec = (waiting10sec) => {
+        //let waiting10sec = 11; // Change to 11!
         if (waiting10sec > 0) {
             waiting10sec--;
-           this.t10seccountdownC.content = waiting10sec;
+            this.t10seccountdownC.content = waiting10sec;
             if (waiting10sec === 0) {
             } else {
-                setTimeout(this.countdown10sec, 1000);
+                setTimeout(this.countdown10sec, 1000, waiting10sec);
             }
         }
     }
 
 
-    countdown20sec = () => {
-        let waiting20sec = 21; // CHANGE to 21!
+    countdown20sec = (waiting20sec) => {
+        // let waiting20sec = 21; // CHANGE to 21!
         if (waiting20sec > 0) {
             waiting20sec--;
             this.waitingTimer20secC.content = waiting20sec;
@@ -52,10 +87,11 @@ export class WelcomeScreenModel {
 
                 //document.querySelector("#countdowntostart").style.display = "flex";
                 this.waitingScreen10secC.setAttr({ style: "display:flex" });
+                mainView.showGameBox();
 
                 return;
             }
-            setTimeout(this.countdown20sec, 1000); // Schedule the next iteration after 1 second
+            setTimeout(this.countdown20sec, 1000, waiting20sec); // Schedule the next iteration after 1 second
         }
     }
 }

@@ -50,13 +50,14 @@ func JoinGame(app *application.Application, wsReplyersSet wsconnection.WSmux) ht
 			errorhandle.BadRequestError(app, w, r, err.Error())
 			return
 		}
-
+		
 		if app.WaitingRoom == nil {
 			app.WaitingRoom, err = createRoom(app.Hub)
 			if err != nil {
 				errorhandle.BadRequestError(app, w, r, err.Error())
 				return
 			}
+			app.InfoLog.Printf("WaitingRoom created, id: %s", app.WaitingRoom)
 		}
 
 		conn, err := app.Upgrader.Upgrade(w, r, nil)
@@ -129,7 +130,7 @@ func createClient(app *application.Application, userName string, conn *websocket
 
 	client, err := wshub.NewClient(app.Hub, userName, app.WaitingRoom, conn, nil, nil)
 	if err != nil {
-		return nil, fmt.Errorf("createClient: NewClient failed: %v", err)
+		return nil, fmt.Errorf("createClient:: NewClient failed: %v", err)
 	}
 
 	if app.WaitingRoom.Size() == MAX_ROOM_SIZE {

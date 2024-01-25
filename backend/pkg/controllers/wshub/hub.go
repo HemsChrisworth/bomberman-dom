@@ -11,8 +11,8 @@ const (
 
 // Hub maintains the set of active clients and broadcasts messages to the clients.
 type Hub struct {
-	// Registered rooms.
-	rooms   *SafeRoomsMap
+	// Registered Rooms.
+	Rooms   *SafeRoomsMap
 
 	broadcast chan *message
 
@@ -28,7 +28,7 @@ type Hub struct {
 func NewHub() *Hub {
 	hub := &Hub{
 		broadcast:         make(chan *message),
-		rooms:             NewSafeRoomsMap(),
+		Rooms:             NewSafeRoomsMap(),
 		clientRegister:    make(chan *Client),
 		clientUnregister:  make(chan *Client),
 		roomRegister:      make(chan *Room),
@@ -49,16 +49,16 @@ func (h *Hub) Run() {
 		select {
 		case room := <-h.roomRegister:
 			if !h.isThereRoom(room) {
-				h.rooms.Set(room.ID, room)
+				h.Rooms.Set(room.ID, room)
 				room.Registered <- true
 			} else {
 				fmt.Printf("room id %s is already registered", room.ID)
 				room.Registered <- false
 			}
-
-		case room := <-h.roomUnregister:
+			
+		case room := <-h.roomUnregister:			
 			if h.isThereRoom(room) {
-				h.rooms.Delete(room.ID)
+				h.Rooms.Delete(room.ID)
 			}
 
 		case client := <-h.clientRegister:
@@ -76,10 +76,6 @@ func (h *Hub) Run() {
 					client.Room.DeleteClient(client)
 					// TODO: if client.Room.Clients.Len() != 0 send a message fmt.Sprintf("user %s left the chat", client.UserName)
 				}
-
-				if client.Room.ID != UNIVERSAL_ROOM_ID && client.Room.Clients.Len() == 0 {
-					h.rooms.Delete(client.Room.ID)
-				}
 			}
 
 		case message := <-h.broadcast:
@@ -92,10 +88,6 @@ func (h *Hub) Run() {
 				}
 
 				message.sentTo <- usersSentTo
-
-				if message.room.Clients.Len() == 0 {
-					h.rooms.Delete(message.room.ID)
-				}
 			}
 		}
 	}
@@ -135,14 +127,14 @@ func (h *Hub) UnRegisterClientFromHub(c *Client) {
 }
 
 func (h *Hub) isThereRoom(room *Room) bool {
-	_, ok := h.rooms.items[room.ID]
+	_, ok := h.Rooms.items[room.ID]
 	return ok
 }
 
 func (h *Hub) GetRoom(id string) (*Room, bool) {
-	h.rooms.RLock()
-	defer h.rooms.RUnlock()
-	room, ok := h.rooms.items[id]
+	h.Rooms.RLock()
+	defer h.Rooms.RUnlock()
+	room, ok := h.Rooms.items[id]
 	return room, ok
 }
 

@@ -2,7 +2,7 @@ import { VElement } from "../../../../../framework/VElement.js";
 
 const Avatar = new VElement({
     tag: 'div',
-    attrs: { class: 'avatar' , style: 'background-image: url("path/to/your/image.jpg");' },
+    attrs: { class: 'avatar' , /*style: 'background-image: url("path/to/your/image.jpg");'*/ },
     // Replace background-image path vith actual avatar
 });
 
