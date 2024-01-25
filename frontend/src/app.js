@@ -1,7 +1,5 @@
 import { Frame } from '../../framework/Frame.js';
-import { mainView } from './mainView.js';
-import { welcomeScreen } from './views/launchView.js';
-import { countdown20sec } from '../design.js';
+import { MainView } from './mainView.js';
 import { testCreateMap, testRenderMap } from './test/test.js';
 
 //export const router = createRouter(routes);
@@ -14,6 +12,7 @@ App.useEvents("click", "keydown", "submit") // REQUIRED
 
 App.mount(document.getElementById('app'))
 
-App.addVElement(mainView);
+export const mainView = new MainView
+App.addVElement(mainView.vElement);
 
 testRenderMap()

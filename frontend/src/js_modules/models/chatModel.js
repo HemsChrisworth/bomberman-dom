@@ -1,14 +1,19 @@
-import ChatC from "../../components/chatC.js"
+import { createChatC, createChatMessageArea } from "../../components/chatC.js"
 import Socket from "./webSocketModel.js";
 
 export class ChatModel {
     constructor() {
-        this.chatC = new ChatC();
+        this.chatC = createChatC();
+        this.chatMessageArea = createChatMessageArea();
+        this.chatC.addChild(this.chatMessageArea);
     }
+    get vElement() { return this.chatC; }
 
     launch(playerName) {
-        this.socket = new Socket
-        this.socket.launchWebsocket(`/joinGame?name=${playerName}`);
+        this.socket = new Socket(`joinGame?name=${playerName}`);
+    }
 
+    stop(){
+        this.socket.closeWebsocket();
     }
 }

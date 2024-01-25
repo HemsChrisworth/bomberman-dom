@@ -1,0 +1,617 @@
+INFO - App:  2024/01/24 11:40:32.729674 The chat Hub is running...
+INFO - App:  2024/01/24 11:52:00.293660 The chat Hub is running...
+INFO - App:  2024/01/24 11:53:14.042566 GET /joinGame?name=tt
+INFO - App:  2024/01/24 11:56:55.142566 The chat Hub is running...
+INFO - App:  2024/01/24 11:57:04.653994 connection 0xc000192000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/24 11:57:04.654080 New client in room 'id: b993fc1b-59a6-4f2b-8200-9e45d3d7cbdd' is created: addr: 0xc0001a0000 || User:'tt' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/24 11:57:04.654219 User 'tt' joined  room 'id: b993fc1b-59a6-4f2b-8200-9e45d3d7cbdd' 
+INFO - App:  2024/01/24 11:57:04.654285 write message {"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}
+INFO - App:  2024/01/24 11:57:04.654300 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}' to client addr: 0xc0001a0000 || User:'tt' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/24 11:57:04.654334 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"tt"}}' to client addr: 0xc0001a0000 || User:'tt' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/24 12:37:45.573630 The chat Hub is running...
+INFO - App:  2024/01/24 12:37:53.994671 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/24 12:37:53.994777 New client in room 'id: 5d7287f3-d49b-4b29-8e77-0c29cd8d28c0' is created: addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/24 12:37:53.994974 User 'tt' joined  room 'id: 5d7287f3-d49b-4b29-8e77-0c29cd8d28c0' 
+INFO - App:  2024/01/24 12:37:53.995072 write message {"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}
+INFO - App:  2024/01/24 12:37:53.995146 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}' to client addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/24 12:37:53.995204 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"tt"}}' to client addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/24 12:40:29.793305 Message received from js: { }
+ 
+INFO - App:  2024/01/24 13:01:19.463537 WritePump closed connection 0xc0001662c0
+INFO - App:  2024/01/25 10:49:42.363496 The chat Hub is running...
+INFO - App:  2024/01/25 12:18:23.367899 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 12:18:23.371776 New client in room 'id: 08fb2ede-6b6e-4f6d-988d-9fe850a149cd' is created: addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/25 12:18:23.381325 User 'tt' joined  room 'id: 08fb2ede-6b6e-4f6d-988d-9fe850a149cd' 
+INFO - App:  2024/01/25 12:18:23.382386 write message {"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}
+INFO - App:  2024/01/25 12:18:23.383695 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["tt"]}}' to client addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/25 12:18:23.386063 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"tt"}}' to client addr: 0xc000100f30 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000106300
+INFO - App:  2024/01/25 12:24:21.589923 Message received from js: { }
+ 
+INFO - App:  2024/01/25 12:24:28.628258 connection 0xc0001c62c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 12:24:41.380429 WritePump closed connection 0xc0001662c0
+INFO - App:  2024/01/25 12:25:55.441193 connection 0xc000236000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 12:28:38.998689 connection 0xc000236420 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:06:20.747687 The chat Hub is running...
+INFO - App:  2024/01/25 15:07:47.210245 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:07:47.210623 New client in room 'id: 8e427d55-f47b-4142-b179-891d9e7af39a' is created: addr: 0xc00006e380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 15:07:47.212259 User 'tt' joined  room 'id: 8e427d55-f47b-4142-b179-891d9e7af39a' 
+INFO - App:  2024/01/25 15:07:47.212271 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 15:07:47.212441 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc00006e380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 15:07:47.212501 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc00006e380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030420  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 15:10:37.772588 Message received from js: { }
+ 
+INFO - App:  2024/01/25 15:10:42.232123 connection 0xc0001be2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:11:15.383358 connection 0xc0001666e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:11:23.219201 WritePump closed connection 0xc0001662c0
+INFO - App:  2024/01/25 15:16:44.541770 connection 0xc000166b00 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:19:17.880876 connection 0xc000166f20 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:20:13.597202 The chat Hub is running...
+INFO - App:  2024/01/25 15:20:19.048795 connection 0xc00019a2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:20:19.048858 New client in room 'id: 4132a75b-a6ac-4d6e-a633-128e27161a6c' is created: addr: 0xc000092380 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc0000983c0  |  ReceivedMessages 0xc000094360
+INFO - App:  2024/01/25 15:20:19.049017 User 'tt' joined  room 'id: 4132a75b-a6ac-4d6e-a633-128e27161a6c' 
+INFO - App:  2024/01/25 15:20:19.049050 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 15:20:19.049076 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc000092380 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc0000983c0  |  ReceivedMessages 0xc000094360
+INFO - App:  2024/01/25 15:20:19.049110 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc000092380 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc0000983c0  |  ReceivedMessages 0xc000094360
+INFO - App:  2024/01/25 15:21:50.591850 Message received from js: { }
+ 
+INFO - App:  2024/01/25 15:21:54.265865 connection 0xc00019a6e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:22:07.051657 WritePump closed connection 0xc00019a2c0
+INFO - App:  2024/01/25 15:22:11.401832 The chat Hub is running...
+INFO - App:  2024/01/25 15:29:00.255297 The chat Hub is running...
+INFO - App:  2024/01/25 15:29:07.768501 WaitingRoom created, id: id: e46389ff-3ba7-4d5a-b20d-39949269f8da
+INFO - App:  2024/01/25 15:29:07.768780 connection 0xc00019a2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:29:07.768813 New client in room 'id: e46389ff-3ba7-4d5a-b20d-39949269f8da' is created: addr: 0xc000148340 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc000110420  |  ReceivedMessages 0xc00012a300
+INFO - App:  2024/01/25 15:29:07.768983 User 'tt' joined  room 'id: e46389ff-3ba7-4d5a-b20d-39949269f8da' 
+INFO - App:  2024/01/25 15:29:07.770269 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 15:29:07.770405 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc000148340 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc000110420  |  ReceivedMessages 0xc00012a300
+INFO - App:  2024/01/25 15:29:07.770495 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc000148340 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc000110420  |  ReceivedMessages 0xc00012a300
+INFO - App:  2024/01/25 15:34:15.559155 The chat Hub is running...
+INFO - App:  2024/01/25 15:34:23.680215 WaitingRoom created, id: id: ae15547a-2e3f-4247-a86b-2311488d0bcd
+INFO - App:  2024/01/25 15:35:33.916152 The chat Hub is running...
+INFO - App:  2024/01/25 15:35:40.758887 WaitingRoom created, id: id: 802e5044-817c-443b-b33c-355d6031bf89
+INFO - App:  2024/01/25 15:35:40.759035 connection 0xc0001182c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:35:40.759107 New client in room 'id: 802e5044-817c-443b-b33c-355d6031bf89' is created: addr: 0xc0000c6340 || User:'tt' || connection: 0xc0001182c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 15:35:40.759267 User 'tt' joined  room 'id: 802e5044-817c-443b-b33c-355d6031bf89' 
+INFO - App:  2024/01/25 15:35:40.759316 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 15:35:40.759345 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc0000c6340 || User:'tt' || connection: 0xc0001182c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 15:35:40.759411 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc0000c6340 || User:'tt' || connection: 0xc0001182c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 15:36:07.661492 Message received from js: { }
+ 
+INFO - App:  2024/01/25 15:36:35.385072 The chat Hub is running...
+INFO - App:  2024/01/25 15:37:49.001669 WaitingRoom created, id: id: 12c19345-466d-480f-bb72-98c02c5c9ed3
+INFO - App:  2024/01/25 15:37:49.002378 connection 0xc0001c62c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:37:49.003054 New client in room 'id: 12c19345-466d-480f-bb72-98c02c5c9ed3' is created: addr: 0xc000198140 || User:'tt' || connection: 0xc0001c62c0 || channels: clientRegistered 0xc0001bc180  |  ReceivedMessages 0xc000194120
+INFO - App:  2024/01/25 15:37:49.003706 User 'tt' joined  room 'id: 12c19345-466d-480f-bb72-98c02c5c9ed3' 
+INFO - App:  2024/01/25 15:37:49.003816 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 15:37:49.003845 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc000198140 || User:'tt' || connection: 0xc0001c62c0 || channels: clientRegistered 0xc0001bc180  |  ReceivedMessages 0xc000194120
+INFO - App:  2024/01/25 15:37:49.003909 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc000198140 || User:'tt' || connection: 0xc0001c62c0 || channels: clientRegistered 0xc0001bc180  |  ReceivedMessages 0xc000194120
+INFO - App:  2024/01/25 15:39:59.909232 Message received from js: { }
+ 
+INFO - App:  2024/01/25 15:40:03.336674 connection 0xc0001c66e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:40:14.137111 The chat Hub is running...
+INFO - App:  2024/01/25 15:40:20.745621 WaitingRoom created, id: id: 8b7609bc-7024-4f29-9e03-f158df03c236
+INFO - App:  2024/01/25 15:40:20.745803 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:40:20.745846 New client in room 'id: 8b7609bc-7024-4f29-9e03-f158df03c236' is created: addr: 0xc00006e380 || User:'tst' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 15:40:20.745980 User 'tst' joined  room 'id: 8b7609bc-7024-4f29-9e03-f158df03c236' 
+INFO - App:  2024/01/25 15:40:20.746002 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tst","userNumber":1}]}}
+INFO - App:  2024/01/25 15:40:20.746050 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tst","userNumber":1}]}}' to client addr: 0xc00006e380 || User:'tst' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 15:40:20.746081 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tst","userNumber":1}}}' to client addr: 0xc00006e380 || User:'tst' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 15:47:10.867774 The chat Hub is running...
+INFO - App:  2024/01/25 15:47:15.342753 WaitingRoom created, id: id: 28284c86-e02e-4b39-b206-bda2c29c0cbd
+INFO - App:  2024/01/25 15:47:15.343111 connection 0xc0001be2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:47:15.343221 New client in room 'id: 28284c86-e02e-4b39-b206-bda2c29c0cbd' is created: addr: 0xc00019a140 || User:'tt' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001b8180  |  ReceivedMessages 0xc000196120
+INFO - App:  2024/01/25 15:47:15.343591 User 'tt' joined  room 'id: 28284c86-e02e-4b39-b206-bda2c29c0cbd' 
+INFO - App:  2024/01/25 15:47:15.343715 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 15:47:15.343746 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc00019a140 || User:'tt' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001b8180  |  ReceivedMessages 0xc000196120
+INFO - App:  2024/01/25 15:47:15.343821 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc00019a140 || User:'tt' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001b8180  |  ReceivedMessages 0xc000196120
+INFO - App:  2024/01/25 15:47:17.917035 Message received from js: { }
+ 
+INFO - App:  2024/01/25 15:47:17.917627 ReadPump closed connection 0xc0001be2c0
+INFO - App:  2024/01/25 15:47:17.917640 write message 
+INFO - App:  2024/01/25 15:47:17.917737 WritePump is closing connection because the hub closed the channel 0xc000196120 
+INFO - App:  2024/01/25 15:47:17.917752 WritePump is closing connection 0xc0001be2c0 of client 'addr: 0xc00019a140 || User:'tt' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001b8180  |  ReceivedMessages 0xc000196120' because the hub closed the channel 0xc000196120 
+INFO - App:  2024/01/25 15:47:23.826111 connection 0xc0000d82c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:49:36.952380 The chat Hub is running...
+INFO - App:  2024/01/25 15:49:45.481324 WaitingRoom created, id: id: 91dbb1d7-e251-4339-b9a4-60a0ce752d54
+INFO - App:  2024/01/25 15:49:45.481488 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 15:49:45.481512 New client in room 'id: 91dbb1d7-e251-4339-b9a4-60a0ce752d54' is created: addr: 0xc000076380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000078360
+INFO - App:  2024/01/25 15:49:45.481663 User 'tt' joined  room 'id: 91dbb1d7-e251-4339-b9a4-60a0ce752d54' 
+INFO - App:  2024/01/25 15:49:45.481699 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 15:49:45.481733 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc000076380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000078360
+INFO - App:  2024/01/25 15:49:45.481778 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc000076380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000078360
+INFO - App:  2024/01/25 15:49:48.972355 Message received from js: { }
+ 
+INFO - App:  2024/01/25 15:49:48.972654 ReadPump closed connection 0xc0001662c0
+INFO - App:  2024/01/25 15:49:48.972676 write message 
+INFO - App:  2024/01/25 15:49:48.972682 WritePump is closing connection because the hub closed the channel 0xc000078360 
+INFO - App:  2024/01/25 15:49:48.972686 WritePump is closing connection 0xc0001662c0 of client 'addr: 0xc000076380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000078360' because the hub closed the channel 0xc000078360 
+INFO - App:  2024/01/25 15:50:04.268616 connection 0xc0000ce000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:00:18.087909 The chat Hub is running...
+INFO - App:  2024/01/25 16:00:23.465009 WaitingRoom created, id: id: 26f9bf12-7653-45d6-b3b2-c9a57ee3ee59
+INFO - App:  2024/01/25 16:00:23.465205 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:00:23.465252 New client in room 'id: 26f9bf12-7653-45d6-b3b2-c9a57ee3ee59' is created: addr: 0xc00006e380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 16:00:23.465381 User 'tt' joined  room 'id: 26f9bf12-7653-45d6-b3b2-c9a57ee3ee59' 
+INFO - App:  2024/01/25 16:00:23.465433 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 16:00:23.465473 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc00006e380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 16:00:23.465560 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc00006e380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 16:00:25.835416 Message received from js: { }
+ 
+INFO - App:  2024/01/25 16:00:25.835711 ReadPump closed connection 0xc0001662c0
+INFO - App:  2024/01/25 16:00:25.835729 write message 
+INFO - App:  2024/01/25 16:00:25.835735 WritePump is closing connection because the hub closed the channel 0xc000070360 
+INFO - App:  2024/01/25 16:00:25.835739 WritePump is closing connection 0xc0001662c0 of client 'addr: 0xc00006e380 || User:'tt' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360' because the hub closed the channel 0xc000070360 
+INFO - App:  2024/01/25 16:00:32.774586 connection 0xc0000c02c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:02:13.300032 The chat Hub is running...
+INFO - App:  2024/01/25 16:02:19.684957 WaitingRoom created, id: id: cb3317c3-afe2-4afc-aec0-0f66e7268211
+INFO - App:  2024/01/25 16:02:19.685108 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:02:19.685125 New client in room 'id: cb3317c3-afe2-4afc-aec0-0f66e7268211' is created: addr: 0xc00006e380 || User:'ff' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 16:02:19.685225 User 'ff' joined  room 'id: cb3317c3-afe2-4afc-aec0-0f66e7268211' 
+INFO - App:  2024/01/25 16:02:19.685241 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"ff","userNumber":1}]}}
+INFO - App:  2024/01/25 16:02:19.685253 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"ff","userNumber":1}]}}' to client addr: 0xc00006e380 || User:'ff' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 16:02:19.685279 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"ff","userNumber":1}}}' to client addr: 0xc00006e380 || User:'ff' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 16:02:21.660279 Message received from js: { }
+ 
+INFO - App:  2024/01/25 16:02:21.660674 ReadPump closed connection 0xc0001662c0
+INFO - App:  2024/01/25 16:02:21.660695 write message 
+INFO - App:  2024/01/25 16:02:21.660702 WritePump is closing connection because the hub closed the channel 0xc000070360 
+INFO - App:  2024/01/25 16:02:21.660706 WritePump is closing connection 0xc0001662c0 of client 'addr: 0xc00006e380 || User:'ff' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360' because the hub closed the channel 0xc000070360 
+INFO - App:  2024/01/25 16:03:33.792218 connection 0xc0001ba2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:08:47.640867 The chat Hub is running...
+INFO - App:  2024/01/25 16:08:54.296963 WaitingRoom created, id: id: 13a2a27f-6920-4743-b28d-49150956949b
+INFO - App:  2024/01/25 16:08:54.297346 connection 0xc0001922c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:08:54.297428 New client in room 'id: 13a2a27f-6920-4743-b28d-49150956949b' is created: addr: 0xc00013e340 || User:'tt' || connection: 0xc0001922c0 || channels: clientRegistered 0xc000100420  |  ReceivedMessages 0xc000120300
+INFO - App:  2024/01/25 16:08:54.297705 User 'tt' joined  room 'id: 13a2a27f-6920-4743-b28d-49150956949b' 
+INFO - App:  2024/01/25 16:08:54.297789 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 16:08:54.297814 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc00013e340 || User:'tt' || connection: 0xc0001922c0 || channels: clientRegistered 0xc000100420  |  ReceivedMessages 0xc000120300
+INFO - App:  2024/01/25 16:08:54.297857 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc00013e340 || User:'tt' || connection: 0xc0001922c0 || channels: clientRegistered 0xc000100420  |  ReceivedMessages 0xc000120300
+INFO - App:  2024/01/25 16:09:08.247274 Message received from js: { }
+ 
+INFO - App:  2024/01/25 16:09:08.285824 write message 
+INFO - App:  2024/01/25 16:09:08.285868 WritePump is closing connection because the hub closed the channel 0xc000120300 
+INFO - App:  2024/01/25 16:09:08.285824 ReadPump closed connection 0xc0001922c0
+INFO - App:  2024/01/25 16:09:08.285875 WritePump is closing connection 0xc0001922c0 of client 'addr: 0xc00013e340 || User:'tt' || connection: 0xc0001922c0 || channels: clientRegistered 0xc000100420  |  ReceivedMessages 0xc000120300' because the hub closed the channel 0xc000120300 
+INFO - App:  2024/01/25 16:09:18.746382 connection 0xc0002142c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:10:12.453869 The chat Hub is running...
+INFO - App:  2024/01/25 16:10:17.812324 WaitingRoom created, id: id: b2a973fc-93b0-406c-91c6-194bddad14c1
+INFO - App:  2024/01/25 16:10:17.812470 connection 0xc00019a2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:10:17.812489 New client in room 'id: b2a973fc-93b0-406c-91c6-194bddad14c1' is created: addr: 0xc0000c6340 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc000088420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 16:10:17.812576 User 'tt' joined  room 'id: b2a973fc-93b0-406c-91c6-194bddad14c1' 
+INFO - App:  2024/01/25 16:10:17.812590 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 16:10:17.812602 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc0000c6340 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc000088420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 16:10:17.812623 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc0000c6340 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc000088420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 16:11:18.441964 Message received from js: { }
+ 
+INFO - App:  2024/01/25 16:11:18.450401 ReadPump closed connection 0xc00019a2c0
+INFO - App:  2024/01/25 16:11:18.450451 write message 
+INFO - App:  2024/01/25 16:11:18.450500 WritePump is closing connection because the hub closed the channel 0xc0000a8300 
+INFO - App:  2024/01/25 16:11:18.450558 WritePump is closing connection 0xc00019a2c0 of client 'addr: 0xc0000c6340 || User:'tt' || connection: 0xc00019a2c0 || channels: clientRegistered 0xc000088420  |  ReceivedMessages 0xc0000a8300' because the hub closed the channel 0xc0000a8300 
+INFO - App:  2024/01/25 16:11:24.433073 connection 0xc0002142c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:16:55.523020 The chat Hub is running...
+INFO - App:  2024/01/25 16:16:59.615533 WaitingRoom created, id: id: 0db91109-7243-4075-a431-f6890281ecbd
+INFO - App:  2024/01/25 16:16:59.615806 connection 0xc000200000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:16:59.615914 New client in room 'id: 0db91109-7243-4075-a431-f6890281ecbd' is created: addr: 0xc00006e080 || User:'fr' || connection: 0xc000200000 || channels: clientRegistered 0xc0000300c0  |  ReceivedMessages 0xc0000700c0
+INFO - App:  2024/01/25 16:16:59.616106 User 'fr' joined  room 'id: 0db91109-7243-4075-a431-f6890281ecbd' 
+INFO - App:  2024/01/25 16:16:59.616124 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"fr","userNumber":1}]}}
+INFO - App:  2024/01/25 16:16:59.616166 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"fr","userNumber":1}]}}' to client addr: 0xc00006e080 || User:'fr' || connection: 0xc000200000 || channels: clientRegistered 0xc0000300c0  |  ReceivedMessages 0xc0000700c0
+INFO - App:  2024/01/25 16:16:59.616285 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"fr","userNumber":1}}}' to client addr: 0xc00006e080 || User:'fr' || connection: 0xc000200000 || channels: clientRegistered 0xc0000300c0  |  ReceivedMessages 0xc0000700c0
+INFO - App:  2024/01/25 16:17:01.569147 Message received from js: { }
+ 
+INFO - App:  2024/01/25 16:17:01.569744 ReadPump closed connection 0xc000200000
+INFO - App:  2024/01/25 16:17:01.569818 write message 
+INFO - App:  2024/01/25 16:17:01.569837 WritePump is closing connection because the hub closed the channel 0xc0000700c0 
+INFO - App:  2024/01/25 16:17:01.569846 WritePump is closing connection 0xc000200000 of client 'addr: 0xc00006e080 || User:'fr' || connection: 0xc000200000 || channels: clientRegistered 0xc0000300c0  |  ReceivedMessages 0xc0000700c0' because the hub closed the channel 0xc0000700c0 
+INFO - App:  2024/01/25 16:18:55.902959 The chat Hub is running...
+INFO - App:  2024/01/25 16:18:57.977566 WaitingRoom created, id: id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2
+INFO - App:  2024/01/25 16:18:57.977753 connection 0xc000200000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:18:57.977783 New client in room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' is created: addr: 0xc00006e080 || User:'rr' || connection: 0xc000200000 || channels: clientRegistered 0xc0000300c0  |  ReceivedMessages 0xc0000702a0
+INFO - App:  2024/01/25 16:18:57.977968 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"rr","userNumber":1}]}}
+INFO - App:  2024/01/25 16:18:57.978010 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"rr","userNumber":1}]}}' to client addr: 0xc00006e080 || User:'rr' || connection: 0xc000200000 || channels: clientRegistered 0xc0000300c0  |  ReceivedMessages 0xc0000702a0
+INFO - App:  2024/01/25 16:18:57.978043 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"rr","userNumber":1}}}' to client addr: 0xc00006e080 || User:'rr' || connection: 0xc000200000 || channels: clientRegistered 0xc0000300c0  |  ReceivedMessages 0xc0000702a0
+INFO - App:  2024/01/25 16:18:57.977981 User 'rr' joined  room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' 
+INFO - App:  2024/01/25 16:18:59.620867 Message received from js: { }
+ 
+INFO - App:  2024/01/25 16:18:59.621113 ReadPump closed connection 0xc000200000
+INFO - App:  2024/01/25 16:18:59.621131 write message 
+INFO - App:  2024/01/25 16:18:59.621137 WritePump is closing connection because the hub closed the channel 0xc0000702a0 
+INFO - App:  2024/01/25 16:18:59.621141 WritePump is closing connection 0xc000200000 of client 'addr: 0xc00006e080 || User:'rr' || connection: 0xc000200000 || channels: clientRegistered 0xc0000300c0  |  ReceivedMessages 0xc0000702a0' because the hub closed the channel 0xc0000702a0 
+INFO - App:  2024/01/25 16:19:03.067446 connection 0xc000200420 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 16:19:03.067553 New client in room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' is created: addr: 0xc00006e240 || User:'rre' || connection: 0xc000200420 || channels: clientRegistered 0xc000030360  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 16:19:03.067675 User 'rre' joined  room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' 
+INFO - App:  2024/01/25 16:19:03.067688 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"rre","userNumber":1}]}}
+INFO - App:  2024/01/25 16:19:03.067718 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"rre","userNumber":1}]}}' to client addr: 0xc00006e240 || User:'rre' || connection: 0xc000200420 || channels: clientRegistered 0xc000030360  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 16:19:03.067740 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"rre","userNumber":1}}}' to client addr: 0xc00006e240 || User:'rre' || connection: 0xc000200420 || channels: clientRegistered 0xc000030360  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 16:40:39.913071 Message received from js: { }
+ 
+INFO - App:  2024/01/25 16:40:40.134882 write message 
+INFO - App:  2024/01/25 16:40:40.135150 ReadPump closed connection 0xc000200420
+INFO - App:  2024/01/25 16:40:40.135246 WritePump is closing connection because the hub closed the channel 0xc000070420 
+INFO - App:  2024/01/25 16:40:40.135967 WritePump is closing connection 0xc000200420 of client 'addr: 0xc00006e240 || User:'rre' || connection: 0xc000200420 || channels: clientRegistered 0xc000030360  |  ReceivedMessages 0xc000070420' because the hub closed the channel 0xc000070420 
+INFO - App:  2024/01/25 18:32:37.516155 connection 0xc000200840 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:32:37.520261 New client in room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' is created: addr: 0xc00006e340 || User:'tt' || connection: 0xc000200840 || channels: clientRegistered 0xc000030540  |  ReceivedMessages 0xc000070540
+INFO - App:  2024/01/25 18:32:37.527202 User 'tt' joined  room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' 
+INFO - App:  2024/01/25 18:32:37.527311 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 18:32:37.527419 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc00006e340 || User:'tt' || connection: 0xc000200840 || channels: clientRegistered 0xc000030540  |  ReceivedMessages 0xc000070540
+INFO - App:  2024/01/25 18:32:37.527510 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc00006e340 || User:'tt' || connection: 0xc000200840 || channels: clientRegistered 0xc000030540  |  ReceivedMessages 0xc000070540
+INFO - App:  2024/01/25 18:34:08.233534 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:34:08.277727 write message 
+INFO - App:  2024/01/25 18:34:08.277766 WritePump is closing connection because the hub closed the channel 0xc000070540 
+INFO - App:  2024/01/25 18:34:08.277772 WritePump is closing connection 0xc000200840 of client 'addr: 0xc00006e340 || User:'tt' || connection: 0xc000200840 || channels: clientRegistered 0xc000030540  |  ReceivedMessages 0xc000070540' because the hub closed the channel 0xc000070540 
+INFO - App:  2024/01/25 18:34:08.277699 ReadPump closed connection 0xc000200840
+INFO - App:  2024/01/25 18:34:12.294879 connection 0xc0002cc2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:34:12.295010 New client in room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' is created: addr: 0xc0002ae180 || User:'tt' || connection: 0xc0002cc2c0 || channels: clientRegistered 0xc0002a61e0  |  ReceivedMessages 0xc000286180
+INFO - App:  2024/01/25 18:34:12.295310 User 'tt' joined  room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' 
+INFO - App:  2024/01/25 18:34:12.295469 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}
+INFO - App:  2024/01/25 18:34:12.295730 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"tt","userNumber":1}]}}' to client addr: 0xc0002ae180 || User:'tt' || connection: 0xc0002cc2c0 || channels: clientRegistered 0xc0002a61e0  |  ReceivedMessages 0xc000286180
+INFO - App:  2024/01/25 18:34:12.295931 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"tt","userNumber":1}}}' to client addr: 0xc0002ae180 || User:'tt' || connection: 0xc0002cc2c0 || channels: clientRegistered 0xc0002a61e0  |  ReceivedMessages 0xc000286180
+INFO - App:  2024/01/25 18:34:40.279651 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:34:40.294786 write message 
+INFO - App:  2024/01/25 18:34:40.294831 WritePump is closing connection because the hub closed the channel 0xc000286180 
+INFO - App:  2024/01/25 18:34:40.294837 WritePump is closing connection 0xc0002cc2c0 of client 'addr: 0xc0002ae180 || User:'tt' || connection: 0xc0002cc2c0 || channels: clientRegistered 0xc0002a61e0  |  ReceivedMessages 0xc000286180' because the hub closed the channel 0xc000286180 
+INFO - App:  2024/01/25 18:34:40.300698 ReadPump closed connection 0xc0002cc2c0
+INFO - App:  2024/01/25 18:34:44.450132 connection 0xc000200c60 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:34:44.451274 New client in room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' is created: addr: 0xc00006e440 || User:'ff' || connection: 0xc000200c60 || channels: clientRegistered 0xc000030720  |  ReceivedMessages 0xc000070660
+INFO - App:  2024/01/25 18:34:44.451788 User 'ff' joined  room 'id: 70097b4c-c5c5-480d-8f11-e655a1c2eea2' 
+INFO - App:  2024/01/25 18:34:44.451800 write message {"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"ff","userNumber":1}]}}
+INFO - App:  2024/01/25 18:34:44.451963 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":[{"userName":"ff","userNumber":1}]}}' to client addr: 0xc00006e440 || User:'ff' || connection: 0xc000200c60 || channels: clientRegistered 0xc000030720  |  ReceivedMessages 0xc000070660
+INFO - App:  2024/01/25 18:34:44.452022 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":{"userName":"ff","userNumber":1}}}' to client addr: 0xc00006e440 || User:'ff' || connection: 0xc000200c60 || channels: clientRegistered 0xc000030720  |  ReceivedMessages 0xc000070660
+INFO - App:  2024/01/25 18:35:54.749033 The chat Hub is running...
+INFO - App:  2024/01/25 18:36:01.784058 WaitingRoom created, id: id: 375e1a12-0d02-4b74-bfe0-816790324383
+INFO - App:  2024/01/25 18:36:01.784353 connection 0xc0001662c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:36:01.784427 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc00007cf60 || User:'fff' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 18:36:01.784648 User 'fff' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:36:01.784761 write message {"type":"usersInRoom","payload":{"result":"success","data":["fff"]}}
+INFO - App:  2024/01/25 18:36:01.784842 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fff"]}}' to client addr: 0xc00007cf60 || User:'fff' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 18:36:01.784907 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fff"}}' to client addr: 0xc00007cf60 || User:'fff' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360
+INFO - App:  2024/01/25 18:36:22.278499 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:36:22.280368 ReadPump closed connection 0xc0001662c0
+INFO - App:  2024/01/25 18:36:22.280379 write message 
+INFO - App:  2024/01/25 18:36:22.280448 WritePump is closing connection because the hub closed the channel 0xc000070360 
+INFO - App:  2024/01/25 18:36:22.280452 WritePump is closing connection 0xc0001662c0 of client 'addr: 0xc00007cf60 || User:'fff' || connection: 0xc0001662c0 || channels: clientRegistered 0xc000030480  |  ReceivedMessages 0xc000070360' because the hub closed the channel 0xc000070360 
+INFO - App:  2024/01/25 18:36:25.424338 connection 0xc0001be2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:36:25.424448 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc00018a330 || User:'dddd' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001941e0  |  ReceivedMessages 0xc0001a2180
+INFO - App:  2024/01/25 18:36:25.424541 User 'dddd' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:36:25.424559 write message {"type":"usersInRoom","payload":{"result":"success","data":["dddd"]}}
+INFO - App:  2024/01/25 18:36:25.424572 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["dddd"]}}' to client addr: 0xc00018a330 || User:'dddd' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001941e0  |  ReceivedMessages 0xc0001a2180
+INFO - App:  2024/01/25 18:36:25.424592 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"dddd"}}' to client addr: 0xc00018a330 || User:'dddd' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001941e0  |  ReceivedMessages 0xc0001a2180
+INFO - App:  2024/01/25 18:36:29.499832 connection 0xc0001666e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:36:29.499901 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc00007d620 || User:'ww' || connection: 0xc0001666e0 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070600
+INFO - App:  2024/01/25 18:36:29.499983 User 'ww' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:36:29.500000 write message {"type":"usersInRoom","payload":{"result":"success","data":["ww","dddd"]}}
+INFO - App:  2024/01/25 18:36:29.500035 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ww","dddd"]}}' to client addr: 0xc00007d620 || User:'ww' || connection: 0xc0001666e0 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070600
+INFO - App:  2024/01/25 18:36:29.500063 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ww"}}' to client addr: 0xc00007d620 || User:'ww' || connection: 0xc0001666e0 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070600
+INFO - App:  2024/01/25 18:36:29.500109 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"ww"}}
+INFO - App:  2024/01/25 18:36:29.500116 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ww"}}' to client addr: 0xc00018a330 || User:'dddd' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001941e0  |  ReceivedMessages 0xc0001a2180
+INFO - App:  2024/01/25 18:37:07.351133 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:37:07.371655 write message {"type":"userQuitChat","payload":{"result":"success","data":"ww"}}
+INFO - App:  2024/01/25 18:37:07.371717 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"ww"}}' to client addr: 0xc00018a330 || User:'dddd' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001941e0  |  ReceivedMessages 0xc0001a2180
+INFO - App:  2024/01/25 18:37:07.371827 ReadPump closed connection 0xc0001666e0
+INFO - App:  2024/01/25 18:37:07.371840 write message 
+INFO - App:  2024/01/25 18:37:07.371844 WritePump is closing connection because the hub closed the channel 0xc000070600 
+INFO - App:  2024/01/25 18:37:07.371847 WritePump is closing connection 0xc0001666e0 of client 'addr: 0xc00007d620 || User:'ww' || connection: 0xc0001666e0 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070600' because the hub closed the channel 0xc000070600 
+INFO - App:  2024/01/25 18:41:49.141998 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:41:49.171814 ReadPump closed connection 0xc0001be2c0
+INFO - App:  2024/01/25 18:41:49.171880 write message 
+INFO - App:  2024/01/25 18:41:49.171907 WritePump is closing connection because the hub closed the channel 0xc0001a2180 
+INFO - App:  2024/01/25 18:41:49.171911 WritePump is closing connection 0xc0001be2c0 of client 'addr: 0xc00018a330 || User:'dddd' || connection: 0xc0001be2c0 || channels: clientRegistered 0xc0001941e0  |  ReceivedMessages 0xc0001a2180' because the hub closed the channel 0xc0001a2180 
+INFO - App:  2024/01/25 18:42:03.679944 connection 0xc0001be840 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:42:03.680046 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:42:03.680142 User 'ddd' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:42:03.680156 write message {"type":"usersInRoom","payload":{"result":"success","data":["ddd"]}}
+INFO - App:  2024/01/25 18:42:03.680516 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ddd"]}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:42:03.680599 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ddd"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:42:07.840508 connection 0xc000166b00 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:42:07.840706 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc00007d8f0 || User:'rrr' || connection: 0xc000166b00 || channels: clientRegistered 0xc000030780  |  ReceivedMessages 0xc000070a80
+INFO - App:  2024/01/25 18:42:07.840904 User 'rrr' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:42:07.840888 write message {"type":"usersInRoom","payload":{"result":"success","data":["ddd","rrr"]}}
+INFO - App:  2024/01/25 18:42:07.840971 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"rrr"}}
+INFO - App:  2024/01/25 18:42:07.840985 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"rrr"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:42:07.840979 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ddd","rrr"]}}' to client addr: 0xc00007d8f0 || User:'rrr' || connection: 0xc000166b00 || channels: clientRegistered 0xc000030780  |  ReceivedMessages 0xc000070a80
+INFO - App:  2024/01/25 18:42:07.841048 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"rrr"}}' to client addr: 0xc00007d8f0 || User:'rrr' || connection: 0xc000166b00 || channels: clientRegistered 0xc000030780  |  ReceivedMessages 0xc000070a80
+INFO - App:  2024/01/25 18:42:59.881830 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:42:59.904328 write message {"type":"userQuitChat","payload":{"result":"success","data":"rrr"}}
+INFO - App:  2024/01/25 18:42:59.904388 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"rrr"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:42:59.904424 ReadPump closed connection 0xc000166b00
+INFO - App:  2024/01/25 18:42:59.904448 write message 
+INFO - App:  2024/01/25 18:42:59.904453 WritePump is closing connection because the hub closed the channel 0xc000070a80 
+INFO - App:  2024/01/25 18:42:59.904457 WritePump is closing connection 0xc000166b00 of client 'addr: 0xc00007d8f0 || User:'rrr' || connection: 0xc000166b00 || channels: clientRegistered 0xc000030780  |  ReceivedMessages 0xc000070a80' because the hub closed the channel 0xc000070a80 
+INFO - App:  2024/01/25 18:43:04.040579 connection 0xc00023a2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:43:04.040731 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc000204180 || User:'we' || connection: 0xc00023a2c0 || channels: clientRegistered 0xc0002340c0  |  ReceivedMessages 0xc00021c120
+INFO - App:  2024/01/25 18:43:04.040881 write message {"type":"usersInRoom","payload":{"result":"success","data":["ddd","we"]}}
+INFO - App:  2024/01/25 18:43:04.040925 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"we"}}
+INFO - App:  2024/01/25 18:43:04.040942 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ddd","we"]}}' to client addr: 0xc000204180 || User:'we' || connection: 0xc00023a2c0 || channels: clientRegistered 0xc0002340c0  |  ReceivedMessages 0xc00021c120
+INFO - App:  2024/01/25 18:43:04.040913 User 'we' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:43:04.040955 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"we"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:43:04.040982 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"we"}}' to client addr: 0xc000204180 || User:'we' || connection: 0xc00023a2c0 || channels: clientRegistered 0xc0002340c0  |  ReceivedMessages 0xc00021c120
+INFO - App:  2024/01/25 18:47:42.572321 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:47:42.608672 write message {"type":"userQuitChat","payload":{"result":"success","data":"we"}}
+INFO - App:  2024/01/25 18:47:42.608775 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"we"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:47:42.608698 write message 
+INFO - App:  2024/01/25 18:47:42.608881 WritePump is closing connection because the hub closed the channel 0xc00021c120 
+INFO - App:  2024/01/25 18:47:42.608885 WritePump is closing connection 0xc00023a2c0 of client 'addr: 0xc000204180 || User:'we' || connection: 0xc00023a2c0 || channels: clientRegistered 0xc0002340c0  |  ReceivedMessages 0xc00021c120' because the hub closed the channel 0xc00021c120 
+INFO - App:  2024/01/25 18:47:42.623529 ReadPump closed connection 0xc00023a2c0
+INFO - App:  2024/01/25 18:47:46.136118 connection 0xc0000d2000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:47:46.139103 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc0000a62d0 || User:'ff' || connection: 0xc0000d2000 || channels: clientRegistered 0xc0000c80c0  |  ReceivedMessages 0xc00008e540
+INFO - App:  2024/01/25 18:47:46.139905 write message {"type":"usersInRoom","payload":{"result":"success","data":["ff","ddd"]}}
+INFO - App:  2024/01/25 18:47:46.140008 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ff","ddd"]}}' to client addr: 0xc0000a62d0 || User:'ff' || connection: 0xc0000d2000 || channels: clientRegistered 0xc0000c80c0  |  ReceivedMessages 0xc00008e540
+INFO - App:  2024/01/25 18:47:46.140025 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}
+INFO - App:  2024/01/25 18:47:46.140054 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:47:46.141117 User 'ff' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:47:46.141167 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}
+INFO - App:  2024/01/25 18:47:46.141265 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}' to client addr: 0xc0000a62d0 || User:'ff' || connection: 0xc0000d2000 || channels: clientRegistered 0xc0000c80c0  |  ReceivedMessages 0xc00008e540
+INFO - App:  2024/01/25 18:49:30.960460 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:49:30.960675 write message {"type":"userQuitChat","payload":{"result":"success","data":"ff"}}
+INFO - App:  2024/01/25 18:49:30.960692 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"ff"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:49:30.960791 ReadPump closed connection 0xc0000d2000
+INFO - App:  2024/01/25 18:49:30.960804 write message 
+INFO - App:  2024/01/25 18:49:30.960808 WritePump is closing connection because the hub closed the channel 0xc00008e540 
+INFO - App:  2024/01/25 18:49:30.960828 WritePump is closing connection 0xc0000d2000 of client 'addr: 0xc0000a62d0 || User:'ff' || connection: 0xc0000d2000 || channels: clientRegistered 0xc0000c80c0  |  ReceivedMessages 0xc00008e540' because the hub closed the channel 0xc00008e540 
+INFO - App:  2024/01/25 18:49:37.818468 connection 0xc00023a6e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:49:37.818681 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc0002044e0 || User:'ff' || connection: 0xc00023a6e0 || channels: clientRegistered 0xc0002342a0  |  ReceivedMessages 0xc00021c240
+INFO - App:  2024/01/25 18:49:37.818931 User 'ff' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:49:37.818956 write message {"type":"usersInRoom","payload":{"result":"success","data":["ddd","ff"]}}
+INFO - App:  2024/01/25 18:49:37.818972 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ddd","ff"]}}' to client addr: 0xc0002044e0 || User:'ff' || connection: 0xc00023a6e0 || channels: clientRegistered 0xc0002342a0  |  ReceivedMessages 0xc00021c240
+INFO - App:  2024/01/25 18:49:37.818991 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}' to client addr: 0xc0002044e0 || User:'ff' || connection: 0xc00023a6e0 || channels: clientRegistered 0xc0002342a0  |  ReceivedMessages 0xc00021c240
+INFO - App:  2024/01/25 18:49:37.819032 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}
+INFO - App:  2024/01/25 18:49:37.819036 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:56:26.406603 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:56:26.408199 write message {"type":"userQuitChat","payload":{"result":"success","data":"ff"}}
+INFO - App:  2024/01/25 18:56:26.408259 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"ff"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:56:26.408309 ReadPump closed connection 0xc00023a6e0
+INFO - App:  2024/01/25 18:56:26.408326 write message 
+INFO - App:  2024/01/25 18:56:26.408337 WritePump is closing connection because the hub closed the channel 0xc00021c240 
+INFO - App:  2024/01/25 18:56:26.408340 WritePump is closing connection 0xc00023a6e0 of client 'addr: 0xc0002044e0 || User:'ff' || connection: 0xc00023a6e0 || channels: clientRegistered 0xc0002342a0  |  ReceivedMessages 0xc00021c240' because the hub closed the channel 0xc00021c240 
+INFO - App:  2024/01/25 18:56:30.810365 connection 0xc0000d2420 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:56:30.810620 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc0000a67e0 || User:'ff' || connection: 0xc0000d2420 || channels: clientRegistered 0xc0000c8300  |  ReceivedMessages 0xc00008e7e0
+INFO - App:  2024/01/25 18:56:30.810785 User 'ff' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:56:30.810831 write message {"type":"usersInRoom","payload":{"result":"success","data":["ddd","ff"]}}
+INFO - App:  2024/01/25 18:56:30.810884 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ddd","ff"]}}' to client addr: 0xc0000a67e0 || User:'ff' || connection: 0xc0000d2420 || channels: clientRegistered 0xc0000c8300  |  ReceivedMessages 0xc00008e7e0
+INFO - App:  2024/01/25 18:56:30.811125 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}' to client addr: 0xc0000a67e0 || User:'ff' || connection: 0xc0000d2420 || channels: clientRegistered 0xc0000c8300  |  ReceivedMessages 0xc00008e7e0
+INFO - App:  2024/01/25 18:56:30.810860 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}
+INFO - App:  2024/01/25 18:56:30.811347 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}' to client addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0
+INFO - App:  2024/01/25 18:56:41.310329 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:56:41.310637 write message {"type":"userQuitChat","payload":{"result":"success","data":"ddd"}}
+INFO - App:  2024/01/25 18:56:41.310672 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"ddd"}}' to client addr: 0xc0000a67e0 || User:'ff' || connection: 0xc0000d2420 || channels: clientRegistered 0xc0000c8300  |  ReceivedMessages 0xc00008e7e0
+INFO - App:  2024/01/25 18:56:41.310769 ReadPump closed connection 0xc0001be840
+INFO - App:  2024/01/25 18:56:41.310796 write message 
+INFO - App:  2024/01/25 18:56:41.310800 WritePump is closing connection because the hub closed the channel 0xc0001a23c0 
+INFO - App:  2024/01/25 18:56:41.310803 WritePump is closing connection 0xc0001be840 of client 'addr: 0xc00018a7e0 || User:'ddd' || connection: 0xc0001be840 || channels: clientRegistered 0xc000194420  |  ReceivedMessages 0xc0001a23c0' because the hub closed the channel 0xc0001a23c0 
+INFO - App:  2024/01/25 18:56:43.970754 connection 0xc0000d29a0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:56:43.971100 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc0000a6ab0 || User:'de' || connection: 0xc0000d29a0 || channels: clientRegistered 0xc0000c8480  |  ReceivedMessages 0xc00008e900
+INFO - App:  2024/01/25 18:56:43.972652 User 'de' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:56:43.972753 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"de"}}
+INFO - App:  2024/01/25 18:56:43.972791 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"de"}}' to client addr: 0xc0000a67e0 || User:'ff' || connection: 0xc0000d2420 || channels: clientRegistered 0xc0000c8300  |  ReceivedMessages 0xc00008e7e0
+INFO - App:  2024/01/25 18:56:43.972721 write message {"type":"usersInRoom","payload":{"result":"success","data":["de","ff"]}}
+INFO - App:  2024/01/25 18:56:43.972915 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["de","ff"]}}' to client addr: 0xc0000a6ab0 || User:'de' || connection: 0xc0000d29a0 || channels: clientRegistered 0xc0000c8480  |  ReceivedMessages 0xc00008e900
+INFO - App:  2024/01/25 18:56:43.972978 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"de"}}' to client addr: 0xc0000a6ab0 || User:'de' || connection: 0xc0000d29a0 || channels: clientRegistered 0xc0000c8480  |  ReceivedMessages 0xc00008e900
+INFO - App:  2024/01/25 18:57:27.082425 Message received from js: { }
+ 
+INFO - App:  2024/01/25 18:57:27.082647 write message {"type":"userQuitChat","payload":{"result":"success","data":"ff"}}
+INFO - App:  2024/01/25 18:57:27.082670 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"ff"}}' to client addr: 0xc0000a6ab0 || User:'de' || connection: 0xc0000d29a0 || channels: clientRegistered 0xc0000c8480  |  ReceivedMessages 0xc00008e900
+INFO - App:  2024/01/25 18:57:27.082746 ReadPump closed connection 0xc0000d2420
+INFO - App:  2024/01/25 18:57:27.082771 write message 
+INFO - App:  2024/01/25 18:57:27.082777 WritePump is closing connection because the hub closed the channel 0xc00008e7e0 
+INFO - App:  2024/01/25 18:57:27.082780 WritePump is closing connection 0xc0000d2420 of client 'addr: 0xc0000a67e0 || User:'ff' || connection: 0xc0000d2420 || channels: clientRegistered 0xc0000c8300  |  ReceivedMessages 0xc00008e7e0' because the hub closed the channel 0xc00008e7e0 
+INFO - App:  2024/01/25 18:57:29.681183 connection 0xc0000d2dc0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:57:29.681483 New client in room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' is created: addr: 0xc0000a6d50 || User:'fd' || connection: 0xc0000d2dc0 || channels: clientRegistered 0xc0000c8600  |  ReceivedMessages 0xc00008ea20
+INFO - App:  2024/01/25 18:57:29.681931 User 'fd' joined  room 'id: 375e1a12-0d02-4b74-bfe0-816790324383' 
+INFO - App:  2024/01/25 18:57:29.682091 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"fd"}}
+INFO - App:  2024/01/25 18:57:29.682128 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fd"}}' to client addr: 0xc0000a6ab0 || User:'de' || connection: 0xc0000d29a0 || channels: clientRegistered 0xc0000c8480  |  ReceivedMessages 0xc00008e900
+INFO - App:  2024/01/25 18:57:29.682023 write message {"type":"usersInRoom","payload":{"result":"success","data":["de","fd"]}}
+INFO - App:  2024/01/25 18:57:29.682556 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["de","fd"]}}' to client addr: 0xc0000a6d50 || User:'fd' || connection: 0xc0000d2dc0 || channels: clientRegistered 0xc0000c8600  |  ReceivedMessages 0xc00008ea20
+INFO - App:  2024/01/25 18:57:29.682940 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fd"}}' to client addr: 0xc0000a6d50 || User:'fd' || connection: 0xc0000d2dc0 || channels: clientRegistered 0xc0000c8600  |  ReceivedMessages 0xc00008ea20
+INFO - App:  2024/01/25 18:58:27.524355 The chat Hub is running...
+INFO - App:  2024/01/25 18:58:57.135648 WaitingRoom created, id: id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f
+INFO - App:  2024/01/25 18:58:57.136082 connection 0xc00019a000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:58:57.136232 New client in room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' is created: addr: 0xc0001a6000 || User:'ff' || connection: 0xc00019a000 || channels: clientRegistered 0xc000198060  |  ReceivedMessages 0xc000188240
+INFO - App:  2024/01/25 18:58:57.136530 User 'ff' joined  room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' 
+INFO - App:  2024/01/25 18:58:57.136618 write message {"type":"usersInRoom","payload":{"result":"success","data":["ff"]}}
+INFO - App:  2024/01/25 18:58:57.136652 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ff"]}}' to client addr: 0xc0001a6000 || User:'ff' || connection: 0xc00019a000 || channels: clientRegistered 0xc000198060  |  ReceivedMessages 0xc000188240
+INFO - App:  2024/01/25 18:58:57.136726 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"ff"}}' to client addr: 0xc0001a6000 || User:'ff' || connection: 0xc00019a000 || channels: clientRegistered 0xc000198060  |  ReceivedMessages 0xc000188240
+INFO - App:  2024/01/25 18:59:06.050209 connection 0xc000212580 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 18:59:06.050422 New client in room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' is created: addr: 0xc000117140 || User:'de' || connection: 0xc000212580 || channels: clientRegistered 0xc000102480  |  ReceivedMessages 0xc0001223c0
+INFO - App:  2024/01/25 18:59:06.050544 User 'de' joined  room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' 
+INFO - App:  2024/01/25 18:59:06.050555 write message {"type":"usersInRoom","payload":{"result":"success","data":["ff","de"]}}
+INFO - App:  2024/01/25 18:59:06.050598 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"de"}}
+INFO - App:  2024/01/25 18:59:06.050639 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"de"}}' to client addr: 0xc0001a6000 || User:'ff' || connection: 0xc00019a000 || channels: clientRegistered 0xc000198060  |  ReceivedMessages 0xc000188240
+INFO - App:  2024/01/25 18:59:06.050643 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ff","de"]}}' to client addr: 0xc000117140 || User:'de' || connection: 0xc000212580 || channels: clientRegistered 0xc000102480  |  ReceivedMessages 0xc0001223c0
+INFO - App:  2024/01/25 18:59:06.050948 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"de"}}' to client addr: 0xc000117140 || User:'de' || connection: 0xc000212580 || channels: clientRegistered 0xc000102480  |  ReceivedMessages 0xc0001223c0
+INFO - App:  2024/01/25 19:01:47.222241 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:01:47.223928 ReadPump closed connection 0xc000212580
+INFO - App:  2024/01/25 19:01:47.223975 write message 
+INFO - App:  2024/01/25 19:01:47.223983 WritePump is closing connection because the hub closed the channel 0xc0001223c0 
+INFO - App:  2024/01/25 19:01:47.223986 WritePump is closing connection 0xc000212580 of client 'addr: 0xc000117140 || User:'de' || connection: 0xc000212580 || channels: clientRegistered 0xc000102480  |  ReceivedMessages 0xc0001223c0' because the hub closed the channel 0xc0001223c0 
+INFO - App:  2024/01/25 19:01:47.224110 write message {"type":"userQuitChat","payload":{"result":"success","data":"de"}}
+INFO - App:  2024/01/25 19:01:47.224132 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"de"}}' to client addr: 0xc0001a6000 || User:'ff' || connection: 0xc00019a000 || channels: clientRegistered 0xc000198060  |  ReceivedMessages 0xc000188240
+INFO - App:  2024/01/25 19:01:50.914078 connection 0xc00029a2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:01:50.914138 New client in room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' is created: addr: 0xc00007c300 || User:'fr' || connection: 0xc00029a2c0 || channels: clientRegistered 0xc000030180  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 19:01:50.914213 User 'fr' joined  room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' 
+INFO - App:  2024/01/25 19:01:50.914227 write message {"type":"usersInRoom","payload":{"result":"success","data":["ff","fr"]}}
+INFO - App:  2024/01/25 19:01:50.914244 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["ff","fr"]}}' to client addr: 0xc00007c300 || User:'fr' || connection: 0xc00029a2c0 || channels: clientRegistered 0xc000030180  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 19:01:50.914323 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc00007c300 || User:'fr' || connection: 0xc00029a2c0 || channels: clientRegistered 0xc000030180  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 19:01:50.914414 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}
+INFO - App:  2024/01/25 19:01:50.914428 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc0001a6000 || User:'ff' || connection: 0xc00019a000 || channels: clientRegistered 0xc000198060  |  ReceivedMessages 0xc000188240
+INFO - App:  2024/01/25 19:01:55.246539 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:01:55.246723 write message {"type":"userQuitChat","payload":{"result":"success","data":"ff"}}
+INFO - App:  2024/01/25 19:01:55.246741 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"ff"}}' to client addr: 0xc00007c300 || User:'fr' || connection: 0xc00029a2c0 || channels: clientRegistered 0xc000030180  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 19:01:55.246750 ReadPump closed connection 0xc00019a000
+INFO - App:  2024/01/25 19:01:55.246768 write message 
+INFO - App:  2024/01/25 19:01:55.246773 WritePump is closing connection because the hub closed the channel 0xc000188240 
+INFO - App:  2024/01/25 19:01:55.246776 WritePump is closing connection 0xc00019a000 of client 'addr: 0xc0001a6000 || User:'ff' || connection: 0xc00019a000 || channels: clientRegistered 0xc000198060  |  ReceivedMessages 0xc000188240' because the hub closed the channel 0xc000188240 
+INFO - App:  2024/01/25 19:01:58.368168 connection 0xc00019a420 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:02:04.493720 connection 0xc00019a840 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:02:04.493966 New client in room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' is created: addr: 0xc0001a6870 || User:'frr' || connection: 0xc00019a840 || channels: clientRegistered 0xc000198300  |  ReceivedMessages 0xc000188420
+INFO - App:  2024/01/25 19:02:04.494146 User 'frr' joined  room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' 
+INFO - App:  2024/01/25 19:02:04.494174 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"frr"}}
+INFO - App:  2024/01/25 19:02:04.494186 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frr"}}' to client addr: 0xc00007c300 || User:'fr' || connection: 0xc00029a2c0 || channels: clientRegistered 0xc000030180  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 19:02:04.494207 write message {"type":"usersInRoom","payload":{"result":"success","data":["frr","fr"]}}
+INFO - App:  2024/01/25 19:02:04.494536 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["frr","fr"]}}' to client addr: 0xc0001a6870 || User:'frr' || connection: 0xc00019a840 || channels: clientRegistered 0xc000198300  |  ReceivedMessages 0xc000188420
+INFO - App:  2024/01/25 19:02:04.494981 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frr"}}' to client addr: 0xc0001a6870 || User:'frr' || connection: 0xc00019a840 || channels: clientRegistered 0xc000198300  |  ReceivedMessages 0xc000188420
+INFO - App:  2024/01/25 19:02:08.698366 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:02:08.731451 write message {"type":"userQuitChat","payload":{"result":"success","data":"frr"}}
+INFO - App:  2024/01/25 19:02:08.731521 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"frr"}}' to client addr: 0xc00007c300 || User:'fr' || connection: 0xc00029a2c0 || channels: clientRegistered 0xc000030180  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 19:02:08.731642 ReadPump closed connection 0xc00019a840
+INFO - App:  2024/01/25 19:02:08.731655 write message 
+INFO - App:  2024/01/25 19:02:08.731660 WritePump is closing connection because the hub closed the channel 0xc000188420 
+INFO - App:  2024/01/25 19:02:08.731662 WritePump is closing connection 0xc00019a840 of client 'addr: 0xc0001a6870 || User:'frr' || connection: 0xc00019a840 || channels: clientRegistered 0xc000198300  |  ReceivedMessages 0xc000188420' because the hub closed the channel 0xc000188420 
+INFO - App:  2024/01/25 19:02:11.212987 connection 0xc00029a6e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:04:35.003179 connection 0xc0000ce2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:04:39.843479 connection 0xc0000ce6e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:05:49.190959 connection 0xc0000ceb00 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:05:54.064793 connection 0xc0000cef20 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:05:54.065227 New client in room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' is created: addr: 0xc00009e7b0 || User:'frf' || connection: 0xc0000cef20 || channels: clientRegistered 0xc0000a83c0  |  ReceivedMessages 0xc00008e4e0
+INFO - App:  2024/01/25 19:05:54.066071 User 'frf' joined  room 'id: 921c5018-372f-4ff8-8ed6-ef91d579ed0f' 
+INFO - App:  2024/01/25 19:05:54.066172 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"frf"}}
+INFO - App:  2024/01/25 19:05:54.066189 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frf"}}' to client addr: 0xc00007c300 || User:'fr' || connection: 0xc00029a2c0 || channels: clientRegistered 0xc000030180  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 19:05:54.066182 write message {"type":"usersInRoom","payload":{"result":"success","data":["frf","fr"]}}
+INFO - App:  2024/01/25 19:05:54.066222 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["frf","fr"]}}' to client addr: 0xc00009e7b0 || User:'frf' || connection: 0xc0000cef20 || channels: clientRegistered 0xc0000a83c0  |  ReceivedMessages 0xc00008e4e0
+INFO - App:  2024/01/25 19:05:54.066274 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frf"}}' to client addr: 0xc00009e7b0 || User:'frf' || connection: 0xc0000cef20 || channels: clientRegistered 0xc0000a83c0  |  ReceivedMessages 0xc00008e4e0
+INFO - App:  2024/01/25 19:06:01.217695 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:06:01.225084 write message {"type":"userQuitChat","payload":{"result":"success","data":"frf"}}
+INFO - App:  2024/01/25 19:06:01.225126 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"frf"}}' to client addr: 0xc00007c300 || User:'fr' || connection: 0xc00029a2c0 || channels: clientRegistered 0xc000030180  |  ReceivedMessages 0xc000070420
+INFO - App:  2024/01/25 19:06:01.225145 ReadPump closed connection 0xc0000cef20
+INFO - App:  2024/01/25 19:06:01.225157 write message 
+INFO - App:  2024/01/25 19:06:01.225161 WritePump is closing connection because the hub closed the channel 0xc00008e4e0 
+INFO - App:  2024/01/25 19:06:01.225164 WritePump is closing connection 0xc0000cef20 of client 'addr: 0xc00009e7b0 || User:'frf' || connection: 0xc0000cef20 || channels: clientRegistered 0xc0000a83c0  |  ReceivedMessages 0xc00008e4e0' because the hub closed the channel 0xc00008e4e0 
+INFO - App:  2024/01/25 19:06:04.051249 connection 0xc0000cf340 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:06:43.759176 connection 0xc0000cf760 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:07:01.003435 connection 0xc0000cfb80 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:13:09.899881 The chat Hub is running...
+INFO - App:  2024/01/25 19:13:18.627566 WaitingRoom created, id: id: 91eb785e-7ecc-4f94-8f51-3ef1d577f462
+INFO - App:  2024/01/25 19:13:18.627891 connection 0xc00018e2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:13:18.627938 New client in room 'id: 91eb785e-7ecc-4f94-8f51-3ef1d577f462' is created: addr: 0xc000116f60 || User:'fr' || connection: 0xc00018e2c0 || channels: clientRegistered 0xc000102420  |  ReceivedMessages 0xc000122300
+INFO - App:  2024/01/25 19:13:18.628313 User 'fr' joined  room 'id: 91eb785e-7ecc-4f94-8f51-3ef1d577f462' 
+INFO - App:  2024/01/25 19:13:18.628748 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}
+INFO - App:  2024/01/25 19:13:18.628910 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}' to client addr: 0xc000116f60 || User:'fr' || connection: 0xc00018e2c0 || channels: clientRegistered 0xc000102420  |  ReceivedMessages 0xc000122300
+INFO - App:  2024/01/25 19:13:18.629065 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc000116f60 || User:'fr' || connection: 0xc00018e2c0 || channels: clientRegistered 0xc000102420  |  ReceivedMessages 0xc000122300
+INFO - App:  2024/01/25 19:13:25.357146 connection 0xc0000d02c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:13:32.210616 connection 0xc0000d06e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:14:07.612449 The chat Hub is running...
+INFO - App:  2024/01/25 19:14:13.386768 WaitingRoom created, id: id: d3f8da6c-67ea-4891-9460-2f254c88a773
+INFO - App:  2024/01/25 19:14:13.387273 connection 0xc0001bc2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:14:13.387337 New client in room 'id: d3f8da6c-67ea-4891-9460-2f254c88a773' is created: addr: 0xc000184270 || User:'fr' || connection: 0xc0001bc2c0 || channels: clientRegistered 0xc0001b4180  |  ReceivedMessages 0xc000196120
+INFO - App:  2024/01/25 19:14:13.387666 User 'fr' joined  room 'id: d3f8da6c-67ea-4891-9460-2f254c88a773' 
+INFO - App:  2024/01/25 19:14:13.387974 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}
+INFO - App:  2024/01/25 19:14:13.388244 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}' to client addr: 0xc000184270 || User:'fr' || connection: 0xc0001bc2c0 || channels: clientRegistered 0xc0001b4180  |  ReceivedMessages 0xc000196120
+INFO - App:  2024/01/25 19:14:13.388748 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc000184270 || User:'fr' || connection: 0xc0001bc2c0 || channels: clientRegistered 0xc0001b4180  |  ReceivedMessages 0xc000196120
+INFO - App:  2024/01/25 19:14:22.669442 connection 0xc00024c2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:21:45.355517 The chat Hub is running...
+INFO - App:  2024/01/25 19:21:53.050323 WaitingRoom created, id: id: 68e46ae7-6aac-4b48-8795-954d247a7fe5
+INFO - App:  2024/01/25 19:21:53.050814 connection 0xc000192000 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:21:53.050942 New client in room 'id: 68e46ae7-6aac-4b48-8795-954d247a7fe5' is created: addr: 0xc00019e000 || User:'fr' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/25 19:21:53.051662 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}
+INFO - App:  2024/01/25 19:21:53.051925 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}' to client addr: 0xc00019e000 || User:'fr' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/25 19:21:53.052041 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc00019e000 || User:'fr' || connection: 0xc000192000 || channels: clientRegistered 0xc000190060  |  ReceivedMessages 0xc00018a060
+INFO - App:  2024/01/25 19:21:53.051715 User 'fr' joined  room 'id: 68e46ae7-6aac-4b48-8795-954d247a7fe5' 
+INFO - App:  2024/01/25 19:22:04.466023 connection 0xc000192420 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:26:52.975400 The chat Hub is running...
+INFO - App:  2024/01/25 19:27:00.873331 WaitingRoom created, id: id: a9246ff1-1d4b-4c23-9a36-85bd97572f15
+INFO - App:  2024/01/25 19:27:00.873844 connection 0xc0001162c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:27:00.874041 New client in room 'id: a9246ff1-1d4b-4c23-9a36-85bd97572f15' is created: addr: 0xc00009cf60 || User:'fr' || connection: 0xc0001162c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 19:27:00.874462 User 'fr' joined  room 'id: a9246ff1-1d4b-4c23-9a36-85bd97572f15' 
+INFO - App:  2024/01/25 19:27:00.874737 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}
+INFO - App:  2024/01/25 19:27:00.874790 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}' to client addr: 0xc00009cf60 || User:'fr' || connection: 0xc0001162c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 19:27:00.874934 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc00009cf60 || User:'fr' || connection: 0xc0001162c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 19:27:09.323664 connection 0xc00021e2c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:31:57.031532 The chat Hub is running...
+INFO - App:  2024/01/25 19:32:05.873476 WaitingRoom created, id: id: 7bc19b22-358d-4fe2-92e5-124f26378d6a
+INFO - App:  2024/01/25 19:32:05.873796 connection 0xc0001162c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:32:05.873904 New client in room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' is created: addr: 0xc00009cf60 || User:'fr' || connection: 0xc0001162c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 19:32:05.874263 User 'fr' joined  room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' 
+INFO - App:  2024/01/25 19:32:05.874323 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}
+INFO - App:  2024/01/25 19:32:05.874403 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}' to client addr: 0xc00009cf60 || User:'fr' || connection: 0xc0001162c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 19:32:05.874526 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc00009cf60 || User:'fr' || connection: 0xc0001162c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300
+INFO - App:  2024/01/25 19:32:13.227456 connection 0xc0001c62c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:32:34.856596 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:32:34.930848 ReadPump closed connection 0xc0001162c0
+INFO - App:  2024/01/25 19:32:34.930914 write message 
+INFO - App:  2024/01/25 19:32:34.930922 WritePump is closing connection because the hub closed the channel 0xc0000a8300 
+INFO - App:  2024/01/25 19:32:34.930927 WritePump is closing connection 0xc0001162c0 of client 'addr: 0xc00009cf60 || User:'fr' || connection: 0xc0001162c0 || channels: clientRegistered 0xc00008e420  |  ReceivedMessages 0xc0000a8300' because the hub closed the channel 0xc0000a8300 
+INFO - App:  2024/01/25 19:32:37.348498 connection 0xc0001c66e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:32:37.348734 New client in room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' is created: addr: 0xc0001984b0 || User:'fr' || connection: 0xc0001c66e0 || channels: clientRegistered 0xc0001a22a0  |  ReceivedMessages 0xc000188360
+INFO - App:  2024/01/25 19:32:37.348974 User 'fr' joined  room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' 
+INFO - App:  2024/01/25 19:32:37.349013 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}
+INFO - App:  2024/01/25 19:32:37.349054 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}' to client addr: 0xc0001984b0 || User:'fr' || connection: 0xc0001c66e0 || channels: clientRegistered 0xc0001a22a0  |  ReceivedMessages 0xc000188360
+INFO - App:  2024/01/25 19:32:37.349163 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc0001984b0 || User:'fr' || connection: 0xc0001c66e0 || channels: clientRegistered 0xc0001a22a0  |  ReceivedMessages 0xc000188360
+INFO - App:  2024/01/25 19:32:46.163572 connection 0xc0002182c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:34:01.836449 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:34:01.911327 ReadPump closed connection 0xc0001c66e0
+INFO - App:  2024/01/25 19:34:01.911514 write message 
+INFO - App:  2024/01/25 19:34:01.911565 WritePump is closing connection because the hub closed the channel 0xc000188360 
+INFO - App:  2024/01/25 19:34:01.911600 WritePump is closing connection 0xc0001c66e0 of client 'addr: 0xc0001984b0 || User:'fr' || connection: 0xc0001c66e0 || channels: clientRegistered 0xc0001a22a0  |  ReceivedMessages 0xc000188360' because the hub closed the channel 0xc000188360 
+INFO - App:  2024/01/25 19:34:04.876351 connection 0xc000218840 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:34:04.876584 New client in room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' is created: addr: 0xc00007c4e0 || User:'fr' || connection: 0xc000218840 || channels: clientRegistered 0xc0000302a0  |  ReceivedMessages 0xc000070480
+INFO - App:  2024/01/25 19:34:04.876768 User 'fr' joined  room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' 
+INFO - App:  2024/01/25 19:34:04.876805 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}
+INFO - App:  2024/01/25 19:34:04.876848 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}' to client addr: 0xc00007c4e0 || User:'fr' || connection: 0xc000218840 || channels: clientRegistered 0xc0000302a0  |  ReceivedMessages 0xc000070480
+INFO - App:  2024/01/25 19:34:04.876894 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc00007c4e0 || User:'fr' || connection: 0xc000218840 || channels: clientRegistered 0xc0000302a0  |  ReceivedMessages 0xc000070480
+INFO - App:  2024/01/25 19:34:12.100514 connection 0xc0002b02c0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:34:15.782836 connection 0xc0001c6b00 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:34:15.782947 New client in room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' is created: addr: 0xc000198780 || User:'frf' || connection: 0xc0001c6b00 || channels: clientRegistered 0xc0001a2420  |  ReceivedMessages 0xc000188600
+INFO - App:  2024/01/25 19:34:15.783023 User 'frf' joined  room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' 
+INFO - App:  2024/01/25 19:34:15.783015 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr","frf"]}}
+INFO - App:  2024/01/25 19:34:15.783049 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr","frf"]}}' to client addr: 0xc000198780 || User:'frf' || connection: 0xc0001c6b00 || channels: clientRegistered 0xc0001a2420  |  ReceivedMessages 0xc000188600
+INFO - App:  2024/01/25 19:34:15.783098 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frf"}}' to client addr: 0xc000198780 || User:'frf' || connection: 0xc0001c6b00 || channels: clientRegistered 0xc0001a2420  |  ReceivedMessages 0xc000188600
+INFO - App:  2024/01/25 19:34:15.783140 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"frf"}}
+INFO - App:  2024/01/25 19:34:15.783147 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frf"}}' to client addr: 0xc00007c4e0 || User:'fr' || connection: 0xc000218840 || channels: clientRegistered 0xc0000302a0  |  ReceivedMessages 0xc000070480
+INFO - App:  2024/01/25 19:34:25.671975 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:34:25.685795 ReadPump closed connection 0xc000218840
+INFO - App:  2024/01/25 19:34:25.685882 write message 
+INFO - App:  2024/01/25 19:34:25.688558 write message {"type":"userQuitChat","payload":{"result":"success","data":"fr"}}
+INFO - App:  2024/01/25 19:34:25.688604 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"fr"}}' to client addr: 0xc000198780 || User:'frf' || connection: 0xc0001c6b00 || channels: clientRegistered 0xc0001a2420  |  ReceivedMessages 0xc000188600
+INFO - App:  2024/01/25 19:34:25.685893 WritePump is closing connection because the hub closed the channel 0xc000070480 
+INFO - App:  2024/01/25 19:34:25.696704 WritePump is closing connection 0xc000218840 of client 'addr: 0xc00007c4e0 || User:'fr' || connection: 0xc000218840 || channels: clientRegistered 0xc0000302a0  |  ReceivedMessages 0xc000070480' because the hub closed the channel 0xc000070480 
+INFO - App:  2024/01/25 19:34:28.515702 connection 0xc0001c6f20 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:34:28.515955 New client in room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' is created: addr: 0xc000198b10 || User:'fr' || connection: 0xc0001c6f20 || channels: clientRegistered 0xc0001a2600  |  ReceivedMessages 0xc000188780
+INFO - App:  2024/01/25 19:34:28.516081 User 'fr' joined  room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' 
+INFO - App:  2024/01/25 19:34:28.516109 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr","frf"]}}
+INFO - App:  2024/01/25 19:34:28.516133 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr","frf"]}}' to client addr: 0xc000198b10 || User:'fr' || connection: 0xc0001c6f20 || channels: clientRegistered 0xc0001a2600  |  ReceivedMessages 0xc000188780
+INFO - App:  2024/01/25 19:34:28.516248 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc000198b10 || User:'fr' || connection: 0xc0001c6f20 || channels: clientRegistered 0xc0001a2600  |  ReceivedMessages 0xc000188780
+INFO - App:  2024/01/25 19:34:28.516386 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}
+INFO - App:  2024/01/25 19:34:28.516434 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc000198780 || User:'frf' || connection: 0xc0001c6b00 || channels: clientRegistered 0xc0001a2420  |  ReceivedMessages 0xc000188600
+INFO - App:  2024/01/25 19:34:31.846606 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:34:31.846754 write message {"type":"userQuitChat","payload":{"result":"success","data":"frf"}}
+INFO - App:  2024/01/25 19:34:31.846769 Websocket: send message: '{"type":"userQuitChat","payload":{"result":"success","data":"frf"}}' to client addr: 0xc000198b10 || User:'fr' || connection: 0xc0001c6f20 || channels: clientRegistered 0xc0001a2600  |  ReceivedMessages 0xc000188780
+INFO - App:  2024/01/25 19:34:31.846864 ReadPump closed connection 0xc0001c6b00
+INFO - App:  2024/01/25 19:34:31.846879 write message 
+INFO - App:  2024/01/25 19:34:31.846884 WritePump is closing connection because the hub closed the channel 0xc000188600 
+INFO - App:  2024/01/25 19:34:31.846887 WritePump is closing connection 0xc0001c6b00 of client 'addr: 0xc000198780 || User:'frf' || connection: 0xc0001c6b00 || channels: clientRegistered 0xc0001a2420  |  ReceivedMessages 0xc000188600' because the hub closed the channel 0xc000188600 
+INFO - App:  2024/01/25 19:34:36.121621 connection 0xc0002b06e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:36:18.561490 Message received from js: { }
+ 
+INFO - App:  2024/01/25 19:36:18.581888 ReadPump closed connection 0xc0001c6f20
+INFO - App:  2024/01/25 19:36:18.581915 write message 
+INFO - App:  2024/01/25 19:36:18.581921 WritePump is closing connection because the hub closed the channel 0xc000188780 
+INFO - App:  2024/01/25 19:36:18.581924 WritePump is closing connection 0xc0001c6f20 of client 'addr: 0xc000198b10 || User:'fr' || connection: 0xc0001c6f20 || channels: clientRegistered 0xc0001a2600  |  ReceivedMessages 0xc000188780' because the hub closed the channel 0xc000188780 
+INFO - App:  2024/01/25 19:36:20.864230 connection 0xc0001166e0 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:36:20.864456 New client in room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' is created: addr: 0xc00009d5f0 || User:'fr' || connection: 0xc0001166e0 || channels: clientRegistered 0xc00008e5a0  |  ReceivedMessages 0xc0000a8420
+INFO - App:  2024/01/25 19:36:20.864974 User 'fr' joined  room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' 
+INFO - App:  2024/01/25 19:36:20.864963 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}
+INFO - App:  2024/01/25 19:36:20.865054 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr"]}}' to client addr: 0xc00009d5f0 || User:'fr' || connection: 0xc0001166e0 || channels: clientRegistered 0xc00008e5a0  |  ReceivedMessages 0xc0000a8420
+INFO - App:  2024/01/25 19:36:20.865112 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"fr"}}' to client addr: 0xc00009d5f0 || User:'fr' || connection: 0xc0001166e0 || channels: clientRegistered 0xc00008e5a0  |  ReceivedMessages 0xc0000a8420
+INFO - App:  2024/01/25 19:36:28.410458 connection 0xc000218c60 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:36:33.679627 connection 0xc000219080 to '/joinGame' is upgraded to the WebSocket protocol
+INFO - App:  2024/01/25 19:36:33.679875 New client in room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' is created: addr: 0xc00007cbd0 || User:'frg' || connection: 0xc000219080 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070720
+INFO - App:  2024/01/25 19:36:33.680115 User 'frg' joined  room 'id: 7bc19b22-358d-4fe2-92e5-124f26378d6a' 
+INFO - App:  2024/01/25 19:36:33.680120 write message {"type":"usersInRoom","payload":{"result":"success","data":["fr","frg"]}}
+INFO - App:  2024/01/25 19:36:33.680169 write message {"type":"registerNewPlayer","payload":{"result":"success","data":"frg"}}
+INFO - App:  2024/01/25 19:36:33.680225 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frg"}}' to client addr: 0xc00009d5f0 || User:'fr' || connection: 0xc0001166e0 || channels: clientRegistered 0xc00008e5a0  |  ReceivedMessages 0xc0000a8420
+INFO - App:  2024/01/25 19:36:33.680208 Websocket: send message: '{"type":"usersInRoom","payload":{"result":"success","data":["fr","frg"]}}' to client addr: 0xc00007cbd0 || User:'frg' || connection: 0xc000219080 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070720
+INFO - App:  2024/01/25 19:36:33.680289 Websocket: send message: '{"type":"registerNewPlayer","payload":{"result":"success","data":"frg"}}' to client addr: 0xc00007cbd0 || User:'frg' || connection: 0xc000219080 || channels: clientRegistered 0xc000030600  |  ReceivedMessages 0xc000070720

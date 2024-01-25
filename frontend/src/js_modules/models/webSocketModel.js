@@ -1,12 +1,10 @@
 
-import {payloadModel} from "../models/payloadModel.js"
+import { payloadModel } from "../models/payloadModel.js"
 import { wsResponseRouter } from "../../router/ws_response_router.js";
+import { mainView } from "../../app.js";
 
 export default class Socket {
-  constructor() {
-    this.connection = new WebSocket("ws://temp"); // to prevent some errors in components
-  }
-  launchWebsocket(url) {
+  constructor(url) {
     this.connection = new WebSocket(`ws://localhost:8000/${url}`);
 
     this.connection.onopen = function (event) {
@@ -30,20 +28,24 @@ export default class Socket {
     rawMessages.forEach((rawMessage) => {
       try {
         const message = JSON.parse(rawMessage);
+        if (message.type === "ERROR") {
+          if (message.payload?.result === 'DuplicateUser') {
+            mainView.showError('user with this name already exists');
+            mainView.chatModel.stop();
+            mainView.delCurrentPlayer();
+            return
+          }
+          else { throw new Error(`${message.payload.result}:  ${message.payload.data}`); }
+        }
         this.emit(message.type, message.payload);
       } catch (error) {
-        console.error("Unable to parse JSON string:", error);
+        console.error("error in websocket handleMessages: ", error);
       }
     });
   };
-  emit(event, data) {
-    //console.log("Type: ", event, " Payload:", data); // for troubleshooting
-    if (data.result == "success") {
-      wsResponseRouter[event](data); // routes the data to a handler based on the event
-    } else {
-      
-      throw new Error("Failed to complete operation: ", data);
-    }
+  emit(event, payload) {
+    console.log("Type: ", event, " Payload:", payload); // for troubleshooting
+    wsResponseRouter[event](payload); // routes the data to a handler based on the event
   }
   closeWebsocket() {
     this.connection.close();

@@ -1,7 +1,8 @@
 import { VElement } from "../../../framework/VElement.js";
 
 //bomberman dom main logo header
-export const HeaderC = new VElement({
+export function createHeaderC() {
+    return new VElement({
         tag: 'header',
         children: [
             new VElement({
@@ -9,5 +10,6 @@ export const HeaderC = new VElement({
                 attrs: { id: 'logo', src: './src/assets/images/Bomberman_logo.png' }
             })
         ]
-});
+    });
+}
 

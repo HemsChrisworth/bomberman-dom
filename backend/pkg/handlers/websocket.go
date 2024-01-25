@@ -39,6 +39,9 @@ func logErrorAndCloseConn(app *application.Application, conn *websocket.Conn, er
 
 func JoinGame(app *application.Application, wsReplyersSet wsconnection.WSmux) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Add("Access-Control-Allow-Credentials", "true")
+		w.Header().Add("Access-Control-Allow-Headers", "*")
+		w.Header().Add("Access-Control-Allow-Origin", "http://localhost:8080")
 		// create chat and join current user to it
 		var err error
 
@@ -54,6 +57,7 @@ func JoinGame(app *application.Application, wsReplyersSet wsconnection.WSmux) ht
 				errorhandle.BadRequestError(app, w, r, err.Error())
 				return
 			}
+			app.InfoLog.Printf("WaitingRoom created, id: %s", app.WaitingRoom)
 		}
 
 		conn, err := app.Upgrader.Upgrade(w, r, nil)
@@ -66,10 +70,19 @@ func JoinGame(app *application.Application, wsReplyersSet wsconnection.WSmux) ht
 
 		currentConnection, err := createClient(app, userName, conn, wsReplyersSet)
 		if err == Err_Duplicate_User {
+			wsMessage, err1 := webmodel.CreateJSONMessage(webmodel.ERROR, "DuplicateUser", err.Error())
+			if err1 != nil {
+				conn.Close()
+				errorhandle.ServerError(app, w, r, "cant create a client:", err)
+				return
+			}
+			conn.WriteMessage(websocket.TextMessage, wsMessage)
+			conn.Close()
 			errorhandle.BadRequestError(app, w, r, err.Error())
 			return
 		}
 		if err != nil {
+			conn.Close()
 			errorhandle.ServerError(app, w, r, "cant create a client:", err)
 			return
 		}
@@ -126,7 +139,7 @@ func createClient(app *application.Application, userName string, conn *websocket
 
 	client, err := wshub.NewClient(app.Hub, userName, app.WaitingRoom, conn, nil, nil)
 	if err != nil {
-		return nil, fmt.Errorf("createClient: NewClient failed: %v", err)
+		return nil, fmt.Errorf("createClient:: NewClient failed: %v", err)
 	}
 
 	if app.WaitingRoom.Size() == MAX_ROOM_SIZE {
