@@ -5,7 +5,6 @@ import { ChatModel } from "./js_modules/models/chatModel.js";
 import { gameBoxModel } from "./js_modules/models/gameBoxModel.js";
 import { Player } from "./js_modules/models/playersModel.js";
 import { WelcomeScreenModel } from "./js_modules/models/welcomeScreenModel.js";
-import { createPlayerList } from "./js_modules/playerList.js";
 
 
 export class MainView {
@@ -22,7 +21,7 @@ export class MainView {
             ]
         });
 
-        this.PlayerList = createPlayerList();
+        this.PlayerList = {};
         this.chatModel = new ChatModel;
     }
 
@@ -49,15 +48,26 @@ export class MainView {
     delCurrentPlayer = () => {
         this.currentPlayer = undefined;
     }
-    addPlayer(player) {
-        this.PlayerList.addPlayer(player);
-        if (this.currentViewModel instanceof WelcomeScreenModel) {
-            this.currentViewModel.addPlayer(player);
+    addPlayers(...players) {
+        for (const player of players) {
+            this.PlayerList[player.name] = player
         }
-        return player
+        if (this.currentViewModel instanceof WelcomeScreenModel) { // TODO maybe has to work with other view models
+            this.currentViewModel.addPlayers(...players);
+        }
+        //return players
     }
+    delPlayers(...players) {
+        for (const player of players) {
+            delete this.PlayerList[player.Name]
+        }
+        if (this.currentViewModel instanceof WelcomeScreenModel) {
+            this.currentViewModel.delPlayers(...players);
+        }
+    }
+
     showGameBox = () => {
-        const gameBoxM = new gameBoxModel(this.currentViewModel.chatModel);
+        const gameBoxM = new gameBoxModel(this.chatModel);
         this.vElement.delChild(this.currentViewModel.vElement.vId);
         this.vElement.addChild(gameBoxM.vElement);
         this.currentViewModel = gameBoxM;

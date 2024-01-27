@@ -42,8 +42,31 @@ export class WelcomeScreenModel {
      * 
      * @param {Player} player 
      */
-    addPlayer(player) {
-        this.waitingListC.addChild(createPlayerC(player.name, player.number));
+    addPlayers(...players) {
+        for (const player of players){
+            this.waitingListC.addChild(createPlayerC(player.name, player.number));
+        }
+    }
+
+    delPlayers(...players) {
+        const oldChildren = this.waitingListC.children;
+        let newChildren = [];
+
+        const isInPlayersList = function(playerNumber) {
+            for (const player of players) {
+                if (player.number === playerNumber) {
+                    return true;
+                }
+            } 
+            return false;
+        }
+        for (const child of oldChildren) {
+            let number = child.number.attrs.id.substring(2)
+            if (!isInPlayersList(number)) {
+                newChildren.push(child);
+            }
+        }
+        this.waitingListC.children = newChildren;
     }
 
     addChatComponent = (chatC) => {

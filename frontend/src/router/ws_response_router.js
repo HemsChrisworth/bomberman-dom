@@ -16,29 +16,37 @@ export const wsResponseRouter = {
 
     if (!isSuccessPayload(payload)) {
       console.error(payload);
-     
       return
     }
     console.log("handle usersInRoom message with payload:", payload);
-    welcomeScreenModel.loadWaitingScreen()
+    welcomeScreenModel.loadWaitingScreen();
+    
+    const players = [];
     payload.data.forEach(user => {
       if (user.playerName === mainView.currentPlayer.name) {
         mainView.currentPlayer.number = user.playerNumber;
-        mainView.addPlayer(mainView.currentPlayer);
+        players.push(mainView.currentPlayer);
       } else {
-        mainView.addPlayer(new Player(user.playerName, user.playerNumber));
+        players.push(new Player(user.playerName, user.playerNumber));
       }
     });
+
+    mainView.addPlayers(...players);
   },
 
   registerNewPlayer(payload) {
     if (!isSuccessPayload(payload)) {
       console.error("registerNewPlayer error: " + payload.data);
+      if (payload.data === 'duplicate user name') {
+        mainView.showError('user with this name already exists');
+        mainView.chatModel.stop();
+        mainView.delCurrentPlayer();
+      }
       return
     }
-let user = payload.data;
+    let user = payload.data;
     if (user.playerName !== mainView.currentPlayer.name) {
-      mainView.addPlayer(new Player(user.playerName, user.playerNumber))
+      mainView.addPlayers(new Player(user.playerName, user.playerNumber))
     }
   },
 

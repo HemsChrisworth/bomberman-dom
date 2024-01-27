@@ -21,7 +21,7 @@ func (uc *UsersConnection) WSError(errMessage string, err error) error {
 	errMessage = funcName + ": " + errMessage
 	uc.WsServer.ErrLog.Output(2, fmt.Sprintf("websocket:: ERROR: %s: %v\nDebug Stack:  %s", errMessage, err, debug.Stack()))
 
-	wsMessage, err := webmodel.CreateJSONMessage(webmodel.ERROR, "serverError", errMessage)
+	wsMessage, err := webmodel.CreateJSONMessage(webmodel.ERROR_TYPE, "serverError", errMessage)
 	if err != nil {
 		errText := fmt.Sprintf("websocket:: WSError:can't create serverError WSmessage: %v", err)
 		uc.Client.WriteMessage([]byte(`"` + errText + `"`))
@@ -41,7 +41,7 @@ func (uc *UsersConnection) WSErrCreateMessage(err error) error {
 func (uc *UsersConnection) WSBadRequest(requestMessage webmodel.WSMessage, errMessage string) error {
 	uc.WsServer.InfoLog.Printf("websocket:: send reply '%s' to: '%s'\n", errMessage, requestMessage.Type)
 
-	wsMessage, err := requestMessage.CreateReplyToRequestMessage("error", errMessage)
+	wsMessage, err := requestMessage.CreateReplyToRequestMessage(webmodel.ERROR_RESULT, errMessage)
 	if err != nil {
 		errText := fmt.Sprintf("websocket:: can't create BadRequest WSmessage to '%s': %v", requestMessage.Type, err)
 		uc.Client.WriteMessage([]byte(`"` + errText + `"`))

@@ -8,7 +8,12 @@ import (
 )
 
 const (
-	ERROR = "ERROR"
+	SUCCESS_RESULT = "success"
+	ERROR_RESULT   = "error"
+)
+
+const (
+	ERROR_TYPE = "ERROR"
 
 	UsersInRoom       = "usersInRoom"
 	RegisterNewPlayer = "registerNewPlayer"

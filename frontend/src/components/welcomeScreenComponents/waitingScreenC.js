@@ -9,6 +9,7 @@ reactives.push(yes)
 export function createPlayerC(playerName, playerNumber){
   return new VElement({
     tag: 'p',
+    attrs: {id: `pl${playerNumber}`},
     content: `${playerNumber} -- ${playerName}`,
   }); 
 }

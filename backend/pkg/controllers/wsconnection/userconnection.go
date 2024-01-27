@@ -17,7 +17,7 @@ type UsersConnection struct {
 sends uc.Client a successful reply to the requestMessage with the data as payload
 */
 func (uc *UsersConnection) SendReply(requestMessage webmodel.WSMessage, data any) error {
-	wsMessage, err := requestMessage.CreateReplyToRequestMessage("success", data)
+	wsMessage, err := requestMessage.CreateReplyToRequestMessage(webmodel.SUCCESS_RESULT, data)
 	if err != nil {
 		return uc.WSErrCreateMessage(err)
 	}
@@ -33,7 +33,7 @@ It returns the message converted into json.
 It returns error if the message could not be converted to json.
 */
 func (uc *UsersConnection) SendSuccessMessage(messageType string, data any) (json.RawMessage, error) {
-	wsMessage, err := webmodel.CreateJSONMessage(messageType, "success", data)
+	wsMessage, err := webmodel.CreateJSONMessage(messageType, webmodel.SUCCESS_RESULT, data)
 	if err != nil {
 		return wsMessage, uc.WSErrCreateMessage(err)
 	}
@@ -48,7 +48,7 @@ It returns the message converted into json and a map with true value if the mess
 It returns error if the message could not be converted to json.
 */
 func (uc *UsersConnection) SendMessageToClientRoom(messageType string, data any) (json.RawMessage, map[string]bool, error) {
-	wsMessage, err := webmodel.CreateJSONMessage(messageType, "success", data)
+	wsMessage, err := webmodel.CreateJSONMessage(messageType, webmodel.SUCCESS_RESULT, data)
 	if err != nil {
 		return wsMessage, nil, uc.WSErrCreateMessage(err)
 	}

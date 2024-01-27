@@ -70,7 +70,7 @@ func JoinGame(app *application.Application, wsReplyersSet wsconnection.WSmux) ht
 
 		currentConnection, err := createClient(app, userName, conn, wsReplyersSet)
 		if err == Err_Duplicate_User {
-			wsMessage, err1 := webmodel.CreateJSONMessage(webmodel.ERROR, "DuplicateUser", err.Error())
+			wsMessage, err1 := webmodel.CreateJSONMessage(webmodel.RegisterNewPlayer, webmodel.ERROR_RESULT, err.Error())
 			if err1 != nil {
 				conn.Close()
 				errorhandle.ServerError(app, w, r, "cant create a client:", err)
