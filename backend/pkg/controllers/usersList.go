@@ -43,7 +43,7 @@ sends current user's status (join/quit chat) to users in the user's chat room
 */
 func SendUserToRoomMembers(statusType string) wsconnection.FuncReplier {
 	return func(currConnection *wsconnection.UsersConnection, wsMessage webmodel.WSMessage) error {
-		_, _, err := currConnection.SendMessageToClientRoom(statusType, currConnection.Client.UserName)
+		_, _, err := currConnection.SendMessageToClientRoom(statusType, currConnection.Client.ClientUser)
 		return err
 	}
 }

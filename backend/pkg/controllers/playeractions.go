@@ -7,6 +7,18 @@ import (
 )
 
 /*
+ReplyStartGame sends the room.ID, which could be used as a seed to create a new game
+*/
+func ReplyStartGame(app *application.Application) wsconnection.FuncReplyCreator {
+	return func(currConnection *wsconnection.UsersConnection, message webmodel.WSMessage) (any, error) {
+		if app.WaitingRoom !=nil && app.WaitingRoom.ID==currConnection.Client.Room.ID{
+			app.WaitingRoom = nil
+		}
+		return currConnection.Client.Room.ID, nil // reply to current user
+	}
+}
+
+/*
 broadcasts messages to clients connected to the chat
 */
 func ReplyPlayerAction(app *application.Application) wsconnection.FuncReplyCreator {

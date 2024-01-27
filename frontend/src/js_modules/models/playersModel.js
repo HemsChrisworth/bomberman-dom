@@ -1,10 +1,11 @@
 import { VElement } from "../../../../framework/VElement.js"
 
 export class Player { // add all player properties here, for example image, movements etc
-    constructor(name) {
+    constructor(name, number) {
         this.x = 0 // have x and y randomly allocated
         this.y = 0
-        this.name = name
+        this.name = name,
+        this.number = number,
         this.lives = 3
         this.sprite = "src/assets/images/spritesheets/spritesheet.png";
         this.vElement = new VElement({

@@ -22,13 +22,12 @@ export const wsResponseRouter = {
     console.log("handle usersInRoom message with payload:", payload);
     welcomeScreenModel.loadWaitingScreen()
     payload.data.forEach(user => {
-      let player
-      if (user === mainView.currentPlayer.name) {
-        player = mainView.currentPlayer;
+      if (user.playerName === mainView.currentPlayer.name) {
+        mainView.currentPlayer.number = user.playerNumber;
+        mainView.addPlayer(mainView.currentPlayer);
       } else {
-        player = new Player(user);
+        mainView.addPlayer(new Player(user.playerName, user.playerNumber));
       }
-      mainView.addPlayer(player);
     });
   },
 
@@ -37,9 +36,9 @@ export const wsResponseRouter = {
       console.error("registerNewPlayer error: " + payload.data);
       return
     }
-
-    if (payload.data !== mainView.currentPlayer.name) {
-      mainView.addPlayer(new Player(payload.data))
+let user = payload.data;
+    if (user.playerName !== mainView.currentPlayer.name) {
+      mainView.addPlayer(new Player(user.playerName, user.playerNumber))
     }
   },
 

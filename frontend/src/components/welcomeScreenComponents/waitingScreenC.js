@@ -6,10 +6,10 @@ const yes = () => { console.log("yeeee") }
 
 reactives.push(yes)
 
-export function createPlayerC(playerName){
+export function createPlayerC(playerName, playerNumber){
   return new VElement({
     tag: 'p',
-    content: `${playerName}`,
+    content: `${playerNumber} -- ${playerName}`,
   }); 
 }
 export function createWaitingListC() {

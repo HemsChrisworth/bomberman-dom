@@ -132,14 +132,14 @@ func (r *Room) DeleteClient(client *Client) {
 	}
 }
 
-func (r *Room) GetUsersInRoom() []string {
+func (r *Room) GetUsersInRoom() []ClientUser {
 	r.Clients.RLock()
 	defer r.Clients.RUnlock()
 
-	users := make([]string, len(r.Clients.items))
+	users := make([]ClientUser, len(r.Clients.items))
 	i := 0
 	for _, client := range r.Clients.items {
-		users[i] = client.UserName
+		users[i] = client.ClientUser
 		i++
 	}
 

@@ -6,9 +6,14 @@ import (
 	"github.com/gorilla/websocket"
 )
 
+type ClientUser struct {
+	UserName     string `json:"playerName"`
+	PlayerNumber int    `json:"playerNumber"`
+}
+
 // Client is a middleman between the websocket connection and the hub.
 type Client struct {
-	UserName   string
+	ClientUser
 	Room *Room
 
 	// The websocket connection.
@@ -23,7 +28,7 @@ type Client struct {
 // TODO use this in the correct place
 func NewClient(hub *Hub, userName string, room *Room, conn *websocket.Conn, receivedMessages chan []byte, clientRegistered chan bool) (*Client, error) {
 	client := &Client{
-		UserName: userName,
+		ClientUser: ClientUser{UserName: userName},
 		Room:       room,
 		Conn:       conn,
 	}
@@ -46,6 +51,8 @@ func NewClient(hub *Hub, userName string, room *Room, conn *websocket.Conn, rece
 	if !ok {
 		return nil, fmt.Errorf("cannot create a client: room id '%s' does not exist", room.ID)
 	}
+
+	client.PlayerNumber = client.Room.Size()
 	return client, nil
 }
 

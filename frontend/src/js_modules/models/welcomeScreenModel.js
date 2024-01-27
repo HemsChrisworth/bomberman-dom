@@ -43,7 +43,7 @@ export class WelcomeScreenModel {
      * @param {Player} player 
      */
     addPlayer(player) {
-        this.waitingListC.addChild(createPlayerC(player.name));
+        this.waitingListC.addChild(createPlayerC(player.name, player.number));
     }
 
     addChatComponent = (chatC) => {
