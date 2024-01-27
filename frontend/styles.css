@@ -50,6 +50,7 @@ body {
     flex-direction: column;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.644);
     text-align: center;
     padding: 15px;
     margin: 0 auto;
@@ -80,6 +81,25 @@ body {
     font-weight: 700;
 }
 
+#waiting10sec {
+    color: rgb(195,73,25);
+    border: 5px solid rgb(74, 74, 74);
+    font-family: 'Luckiest Guy', cursive;
+    text-align: center;
+    text-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    padding: 20px;
+    margin: 30px;
+    margin-top: 50px;
+    border-radius: 70px;
+    width: 60px;
+    height: 60px;
+    font-size: 50px;
+    outline: 5px solid rgb(100, 100, 100);
+    outline-offset: 10px;
+    background: linear-gradient(180deg, rgba(195,73,25,1) 0%, rgba(212,203,23,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 /*#chooseusername:focus {
     outline: none;
 }*/
@@ -179,15 +199,17 @@ body {
     background-color: #212121e5;
     border: 2px solid #141414;
     width: 1136px; 
-    height: 384px;
+    height: 352px;
     border-radius: 10px;
     padding: 10px;
     margin: 0 auto;
 }
 
 #gameinfo { /* the whole game info component */
-    background-color: rgb(46, 46, 46);
+    background-color: rgb(39, 39, 39);
     color: rgb(219, 219, 219);
+    border: 1px solid rgba(0, 0, 0, 0.299);
+    box-shadow: 0px 0px 5px #0000003d;
     width: 250px;
     margin-right: 10px;
     border-radius: 5px;
@@ -198,7 +220,8 @@ body {
     margin: 10px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 16px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.644);
 }
 
 #gamepanel {
@@ -211,13 +234,35 @@ body {
     flex-direction: row;
     border: 1px solid rgba(0, 0, 0, 0.505);
     border-radius: 5px;
-    background-color: #222222;
+    background: rgb(16,16,16);
+    background: linear-gradient(183deg, rgba(16,16,16,1) 0%, rgb(37, 37, 37) 100%);
     width: 210px;
-    height: 30px;
-    margin: 10px;
-    padding: 10px;
+    height: 22px;
+    margin: 7px;
+    padding: 5px;
+    transition: 0.2s;
+}
+.playerone:hover {
+    box-shadow: 0px 3px 3px #0000003d, 0 0 8px rgb(180, 66, 25);
+    /*transform: scale(1.01);*/
 }
 
+#gamespecs {
+    border: 1px solid rgba(0, 0, 0, 0.505);
+    border-radius: 5px;
+    background: rgb(35, 35, 35);
+    box-shadow: inset 0 3px 10px #00000071;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.644);
+    font-family: 'Open Sans', sans-serif;
+    color: rgba(219, 219, 219, 0.783);
+    font-weight: 400;
+    font-size: 14px;
+    width: 188px;
+    height: 80px;
+    margin: 7px;
+    margin-top: 30px;
+    padding: 16px;
+}
 /*.userGameStatus {
     justify-content: flex-end;
 }*/
@@ -226,27 +271,31 @@ body {
     background-color: #382424;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 30px;
-    width: 30px;
+    height: 20px;
+    width: 20px;
     border-radius: 5px;
     border: 1px solid rgba(0, 0, 0, 0.505);
 }
 
 .gamePlayerUsername {
     /*background-color: #000000;*/
-    color: rgb(219, 219, 219);
+    color: rgba(188, 188, 188, 0.783);
     padding-left: 10px;
-    padding-top: 5px;
-    margin-left: 10px;
+    padding-top: 2px;
+    margin-left: 5px;
     width: 140px;
     margin-right: 10px;
     font-family: 'Open Sans', sans-serif;
-    font-weight: 200;
-    font-size: 15px;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.644);
+    font-weight: 400;
+    font-size: 14px;
+    transition: 0.2s;
 }
-
+.gamePlayerUsername:hover {
+    color: rgba(219, 219, 219, 0.783);
+}
 .userGameStatus {
-    color: rgb(219, 219, 219);
+    color: rgb(231, 231, 231);
 }
 
 #gamedata {
@@ -256,8 +305,8 @@ body {
 
 #gamescreen { /* the game field 18w x 12h squares */
     position: relative;
-    width: 576px;
-    height: 384px;
+    width: 544px;
+    height: 352px;
     background-color: rgb(26, 75, 33);
     border-radius: 5px;
 }

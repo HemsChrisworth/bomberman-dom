@@ -16,6 +16,7 @@ export function createWaitingListC() {
   return new VElement({
     tag: 'span',
     content: `People ready: `,
+    attrs: { class: 'welcometext', },
   });
 }
 
@@ -31,6 +32,7 @@ function createWaitingTimerC(waitingTimer20secC) {
   return new VElement({
     tag: 'span',
     content: 'Waiting...',
+    attrs: { class: 'welcometext', },
     children: [
       waitingTimer20secC,
     ],
@@ -49,6 +51,7 @@ function createWaitingTimer10secC(t10seccountdownC) {
   return new VElement({
     tag: 'span',
     content: 'Game starts in...',
+    attrs: { class: 'welcometext', },
     children: [
       t10seccountdownC,
     ],
