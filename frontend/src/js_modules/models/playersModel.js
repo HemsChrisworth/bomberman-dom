@@ -1,13 +1,14 @@
 import { VElement } from "../../../../framework/VElement.js"
 import { mainGameMap } from "../../components/gameScreenComponents/gameBoxC.js"
-import { MAP_TILE_SIZE } from "../consts/consts.js"
+import { MAP_TILE_SIZE, PLAYER_Z_INDEX } from "../consts/consts.js"
 
-function setPlayerStyleAttrs(x, y) { // need this if we want to have animations with spritesheets
+function setPlayerStyleAttrs(x, y, z) {
   const style = `left: ${x}px;
-              top: ${y}px;
-              width: ${MAP_TILE_SIZE}px;
-              height: ${MAP_TILE_SIZE}px;`
-  return style
+                 top: ${y}px;
+                 z-index: ${z};
+                 width: ${MAP_TILE_SIZE}px;
+                 height: ${MAP_TILE_SIZE}px;`
+  return style;
 }
 
 export class Player { // add all player properties here, for example image, movements etc
