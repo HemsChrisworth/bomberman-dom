@@ -17,6 +17,7 @@ export function createWaitingListC() {
   return new VElement({
     tag: 'span',
     content: `People ready: `,
+    attrs: { class: 'welcometext', },
   });
 }
 
@@ -46,15 +47,7 @@ export function createWaitingTimer10secC() {
   });
 }
 
-// function createWaitingTimer10secC(t10seccountdownC) {
-//   return new VElement({
-//     tag: 'span',
-//     content: 'Game starts in...',
-//     children: [
-//       t10seccountdownC,
-//     ],
-//   });
-// }
+
 
 // export function createWaitingScreen10secC(t10seccountdownC) {
 //   return new VElement({
@@ -77,4 +70,30 @@ export function createWaitingScreenC(waitingListC, waitingTimerC) {
   });
 }
 
+// mustkass, commit e8e04b214a03dcf5892785f0b3b7de8f506ee303
 
+/* function createWaitingTimerC(waitingTimer20secC) {
+  return new VElement({
+    tag: 'span',
+    content: 'Waiting...',
+    attrs: { class: 'welcometext', },
+    children: [
+      waitingTimer20secC,
+    ],
+  });
+}
+
+function createWaitingTimer10secC(t10seccountdownC) {
+  return new VElement({
+    tag: 'span',
+    content: 'Game starts in...',
+    attrs: { class: 'welcometext', },
+    children: [
+      t10seccountdownC,
+    ],
+  });
+}
+
+
+
+*/

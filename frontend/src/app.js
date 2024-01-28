@@ -1,6 +1,6 @@
 import { Frame } from '../../framework/Frame.js';
 import { MainView } from './mainView.js';
-import { testCreateMap, testRenderMap } from './test/test.js';
+import { testTileTranslator } from './test/test.js';
 
 //export const router = createRouter(routes);
 
@@ -15,4 +15,4 @@ App.mount(document.getElementById('app'))
 export const mainView = new MainView
 App.addVElement(mainView.vElement);
 
-testRenderMap()
+testTileTranslator()

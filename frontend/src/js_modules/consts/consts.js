@@ -4,4 +4,10 @@ MAP_TILE_SIZE = 32,
 SPRITESHEET_ROWS = 23,
 SPRITESHEET_COLUMNS = 14, // important value for calculating sprite positions
 BACKGROUND_TILE_Z_INDEX = 2,
-PLAYER_TILE_Z_INDEX = 0
+PLAYER_TILE_Z_INDEX = 0,
+
+
+// blocks
+GRASS = 70,
+SOLID = 45
+

@@ -1,18 +1,28 @@
+import { VElement } from "../../../../../framework/VElement.js";
+import { mainView } from "../../../app.js";
 import { MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
-import { gameTiles } from "../../gameTiles.js";
-import { Tile } from "./tileModel.js";
+import { Tile, tileTranslator } from "./tileModel.js";
 
 export class GameMap {
   /**
    *
-   * @param {number[][]} levelMap
+   * @param {number[][]} tileMap
    */
-  constructor(levelMap) {
+  constructor(tileMap) {
     // outer circle is just blocks
-    this.columns = levelMap[0].length;
-    this.rows = levelMap.length;
+    this.columns = tileMap[0].length;
+    this.rows = tileMap.length;
     this.tileSize = MAP_TILE_SIZE; // depends on sprite sheet ig
-    this.levelMap = levelMap;
+    this.tileMap = tileMap;
+    this.baseMap = []
+    this.createMap()
+    this.vElement = new VElement({
+      // here we add all the tiles of the game as VElement children
+      tag: "div",
+      attrs: { id: "gamescreen" },
+      children: [
+      ],
+    });
   }
   createMap(VElement) {
     for (let column = 0; column < this.columns; column++) {
@@ -24,12 +34,13 @@ export class GameMap {
         //console.log(spriteOffsetX, spriteOffsetY);
         const x = column * this.tileSize;
         const y = row * this.tileSize;
-        this.createTile(x, y, spriteOffsetX, spriteOffsetY);
+        const tile = tileTranslator[tileIndex](x, y, spriteOffsetX, spriteOffsetY)
+        this.baseMap.push(tile);
       }
     }
   }
   getTileIndex(column, row) {
-    const tile = this.levelMap[row][column]; // number of the tile to get from spritesheet
+    const tile = this.tileMap[row][column]; // number of the tile to get from spritesheet
     return tile;
   }
   getSpritePositions(tileIndex) {
@@ -37,17 +48,16 @@ export class GameMap {
     const sourceY = Math.floor(tileIndex / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE;
     return [sourceX, sourceY];
   }
-  /**
-   *
-   * @param {*} spriteSheetPosition this is the number of the tile in the spritesheet
-   * @param {*} x corresponds to the x position in the gameScreen div
-   * @param {*} y corresponds to the y position in the gameScreen div
-   */
-  createTile(x, y, spriteOffsetX, spriteOffsetY) {
-    // currentFrame is the tile number in the spritesheet
-
-    // put the x and y coordinates of the tile into the VElement of the game screen
-    const tile = new Tile(x, y, spriteOffsetX, spriteOffsetY);
-    gameTiles.push(tile);
+  renderMap() {
+    for (const tile of this.baseMap) {
+      this.vElement.addChild(tile.vElement);
+    }
+  }
+  renderPlayers() {
+    Object.keys(mainView.PlayerList).forEach((playerName) => {
+      if (playerName != length) {
+        mainView.PlayerList[playerName].renderPlayer()
+      }
+    });
   }
 }

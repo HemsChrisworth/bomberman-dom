@@ -1,12 +1,12 @@
 import { VElement } from "../../../../../framework/VElement.js";
-import { MAP_TILE_SIZE } from "../../consts/consts.js";
+import { GRASS, MAP_TILE_SIZE, SOLID } from "../../consts/consts.js";
 
 export class Tile {
     constructor(x, y, spriteOffsetX, spriteOffsetY) {
         this.x = x;
         this.y = y;
         this.sprite = 'src/assets/images/spritesheets/spritesheet.png';
-        this.passable = false; //TODO make it true/false based on the tile index or perhaps only collide with items that have the same z-index?
+        this.passable = false
         const spriteSheetPosition = `-${spriteOffsetX}px -${spriteOffsetY}px`;
         this.vElement = new VElement({
           tag: "div",
@@ -26,9 +26,35 @@ export class Tile {
 
 
 class Bomb extends Tile {
-    
 }
 
 class DestroyableBlock extends Tile {
-
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.passable = false;
+  }
 }
+
+class SolidBlock extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.passable = false;
+  }
+}
+
+class GrassBlock extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.passable = true;
+  }
+}
+
+
+export const tileTranslator = {
+  [SOLID]: function (x, y, spriteOffsetX, spriteOffsetY) {
+    return new SolidBlock(x, y, spriteOffsetX, spriteOffsetY);
+  },
+  [GRASS]: function (x, y, spriteOffsetX, spriteOffsetY) {
+    return new GrassBlock(x, y, spriteOffsetX, spriteOffsetY);
+  },
+};

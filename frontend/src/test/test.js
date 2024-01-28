@@ -1,19 +1,15 @@
-import { mainGameScreen } from "../components/gameScreenComponents/gameBoxComponents/gamePanel.js";
+
 import { baseMap } from "../js_modules/consts/levelData.js";
-import { gameTiles } from "../js_modules/gameTiles.js";
 import { GameMap } from "../js_modules/models/map/mapModel.js";
+import { tileTranslator } from "../js_modules/models/map/tileModel.js";
 
 
 export function testCreateMap() {
     const newMap = new GameMap(baseMap);
 
-    newMap.createMap();
-    console.log(gameTiles)
+    newMap.renderMap()
 }
 
-export function testRenderMap() {
-    testCreateMap()
-    for (const tile of gameTiles) {
-        mainGameScreen.addChild(tile.vElement)
-    }
+export function testTileTranslator() {
+    console.log(tileTranslator[45](0, 0, 0, 0))
 }
