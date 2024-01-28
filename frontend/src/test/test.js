@@ -16,8 +16,10 @@ export function testTileTranslator() {
     console.log(tileTranslator[45](0, 0, 0, 0))
 }
 
+export const juice = new Player("juice", 1);
+
 export function testGameBox() {
-    const juice = new Player("juice", 1);
+    
     juice.renderPlayer();
     mainView.showGameBox();
 }

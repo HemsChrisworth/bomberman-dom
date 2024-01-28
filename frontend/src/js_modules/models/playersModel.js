@@ -32,8 +32,8 @@ export class Player { // add all player properties here, for example image, move
         });
     }
     set position([x, y]) {
-      this.x = x
-      this.y = y
+      this.x+= x
+      this.y+= y
       this.vElement.setAttr({style: setPlayerStyleAttrs(this.x, this.y)})
     }
     get position() {
