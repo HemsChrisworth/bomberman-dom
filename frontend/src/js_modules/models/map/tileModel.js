@@ -24,8 +24,17 @@ export class Tile {
     }
 }
 
-
 class Bomb extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.z = BOMB_Z_INDEX
+    this.timer = timer; // how long the bomb ticks for before exploding
+    this.isExploded = false; // if true, remove bomb (set to true after exploding)
+  }
+
+  explode() { //need to run more funcs here
+    this.isExploded = true;
+  }
 }
 
 class DestroyableBlock extends Tile {
