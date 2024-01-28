@@ -90,52 +90,31 @@ export function diffAttrs(oldAttrs, newAttrs) {
  * @param {Map.<VElement.vId, VElement>} newVChildren 
  */
 export function diffChildren(oldVChildren, newVChildren) {
-    if (oldVChildren == null && newVChildren == null) {
-        return () => { }
-    }
+    const childrenPatches = [];
+    oldVChildren.forEach((oldVChild, i) => {
+        childrenPatches.push(diff(oldVChild, newVChildren[i]));
+    });
 
-    if (newVChildren == null) {
-        return ($parent) => {
-            $parent.replaceChildren();
-        }
-    }
-
-    // from this momemt newChilden is not null or undefined
-    const childrenPatches = new Map();
     const additionalPatches = [];
-
-    if (oldVChildren == null) {
-        newVChildren.forEach(newVChild => {
-            additionalPatches.push($node => {
-                $node.appendChild(newVChild.render().$elem);
-                return $node;
-            });
-        });
-    } else { // oldVChildren also != null
-        oldVChildren.forEach((oldVChild, vId) => {
-            childrenPatches.set(vId, diff(oldVChild, newVChildren.get(vId)));
-        });
-
-        newVChildren.forEach(newVChild => {
-            if (!oldVChildren.has(newVChild.vId)) {
-                additionalPatches.push($node => {
-                    $node.appendChild(newVChild.render().$elem);
-                    return $node;
-                });
-            }
+    for (const additionalVChild of newVChildren.slice(oldVChildren.length)) {
+        additionalPatches.push($node => {
+            $node.appendChild(additionalVChild.render().$elem);
+            return $node;
         });
     }
 
     return $parent => {
-        childrenPatches.forEach((patch, vId) => {
-            patch($parent.querySelector(`[vId='${vId}']`));
-        });
+        $parent.childNodes.forEach(($child, i) => {
+            childrenPatches[i]($child);
+          });
 
         for (const patch of additionalPatches) {
             patch($parent);
         }
+
         return $parent;
     };
+
 }
 /**
  * 

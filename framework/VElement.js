@@ -71,7 +71,7 @@ export class VElement {
             }
 
             if (!(vElemObj.children instanceof Array)) {
-                vElemObj.children = {};
+                vElemObj.children = [];
             }
 
             Object.assign(vElemObj.style, separateStyle(vElemObj.attrs));
@@ -85,7 +85,7 @@ export class VElement {
         }
 
 
-        const preparedChildren = prepareChildren(vElemObj.children)
+        //const preparedChildren = prepareChildren(vElemObj.children)
 
         this.state = new Proxy(
             {
@@ -93,7 +93,7 @@ export class VElement {
                 attrs: vElemObj.attrs,
                 style: vElemObj.style,
                 content: vElemObj.content, // need this to keep string vElement, becaose can't create Proxy of string
-                children: preparedChildren ? new Map(preparedChildren) : undefined,
+                children: vElemObj.children,
             },
             {
                 get: (stateObj, key) => {
@@ -119,6 +119,7 @@ export class VElement {
                             const $oldElm = this.$elem //neeed to keep the old $elem because after render (in the next row) it will be renewed
                             this.render().mount($oldElm); // this is VElement, stateObj is this.state (keep forgotting)
                         }
+                        return true
                     }
 
                     if (key === 'content') {
@@ -130,7 +131,9 @@ export class VElement {
                             const $oldElm = this.$elem
                             this.render().mount($oldElm);
                         }
+                        return true
                     }
+
                     // works if we assighn a new object as attrs
                     if (key === 'attrs') {
                         const oldAttrs = stateObj.attrs;
@@ -139,7 +142,9 @@ export class VElement {
                             const patch = diffAttrs(oldAttrs, stateObj.attrs);
                             this.$elem = patch(this.$elem)
                         }
+                        return true
                     }
+
                     if (key === 'style') {
                         console.log('in proxy set style');
                         const oldStyle = stateObj.style;
@@ -150,20 +155,24 @@ export class VElement {
                             const patch = diffStyle(oldStyle, stateObj.style);
                             this.$elem = patch(this.$elem)
                         }
+                        return true
                     }
 
                     // works if we assign a Map or undefined as children
                     if (key === 'children') {
 
                         const oldChildren = stateObj.children;
-                        if (value == null || (value instanceof Map && stateObj.tag)) {
+                        if (value == null || (value instanceof Array && stateObj.tag)) {
                             stateObj.children = value;
                             if (this.$elem instanceof Element) {
                                 const patch = diffChildren(oldChildren, stateObj.children);
                                 this.$elem = patch(this.$elem);
                             }
+                            return true
                         }
+                        return false;
                     }
+
                     stateObj[key] = value;
                     return true
                 },
@@ -181,7 +190,7 @@ export class VElement {
                     }
                     target[eventType].push(callback);
 
-                    return target[eventType];
+                    return true;
                 },
             });
 
@@ -213,8 +222,8 @@ export class VElement {
         return this.state.content;
     }
     get children() {
-        if (this.state.children == null) return this.state.children;
-        return this.state.children.values(); // remember the children property is Map
+        // if (this.state.children == null) return this.state.children;
+        return this.state.children//.values(); // remember the children property is Map
     }
     get events() {
         return Object.entries(this._events)
@@ -248,20 +257,20 @@ export class VElement {
         return this.state.content = value;
     }
     set children(value) {
-        switch (true) {
-            case value instanceof Array:
-                const preparedChildren = prepareChildren(value)
-                this.state.children = new Map(preparedChildren);
-                break;
-            case value instanceof Map:
-                this.state.children = value;
-                break;
-            default:
-                console.error("can't assign the children property other than Array or Map");
-                break;
-        }
+        // switch (true) {
+        //     case value instanceof Array:
+        //         const preparedChildren = prepareChildren(value)
+        //         this.state.children = new Map(preparedChildren);
+        //         break;
+        //     case value instanceof Map:
+        //         this.state.children = value;
+        //         break;
+        //     default:
+        //         console.error("can't assign the children property other than Array or Map");
+        //         break;
+        // }
 
-        return this.state.children;
+        return this.state.children = value;
     }
     /**
      * 
@@ -277,18 +286,31 @@ export class VElement {
      * @returns 
      */
     getChild(vId) {
-        const children = this.state.children
-        let searchChild
-        if (children) {
-            searchChild = children.get(vId);
-            if (!searchChild) {
-                for (const [key, child] of children) {
-                    searchChild = child.getChild(vId);
-                    if (searchChild) return searchChild
-                }
+        // const children = this.state.children
+        // let searchChild
+        // if (children) {
+        //     searchChild = children.get(vId);
+        //     if (!searchChild) {
+        //         for (const [key, child] of children) {
+        //             searchChild = child.getChild(vId);
+        //             if (searchChild) return searchChild
+        //         }
+        //     }
+        // }
+        // return searchChild;
+
+        for (const child of this.state.children) {
+            if (child.vId === vId) {
+                return child;
             }
         }
-        return searchChild;
+        for (const child of this.state.children) {
+            const searchChild = child.getChild(vId);
+            if (searchChild) {
+                return searchChild;
+            }
+        }
+        return null;
     }
 
     /** render the virtual element to the DOM Element
@@ -405,11 +427,11 @@ export class VElement {
 
         // checks for null and undefined
         if (this.state.children == null) {
-            this.state.children = new Map();
+            this.state.children = [];
         }
 
         if (vNode instanceof VElement) {
-            this.state.children.set(vNode.vId, vNode);
+            this.state.children.push(vNode);
             if (this.$elem instanceof Element) {
                 const $node = vNode.render().$elem
                 this.$elem.appendChild($node);
@@ -431,20 +453,81 @@ export class VElement {
         return this;
     }
 
-    /** removes a child with given vId from the virtual element's children Map
+    /** removes a child with given vId or index in the children array 
+     *  if parameter is a string, it will be considerd as a vId of a child. The chiled to remove wil be searched recursively;
+     *  if parameter is number, it will be considered as an index in the children array
      * 
-     * @param {string} vId  - VElement.vId
-     * @returns 
+     * @param {string|number} id  - VElement.vId
+     * @returns deleted child or null if there was no child with given vId or index
      */
-    delChild(vId) {
-        const oldElm = this.getChild(vId);
-        this.state.children.delete(vId);
-        if (oldElm.$elem instanceof Element) {
-            oldElm.$elem.remove();
+    delChild(id) {
+        const patch = (child) => {
+            if (child.$elem instanceof Element) {
+                child.$elem.remove();
+            }
         }
-
-
-        return this;
+        if (typeof id === 'string') {
+            for (let i = 0; i < this.state.children.length; i++) {
+                const child = this.state.children[i];
+                if (child.vId === id) {
+                    this.state.children.splice(i, 1);
+                    patch(child);
+                    return child;
+                }
+            }
+            for (const child of this.state.children) {
+                const deletedChild = child.delChild(id);
+                if (deletedChild) {
+                    return deletedChild;
+                }
+            }
+            return null;
+        } else if (typeof id === 'number') {
+            const deleted = this.state.children.splice(id, 1);
+            if (deleted.length === 1) {
+                patch(deleted[0]);
+            }
+            return deleted[0];
+        }
+    }
+    /** rereplaces a child with given vId or index in the children array 
+     *  if parameter is a string, it will be considerd as a vId of a child. The chiled to replace wil be searched recursively;
+     *  if parameter is number, it will be considered as an index in the children array
+     * 
+     * @param {string|number} id in the children array
+     * @param {VElement} vElement vElement to replace with
+     * @returns replaced child or null if there was no child with given vId or index
+     */
+    replaceChild(id, vElement) {
+        const patch = (child) => {
+            if (child.$elem instanceof Element) {
+                child.$elem.replaceWith(vElement.render().$elem);
+            }
+        }
+        if (typeof id === 'string') {
+            for (let i = 0; i < this.state.children.length; i++) {
+                const child = this.state.children[i];
+                if (child.vId === id) {
+                    this.state.children[i] = vElement;
+                    patch(child);
+                    return child;
+                }
+            }
+            for (const child of this.state.children) {
+                const replacedChiled = child.replaceChild(id, vElement);
+                if (replacedChiled) {
+                    return replacedChiled;
+                }
+            }
+            return null;
+        } else if (typeof id === 'number') {
+            const oldChild = this.state.children[id];
+            if (oldChild) {
+                this.state.children[id] = vElement;
+                patch(oldChild);
+            }
+            return oldChild;
+        }
     }
 
     /** remove attribute with given name
