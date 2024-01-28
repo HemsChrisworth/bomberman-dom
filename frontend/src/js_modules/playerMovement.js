@@ -13,4 +13,3 @@ export const movementLookup = {
   [Direction.up]: { x: 0, y: -PLAYER_MOVEMENT_SPEED },
   [Direction.down]: { x: 0, y: PLAYER_MOVEMENT_SPEED },
 };
-
