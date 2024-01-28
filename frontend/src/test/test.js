@@ -1,7 +1,9 @@
 
+import { mainView } from "../app.js";
 import { baseMap } from "../js_modules/consts/levelData.js";
 import { GameMap } from "../js_modules/models/map/mapModel.js";
 import { tileTranslator } from "../js_modules/models/map/tileModel.js";
+import { Player } from "../js_modules/models/playersModel.js";
 
 
 export function testCreateMap() {
@@ -12,4 +14,10 @@ export function testCreateMap() {
 
 export function testTileTranslator() {
     console.log(tileTranslator[45](0, 0, 0, 0))
+}
+
+export function testGameBox() {
+    const juice = new Player("juice", 1);
+    juice.renderPlayer();
+    mainView.showGameBox();
 }

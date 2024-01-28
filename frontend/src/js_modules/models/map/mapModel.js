@@ -23,6 +23,7 @@ export class GameMap {
       children: [
       ],
     });
+    this.renderMap()
   }
   createMap(VElement) {
     for (let column = 0; column < this.columns; column++) {
@@ -53,11 +54,13 @@ export class GameMap {
       this.vElement.addChild(tile.vElement);
     }
   }
-  renderPlayers() {
-    Object.keys(mainView.PlayerList).forEach((playerName) => {
-      if (playerName != length) {
-        mainView.PlayerList[playerName].renderPlayer()
-      }
-    });
-  }
+}
+
+export function renderPlayers() {
+  Object.keys(mainView.PlayerList).forEach((playerName) => {
+    if (playerName != length) {
+      console.log(mainView.PlayerList[playerName]);
+      //mainView.PlayerList[playerName].renderPlayer();
+    }
+  });
 }

@@ -9,5 +9,9 @@ PLAYER_TILE_Z_INDEX = 0,
 
 // blocks
 GRASS = 70,
-SOLID = 45
+SOLID = 45,
 
+
+// player actions
+
+MOVEMENT_SPEED = 2

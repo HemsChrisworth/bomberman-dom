@@ -1,8 +1,8 @@
 import { VElement } from "../../framework/VElement.js";
-import { createGameBoxC } from "./components/gameScreenComponents/gameBoxC.js";
 import { createHeaderC } from "./components/headerC.js";
 import { ChatModel } from "./js_modules/models/chatModel.js";
 import { gameBoxModel } from "./js_modules/models/gameBoxModel.js";
+import { renderPlayers } from "./js_modules/models/map/mapModel.js";
 import { Player } from "./js_modules/models/playersModel.js";
 import { RegisterScreenModel } from "./js_modules/models/registerScreenModel.js";
 import { WaitingScreenModel } from "./js_modules/models/waitingScreenModel.js";
@@ -50,6 +50,7 @@ export class MainView {
         this.vElement.replaceChild(this.currentViewChildIndex, gameBoxM.vElement);
         //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
         this.currentViewModel = gameBoxM;
+        renderPlayers()
     }
 
     showError = (text) => {
@@ -69,6 +70,7 @@ export class MainView {
     }
     addPlayers(...players) {
         for (const player of players) {
+            console.log(player)
             this.PlayerList[player.name] = player
             this.PlayerList.length++;
         }
@@ -80,7 +82,7 @@ export class MainView {
     }
     delPlayers(...players) {
         for (const player of players) {
-            delete this.PlayerList[player.Name]
+            delete this.PlayerList[player.name]
             this.PlayerList.length--;
         }
         if (this.currentViewModel instanceof WaitingScreenModel) {

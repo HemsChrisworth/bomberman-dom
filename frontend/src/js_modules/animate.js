@@ -1,4 +1,0 @@
-function animate() {
-
-    requestAnimationFrame(animate)
-}
