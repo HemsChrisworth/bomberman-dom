@@ -21,7 +21,7 @@ export class MainView {
                 this.HeaderC, this.currentViewModel.vElement, this.chatModel.chatC
                 // HeaderC, gameBoxC
                 // can put chatC into this component as well so view changes don't affect the chat element
-            ]
+            ],
         });
 
         this.PlayerList = {length: 0};
