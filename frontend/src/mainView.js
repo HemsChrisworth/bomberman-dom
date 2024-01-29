@@ -47,6 +47,7 @@ export class MainView {
 
     showGameBox = () => {
         const gameBoxM = new gameBoxModel(this.chatModel);
+        //TODO: make this into const gameBoxM = new gameBoxModel(this.chatModel.socket.request("gameStart",'')); (not sure if 100% correct)
         this.vElement.replaceChild(this.currentViewChildIndex, gameBoxM.vElement);
         //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
         this.currentViewModel = gameBoxM;
