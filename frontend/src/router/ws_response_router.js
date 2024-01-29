@@ -46,6 +46,15 @@ export const wsResponseRouter = {
     }
   },
 
+  startGame(payload) {
+    if (!isSuccessPayload(payload)) {
+      console.error("Could not get random Game map from server:", payload);
+      return;
+    }
+    let gameMapString = payload.data;
+    // TODO: use gameMapString to generate the tiles for the player!
+  },
+
   sendMessageToChat(payload) {
     //TODO
   },

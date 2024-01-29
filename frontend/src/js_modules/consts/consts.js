@@ -18,4 +18,4 @@ SOLID = 45,
 
 // player actions
 
-MOVEMENT_SPEED = 2
+MOVEMENT_SPEED = 2;

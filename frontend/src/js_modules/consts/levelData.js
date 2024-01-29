@@ -15,7 +15,11 @@ export const baseMap = [
   [SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID, SOLID],
 ];
 
-
-export const blockMap = [
-  
-]
+/*
+SPAWN - normal GRASS, not allowed to spawn SOLID or DBLOCK on it
+SOLID - blocks you can not destroy, like game edge
+DBLOCK - normal destroyable block
+DBLOCKBOMB - destroyable block with a bomb powerup spawned when destroyed
+DBLOCKFLAME - destroyable block with flame powerup spawned when destroyed
+DBLOCKSPEED - destroyable block with player speed increase powerup spawned when destroyed
+*/

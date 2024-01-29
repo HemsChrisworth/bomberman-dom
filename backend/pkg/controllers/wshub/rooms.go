@@ -20,6 +20,7 @@ type Room struct {
 	ID         string          `json:"id"`
 	Clients    *SafeClientsMap `json:"-"`
 	Registered chan bool
+	GameMap string // random string for the game map from DefaultRandomMapGenerator func
 }
 
 type SafeRoomsMap struct {
