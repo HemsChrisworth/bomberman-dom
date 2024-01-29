@@ -58,6 +58,7 @@ func JoinGame(app *application.Application, wsReplyersSet wsconnection.WSmux) ht
 				return
 			}
 			app.InfoLog.Printf("WaitingRoom created, id: %s", app.WaitingRoom)
+			
 		}
 
 		conn, err := app.Upgrader.Upgrade(w, r, nil)
@@ -128,6 +129,8 @@ func createRoom(hub *wshub.Hub) (*wshub.Room, error) {
 	if !ok {
 		return nil, fmt.Errorf("room with id '%s' was already created, try again", roomID)
 	}
+
+	waitingRoom.GameMap = helpers.DefaultRandomMapGenerator()
 
 	return waitingRoom, nil
 }

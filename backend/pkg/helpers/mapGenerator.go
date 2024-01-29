@@ -1,9 +1,13 @@
-package controllers
+package helpers
 
 import (
     "math/rand"
     "time"
 )
+
+func DefaultRandomMapGenerator() string { //wrapper function to give baseMap and charSet as default value to randomMapGenerator THIS IS THE MOST IMPORTANT FUNC HERE!
+    return randomMapGenerator(baseMap, charSet)
+}
 
 //baseMap is the initial map for the random map generator to run off of
 // 11 rows, 17 columns
