@@ -1,6 +1,9 @@
-function animate() {
+import { draw, update } from "./movement.js";
 
-    
-
-    requestAnimationFrame(animate())
+export function animate() {
+    update()
+    draw();   // Draw the game state
+    requestAnimationFrame(animate)
 }
+
+

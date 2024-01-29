@@ -8,25 +8,6 @@ export const Direction = {
   left: "direction-left",
   right: "direction-right",
 };
-
-
-const movementHandler = {
-  upMovement: function () {
-    juice.position = [
-      movementLookup[Direction.up[x]],
-      movementLookup[Direction.up[y]],
-    ];
-  },
-  downMovement: function () {
-    juice.position = [
-      movementLookup[Direction.down[x]],
-      movementLookup[Direction.down[y]],
-    ];
-  },
-};
-
-movementHandler.ArrowUp = movementHandler.w = movementHandler.upMovement()
-
 export const movementLookup = {
   [Direction.left]: { x: -PLAYER_MOVEMENT_SPEED, y: 0 },
   [Direction.right]: { x: PLAYER_MOVEMENT_SPEED, y: 0 },
@@ -34,14 +15,47 @@ export const movementLookup = {
   [Direction.down]: { x: 0, y: PLAYER_MOVEMENT_SPEED },
 };
 
-console.log(" jeees")
+const movementHandler = {
+  w() {
+    console.log(movementLookup[Direction.up].x);
+    juice.position = [
+      movementLookup[Direction.up].x,
+      movementLookup[Direction.up].y,
+    ];
+  },
+  s() {
+    juice.position = [
+      movementLookup[Direction.down].x,
+      movementLookup[Direction.down].y,
+    ];
+  },
+  a() {
+    juice.position = [
+      movementLookup[Direction.left].x,
+      movementLookup[Direction.left].y,
+    ];
+  },
+  d() {
+    juice.position = [
+      movementLookup[Direction.right].x,
+      movementLookup[Direction.right].y,
+    ];
+  },
+};
 
-document.addEventListener("keydown", (event) => {
-  console.log("yeee")
-  try {
-    movementHandler[event.key]
-  } catch {
-    console.log("error: wrong key")
-  }
-  
-})
+
+movementHandler.ArrowUp = movementHandler.w
+movementHandler.ArrowDown = movementHandler.s;
+movementHandler.ArrowLeft = movementHandler.a;
+movementHandler.ArrowRight = movementHandler.d;
+
+
+export function listenPlayerMovement() {
+  document.addEventListener("keydown", (event) => {
+    try {
+      movementHandler[event.key]();
+    } catch {
+      console.log("error: wrong key");
+    }
+  });
+}
