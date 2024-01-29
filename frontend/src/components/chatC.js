@@ -10,8 +10,8 @@ export function createChatMessageArea() {
       // chat messages here, new messages as addChild
       new VElement({
         tag: 'div',
-        attrs: { class: 'chatmessage' },
-        content: "Connected to chat"
+        attrs: { class: 'chatmessage', id: 'ChatStatusConnected' },
+        content: "Connected to chat...",
       })
     ]
   });
@@ -37,11 +37,11 @@ export function createChatC() {
         children: [
           new VElement({
             tag: "input",
-            attrs: { type: "text", name: CHAT_MESSAGE_FORM_INPUT_NAME },
+            attrs: { type: "text", id: "chattextarea", name: CHAT_MESSAGE_FORM_INPUT_NAME , autocomplete: "off", placeholder: 'Type here...'},
           }),
           new VElement({
             tag: "input",
-            attrs: { type: "Submit", value: "Send message" },
+            attrs: { type: "Submit", id: 'sendmessagebutton', class: 'material-symbols-outlined', value: 'send' },
           }),
         ],
         '@submit.prevent': (velem, event) => {
