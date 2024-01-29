@@ -7,14 +7,14 @@ import (
 )
 
 /*
-ReplyStartGame sends the room.ID, which could be used as a seed to create a new game
+ReplyStartGame sends the GameMap String, which is used for the frontend to generate the gameMap
 */
 func ReplyStartGame(app *application.Application) wsconnection.FuncReplyCreator {
 	return func(currConnection *wsconnection.UsersConnection, message webmodel.WSMessage) (any, error) {
-		if app.WaitingRoom !=nil && app.WaitingRoom.ID==currConnection.Client.Room.ID{
+		if app.WaitingRoom != nil && app.WaitingRoom.ID==currConnection.Client.Room.ID {
 			app.WaitingRoom = nil
 		}
-		return currConnection.Client.Room.ID, nil // reply to current user
+		return currConnection.Client.Room.GameMap, nil // reply to current user
 	}
 }
 
