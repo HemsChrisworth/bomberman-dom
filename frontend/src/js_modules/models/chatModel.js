@@ -16,4 +16,12 @@ export class ChatModel {
     stop(){
         this.socket.closeWebsocket();
     }
+
+    requestServer(type, payload){
+        this.socket. request(type, payload);
+    }
+
+    sendChatMessage(text){
+        this.socket.request("sendMessageToChat", {content: text, dateCreate: new Date()})
+    }
 }

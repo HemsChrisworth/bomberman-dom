@@ -1,4 +1,5 @@
 import { mainView } from "../app.js";
+import { gameBoxModel } from "../js_modules/models/gameBoxModel.js";
 import { Player } from "../js_modules/models/playersModel.js";
 
 // routes the response from websocket to various functions for components
@@ -53,7 +54,7 @@ export const wsResponseRouter = {
     }
     let gameMapString = payload.data;
     console.log("Game map--", gameMapString);
-    // TODO: use gameMapString to generate the tiles for the player!
+    mainView.showGameBox(gameMapString);
   },
 
   userQuitChat(payload) {

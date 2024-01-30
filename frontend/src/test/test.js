@@ -20,6 +20,6 @@ export const juice = new Player("juice", 1);
 
 export function testGameBox() {
     
-    juice.renderPlayer();
     mainView.showGameBox();
+    juice.renderPlayer(mainView.currentViewModel);
 }

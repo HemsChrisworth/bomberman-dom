@@ -1,5 +1,5 @@
 import { VElement } from "../../../../../framework/VElement.js";
-import { GRASS, MAP_TILE_SIZE, SOLID } from "../../consts/consts.js";
+import { DBLOCK, GRASS, MAP_TILE_SIZE, SOLID } from "../../consts/consts.js";
 
 export class Tile {
     constructor(x, y, spriteOffsetX, spriteOffsetY) {
@@ -66,5 +66,8 @@ export const tileTranslator = {
   },
   [GRASS]: function (x, y, spriteOffsetX, spriteOffsetY) {
     return new GrassBlock(x, y, spriteOffsetX, spriteOffsetY);
+  },
+  [DBLOCK]: function (x, y, spriteOffsetX, spriteOffsetY) {
+    return new DestroyableBlock(x, y, spriteOffsetX, spriteOffsetY);
   },
 };

@@ -2,12 +2,11 @@ import { VElement } from "../../framework/VElement.js";
 import { createHeaderC } from "./components/headerC.js";
 import { ChatModel } from "./js_modules/models/chatModel.js";
 import { gameBoxModel } from "./js_modules/models/gameBoxModel.js";
-import { renderPlayers } from "./js_modules/models/map/mapModel.js";
 import { Player } from "./js_modules/models/playersModel.js";
 import { RegisterScreenModel } from "./js_modules/models/registerScreenModel.js";
 import { WaitingScreenModel } from "./js_modules/models/waitingScreenModel.js";
 
-
+//TODO maybe move waiting, register, gameBox fom models to views
 export class MainView {
     constructor() {
         this.HeaderC = createHeaderC();
@@ -24,7 +23,7 @@ export class MainView {
             ],
         });
 
-        this.PlayerList = {players:{}, length: 0};
+        this.PlayerList = { players: {}, length: 0 };
     }
 
     isInRegisterState() {
@@ -33,7 +32,7 @@ export class MainView {
         }
         return false;
     }
- 
+
     showWaitingScreen = (...players) => {
         for (const player of players) {
             this.PlayerList.players[player.name] = player
@@ -45,13 +44,22 @@ export class MainView {
         this.currentViewModel = WaitingScreenM;
     }
 
-    showGameBox = () => {
-        const gameBoxM = new gameBoxModel(this.chatModel);
+    showGameBox = (gameMapString) => {
+        const gameBoxM = new gameBoxModel(gameMapString);
+        //const gameBoxM = new gameBoxModel(baseMap, this.chatModel);//TODO keep chat as an independend child of mainView
         //TODO: make this into const gameBoxM = new gameBoxModel(this.chatModel.socket.request("startGame",'')); (not sure if 100% correct)
         this.vElement.replaceChild(this.currentViewChildIndex, gameBoxM.vElement);
         //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
         this.currentViewModel = gameBoxM;
-        renderPlayers()
+        this.renderPlayers(gameBoxM)
+    }
+
+
+    renderPlayers = (gameBoxC) => {
+        Object.values(this.PlayerList.players).forEach((player) => {
+            console.log(player.name);
+            player.renderPlayer(gameBoxC);
+        });
     }
 
     showError = (text) => {
@@ -76,7 +84,7 @@ export class MainView {
             this.PlayerList.length++;
         }
         console.log("main this.addPlayers players", this.PlayerList.length)
-        if (this.currentViewModel instanceof WaitingScreenModel) { 
+        if (this.currentViewModel instanceof WaitingScreenModel) {
             this.currentViewModel.addPlayers(...players);
         }
         //return players

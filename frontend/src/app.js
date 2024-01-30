@@ -16,4 +16,4 @@ export const mainView = new MainView
 App.addVElement(mainView.vElement);
 
 
-testGameBox()
+// testGameBox()

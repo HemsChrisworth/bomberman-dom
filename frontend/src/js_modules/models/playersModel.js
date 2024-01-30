@@ -1,5 +1,4 @@
 import { VElement } from "../../../../framework/VElement.js"
-import { mainGameMap } from "../../components/gameScreenComponents/gameBoxC.js"
 import { MAP_TILE_SIZE, PLAYER_Z_INDEX } from "../consts/consts.js"
 
 function setPlayerStyleAttrs(x, y, z) {
@@ -41,7 +40,8 @@ export class Player { // add all player properties here, for example image, move
     get position() {
       return [this.x, this.y]
     }
-    renderPlayer() {
-      mainGameMap.vElement.addChild(this.vElement)
+    renderPlayer(gameBoxM) {
+      console.log("renderPlayer - gameBoxM: " , gameBoxM)
+      gameBoxM.vElement.addChild(this.vElement)
     }
 }

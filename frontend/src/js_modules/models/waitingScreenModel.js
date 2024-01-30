@@ -1,6 +1,7 @@
 import { createWaitingScreenC, createPlayerC, createWaitingListC } from "../../components/welcomeScreenComponents/waitingScreenC.js"
 import { createWaitingTimerC, createWaitingTimer10secC, createWaitingTimer20secC } from "../../components/welcomeScreenComponents/waitingScreenC.js";
 import { mainView } from "../../app.js";
+import { START_IN, WAIT_FOR_PLAYERS } from "../consts/consts.js";
 
 //this object contains components that could be used in other components
 export class WaitingScreenModel {
@@ -15,7 +16,7 @@ export class WaitingScreenModel {
             this.waitingListC.addChild(createPlayerC(player.name, player.number));
         }
         if (players.length > 1 && players.length < 4) {
-            this.countdown20sec(21);
+            this.countdown20sec(WAIT_FOR_PLAYERS);
         }
         if (players.length === 4) {
             this.startTimer10sec();
@@ -44,8 +45,7 @@ export class WaitingScreenModel {
             if (this.timeoutID){
                 clearTimeout(this.timeoutID);
             }
-           // this.countdown20sec(21)
-            setTimeout(this.countdown20sec, 0, 21);
+            setTimeout(this.countdown20sec, 0, WAIT_FOR_PLAYERS);
             
         }
         if (mainView.PlayerList.length === 4) {
@@ -79,12 +79,11 @@ export class WaitingScreenModel {
     }
 
     countdown10sec = (waiting10sec) => {
-        //let waiting10sec = 11; // Change to 11!
         if (waiting10sec > 0) {
             waiting10sec--;
             this.waitingTimer10secC.content = waiting10sec;
             if (waiting10sec === 0) {
-                mainView.showGameBox();
+                mainView.chatModel.requestServer("startGame","");
             } else {
                 setTimeout(this.countdown10sec, 1000, waiting10sec);
             }
@@ -93,7 +92,6 @@ export class WaitingScreenModel {
     }
 
     countdown20sec = (waiting20sec) => {
-        // let waiting20sec = 21; // CHANGE to 21!
         if (waiting20sec > 0) {
             waiting20sec--;
             this.waitingTimer20secC.content = waiting20sec;
@@ -110,6 +108,6 @@ export class WaitingScreenModel {
         this.WaitingTimerC.content = "Game starts in...";
         this.WaitingTimerC.delChild(0);
         this.WaitingTimerC.addChild(this.waitingTimer10secC);
-        this.countdown10sec(11);
+        this.countdown10sec(START_IN);
     }
 }
