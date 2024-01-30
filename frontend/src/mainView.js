@@ -6,7 +6,7 @@ import { Player } from "./js_modules/models/playersModel.js";
 import { RegisterScreenModel } from "./js_modules/models/registerScreenModel.js";
 import { WaitingScreenModel } from "./js_modules/models/waitingScreenModel.js";
 
-//TODO maybe move waiting, register, gameBox fom models to views
+//TODO maybe move waitingScreenModel, registerScreenModel, gameBoxModel fom models to views
 export class MainView {
     constructor() {
         this.HeaderC = createHeaderC();
