@@ -28,6 +28,7 @@ class PlayerModel {
     `;
   }
 
+  // returns array: [{row, columns}]
   getBlocksOnLeft() {
     const blocks = [];
     if (this.offsetTop > 0) {
@@ -137,5 +138,14 @@ export class Player { // add all player properties here, for example image, move
   renderPlayer(gameBoxM) {
     console.log("render player: ", this)
     gameBoxM.vElement.addChild(this.vElement)
+  }
+
+  moveDown(){
+    if(mainView.currentViewModel.gameBox?.getTilesOnWay()){}
+  }
+  moveUp(){}
+  moveLeft(){}
+  moveRight(){ 
+
   }
 }

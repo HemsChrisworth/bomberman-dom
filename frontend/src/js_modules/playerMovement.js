@@ -19,10 +19,11 @@ export const movementLookup = {
 const movementHandler = {
   w() {
     console.log(movementLookup[Direction.up].x);
-    mainView.currentPlayer.position = [
+
+    {mainView.currentPlayer.position = [
       movementLookup[Direction.up].x,
       movementLookup[Direction.up].y,
-    ];
+    ];}
   },
   s() {
     mainView.currentPlayer.position = [

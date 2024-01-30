@@ -37,13 +37,13 @@ export const PLAYER_NAME_FORM_INPUT = 'playerName',
         "M": DBLOCK,
     },
 
-    BACKEND_POWER_CODES = {
-        "B": false,
-        "G": false,
-        "D": false,
-        "O": POWER_BOMB,
-        "F": POWER_FLAME,
-        "M": POWER_SPEED,
+    BACKEND_TILE_TYPE_CODES = {
+        "B": "SOLID",
+        "G": "GRASS",
+        "D": "DBLOCK",
+        "O": "POWER_BOMB",
+        "F": "POWER_FLAME",
+        "M": "POWER_SPEED",
     },
 
     // player start

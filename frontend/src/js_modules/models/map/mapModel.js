@@ -1,6 +1,6 @@
 import { VElement } from "../../../../../framework/VElement.js";
 import { mainView } from "../../../app.js";
-import { BACKEND_MAP_CODES, MAP_COLUMNS, MAP_ROWS, MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
+import { BACKEND_MAP_CODES, BACKEND_TILE_TYPE_CODES, MAP_COLUMNS, MAP_ROWS, MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
 import { Tile, tileTranslator } from "./tileModel.js";
 
 export class GameMap {
@@ -25,25 +25,29 @@ export class GameMap {
     });
     this.renderMap()
   }
-  createMap(randomMap) {
+  createMap(tileMap) {
     for (let row = 0; row < this.rows; row++) {
       this.baseMap[row] = [];
       for (let column = 0; column < this.columns; column++) {
-        const tileIndex = this.getTileIndex(randomMap, column, row);
+        const tileCode = tileMap[row * this.columns + column]; // number of the tile to get from spritesheet
+        const tileIndex = this.getMapTileIndex(tileCode);
         const [spriteOffsetX, spriteOffsetY] =
           this.getSpritePositions(tileIndex);
 
         //console.log(spriteOffsetX, spriteOffsetY);
         const x = column * this.tileSize;
         const y = row * this.tileSize;
-        const tile = tileTranslator[tileIndex](x, y, spriteOffsetX, spriteOffsetY);
+        const tileType = this.getTileTypeIndex(tileCode)
+        const tile = tileTranslator[tileType](x, y, spriteOffsetX, spriteOffsetY);
         this.baseMap[row][column] = tile;
       }
     }
   }
-  getTileIndex(tileMap, column, row) {
-    const tileCode = tileMap[row * this.columns + column]; // number of the tile to get from spritesheet
+  getMapTileIndex(tileCode) {
     return BACKEND_MAP_CODES[tileCode];
+  }
+  getTileTypeIndex(tileCode) {
+    return BACKEND_TILE_TYPE_CODES[tileCode];
   }
   getSpritePositions(tileIndex) {
     const sourceX = (tileIndex % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE;
@@ -57,4 +61,18 @@ export class GameMap {
       }
     }
   }
+
+  getTilesOnWay(tilesToCheck) {
+    const powersup = []
+    for (const tile of tilesToCheck){
+      if (!this.baseMap[tile.row][tile.column].passable){
+        return false;
+      }else{
+        if (tile.powersup){
+          powersup.push(tile.powersup)
+        }
+      }
+    }
+    return powersup;
+}
 }

@@ -2,6 +2,7 @@ import { VElement } from "../../framework/VElement.js";
 import { createHeaderC } from "./components/headerC.js";
 import { ChatModel } from "./js_modules/models/chatModel.js";
 import { gameBoxModel } from "./js_modules/models/gameBoxModel.js";
+import { GameMap } from "./js_modules/models/map/mapModel.js";
 import { Player } from "./js_modules/models/playersModel.js";
 import { RegisterScreenModel } from "./js_modules/models/registerScreenModel.js";
 import { WaitingScreenModel } from "./js_modules/models/waitingScreenModel.js";
@@ -45,21 +46,23 @@ export class MainView {
     }
 
     showGameBox = (gameMapString) => {
-        const gameBoxM = new gameBoxModel(gameMapString);
+        this.gameMap = new GameMap(gameMapString)
+
+        const gameBoxM = new gameBoxModel(this.gameMap);
         this.vElement.replaceChild(this.currentViewChildIndex, gameBoxM.vElement);
         //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
         this.currentViewModel = gameBoxM;
-        this.renderPlayers(gameBoxM)
+        this.renderPlayers()
     }
 
 
-    renderPlayers = (gameBoxM) => {
+    renderPlayers = () => {
         // Object.values(this.PlayerList.players).forEach((player) => {
             //     console.log(player.name);
             //     player.renderPlayer(gameBoxM.gameMap);
             // });
             //TODO next row is for test
-        Object.values(this.PlayerList.players)[0].renderPlayer(gameBoxM.gameMap);
+        Object.values(this.PlayerList.players)[0].renderPlayer(this.gameMap);
 
     }
 
