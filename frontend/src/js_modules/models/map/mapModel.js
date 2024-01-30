@@ -57,10 +57,10 @@ export class GameMap {
 }
 
 export function renderPlayers() {
-  Object.keys(mainView.PlayerList).forEach((playerName) => {
+  Object.keys(mainView.PlayerList.players).forEach((playerName) => {
     if (playerName != length) {
-      console.log(mainView.PlayerList[playerName]);
-      //mainView.PlayerList[playerName].renderPlayer();
+      console.log(mainView.PlayerList.players[playerName]);
+      //mainView.PlayerList.players[playerName].renderPlayer();
     }
   });
 }

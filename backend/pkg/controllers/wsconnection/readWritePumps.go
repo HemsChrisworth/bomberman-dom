@@ -1,7 +1,6 @@
 package wsconnection
 
 import (
-	"encoding/json"
 	"errors"
 	"io"
 	"time"
@@ -153,11 +152,10 @@ func (uc *UsersConnection) writeMessage(w io.WriteCloser, message []byte) error 
 func (uc *UsersConnection) deleteClientAndSendUserOffline() error {
 	uc.WsServer.Hub.UnRegisterClientFromHub(uc.Client)
 	if uc.Client.UserName != "" {
-		roomID, err := json.Marshal(uc.Client.Room.ID)
-		if err != nil {
-			return err
-		}
-		return uc.WsServer.WShandlers[webmodel.UserQuitChat].SendReply(uc, webmodel.WSMessage{Type: webmodel.UserQuitChat, Payload: roomID})
+
+		err := uc.WsServer.WShandlers[webmodel.UserQuitChat].SendReply(uc, webmodel.WSMessage{Type: webmodel.UserQuitChat, Payload: nil})
+
+		return err
 	}
 	return nil
 }

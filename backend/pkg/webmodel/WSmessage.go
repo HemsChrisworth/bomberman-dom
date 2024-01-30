@@ -20,6 +20,8 @@ const (
 	SendMessageToChat = "sendMessageToChat"
 	InputChatMessage  = "inputChatMessage"
 	UserQuitChat      = "userQuitChat"
+	ReadyToStart      = "readyToStart"
+	StartGame         = "startGame"
 
 	PlayerAction = "playerAction"
 )

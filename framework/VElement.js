@@ -161,11 +161,15 @@ export class VElement {
                     // works if we assign a Map or undefined as children
                     if (key === 'children') {
 
-                        const oldChildren = stateObj.children;
                         if (value == null || (value instanceof Array && stateObj.tag)) {
+                            const oldChildren = stateObj.children;
                             stateObj.children = value;
+                            if (this.content !==''){
+                                oldChildren.unshift(this.content);
+                                value.unshift(this.content);
+                            }
                             if (this.$elem instanceof Element) {
-                                const patch = diffChildren(oldChildren, stateObj.children);
+                                const patch = diffChildren(oldChildren, value);
                                 this.$elem = patch(this.$elem);
                             }
                             return true

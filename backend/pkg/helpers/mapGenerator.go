@@ -40,7 +40,7 @@ func randomMapGenerator(baseMap string, charSet string) (randomMap string) {
 	for i := 0; i < len(baseMap); i++ {
 		currentChar := string(baseMap[i])
 		if currentChar == "G" {
-			randomMap += StringWithCharset(1, charSet)
+			randomMap += stringWithCharset(1, charSet)
 		} else {
 			randomMap += currentChar
 		}
@@ -52,7 +52,7 @@ func randomMapGenerator(baseMap string, charSet string) (randomMap string) {
 var seededRand *rand.Rand = rand.New(
 	rand.NewSource(time.Now().UnixNano()))
 
-func StringWithCharset(length int, charset string) string {
+func stringWithCharset(length int, charset string) string {
 	b := make([]byte, length)
 	for i := range b {
 	  b[i] = charset[seededRand.Intn(len(charset))]

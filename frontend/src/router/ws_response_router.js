@@ -52,7 +52,25 @@ export const wsResponseRouter = {
       return;
     }
     let gameMapString = payload.data;
+    console.log("Game map--", gameMapString);
     // TODO: use gameMapString to generate the tiles for the player!
+  },
+
+  userQuitChat(payload) {
+    if (!isSuccessPayload(payload)) {
+      console.error(payload);
+      return
+    }
+    const user = payload.data;
+    Object.values(mainView.PlayerList.players).forEach((player) => {
+      if (player.name === user.playerName) {
+        mainView.delPlayers(player)
+      } else if (player.number > user.playerNumber) {
+        player.number--;
+      }
+
+    });
+
   },
 
   sendMessageToChat(payload) {

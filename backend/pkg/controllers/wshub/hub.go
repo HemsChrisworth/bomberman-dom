@@ -72,9 +72,15 @@ func (h *Hub) Run() {
 
 		case client := <-h.clientUnregister:
 			if h.isThereRoom(client.Room) {
+				deletedNumber := client.ClientUser.PlayerNumber
 				if client.Room.isThereClient(client) {
 					client.Room.DeleteClient(client)
 					// TODO: if client.Room.Clients.Len() != 0 send a message fmt.Sprintf("user %s left the chat", client.UserName)
+				}
+				for _, cl := range client.Room.Clients.items{
+					if cl.ClientUser.PlayerNumber > deletedNumber {
+						cl.ClientUser.PlayerNumber--
+					}
 				}
 			}
 

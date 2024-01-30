@@ -16,8 +16,10 @@ func CreateChatWsRoutes(app *application.Application) wsconnection.WSmux { // ws
 	wsServer.WShandlers = map[string]wsconnection.Replier{
 		webmodel.SendMessageToChat: controllers.ReplySendMessageToChat(app),
 		webmodel.PlayerAction:      controllers.ReplyPlayerAction(app),
+		webmodel.StartGame:         controllers.ReplyStartGame(app),
+		webmodel.ReadyToStart:      wsconnection.FuncReplier(controllers.ReadyToStart(app)),
 		webmodel.UserQuitChat:      wsconnection.FuncReplier(controllers.SendUserToRoomMembers(webmodel.UserQuitChat)),
 	}
-//TODO make frontend send message gameOver and handle it here: {}.sendRely() - close conn and unregister the client and its room
+	// TODO make frontend send message gameOver and handle it here: {}.sendRely() - close conn and unregister the client and its room
 	return wsServer
 }

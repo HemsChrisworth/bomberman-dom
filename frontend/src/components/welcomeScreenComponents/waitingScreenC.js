@@ -34,7 +34,7 @@ export function createWaitingTimerC(waitingTimerXsecC) {
 export function createWaitingTimer20secC() {
   return new VElement({
     tag: 'span',
-    content: '20 seconds', // Should be automatically replaced if design.js file is attached correctly
+    //content: '20 seconds', // Should be automatically replaced if design.js file is attached correctly
     attrs: { id: 'waiting20sec' },
   });
 }

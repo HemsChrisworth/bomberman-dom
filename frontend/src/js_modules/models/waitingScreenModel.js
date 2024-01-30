@@ -63,14 +63,14 @@ export class WaitingScreenModel {
 
         const isInPlayersList = function (playerNumber) {
             for (const player of players) {
-                if (player.number === playerNumber) {
+                if (player.number == playerNumber) {
                     return true;
                 }
             }
             return false;
         }
         for (const child of oldChildren) {
-            let number = child.number.attrs.id.substring(2)
+            let number = child.attrs.id.substring(2)
             if (!isInPlayersList(number)) {
                 newChildren.push(child);
             }
@@ -106,6 +106,7 @@ export class WaitingScreenModel {
     }
 
     startTimer10sec() {
+        mainView.chatModel.socket.request("readyToStart")
         this.WaitingTimerC.content = "Game starts in...";
         this.WaitingTimerC.delChild(0);
         this.WaitingTimerC.addChild(this.waitingTimer10secC);

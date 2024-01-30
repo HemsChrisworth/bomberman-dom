@@ -59,20 +59,23 @@ export function diffAttrs(oldAttrs, newAttrs) {
     const patches = []
 
     // set new attributes for elem
-    for (const [k, v] of Object.entries(newAttrs)) {
-        patches.push($node => {
-            $node.setAttribute(k, v)
-            return $node;
-        })
-    }
-
-    // delete old attributes
-    for (const [k, v] of Object.entries(oldAttrs)) {
-        if (!(k in newAttrs)) {
+    if (typeof newAttrs === "object") {
+        for (const [k, v] of Object.entries(newAttrs)) {
             patches.push($node => {
-                $node.removeAttribute(k)
+                $node.setAttribute(k, v)
                 return $node;
             })
+        }
+    }
+    // delete old attributes
+    if (typeof oldAttrs === "object") {
+        for (const [k, v] of Object.entries(oldAttrs)) {
+            if (!(k in newAttrs)) {
+                patches.push($node => {
+                    $node.removeAttribute(k)
+                    return $node;
+                })
+            }
         }
     }
 
@@ -91,7 +94,7 @@ export function diffAttrs(oldAttrs, newAttrs) {
  */
 export function diffChildren(oldVChildren, newVChildren) {
     const childrenPatches = [];
-    oldVChildren.forEach((oldVChild, i) => {
+    oldVChildren?.forEach((oldVChild, i) => {
         childrenPatches.push(diff(oldVChild, newVChildren[i]));
     });
 
@@ -106,7 +109,7 @@ export function diffChildren(oldVChildren, newVChildren) {
     return $parent => {
         $parent.childNodes.forEach(($child, i) => {
             childrenPatches[i]($child);
-          });
+        });
 
         for (const patch of additionalPatches) {
             patch($parent);
@@ -123,7 +126,7 @@ export function diffChildren(oldVChildren, newVChildren) {
  */
 function diff(vOldNode, vNewNode) {
     // launch the callback for reactive values
-    
+
     if (vNewNode === undefined) {
         return $n => {
             $n.remove();

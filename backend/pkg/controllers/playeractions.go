@@ -6,6 +6,15 @@ import (
 	"01.kood.tech/git/Hems_Chrisworth/bomberman-dom/backend/pkg/webmodel"
 )
 
+func ReadyToStart(app *application.Application) wsconnection.FuncReplier {
+	return func(currConnection *wsconnection.UsersConnection, wsMessage webmodel.WSMessage) error {
+		if app.WaitingRoom != nil && app.WaitingRoom.ID==currConnection.Client.Room.ID {
+			app.WaitingRoom = nil
+		}
+		return nil
+	}
+}
+
 /*
 ReplyStartGame sends the GameMap String, which is used for the frontend to generate the gameMap
 */
