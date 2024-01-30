@@ -3,7 +3,7 @@ import Socket from "./webSocketModel.js";
 
 export class ChatModel {
     constructor() {
-        this.chatC = createChatC();
+        this.chatC = createChatC(this.sendChatMessage);
         this.chatMessageArea = createChatMessageArea();
         this.chatC.addChild(this.chatMessageArea);
     }
@@ -13,15 +13,15 @@ export class ChatModel {
         this.socket = new Socket(`joinGame?name=${playerName}`);
     }
 
-    stop(){
+    stop() {
         this.socket.closeWebsocket();
     }
 
-    requestServer(type, payload){
-        this.socket. request(type, payload);
+    requestServer(type, payload) {
+        this.socket.request(type, payload);
     }
 
-    sendChatMessage(text){
-        this.socket.request("sendMessageToChat", {content: text, dateCreate: new Date()})
+    sendChatMessage = (text) => {
+        this.socket.request("sendMessageToChat", { content: text, dateCreate: new Date() })
     }
 }

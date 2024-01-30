@@ -26,8 +26,9 @@ export class GameMap {
     this.renderMap()
   }
   createMap(randomMap) {
-    for (let column = 0; column < this.columns; column++) {
-      for (let row = 0; row < this.rows; row++) {
+    for (let row = 0; row < this.rows; row++) {
+      this.baseMap[row] = [];
+      for (let column = 0; column < this.columns; column++) {
         const tileIndex = this.getTileIndex(randomMap, column, row);
         const [spriteOffsetX, spriteOffsetY] =
           this.getSpritePositions(tileIndex);
@@ -36,7 +37,7 @@ export class GameMap {
         const x = column * this.tileSize;
         const y = row * this.tileSize;
         const tile = tileTranslator[tileIndex](x, y, spriteOffsetX, spriteOffsetY);
-        this.baseMap.push(tile);
+        this.baseMap[row][column] = tile;
       }
     }
   }
@@ -50,8 +51,10 @@ export class GameMap {
     return [sourceX, sourceY];
   }
   renderMap() {
-    for (const tile of this.baseMap) {
-      this.vElement.addChild(tile.vElement);
+    for (const row of this.baseMap) {
+      for (const tile of row) {
+        this.vElement.addChild(tile.vElement);
+      }
     }
   }
 }

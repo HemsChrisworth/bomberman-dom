@@ -18,7 +18,7 @@ export function createChatMessageArea() {
 }
 
 
-export function createChatC() {
+export function createChatC(sendMessage) {
   return new VElement({
     tag: "div",
     attrs: { id: "chat" },
@@ -37,7 +37,7 @@ export function createChatC() {
         children: [
           new VElement({
             tag: "input",
-            attrs: { type: "text", id: "chattextarea", name: CHAT_MESSAGE_FORM_INPUT_NAME , autocomplete: "off", placeholder: 'Type here...'},
+            attrs: { type: "text", id: "chattextarea", name: CHAT_MESSAGE_FORM_INPUT_NAME, autocomplete: "off", placeholder: 'Type here...' },
           }),
           new VElement({
             tag: "input",
@@ -46,6 +46,7 @@ export function createChatC() {
         ],
         '@submit.prevent': (velem, event) => {
           const chatMessage = event.target[CHAT_MESSAGE_FORM_INPUT_NAME].value
+          sendMessage(chatMessage)
 
           // send message to backend via 'ws.request()'
           // in ws_response_router, add the new message into the chatMessageArea VElement with addChild() method

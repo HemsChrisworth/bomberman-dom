@@ -74,17 +74,24 @@ export const wsResponseRouter = {
 
   },
 
+  inputChatMessage(payload) {
+    if (!isSuccessPayload(payload)) {
+      console.error(payload);
+      return
+    }
+    const mess = payload.data;
+    mainView.chatModel.chatMessageArea.addChild(`${mess.userName} - ${mess.dateCreate}\n ${mess.content} `)
+  },
+
   sendMessageToChat(payload) {
-    //TODO
+    //
   },
 
   playerAction(payload) {
     //TODO
   },
 
-  inputChatMessage(payload) {
-    //TODO
-  },
+  
 };
 
 function isSuccessPayload(payload) {
