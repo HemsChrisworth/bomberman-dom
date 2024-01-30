@@ -1,31 +1,30 @@
 package helpers
 
 import (
-    "math/rand"
-    "time"
+	"math/rand"
+	"time"
 )
 
 func DefaultRandomMapGenerator() string { //wrapper function to give baseMap and charSet as default value to randomMapGenerator THIS IS THE MOST IMPORTANT FUNC HERE!
-    return randomMapGenerator(baseMap, charSet)
+	return randomMapGenerator(baseMap, charSet)
 }
 
-//baseMap is the initial map for the random map generator to run off of
+// baseMap is the initial map for the random map generator to run off of
 // 11 rows, 17 columns
-///SPAWN - S - normal GRASS, not allowed to spawn anything else but grass tile
-//SOLID - B - blocks you can not destroy, like game edge
-//GRASS - G - grass block, can spawn other things on top of it
-const baseMap = (
-"BBBBBBBBBBBBBBBBB" +
-"BSSGGGGGGGGGGGSSB" + 
-"BSBGBGBGBGBGBGBSB" +
-"BGBGBGBGBGBGBGBGB" +
-"BGBGBGBGBGBGBGBGB" +
-"BGBGBGBGBGBGBGBGB" +
-"BGBGBGBGBGBGBGBGB" +
-"BGBGBGBGBGBGBGBGB" +
-"BSBGBGBGBGBGBGBSB" +
-"BSSGGGGGGGGGGGSSB" + 
-"BBBBBBBBBBBBBBBBB")
+// /SPAWN - S - normal GRASS, not allowed to spawn anything else but grass tile
+// SOLID - B - blocks you can not destroy, like game edge
+// GRASS - G - grass block, can spawn other things on top of it
+const baseMap = ("BBBBBBBBBBBBBBBBB" +
+	"BSSGGGGGGGGGGGSSB" +
+	"BSBGBGBGBGBGBGBSB" +
+	"BGBGBGBGBGBGBGBGB" +
+	"BGBGBGBGBGBGBGBGB" +
+	"BGBGBGBGBGBGBGBGB" +
+	"BGBGBGBGBGBGBGBGB" +
+	"BGBGBGBGBGBGBGBGB" +
+	"BSBGBGBGBGBGBGBSB" +
+	"BSSGGGGGGGGGGGSSB" +
+	"BBBBBBBBBBBBBBBBB")
 
 /*
 DBLOCK - D - normal destroyable block
@@ -55,7 +54,7 @@ var seededRand *rand.Rand = rand.New(
 func stringWithCharset(length int, charset string) string {
 	b := make([]byte, length)
 	for i := range b {
-	  b[i] = charset[seededRand.Intn(len(charset))]
+		b[i] = charset[seededRand.Intn(len(charset))]
 	}
 	return string(b)
 }
