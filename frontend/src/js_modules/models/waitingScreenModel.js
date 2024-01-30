@@ -15,7 +15,8 @@ export class WaitingScreenModel {
         for (const player of players) {
             this.waitingListC.addChild(createPlayerC(player.name, player.number));
         }
-        if (players.length > 1 && players.length < 4) {
+            //TODO >=1 for test, should be >1
+        if (players.length >= 1 && players.length < 4) {
             this.countdown20sec(WAIT_FOR_PLAYERS);
         }
         if (players.length === 4) {

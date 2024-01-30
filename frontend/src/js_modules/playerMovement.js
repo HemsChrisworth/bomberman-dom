@@ -1,4 +1,5 @@
-import { juice } from "../test/test.js";
+import { mainView } from "../app.js";
+// import { mainView } from "../test/test.js";
 
 const PLAYER_MOVEMENT_SPEED = 2;
 
@@ -18,25 +19,25 @@ export const movementLookup = {
 const movementHandler = {
   w() {
     console.log(movementLookup[Direction.up].x);
-    juice.position = [
+    mainView.currentPlayer.position = [
       movementLookup[Direction.up].x,
       movementLookup[Direction.up].y,
     ];
   },
   s() {
-    juice.position = [
+    mainView.currentPlayer.position = [
       movementLookup[Direction.down].x,
       movementLookup[Direction.down].y,
     ];
   },
   a() {
-    juice.position = [
+    mainView.currentPlayer.position = [
       movementLookup[Direction.left].x,
       movementLookup[Direction.left].y,
     ];
   },
   d() {
-    juice.position = [
+    mainView.currentPlayer.position = [
       movementLookup[Direction.right].x,
       movementLookup[Direction.right].y,
     ];

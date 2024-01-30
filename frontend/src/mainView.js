@@ -46,8 +46,6 @@ export class MainView {
 
     showGameBox = (gameMapString) => {
         const gameBoxM = new gameBoxModel(gameMapString);
-        //const gameBoxM = new gameBoxModel(baseMap, this.chatModel);//TODO keep chat as an independend child of mainView
-        //TODO: make this into const gameBoxM = new gameBoxModel(this.chatModel.socket.request("startGame",'')); (not sure if 100% correct)
         this.vElement.replaceChild(this.currentViewChildIndex, gameBoxM.vElement);
         //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
         this.currentViewModel = gameBoxM;
@@ -55,11 +53,14 @@ export class MainView {
     }
 
 
-    renderPlayers = (gameBoxC) => {
-        Object.values(this.PlayerList.players).forEach((player) => {
-            console.log(player.name);
-            player.renderPlayer(gameBoxC);
-        });
+    renderPlayers = (gameBoxM) => {
+        // Object.values(this.PlayerList.players).forEach((player) => {
+            //     console.log(player.name);
+            //     player.renderPlayer(gameBoxM.gameMap);
+            // });
+            //TODO next row is for test
+        Object.values(this.PlayerList.players)[0].renderPlayer(gameBoxM.gameMap);
+
     }
 
     showError = (text) => {

@@ -41,7 +41,6 @@ export class Player { // add all player properties here, for example image, move
       return [this.x, this.y]
     }
     renderPlayer(gameBoxM) {
-      console.log("renderPlayer - gameBoxM: " , gameBoxM)
       gameBoxM.vElement.addChild(this.vElement)
     }
 }
