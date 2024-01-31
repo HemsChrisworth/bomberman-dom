@@ -33,7 +33,6 @@ export class GameMap {
         const tileInitialObj = this.getMapTileInitial(tileCode);
         const x = column * this.tileSize;
         const y = row * this.tileSize;
-        console.log("tileInitialObj", tileInitialObj)
         const tile = tileTranslator[tileInitialObj.TileIndex](x, y, ...tileInitialObj.IntitialSpritePos);
         this.baseMap[row][column] = tile;
       }
@@ -56,7 +55,7 @@ export class GameMap {
   }
 
   getTilesOnWay(tilesToCheck) {
-    const powersup = []
+    const powersup = [];
     for (const tile of tilesToCheck){
       if (!this.baseMap[tile.row][tile.column].passable){
         return false;

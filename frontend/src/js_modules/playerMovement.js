@@ -5,7 +5,7 @@ import { currentAction } from "./player_actions/keypresses.js";
 // import { mainView } from "../test/test.js";
 
 
-const movementCalculate = {
+export const movementCalculate = {
   [PLAYER_MOVE_LEFT]: ([x, y]) => [x - PLAYER_MOVEMENT_SPEED, y],
   [PLAYER_MOVE_RIGHT]: ([x, y]) => [x + PLAYER_MOVEMENT_SPEED, y],
   [PLAYER_MOVE_UP]: ([x, y]) => [x, y - PLAYER_MOVEMENT_SPEED],
@@ -22,7 +22,7 @@ const movementCalculate = {
 const playerMovementThrottler = throttle(getNewPlayerPosition, 20);
 
 export function actionSender(currentAction) {
-  
+
   if (currentAction !== PLAYER_PLACE_BOMB) {
     playerMovementThrottler(currentAction)
   } else if (currentAction === PLAYER_PLACE_BOMB) {
@@ -35,14 +35,19 @@ export function actionSender(currentAction) {
 }
 
 function getNewPlayerPosition(currentAction) {
-  // TODO: check collision here
-  const collision = false
-  if (!collision) {
-    const currentPosition = mainView.currentPlayer.position;
-    const newPosition = movementCalculate[currentAction](currentPosition);
-    // send ws request for playerMovement with new coordinates
+  // const collision = false
+  // if (!collision) {
+  //   const currentPosition = mainView.currentPlayer.position;
+  //   const newPosition = movementCalculate[currentAction](currentPosition);
+  //   // send ws request for playerMovement with new coordinates
+  //   mainView.chatModel.socket.request("playerAction", newPosition);
+  // }
+  if (mainView.currentPlayer[currentAction]()) {
+    const newPosition = mainView.currentPlayer.position;
+    console.log("move "+currentAction+"--\n"+ mainView.currentPlayer.model)
     mainView.chatModel.socket.request("playerAction", newPosition);
   }
+
 }
 
 

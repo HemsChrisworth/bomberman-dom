@@ -42,7 +42,7 @@ const activeAction = {
 
 
 export function listenPlayerActions() {
-  // need to put these while focused on gamebox, to prevent chat breaking
+  //TODO need to put these while focused on gamebox, to prevent chat breaking(gamebox attr "tabindex=0" and focus() when the game starts)
   document.addEventListener("keydown", (event) => {
     try {
       const action = keyConvert.getAction(event.key);
@@ -51,6 +51,7 @@ export function listenPlayerActions() {
           activeAction.initiateAction(action);
         }
       }
+
     } catch {
       console.log("error: invalid key");
     }
