@@ -1,6 +1,8 @@
 import { mainView } from "../app.js";
+import { PLAYER_MOVE_LEFT } from "../js_modules/consts/consts.js";
 import { gameBoxModel } from "../js_modules/models/gameBoxModel.js";
 import { Player } from "../js_modules/models/playersModel.js";
+import { movementHandler } from "../js_modules/playerMovement.js";
 
 // routes the response from websocket to various functions for components
 
@@ -88,10 +90,9 @@ export const wsResponseRouter = {
   },
 
   playerAction(payload) {
-    //TODO
+    //TODO have a separate function to handle bombs
+    movementHandler(payload.data.playerName, payload.data.action);
   },
-
-  
 };
 
 function isSuccessPayload(payload) {

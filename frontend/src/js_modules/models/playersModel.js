@@ -1,12 +1,11 @@
 import { VElement } from "../../../../framework/VElement.js"
 import { MAP_TILE_SIZE, PLAYER_Z_INDEX } from "../consts/consts.js"
 
-function setPlayerStyleAttrs(x, y, z) {
-  const style = `left: ${x}px;
-                 top: ${y}px;
-                 z-index: ${z};
+function setPlayerStyleAttrs(x, y) {
+  const style = `transform: translate(${x}px, ${y}px);
+                 z-index: ${PLAYER_Z_INDEX};
                  width: ${MAP_TILE_SIZE}px;
-                 height: ${MAP_TILE_SIZE}px;`
+                 height: ${MAP_TILE_SIZE}px;`;
   return style;
 }
 
@@ -97,21 +96,17 @@ export class Player { // add all player properties here, for example image, move
         class: 'player',
         style: setPlayerStyleAttrs(this.x, this.y),
       },
-      '@keydown': (velem, event) => {
-        console.log("jeeeee")
-        this.position = [60, 80]
-      }
     });
   }
   set position([x, y]) {
-    console.log(x, y, this.x, this.y);
-    this.x += x
-    this.y += y
-
-    this.vElement.setAttr({ style: setPlayerStyleAttrs(this.x, this.y) })
+    this.x = x
+    this.y = y
   }
   get position() {
     return [this.x, this.y]
+  }
+  setVPosition() {
+    this.vElement.setAttr({ style: setPlayerStyleAttrs(this.x, this.y)})
   }
   renderPlayer(gameBoxM) {
     gameBoxM.vElement.addChild(this.vElement)
