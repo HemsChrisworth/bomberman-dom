@@ -52,8 +52,6 @@ function getNewPlayerPosition(currentAction) {
  * @param {string} playerName name of the current player
  * @param {[number, number]} position new [x, y] position of player
  * 
- * 
- * 
  */
 
 export function movementHandler(playerName, position) {
