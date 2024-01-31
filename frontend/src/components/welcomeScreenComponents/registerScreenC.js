@@ -20,6 +20,13 @@ export function createRegisterScreenC(registerplayer, errorMessageC) {
     });
 }
 
+function limitCharacters(event, maxLength) {
+    const inputText = event.target.value;
+    if (inputText.length > maxLength) {
+        event.target.value = inputText.slice(0, maxLength);
+    }
+}
+
 function createFormElement(registerplayer) {
     return new VElement({
         tag: "form",
@@ -35,7 +42,13 @@ function createFormElement(registerplayer) {
 
 function createFormChildren() {
     return [
-        new VElement({ tag: 'input', attrs: { required: "", type: 'text', id: 'chooseusername', autocomplete: "off", name: PLAYER_NAME_FORM_INPUT } }),
+        new VElement({
+            tag: 'input',
+            attrs: { required: "", type: 'text', id: 'chooseusername', autocomplete: "off", name: PLAYER_NAME_FORM_INPUT },
+            "@input": (velem, event) => {
+                limitCharacters(event, 15) // Limits the number of nickname symbols to 15
+            },
+        }),
         new VElement({
             tag: 'input',
             attrs: { type: 'submit', id: "startgame", value: 'Start!' },

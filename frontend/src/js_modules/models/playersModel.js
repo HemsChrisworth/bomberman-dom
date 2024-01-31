@@ -87,8 +87,10 @@ export class Player { // add all player properties here, for example image, move
     this.x = 32 // have x and y randomly allocated
     this.y = 32
     this.name = name,
-      this.number = number,
-      this.lives = 3
+    this.number = number,
+    this.lives = 3
+    this.fireTiles = 3, // the lenght of fire in tiles
+    this.bombAmount = 3, // the amount of bombs
     this.sprite = "src/assets/images/spritesheets/spritesheet.png";
     this.vElement = new VElement({
       tag: "div",
