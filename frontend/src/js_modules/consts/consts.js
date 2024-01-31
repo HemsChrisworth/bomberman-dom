@@ -23,27 +23,25 @@ export const PLAYER_NAME_FORM_INPUT = 'playerName',
     GRASS = 70,
     SOLID = 45,
     DBLOCK = 46,
+    BOMBPUP = 196,
+    FIREPUP = 197,
+    SPEEDPUP = 199,
 
-    POWER_BOMB = 196,
-    POWER_FLAME = 197,
-    POWER_SPEED = 199,
-
-    BACKEND_MAP_CODES = {
-        "B": SOLID,
-        "G": GRASS,
-        "D": DBLOCK,
-        "O": DBLOCK,
-        "F": DBLOCK,
-        "M": DBLOCK,
+    SPRITE_POS = {
+        GRASS: [(GRASS % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE, Math.floor(GRASS / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE],
+        SOLID: [(SOLID % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE, Math.floor(SOLID / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE],
+        DBLOCK: [(DBLOCK % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE, Math.floor(DBLOCK / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE],
+        BOMBPUP: [(BOMBPUP % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE, Math.floor(BOMBPUP / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE],
+        SPEEDPUP: [(SPEEDPUP % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE, Math.floor(SPEEDPUP / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE],
     },
 
     BACKEND_TILE_TYPE_CODES = {
-        "B": "SOLID",
-        "G": "GRASS",
-        "D": "DBLOCK",
-        "O": "POWER_BOMB",
-        "F": "POWER_FLAME",
-        "M": "POWER_SPEED",
+        "B": { TileIndex: SOLID, IntitialSpritePos: SPRITE_POS[SOLID], },
+        "G": { TileIndex: GRASS, IntitialSpritePos: SPRITE_POS[GRASS], },
+        "D": { TileIndex: DBLOCK, IntitialSpritePos: SPRITE_POS[DBLOCK], },
+        "O": { TileIndex: BOMBPUP, IntitialSpritePos: SPRITE_POS[DBLOCK], },
+        "F": { TileIndex: FIREPUP, IntitialSpritePos: SPRITE_POS[DBLOCK], },
+        "M": { TileIndex: SPEEDPUP, IntitialSpritePos: SPRITE_POS[DBLOCK], },
     },
 
     // player start
@@ -56,4 +54,10 @@ export const PLAYER_NAME_FORM_INPUT = 'playerName',
 
     // player actions
 
-    MOVEMENT_SPEED = 2;
+    PLAYER_MOVEMENT_SPEED = 2,
+    PLAYER_MOVE_LEFT = "moveLeft",
+    PLAYER_MOVE_RIGHT = "moveRight",
+    PLAYER_MOVE_UP = 'moveUp',
+    PLAYER_MOVE_DOWN = 'moveDown',
+    PLAYER_PLACE_BOMB = "placeBomb" // space key
+

@@ -1,5 +1,5 @@
 import { VElement } from "../../../../../framework/VElement.js";
-import { DBLOCK, GRASS, MAP_TILE_SIZE, POWER_BOMB, POWER_FLAME, POWER_SPEED, SOLID } from "../../consts/consts.js";
+import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK , BOMBPUP, FIREPUP , SPEEDPUP } from "../../consts/consts.js";
 
 export class Tile {
     constructor(x, y, spriteOffsetX, spriteOffsetY) {
@@ -39,13 +39,35 @@ class Bomb extends Tile {
   }
 }
 
-class DestroyableBlock extends Tile {
+// if DestroyableBlock is destroyed => appears GrassBlock OR BombPowerUp OR FirePowerUp OR SpeedPowerUp
+class DestroyableBlock extends Tile { 
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
     super(x, y, spriteOffsetX, spriteOffsetY);
     this.passable = false;
     this.destroyable = true;
   }
 }
+
+/*class DestroyableBlockWithBomb extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.passable = false;
+  }
+}
+
+class DestroyableBlockWithSpeed extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.passable = false;
+  }
+}
+
+class DestroyableBlockWithFire extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.passable = false;
+  }
+}*/
 
 class SolidBlock extends Tile {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
@@ -61,46 +83,50 @@ class GrassBlock extends Tile {
   }
 }
 
-class PowerupBomb extends Tile {
+class BombPowerUp extends Tile {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
     super(x, y, spriteOffsetX, spriteOffsetY);
     this.passable = false; //initial data, will change when the block is destoyed
-    this.powerup = POWER_BOMB;
-  }
-}
-class PowerupFlame extends Tile {
-  constructor(x, y, spriteOffsetX, spriteOffsetY) {
-    super(x, y, spriteOffsetX, spriteOffsetY);
-    this.passable = false; //initial data, will change when the block is destoyed
-    this.powerup = POWER_FLAME;
-  }
-}
-class PowerupSpeed extends Tile {
-  constructor(x, y, spriteOffsetX, spriteOffsetY) {
-    super(x, y, spriteOffsetX, spriteOffsetY);
-    this.passable = false; //initial data, will change when the block is destoyed
-    this.powerup = POWER_SPEED;
+    this.powerup = BOMBPUP;
+    // if block is touched by player => mainView.currentPlayer.bombAmount++;
   }
 }
 
+class FirePowerUp extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.passable = false; //initial data, will change when the block is destoyed
+    this.powerup = FIREPUP;
+    // if block is touched by player => mainView.currentPlayer.fireTiles++;
+  }
+}
+
+class SpeedPowerUp extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+    super(x, y, spriteOffsetX, spriteOffsetY);
+    this.passable = false; //initial data, will change when the block is destoyed
+    this.powerup = SPEEDPUP;
+    // if block is touched by player => mainView.currentPlayer.MOVEMENT_SPEED++;
+  }
+}
 
 export const tileTranslator = {
-  ["SOLID"]: function (x, y, spriteOffsetX, spriteOffsetY) {
+  [SOLID]: function (x, y, spriteOffsetX, spriteOffsetY) {
     return new SolidBlock(x, y, spriteOffsetX, spriteOffsetY);
   },
-  ["GRASS"]: function (x, y, spriteOffsetX, spriteOffsetY) {
+  [GRASS]: function (x, y, spriteOffsetX, spriteOffsetY) {
     return new GrassBlock(x, y, spriteOffsetX, spriteOffsetY);
   },
-  ["DBLOCK"]: function (x, y, spriteOffsetX, spriteOffsetY) {
+  [DBLOCK]: function (x, y, spriteOffsetX, spriteOffsetY) {
     return new DestroyableBlock(x, y, spriteOffsetX, spriteOffsetY);
   },
-  ["POWER_BOMB"]: function (x, y, spriteOffsetX, spriteOffsetY) {
-    return new PowerupBomb(x, y, spriteOffsetX, spriteOffsetY);
+  [BOMBPUP]: function (x, y, spriteOffsetX, spriteOffsetY) {
+    return new BombPowerUp(x, y, spriteOffsetX, spriteOffsetY);
   },
-  ["POWER_FLAME"]: function (x, y, spriteOffsetX, spriteOffsetY) {
-    return new PowerupFlame(x, y, spriteOffsetX, spriteOffsetY);
+  [FIREPUP]: function (x, y, spriteOffsetX, spriteOffsetY) {
+    return new FirePowerUp(x, y, spriteOffsetX, spriteOffsetY);
   },
-  ["POWER_SPEED"]: function (x, y, spriteOffsetX, spriteOffsetY) {
-    return new PowerupSpeed(x, y, spriteOffsetX, spriteOffsetY);
+  [SPEEDPUP]: function (x, y, spriteOffsetX, spriteOffsetY) {
+    return new SpeedPowerUp(x, y, spriteOffsetX, spriteOffsetY);
   },
 };

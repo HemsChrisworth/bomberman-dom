@@ -6,7 +6,7 @@ import { testGameBox, testTileTranslator } from './test/test.js';
 
 export const App = new Frame() // create a new Frame, all virtual Elements will be added to it
 
-App.useEvents("click", "keydown", "submit") // REQUIRED
+App.useEvents("click", "keydown", "submit", "input") // REQUIRED
 
 //reactives.push(updateReactiveValues)
 

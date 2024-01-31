@@ -3,12 +3,11 @@ import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX } from "../consts
 import { Direction, movementLookup } from "../playerMovement.js";
 import { tileTranslator } from "./map/tileModel.js";
 
-function setPlayerStyleAttrs(x, y, z) {
-  const style = `left: ${x}px;
-                 top: ${y}px;
-                 z-index: ${z};
+function setPlayerStyleAttrs(x, y) {
+  const style = `transform: translate(${x}px, ${y}px);
+                 z-index: ${PLAYER_Z_INDEX};
                  width: ${MAP_TILE_SIZE}px;
-                 height: ${MAP_TILE_SIZE}px;`
+                 height: ${MAP_TILE_SIZE}px;`;
   return style;
 }
 
@@ -97,6 +96,8 @@ export class Player { // add all player properties here, for example image, move
       this.y = this.model.row * MAP_TILE_SIZE
     }
     this.lives = 3
+    this.fireTiles = 3, // the lenght of fire in tiles
+    this.bombAmount = 3, // the amount of bombs
     this.sprite = "src/assets/images/spritesheets/spritesheet.png";
 
     this.vElement = new VElement({
@@ -105,23 +106,18 @@ export class Player { // add all player properties here, for example image, move
         class: 'player',
         style: setPlayerStyleAttrs(this.x, this.y),
       },
-      '@keydown': (velem, event) => {
-        console.log("jeeeee")
-        this.position = [60, 80]
-      }
     });
   }
   set position([x, y]) {
-    console.log(x, y, this.x, this.y);
-    this.x += x
-    this.y += y
-
-    this.vElement.setAttr({ style: setPlayerStyleAttrs(this.x, this.y) })
+    this.x = x
+    this.y = y
   }
   get position() {
     return [this.x, this.y]
   }
-
+  setVPosition() {
+    this.vElement.setAttr({ style: setPlayerStyleAttrs(this.x, this.y)})
+  }
   set number(number) {
     this._number = number;
     const { row, column } = PLAYER_START_POSITIONS[number - 1];

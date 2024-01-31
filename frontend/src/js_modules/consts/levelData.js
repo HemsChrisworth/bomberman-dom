@@ -1,4 +1,4 @@
-import { GRASS, SOLID } from "./consts.js";
+import { GRASS , SOLID , DBLOCK , BOMBPUP, FIREPUP , SPEEDPUP} from "./consts.js";
 
 export const baseMap = [
   // 11 rows, 17 columns
@@ -19,6 +19,11 @@ export const baseMap = [
 SPAWN - normal GRASS, not allowed to spawn SOLID or DBLOCK on it
 SOLID - blocks you can not destroy, like game edge
 DBLOCK - normal destroyable block
+
+BOMBPUP - Bomb power up - a block that can be spawned after destroying the DBLOCK
+FIREPUP - Fire power up - a block that can be spawned after destroying the DBLOCK
+SPEEDPUP - Speed power up - a block that can be spawned after destroying the DBLOCK
+
 DBLOCKBOMB - destroyable block with a bomb powerup spawned when destroyed
 DBLOCKFLAME - destroyable block with flame powerup spawned when destroyed
 DBLOCKSPEED - destroyable block with player speed increase powerup spawned when destroyed
