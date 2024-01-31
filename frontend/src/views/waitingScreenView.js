@@ -1,10 +1,10 @@
-import { createWaitingScreenC, createPlayerC, createWaitingListC } from "../../components/welcomeScreenComponents/waitingScreenC.js"
-import { createWaitingTimerC, createWaitingTimer10secC, createWaitingTimer20secC } from "../../components/welcomeScreenComponents/waitingScreenC.js";
-import { mainView } from "../../app.js";
-import { START_IN, WAIT_FOR_PLAYERS } from "../consts/consts.js";
+import { createWaitingScreenC, createPlayerC, createWaitingListC } from "../components/welcomeScreenComponents/waitingScreenC.js"
+import { createWaitingTimerC, createWaitingTimer10secC, createWaitingTimer20secC } from "../components/welcomeScreenComponents/waitingScreenC.js";
+import { mainView } from "../app.js";
+import { START_IN, WAIT_FOR_PLAYERS } from "../js_modules/consts/consts.js";
 
 //this object contains components that could be used in other components
-export class WaitingScreenModel {
+export class WaitingScreenView {
     constructor(...players) {
         this.waitingListC = createWaitingListC();
         this.waitingTimer20secC = createWaitingTimer20secC();
@@ -15,7 +15,7 @@ export class WaitingScreenModel {
         for (const player of players) {
             this.waitingListC.addChild(createPlayerC(player.name, player.number));
         }
-            //TODO >=1 for test, should be >1
+        //TODO >=1 for test, should be >1
         if (players.length >= 1 && players.length < 4) {
             this.countdown20sec(WAIT_FOR_PLAYERS);
         }
@@ -41,19 +41,19 @@ export class WaitingScreenModel {
     addPlayers(...players) {
         for (const player of players) {
             this.waitingListC.addChild(createPlayerC(player.name, player.number));
-        }   
+        }
         if (mainView.PlayerList.length > 1 && mainView.PlayerList.length < 4) {
-            if (this.timeoutID){
+            if (this.timeoutID) {
                 clearTimeout(this.timeoutID);
             }
             setTimeout(this.countdown20sec, 0, WAIT_FOR_PLAYERS);
-            
+
         }
         if (mainView.PlayerList.length === 4) {
-            if (this.timeoutID){
+            if (this.timeoutID) {
                 clearTimeout(this.timeoutID);
             }
-            setTimeout(this.startTimer10sec(),0);
+            setTimeout(this.startTimer10sec(), 0);
         }
 
     }
@@ -84,7 +84,7 @@ export class WaitingScreenModel {
             waiting10sec--;
             this.waitingTimer10secC.content = waiting10sec;
             if (waiting10sec === 0) {
-                mainView.chatModel.requestServer("startGame","");
+                mainView.chatModel.requestServer("startGame", "");
             } else {
                 setTimeout(this.countdown10sec, 1000, waiting10sec);
             }

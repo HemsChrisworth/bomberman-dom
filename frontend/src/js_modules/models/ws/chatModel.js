@@ -1,4 +1,4 @@
-import { createChatC, createChatMessageArea } from "../../components/chatC.js"
+import { createChatC, createChatMessageArea } from "../../../components/chatC.js"
 import Socket from "./webSocketModel.js";
 
 export class ChatModel {

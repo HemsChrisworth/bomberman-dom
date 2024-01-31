@@ -1,18 +1,18 @@
 import { VElement } from "../../framework/VElement.js";
 import { createHeaderC } from "./components/headerC.js";
-import { ChatModel } from "./js_modules/models/chatModel.js";
-import { gameBoxModel } from "./js_modules/models/gameBoxModel.js";
+import { ChatModel } from "./js_modules/models/ws/chatModel.js";
+import { gameBoxModel } from "./views/gameBoxView.js";
 import { GameMap } from "./js_modules/models/map/mapModel.js";
 import { Player } from "./js_modules/models/playersModel.js";
-import { RegisterScreenModel } from "./js_modules/models/registerScreenModel.js";
-import { WaitingScreenModel } from "./js_modules/models/waitingScreenModel.js";
+import { RegisterScreenView } from "./views/registerScreenView.js";
+import { WaitingScreenView } from "./views/waitingScreenView.js";
 
 //TODO maybe move waitingScreenModel, registerScreenModel, gameBoxModel fom models to views
 export class MainView {
     constructor() {
         this.HeaderC = createHeaderC();
         this.chatModel = new ChatModel;
-        this.currentViewModel = new RegisterScreenModel;
+        this.currentViewModel = new RegisterScreenView;
         this.currentViewChildIndex = 1;
         this.vElement = new VElement({
             tag: 'div',
@@ -28,7 +28,7 @@ export class MainView {
     }
 
     isInRegisterState() {
-        if (this.currentViewModel instanceof RegisterScreenModel) {
+        if (this.currentViewModel instanceof RegisterScreenView) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ export class MainView {
             this.PlayerList.players[player.name] = player
             this.PlayerList.length++;
         }
-        const WaitingScreenM = new WaitingScreenModel(...players);
+        const WaitingScreenM = new WaitingScreenView(...players);
         this.vElement.replaceChild(this.currentViewChildIndex, WaitingScreenM.vElement);
         //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
         this.currentViewModel = WaitingScreenM;
@@ -58,10 +58,10 @@ export class MainView {
 
     renderPlayers = () => {
         // Object.values(this.PlayerList.players).forEach((player) => {
-            //     console.log(player.name);
-            //     player.renderPlayer(gameBoxM.gameMap);
-            // });
-            //TODO next row is for test
+        //     console.log(player.name);
+        //     player.renderPlayer(gameBoxM.gameMap);
+        // });
+        //TODO next row is for test
         Object.values(this.PlayerList.players)[0].renderPlayer(this.gameMap);
 
     }
@@ -88,7 +88,7 @@ export class MainView {
             this.PlayerList.length++;
         }
         console.log("main this.addPlayers players", this.PlayerList.length)
-        if (this.currentViewModel instanceof WaitingScreenModel) {
+        if (this.currentViewModel instanceof WaitingScreenView) {
             this.currentViewModel.addPlayers(...players);
         }
         //return players
@@ -98,7 +98,7 @@ export class MainView {
             delete this.PlayerList.players[player.name]
             this.PlayerList.length--;
         }
-        if (this.currentViewModel instanceof WaitingScreenModel) {
+        if (this.currentViewModel instanceof WaitingScreenView) {
             this.currentViewModel.delPlayers(...players);
         }
     }

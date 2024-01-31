@@ -13,7 +13,15 @@ function newPlayerStyleTransform(x, y) {
   return { transform: `translate(${x}px, ${y}px)` }
 
 }
-
+/**player's position on the game map
+ * 
+ * @property row - current row on the map grid
+ * @property column - current column on the map grid
+ * @property offsetX - offset from the feft edge of the current column
+ * @property offsetY - offset from the top edge of the current row
+ * @property getBlocksOn - an object containing functions that return blocks on the diriction of the player's movment
+ * @property changePosition - an object containing functions that change the position of the player (row or columns) depending on the direction of movment
+ */
 class PlayerModel {
   constructor(row, column) {
     this.row = row;
@@ -99,9 +107,9 @@ export class Player { // add all player properties here, for example image, move
       this.y = this.model.row * MAP_TILE_SIZE
     }
     this.lives = 3
-    this.fireTiles = 3, // the lenght of fire in tiles
-      this.bombAmount = 3, // the amount of bombs
-      this.sprite = "src/assets/images/spritesheets/spritesheet.png";
+    this.fireTiles = 3 // the lenght of fire in tiles
+    this.bombAmount = 3 // the amount of bombs
+    this.sprite = "src/assets/images/spritesheets/spritesheet.png";
 
     this.vElement = new VElement({
       tag: "div",

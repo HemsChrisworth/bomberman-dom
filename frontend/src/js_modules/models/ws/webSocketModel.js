@@ -1,7 +1,7 @@
 
-import { payloadModel } from "../models/payloadModel.js"
-import { wsResponseRouter } from "../../router/ws_response_router.js";
-import { mainView } from "../../app.js";
+import { payloadModel } from "./payloadModel.js"
+import { wsResponseRouter } from "../../../router/ws_response_router.js";
+import { mainView } from "../../../app.js";
 
 export default class Socket {
   constructor(url) {
@@ -29,7 +29,7 @@ export default class Socket {
       try {
         const message = JSON.parse(rawMessage);
         if (message.type === "ERROR") {
-           throw new Error(`${message.payload.result}:  ${message.payload.data}`); 
+          throw new Error(`${message.payload.result}:  ${message.payload.data}`);
         }
         this.emit(message.type, message.payload);
       } catch (error) {
