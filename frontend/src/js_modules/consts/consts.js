@@ -15,6 +15,11 @@ PLAYER_Z_INDEX = 1,
 GRASS = 70,
 SOLID = 45,
 
+DBLOCK = 46,
+BOMBPUP = 196,
+FIREPUP = 197,
+SPEEDPUP = 199,
+
 
 // player actions
 
