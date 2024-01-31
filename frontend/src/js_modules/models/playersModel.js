@@ -1,5 +1,6 @@
 import { VElement } from "../../../../framework/VElement.js"
-import { MAP_TILE_SIZE, PLAYER_Z_INDEX } from "../consts/consts.js"
+import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX } from "../consts/consts.js"
+import { tileTranslator } from "./map/tileModel.js";
 
 function setPlayerStyleAttrs(x, y) {
   const style = `transform: translate(${x}px, ${y}px);
@@ -13,8 +14,8 @@ class PlayerModel {
   constructor(row, column) {
     this.row = row;
     this.column = column;
-    offsetTop = 0;
-    offsetLeft = 0;
+    this.offsetTop = 0;
+    this.offsetLeft = 0;
   }
 
   toString() {
@@ -77,21 +78,26 @@ class PlayerModel {
     }
 
     blocks.map(coord => { coord.row = this.row + 1 })
-    
+
     return blocks;
   }
 }
 
 export class Player { // add all player properties here, for example image, movements etc
   constructor(name, number) {
-    this.x = 32 // have x and y randomly allocated
-    this.y = 32
-    this.name = name,
-    this.number = number,
+    this.name = name;
+    if (number) {
+      this._number = number;
+      const { row, column } = PLAYER_START_POSITIONS[number - 1]
+      this.model = new PlayerModel(row, column)
+      this.x = this.model.column * MAP_TILE_SIZE // have x and y randomly allocated
+      this.y = this.model.row * MAP_TILE_SIZE
+    }
     this.lives = 3
     this.fireTiles = 3, // the lenght of fire in tiles
     this.bombAmount = 3, // the amount of bombs
     this.sprite = "src/assets/images/spritesheets/spritesheet.png";
+
     this.vElement = new VElement({
       tag: "div",
       attrs: {
@@ -110,7 +116,22 @@ export class Player { // add all player properties here, for example image, move
   setVPosition() {
     this.vElement.setAttr({ style: setPlayerStyleAttrs(this.x, this.y)})
   }
+  set number(number) {
+    this._number = number;
+    const { row, column } = PLAYER_START_POSITIONS[number - 1];
+    this.model = new PlayerModel(row, column);
+    this.x = this.model.column * MAP_TILE_SIZE; // have x and y randomly allocated
+    this.y = this.model.row * MAP_TILE_SIZE;
+    this.vElement.setStyle({
+      left: `${this.x}px`,
+      top: `${this.y}px`
+    })
+  }
+  get number() {
+    return this._number;
+  }
   renderPlayer(gameBoxM) {
+    console.log("render player: ", this)
     gameBoxM.vElement.addChild(this.vElement)
   }
 }
