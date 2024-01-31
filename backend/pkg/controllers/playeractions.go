@@ -32,10 +32,6 @@ broadcasts messages to clients connected to the chat
 */
 func ReplyPlayerAction(app *application.Application) wsconnection.FuncReplier {
 	return func(currConnection *wsconnection.UsersConnection, message webmodel.WSMessage) error {
-		// action, err := parse.PayloadToString(message.Payload)
-		// if err != nil {
-		// 	return nil, currConnection.WSError(fmt.Sprintf("Invalid payload for a player's action: '%s'", message.Payload), err)
-		// }
 
 		playerAction := webmodel.PlrAction{
 			UserName: currConnection.Client.UserName,

@@ -39,7 +39,7 @@ export const wsResponseRouter = {
 
   registerNewPlayer(payload) {
     if (!isSuccessPayload(payload)) {
-      console.error(payload);
+      console.error("Error in registerNewPlayer handler:", payload.data);
       return
     }
 
@@ -51,7 +51,7 @@ export const wsResponseRouter = {
 
   startGame(payload) {
     if (!isSuccessPayload(payload)) {
-      console.error("Could not get random Game map from server:", payload);
+      console.error("Could not get random Game map from server:", payload.data);
       return;
     }
     let gameMapString = payload.data;
@@ -61,7 +61,7 @@ export const wsResponseRouter = {
 
   userQuitChat(payload) {
     if (!isSuccessPayload(payload)) {
-      console.error(payload);
+      console.error("Error in userQuitChat handler:", payload.data);
       return
     }
     const user = payload.data;
@@ -78,7 +78,7 @@ export const wsResponseRouter = {
 
   inputChatMessage(payload) {
     if (!isSuccessPayload(payload)) {
-      console.error(payload);
+      console.error("Error in inputChatMessage handler:", payload.data);
       return
     }
     const mess = payload.data;
@@ -90,6 +90,10 @@ export const wsResponseRouter = {
   },
 
   playerAction(payload) {
+    if (!isSuccessPayload(payload)) {
+      console.error("Error in playerAction handler:", payload.data);
+      return
+    }
     //TODO have a separate function to handle bombs
     movementHandler(payload.data.playerName, payload.data.action);
   },

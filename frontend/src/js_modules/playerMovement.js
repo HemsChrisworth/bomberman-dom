@@ -5,12 +5,12 @@ import { currentAction } from "./player_actions/keypresses.js";
 // import { mainView } from "../test/test.js";
 
 
-export const movementCalculate = {
-  [PLAYER_MOVE_LEFT]: ([x, y]) => [x - PLAYER_MOVEMENT_SPEED, y],
-  [PLAYER_MOVE_RIGHT]: ([x, y]) => [x + PLAYER_MOVEMENT_SPEED, y],
-  [PLAYER_MOVE_UP]: ([x, y]) => [x, y - PLAYER_MOVEMENT_SPEED],
-  [PLAYER_MOVE_DOWN]: ([x, y]) => [x, y + PLAYER_MOVEMENT_SPEED],
-};
+// export const movementCalculate = {
+//   [PLAYER_MOVE_LEFT]: ([x, y]) => [x - PLAYER_MOVEMENT_SPEED, y],
+//   [PLAYER_MOVE_RIGHT]: ([x, y]) => [x + PLAYER_MOVEMENT_SPEED, y],
+//   [PLAYER_MOVE_UP]: ([x, y]) => [x, y - PLAYER_MOVEMENT_SPEED],
+//   [PLAYER_MOVE_DOWN]: ([x, y]) => [x, y + PLAYER_MOVEMENT_SPEED],
+// };
 
 
 // this will send the ws request with the next position of the current player

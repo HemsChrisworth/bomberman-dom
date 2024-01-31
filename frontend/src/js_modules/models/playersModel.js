@@ -1,7 +1,6 @@
 import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js";
 import { MAP_TILE_SIZE, PLAYER_MOVEMENT_SPEED, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_START_POSITIONS, PLAYER_Z_INDEX } from "../consts/consts.js"
-import { movementCalculate } from "../playerMovement.js"
 
 function setPlayerStyleAttrs(x, y) {
   const style = `transform: translate(${x}px, ${y}px);
@@ -141,7 +140,6 @@ export class Player { // add all player properties here, for example image, move
     if (this.model.offsetY == 0 && !mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_DOWN]())) {
       return false;
     }
-    //let [shiftX, shiftY] = movementCalculate[PLAYER_MOVE_DOWN](0, 0);
     let shiftY = PLAYER_MOVEMENT_SPEED;
     this.model.offsetY += shiftY;
 
