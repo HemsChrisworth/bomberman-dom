@@ -1,6 +1,6 @@
 import { VElement } from "../../../../../framework/VElement.js";
 import { mainView } from "../../../app.js";
-import { BACKEND_MAP_CODES, BACKEND_TILE_TYPE_CODES, MAP_COLUMNS, MAP_ROWS, MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
+import {  BACKEND_TILE_TYPE_CODES, MAP_COLUMNS, MAP_ROWS, MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
 import { Tile, tileTranslator } from "./tileModel.js";
 
 export class GameMap {
@@ -33,7 +33,8 @@ export class GameMap {
         const tileInitialObj = this.getMapTileInitial(tileCode);
         const x = column * this.tileSize;
         const y = row * this.tileSize;
-        const tile = tileTranslator[tileInitialObj.tileIndex](x, y, ...tileInitialObj.IntitialSpritePos);
+        console.log("tileInitialObj", tileInitialObj)
+        const tile = tileTranslator[tileInitialObj.TileIndex](x, y, ...tileInitialObj.IntitialSpritePos);
         this.baseMap[row][column] = tile;
       }
     }

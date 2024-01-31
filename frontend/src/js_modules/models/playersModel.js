@@ -1,7 +1,5 @@
 import { VElement } from "../../../../framework/VElement.js"
 import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX } from "../consts/consts.js"
-import { Direction, movementLookup } from "../playerMovement.js";
-import { tileTranslator } from "./map/tileModel.js";
 
 function setPlayerStyleAttrs(x, y) {
   const style = `transform: translate(${x}px, ${y}px);
@@ -137,13 +135,13 @@ export class Player { // add all player properties here, for example image, move
     gameBoxM.vElement.addChild(this.vElement)
   }
     moveDown(){
-    if(mainView.gameMap?.getTilesOnWay(this.model.getBlocksOnBottom())){
-      this.model.offsetTop+=movementLookup[Direction.down].y;
-      if (this.model.offsetTop<MAP_TILE_SIZE){
+    // if(mainView.gameMap?.getTilesOnWay(this.model.getBlocksOnBottom())){
+    //   this.model.offsetTop+=movementLookup[Direction.down].y;
+    //   if (this.model.offsetTop<MAP_TILE_SIZE){
         
-      }
+    //   }
 
-    }
+    // }
   }
   moveUp(){}
   moveLeft(){}

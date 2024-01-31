@@ -6,7 +6,7 @@ import { listenPlayerActions } from "../player_actions/keypresses.js";
 export class gameBoxModel {
     constructor(gameMap) {
 
-        this.gameBoxC = createGameBoxC(this.gameMap.vElement); //TODO create and add other component
+        this.gameBoxC = createGameBoxC(gameMap.vElement); //TODO create and add other component
         
         requestAnimationFrame(animate);
         listenPlayerActions()
