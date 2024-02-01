@@ -2,7 +2,7 @@ import { mainView } from "../../app.js";
 import { throttle } from "../../utils/throttler.js";
 import { WS_REQUEST_TYPE_PLAYER_ACTION } from "../consts/consts.js";
 import { PLAYER_MOVE } from "../consts/playerActionTypes.js";
-import { PlaceBomb } from "./actionModel.js";
+import { PlaceBomb, PlayerMove } from "./actionModel.js";
 // import { mainView } from "../test/test.js";
 
 
@@ -16,7 +16,7 @@ import { PlaceBomb } from "./actionModel.js";
 
 
 
-export const playerMovementThrottler = throttle(getNewPlayerPosition, 20);
+//export const playerMovementThrottler = throttle(getNewPlayerPosition, 20);
 
 
 // this will send the ws request with the next position of the current player
@@ -24,19 +24,12 @@ export const playerMovementThrottler = throttle(getNewPlayerPosition, 20);
  * 
  * @param {string} currentAction the action of the player, ex 'moveLeft' or 'moveRight'
 */
-function getNewPlayerPosition(currentAction) {
-  // const collision = false
-  // if (!collision) {
-  //   const currentPosition = mainView.currentPlayer.position;
-  //   const newPosition = movementCalculate[currentAction](currentPosition);
-  //   // send ws request for playerMovement with new coordinates
-  //   mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, newPosition);
-  // }
+export function getNewPlayerPosition(currentAction) {
   if (mainView.currentPlayer[currentAction]()) {
     const newPosition = mainView.currentPlayer.position;
-    console.log("move "+currentAction+"--\n"+ mainView.currentPlayer.model)
+    console.log("move "+currentAction+"--\n"+ mainView.currentPlayer.x + " : " + mainView.currentPlayer.y)
 
-    const playerAction = new PlaceBomb(PLAYER_MOVE, newPosition);
+    const playerAction = new PlayerMove(newPosition);
     mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, playerAction);
     //mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, newPosition);
   }

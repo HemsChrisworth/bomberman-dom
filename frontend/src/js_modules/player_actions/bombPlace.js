@@ -5,10 +5,10 @@ import { PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js";
 import { Bomb } from "../models/map/tileModel.js";
 import { PlaceBomb } from "./actionModel.js";
 
-export const bombPlaceThrottle = throttle(bombPlace, BOMB_PLACEMENT_DELAY) // set a delay for placing the next bomb
+const bombPlaceThrottle = throttle(bombPlace, BOMB_PLACEMENT_DELAY) // set a delay for placing the next bomb
 
-function bombPlace() {
-    const playerAction = new PlaceBomb(PLAYER_PLACE_BOMB, mainView.currentPlayer.position);
+export function bombPlace() {
+    const playerAction = new PlaceBomb(mainView.currentPlayer.position);
     mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, playerAction)
 }
 

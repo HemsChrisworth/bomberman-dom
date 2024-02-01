@@ -1,6 +1,6 @@
 import { mainView } from "../app.js";
 import { Player } from "../js_modules/models/playersModel.js";
-import { playerActionHandler } from "../js_modules/player_actions/actionModel.js";
+import { playerActioner } from "../js_modules/player_actions/actionModel.js";
 import { movementHandler } from "../js_modules/player_actions/playerMovement.js";
 
 // routes the response from websocket to various functions for components
@@ -93,8 +93,8 @@ export const wsResponseRouter = {
       console.error("Error in playerAction handler:", payload.data);
       return
     }
-    
-    playerActionHandler[payload.data.action.type](payload.data)
+console.log("Player action:" , payload.data.action.type)
+    playerActioner[payload.data.action.type].handle(payload.data)
   },
 };
 
