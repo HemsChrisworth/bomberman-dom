@@ -31,13 +31,21 @@ class DestroyableBlock extends Tile {
     super(x, y, spriteOffsetX, spriteOffsetY);
     this.passable = false;
     this.destroyable = true;
+    
   }
+    destroy() {
+      console.log("destroy: ", this);
+      this.destroyable = false;
+      this.passable = true;
+      // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - new coords for bkg-pos or animate
+    }
 }
 
 class SolidBlock extends Tile {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
     super(x, y, spriteOffsetX, spriteOffsetY);
     this.passable = false;
+    this.destroyable = false;
   }
 }
 
@@ -48,31 +56,46 @@ class GrassBlock extends Tile {
   }
 }
 
-class BombPowerUp extends Tile {
+class BombPowerUp extends DestroyableBlock {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
     super(x, y, spriteOffsetX, spriteOffsetY);
-    this.passable = false; //initial data, will change when the block is destoyed
     this.powerup = BOMBPUP;
     // if block is touched by player => mainView.currentPlayer.bombAmount++;
   }
+
+  destroy() {
+     super.destroy();
+
+      // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
+    }
 }
 
-class FirePowerUp extends Tile {
+class FirePowerUp extends DestroyableBlock {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
     super(x, y, spriteOffsetX, spriteOffsetY);
-    this.passable = false; //initial data, will change when the block is destoyed
     this.powerup = FIREPUP;
     // if block is touched by player => mainView.currentPlayer.fireTiles++;
   }
+
+  destroy() {
+     super.destroy();
+
+      // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
+    }
 }
 
-class SpeedPowerUp extends Tile {
+class SpeedPowerUp extends DestroyableBlock {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
     super(x, y, spriteOffsetX, spriteOffsetY);
-    this.passable = false; //initial data, will change when the block is destoyed
     this.powerup = SPEEDPUP;
     // if block is touched by player => mainView.currentPlayer.MOVEMENT_SPEED++;
   }
+
+  destroy() {
+     super.destroy();
+
+      // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
+    }
 }
 
 export const tileTranslator = {

@@ -7,9 +7,10 @@ import { PlaceBomb } from "./actionModel.js";
 
 export function bombPlace() {
     const bombInitData = mainView.currentPlayer[PLAYER_PLACE_BOMB]();
-
-    const playerAction = new PlaceBomb(bombInitData);
-    mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, playerAction)
+    if (bombInitData) {
+        const playerAction = new PlaceBomb(bombInitData);
+        mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, playerAction)
+    }
 }
 
 
@@ -17,5 +18,5 @@ export function bombPlaceHandler(bombInitData) {
     // const [xSprite, ySprite] = SPRITE_POS[BOMB];
     //const [x, y] = bombInitData
     const bomb = new Bomb(bombInitData);
-   // mainView.gameMap.vElement.addChild(bomb.vElement);
+    // mainView.gameMap.vElement.addChild(bomb.vElement);
 }

@@ -354,6 +354,6 @@ body {
     position: relative;
 }
 
-.bomb {
+.bomb, .explosion {
     position: absolute;
 }

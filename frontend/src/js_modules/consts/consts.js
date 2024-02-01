@@ -15,7 +15,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   MAP_ROWS = 11,
   MAP_COLUMNS = 17,
   // z-indexes, used in class constructors
-  EXPLOSION_Z_INDEX = 2, //for bomb explosion fire animation (player caught in the fire)
+  EXPLOSION_Z_INDEX = 15, //for bomb explosion fire animation (player caught in the fire)
   BOMB_Z_INDEX = 5, //player places the bomb under themselves
   PLAYER_Z_INDEX = 10,
   // blocks
@@ -27,6 +27,18 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   FIREPUP = 197,
   SPEEDPUP = 199,
   BOMB = 43,
+  EXPLOSION_CENTER = 47, // TODO set right number
+  EXPLOSION_LEFT = 48,// TODO set right number
+  EXPLOSION_RIGHT = 49,// TODO set right number
+  EXPLOSION_UP = 50,// TODO set right number
+  EXPLOSION_DOWN = 51,// TODO set right number
+  EXPLOSION_EDGES = {
+    [EXPLOSION_LEFT]: 55,// TODO set right number
+    [EXPLOSION_RIGHT]: 56,// TODO set right number
+    [EXPLOSION_UP]: 57,// TODO set right number
+    [EXPLOSION_DOWN]: 58,// TODO set right number
+
+  },
   SPRITE_POS = {
     [GRASS]: getSpriteSheetXYbyIndex(GRASS),
     [SOLID]: getSpriteSheetXYbyIndex(SOLID),
@@ -34,6 +46,15 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
     [BOMBPUP]: getSpriteSheetXYbyIndex(BOMBPUP),
     [SPEEDPUP]: getSpriteSheetXYbyIndex(SPEEDPUP),
     [BOMB]: getSpriteSheetXYbyIndex(BOMB),
+    [EXPLOSION_CENTER]: getSpriteSheetXYbyIndex(EXPLOSION_CENTER),
+    [EXPLOSION_LEFT]: getSpriteSheetXYbyIndex(EXPLOSION_LEFT),
+    [EXPLOSION_RIGHT]: getSpriteSheetXYbyIndex(EXPLOSION_RIGHT),
+    [EXPLOSION_UP]: getSpriteSheetXYbyIndex(EXPLOSION_UP),
+    [EXPLOSION_DOWN]: getSpriteSheetXYbyIndex(EXPLOSION_DOWN),
+    [EXPLOSION_EDGES[EXPLOSION_LEFT]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_LEFT]]),
+    [EXPLOSION_EDGES[EXPLOSION_RIGHT]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_RIGHT]]),
+    [EXPLOSION_EDGES[EXPLOSION_UP]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_UP]]),
+    [EXPLOSION_EDGES[EXPLOSION_DOWN]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_DOWN]]),
   },
   BACKEND_TILE_TYPE_CODES = {
     B: { TileIndex: SOLID, IntitialSpritePos: SPRITE_POS[SOLID] },
@@ -57,9 +78,10 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
 
   // bomb
   BOMB_EXPLOSION_TIMER = 3000, // time between placing bomb and explosion
-  BOMB_PLACEMENT_DELAY = 3000,
+  EXPLOSION_LASTING_TIMER = 3000, // explosion lasts 
+  BOMB_PLACEMENT_DELAY = 3000
 
-  //directions
-  LEFT = "left", RIGHT = "right", UP = "up", DOWN = "down"
+//directions
+
 
 

@@ -280,6 +280,7 @@ export class Player { // add all player properties here, for example image, move
   }
 
   [PLAYER_PLACE_BOMB] = () => {
+   if(this.bombAmount <= 0) {return false;}
     this.bombAmount--;
     setTimeout(() => { this.bombAmount++ }, BOMB_PLACEMENT_DELAY);
     let { row, column } = this.model;

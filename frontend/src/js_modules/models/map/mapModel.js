@@ -1,6 +1,6 @@
 import { VElement } from "../../../../../framework/VElement.js";
 import { mainView } from "../../../app.js";
-import {  BACKEND_TILE_TYPE_CODES, MAP_COLUMNS, MAP_ROWS, MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
+import { BACKEND_TILE_TYPE_CODES, MAP_COLUMNS, MAP_ROWS, MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
 import { Tile, tileTranslator } from "./tileModel.js";
 
 export class GameMap {
@@ -56,15 +56,24 @@ export class GameMap {
 
   getTilesOnWay(tilesToCheck) {
     const powersup = [];
-    for (const tile of tilesToCheck){
-      if (!this.baseMap[tile.row][tile.column].passable){
+    for (const tile of tilesToCheck) {
+      const mapTile = this.baseMap[tile.row][tile.column]
+      if (!mapTile.passable) {
         return false;
-      }else{
-        if (tile.powersup){
-          powersup.push(tile.powersup)
+      } else {
+        if (mapTile.powersup) {
+          powersup.push(mapTile.powersup)
         }
       }
     }
     return powersup;
-}
+  }
+  getTileToDestroy(tilesToCheck) {
+    const tile = this.baseMap[tilesToCheck.row][tilesToCheck.column];
+    if (tile.passable) {
+      return false;
+    } else {
+      return tile;
+    }
+  }
 }
