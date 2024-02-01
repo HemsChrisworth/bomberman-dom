@@ -353,3 +353,7 @@ body {
     background-image: url("src/assets/images/spritesheets/spritesheet.png");
     position: relative;
 }
+
+.bomb {
+    position: absolute;
+}

@@ -1,7 +1,7 @@
 import { VElement } from "../../../../framework/VElement.js"
-import { mainView } from "../../app.js";
-import { MAP_TILE_SIZE, PLAYER_MOVEMENT_SPEED, PLAYER_START_POSITIONS, PLAYER_Z_INDEX } from "../consts/consts.js"
-import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP } from "../consts/playerActionTypes.js";
+import { mainView } from "../../app.js"
+import { BOMB_PLACEMENT_DELAY, MAP_TILE_SIZE, PLAYER_MOVEMENT_SPEED, PLAYER_START_POSITIONS, PLAYER_Z_INDEX } from "../consts/consts.js"
+import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js";
 
 const OFFSET_IGNORED = 10;
 function setPlayerStyleAttrs(x, y) {
@@ -277,5 +277,19 @@ export class Player { // add all player properties here, for example image, move
 
     this.moveOn(shiftX, shiftY);
     return true;
+  }
+
+  [PLAYER_PLACE_BOMB] = () => {
+    this.bombAmount--;
+    setTimeout(() => { this.bombAmount++ }, BOMB_PLACEMENT_DELAY);
+    let { row, column } = this.model;
+    const power = this.fireTiles;
+    if (this.model.offsetX > MAP_TILE_SIZE / 2) {
+      column++;
+    }
+    if (this.model.offsetY > MAP_TILE_SIZE / 2) {
+      row++;
+    }
+    return { row, column, power };
   }
 }

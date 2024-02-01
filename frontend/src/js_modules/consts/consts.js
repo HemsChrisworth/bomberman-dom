@@ -16,9 +16,10 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   MAP_COLUMNS = 17,
   // z-indexes, used in class constructors
   EXPLOSION_Z_INDEX = 2, //for bomb explosion fire animation (player caught in the fire)
-  BOMB_Z_INDEX = 0, //player places the bomb under themselves
-  PLAYER_Z_INDEX = 1,
+  BOMB_Z_INDEX = 5, //player places the bomb under themselves
+  PLAYER_Z_INDEX = 10,
   // blocks
+  SPRITE_SHEET_URL = "src/assets/images/spritesheets/spritesheet.png",
   GRASS = 70,
   SOLID = 45,
   DBLOCK = 46,
@@ -52,11 +53,13 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   // player actions
 
   PLAYER_MOVEMENT_SPEED = 2,
-  
+
 
   // bomb
   BOMB_EXPLOSION_TIMER = 3000, // time between placing bomb and explosion
-  BOMB_PLACEMENT_DELAY = 3000
+  BOMB_PLACEMENT_DELAY = 3000,
+
+  //directions
+  LEFT = "left", RIGHT = "right", UP = "up", DOWN = "down"
 
 
-    

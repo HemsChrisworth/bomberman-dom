@@ -30,7 +30,7 @@ export const playerActioner = {
         handle: (data) => movementHandler(data.playerName, data.action.coords)
     },
     [PLAYER_PLACE_BOMB]: {
-        send: throttle(bombPlace, BOMB_PLACEMENT_DELAY),
+        send: throttle(bombPlace, 50),
         handle: (data) => bombPlaceHandler(data.action.coords)
     },
 }
