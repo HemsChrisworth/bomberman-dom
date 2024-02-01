@@ -26,11 +26,11 @@ export class PlaceBomb extends PlayerAction {
 
 export const playerActioner = {
     [PLAYER_MOVE]: {
-        send: (currentAction) => throttle(getNewPlayerPosition, 20)(currentAction),
+        send:  throttle(getNewPlayerPosition, 20),
         handle: (data) => movementHandler(data.playerName, data.action.coords)
     },
     [PLAYER_PLACE_BOMB]: {
-        send: () => throttle(bombPlace, BOMB_PLACEMENT_DELAY)(),
+        send: throttle(bombPlace, BOMB_PLACEMENT_DELAY),
         handle: (data) => bombPlaceHandler(data.action.coords)
     },
 }
