@@ -1,5 +1,6 @@
 import { VElement } from "../../../../../framework/VElement.js";
-import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK , BOMBPUP, FIREPUP , SPEEDPUP } from "../../consts/consts.js";
+import { mainView } from "../../../app.js";
+import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK , BOMBPUP, FIREPUP , SPEEDPUP, BOMB_EXPLOSION_TIMER, BOMB_Z_INDEX } from "../../consts/consts.js";
 
 export class Tile {
     constructor(x, y, spriteOffsetX, spriteOffsetY) {
@@ -25,17 +26,21 @@ export class Tile {
     }
 }
 
-class Bomb extends Tile {
-  constructor(x, y, spriteOffsetX, spriteOffsetY) {
+export class Bomb extends Tile {
+  constructor(x, y, spriteOffsetX, spriteOffsetY) { // x and y is player's current x, y
     super(x, y, spriteOffsetX, spriteOffsetY);
     this.z = BOMB_Z_INDEX
-    this.timer = timer; // how long the bomb ticks for before exploding
     this.hasExploded = false; // if true, remove bomb (set to true after exploding)
     this.passable = true;
+    setTimeout(this.explode, BOMB_EXPLOSION_TIMER, this.vElement.vId); // set timer for bomb to explose after placing
   }
 
-  explode() { //need to run more funcs here
+  explode(bombvID) { //need to run more funcs here
     this.hasExploded = true;
+    mainView.vElement.delChild(bombvID) // removes bomb element
+
+    // add explosion elements
+    // handle player lives and block destroying within radius
   }
 }
 

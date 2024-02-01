@@ -1,8 +1,7 @@
 import { mainView } from "../app.js";
-import { PLAYER_MOVE_LEFT } from "../js_modules/consts/consts.js";
-import { gameBoxModel } from "../views/gameBoxView.js";
 import { Player } from "../js_modules/models/playersModel.js";
-import { movementHandler } from "../js_modules/playerMovement.js";
+import { playerActionHandler } from "../js_modules/player_actions/actionModel.js";
+import { movementHandler } from "../js_modules/player_actions/playerMovement.js";
 
 // routes the response from websocket to various functions for components
 
@@ -94,8 +93,8 @@ export const wsResponseRouter = {
       console.error("Error in playerAction handler:", payload.data);
       return
     }
-    //TODO have a separate function to handle bombs
-    movementHandler(payload.data.playerName, payload.data.action);
+    
+    playerActionHandler[payload.data.action.type](payload.data)
   },
 };
 

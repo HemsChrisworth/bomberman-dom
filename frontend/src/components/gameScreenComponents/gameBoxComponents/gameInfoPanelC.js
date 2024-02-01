@@ -1,4 +1,5 @@
 import { VElement } from "../../../../../framework/VElement.js";
+import { mainView } from "../../../app.js";
 
 function createAvatar() {
     return new VElement({
@@ -8,23 +9,23 @@ function createAvatar() {
     });
 }
 
-function createStatus() {
+function createStatus(playerLives) {
     return new VElement({
-        tag: 'span',
-        attrs: { class: 'userGameStatus', class: 'material-symbols-outlined' },
-        content: "favorite",
+      tag: "span",
+      attrs: { class: "userGameStatus", class: "material-symbols-outlined" },
+      content: `${playerLives}favorite`,
     });
 }
 
-function createUsername() {
+function createUsername(playerName) {
     return new VElement({
         tag: 'span',
         attrs: { class: 'gamePlayerUsername' },
-        content: 'Player1',
+        content: playerName,
     });
 }
 
-function createOnePlayer() {
+function createOnePlayer(player) {
     return new VElement({ // One element of the players list
         tag: 'div',
         attrs: { class: 'playerone' },
@@ -32,59 +33,28 @@ function createOnePlayer() {
             // Avatar (hero + color) + nickname + status icon: "In game" OR "Died but online (can write in chat)" OR "Offline"
             // If in game => <3 <3 <3 + Lives
             createAvatar(),
-            createUsername(),
-            createStatus(),
+            createUsername(player.name),
+            createStatus(player.lives),
         ],
     });
 }
 
-function createTwoPlayer() {
-    return new VElement({
-        tag: 'div',
-        attrs: { class: 'playerone' },
-        children: [
-            createAvatar(),
-            createUsername(),
-            createStatus(),
-        ],
-    });
+function addPlayersToInfoBar(playerList) {
+  const playerInfoVelements = [];
+  Object.values(playerList).forEach((player) => {
+    const vPlayerInfo = createOnePlayer(player);
+    playerInfoVelements.push(vPlayerInfo);
+  });
+  return playerInfoVelements;
 }
 
-function createThreePlayer() {
-    return new VElement({
-        tag: 'div',
-        attrs: { class: 'playerone' },
-        children: [
-            createAvatar(),
-            createUsername(),
-            createStatus(),
-        ],
-    });
-}
-
-function createFourPlayer() {
-    return new VElement({
-        tag: 'div',
-        attrs: { class: 'playerone' },
-        children: [
-            createAvatar(),
-            createUsername(),
-            createStatus(),
-        ],
-    });
-}
-
-function createPlayersOnline() {
-    return new VElement({ // The list of players connected / online / in game
-        tag: 'div',
-        attrs: { class: 'playerlist' },
-        children: [
-            createOnePlayer(), // Need to make them be 4 psc
-            createTwoPlayer(),
-            createThreePlayer(),
-            createFourPlayer(),
-        ],
-    });
+function createPlayersOnline(playerList) {
+  return new VElement({
+    // The list of players connected / online / in game
+    tag: "div",
+    attrs: { class: "playerlist" },
+    children: addPlayersToInfoBar(playerList),
+  });
 }
 
 function createGameSpecs() {
@@ -106,14 +76,14 @@ function createGameInfoHeader() {
     });
 }
 
-export function createGameInfoPanelC() {
+export function createGameInfoPanelC(playerList) {
     return new VElement({
-        tag: 'div',
-        attrs: { id: 'gameinfo' },
-        children: [
-            createGameInfoHeader(),
-            createPlayersOnline(),
-            createGameSpecs(),
-        ],
+      tag: "div",
+      attrs: { id: "gameinfo" },
+      children: [
+        createGameInfoHeader(),
+        createPlayersOnline(playerList),
+        createGameSpecs(),
+      ],
     });
 }

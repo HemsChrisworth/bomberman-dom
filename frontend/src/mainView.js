@@ -47,8 +47,7 @@ export class MainView {
 
     showGameBox = (gameMapString) => {
         this.gameMap = new GameMap(gameMapString)
-
-        const gameBoxM = new gameBoxModel(this.gameMap);
+        const gameBoxM = new gameBoxModel(this.gameMap, this.PlayerList.players);
         this.vElement.replaceChild(this.currentViewChildIndex, gameBoxM.vElement);
         //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
         this.currentViewModel = gameBoxM;
@@ -62,7 +61,10 @@ export class MainView {
         //     player.renderPlayer(gameBoxM.gameMap);
         // });
         //TODO next row is for test
-        Object.values(this.PlayerList.players)[0].renderPlayer(this.gameMap);
+        Object.values(this.PlayerList.players).forEach(player => {
+            player.renderPlayer(this.gameMap)
+        })
+        //Object.values(this.PlayerList.players)[0].renderPlayer(this.gameMap);
 
     }
 
