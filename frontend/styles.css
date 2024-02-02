@@ -351,7 +351,7 @@ body {
 
 .player {
     background-image: url("src/assets/images/spritesheets/spritesheet.png");
-    position: relative;
+    position: absolute;
 }
 
 .bomb, .explosion {

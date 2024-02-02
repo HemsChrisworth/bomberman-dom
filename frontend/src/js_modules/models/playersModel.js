@@ -104,6 +104,7 @@ export class Player { // add all player properties here, for example image, move
     if (number) {
       this._number = number;
       const { row, column } = PLAYER_START_POSITIONS[number - 1]
+      console.log("new player: ", number,'-',name, row,' : ', column)
       this.model = new PlayerModel(row, column)
       this.x = this.model.column * MAP_TILE_SIZE // have x and y randomly allocated
       this.y = this.model.row * MAP_TILE_SIZE
@@ -138,6 +139,8 @@ export class Player { // add all player properties here, for example image, move
   set number(number) {
     this._number = number;
     const { row, column } = PLAYER_START_POSITIONS[number - 1];
+    console.log("new player add num: ", number,'-',name, row,' : ', column)
+
     this.model = new PlayerModel(row, column);
     this.x = this.model.column * MAP_TILE_SIZE; // have x and y randomly allocated
     this.y = this.model.row * MAP_TILE_SIZE;
