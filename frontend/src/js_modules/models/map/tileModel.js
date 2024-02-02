@@ -1,10 +1,10 @@
 import { VElement } from "../../../../../framework/VElement.js";
 import { mainView } from "../../../app.js";
-import { getSpriteSheetXYbyIndex } from "../../../utils/spriteSheetCalc.js";
+import { getSpriteSheetXYbyIndex, spriteSheetXYtoStyleString } from "../../../utils/spriteSheetCalc.js";
 import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK, BOMBPUP, FIREPUP, SPEEDPUP, SPRITE_SHEET_URL } from "../../consts/consts.js";
 
 function setTileStyle(x, y, spriteOffsetX, spriteOffsetY) {
-  const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
+  const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX,spriteOffsetY);
   return {
     left: `${x}px`,
     top: `${y}px`,
@@ -29,9 +29,6 @@ export class Tile {
       style: setTileStyle(x, y, spriteOffsetX, spriteOffsetY),
     });
   }
-  convertXYoffsetToBackgroundPosition() {
-    return `${spriteOffsetX}px ${spriteOffsetY}px`;
-  }
 }
 
 // if DestroyableBlock is destroyed => appears GrassBlock OR BombPowerUp OR FirePowerUp OR SpeedPowerUp
@@ -46,7 +43,7 @@ class DestroyableBlock extends Tile {
     this.destroyable = false;
     this.passable = true;
     const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(GRASS)
-    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
+    const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY)
     this.vElement.setStyle(`background-position: ${spriteSheetPosition}`) // TODO - new coords for bkg-pos or animate
     //mainView.gameMap.vElement.delChild(this.vElement._vId)
   }

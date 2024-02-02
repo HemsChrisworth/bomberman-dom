@@ -159,7 +159,9 @@ export class Player { // add all player properties here, for example image, move
   renderPlayer(gameBoxM) {
     gameBoxM.vElement.addChild(this.vElement)
   }
-
+  respawn() {
+    
+  }
   adgustByX() {
     let shiftX = 0;
     const oldModel = {

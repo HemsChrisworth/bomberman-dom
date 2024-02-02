@@ -32,7 +32,10 @@ DBLOCKBOMB - O - destroyable block with a bomb powerup spawned when destroyed (O
 DBLOCKFLAME - F - destroyable block with flame powerup spawned when destroyed
 DBLOCKSPEED - M - destroyable block with player speed increase powerup spawned when destroyed (M -> movement speed)
 */
-const charSet = "GGDOFM" // characters that we use for different spawnable block types, we can add characters to it if we want something to be more common!
+
+const charSet = "GGGDDDDDOFM"
+
+//const charSet = "GGDOFM" // characters that we use for different spawnable block types, we can add characters to it if we want something to be more common!
 
 func randomMapGenerator(baseMap string, charSet string) (randomMap string) {
 	randomMap = ""

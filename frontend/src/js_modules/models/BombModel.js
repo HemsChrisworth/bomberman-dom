@@ -1,11 +1,12 @@
 import { VElement } from "../../../../framework/VElement.js";
 import { mainView } from "../../app.js";
+import { spriteSheetXYtoStyleString } from "../../utils/spriteSheetCalc.js";
 import { BOMB_EXPLOSION_TIMER, BOMB_Z_INDEX, SPRITE_POS, BOMB, SPRITE_SHEET_URL, MAP_TILE_SIZE } from "../consts/consts.js";
 import { Explosion } from "./explosionModel.js";
 
 function setBombStyle(x, y) {
     const [spriteOffsetX, spriteOffsetY] = SPRITE_POS[BOMB];
-    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`
+    const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY);
     return {
         left: `${x}px`,
         top: `${y}px`,

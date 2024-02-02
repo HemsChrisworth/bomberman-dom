@@ -2,6 +2,15 @@ import { VElement } from "../../../../framework/VElement.js";
 import { mainView } from "../../app.js";
 import { SPRITE_POS, SPRITE_SHEET_URL, MAP_TILE_SIZE, EXPLOSION_Z_INDEX, EXPLOSION_CENTER, EXPLOSION_LEFT, EXPLOSION_RIGHT, EXPLOSION_UP, EXPLOSION_DOWN, EXPLOSION_LASTING_TIMER, EXPLOSION_EDGES } from "../consts/consts.js";
 
+function checkPlayerInExplosion(column, row) {
+    for (const player of Object.values(mainView.PlayerList.players)) {
+      if (player.model.column == column &&player.model.row == row) {
+        console.log("player dead");
+      }
+    }
+}
+
+
 function setExplosionStyle(x, y) {
     return {
         left: `${x}px`,
@@ -44,6 +53,7 @@ class ExplosionModel {
             const tile = mainView.gameMap?.getTileToDestroy(block);
             if (!tile) {
                 this.blocks[EXPLOSION_LEFT].push(block);
+                checkPlayerInExplosion(block.row, block.column)
                 continue; // it was passable tile
             }
             if (tile.destroyable) {
@@ -57,6 +67,7 @@ class ExplosionModel {
             const tile = mainView.gameMap?.getTileToDestroy(block);
             if (!tile) {
                 this.blocks[EXPLOSION_RIGHT].push(block);
+                checkPlayerInExplosion(block.row, block.column);
                 continue;
             }
             if (tile.destroyable) {
@@ -70,6 +81,7 @@ class ExplosionModel {
             const tile = mainView.gameMap?.getTileToDestroy(block);
             if (!tile) {
                 this.blocks[EXPLOSION_UP].push(block);
+                checkPlayerInExplosion(block.row, block.column);
                 continue;
             }
             if (tile.destroyable) {
@@ -82,9 +94,10 @@ class ExplosionModel {
             const block = { row: this.row + i, column: this.column };
             const tile = mainView.gameMap?.getTileToDestroy(block);
             console.log("down expl: ",tile)
-
+            // if player is on tile, dead
             if (!tile) {
                 this.blocks[EXPLOSION_DOWN].push(block);
+                checkPlayerInExplosion(block.row, block.column);
                 continue;
             }
             if (tile.destroyable) {

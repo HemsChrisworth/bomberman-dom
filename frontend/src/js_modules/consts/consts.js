@@ -80,7 +80,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   // bomb
   BOMB_EXPLOSION_TIMER = 3000, // time between placing bomb and explosion
   EXPLOSION_LASTING_TIMER = 3000, // explosion lasts 
-  BOMB_PLACEMENT_DELAY = 3000
+  BOMB_PLACEMENT_DELAY = 200
 
 //directions
 

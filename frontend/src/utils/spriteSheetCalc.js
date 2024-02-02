@@ -13,3 +13,8 @@ export function getSpriteSheetXYbyIndex(tileIndex) {
     -Math.floor(tileIndex / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE,
   ];
 }
+
+
+export function spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY) {
+  return `${spriteOffsetX}px ${spriteOffsetY}px`;
+}
