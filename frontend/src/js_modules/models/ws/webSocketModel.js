@@ -38,7 +38,7 @@ export default class Socket {
     });
   };
   emit(event, payload) {
-    console.log("Type: ", event, " Payload:", payload); // for troubleshooting
+    //console.log("Type: ", event, " Payload:", payload); // for troubleshooting
     wsResponseRouter[event](payload); // routes the data to a handler based on the event
   }
   closeWebsocket() {

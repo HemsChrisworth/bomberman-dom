@@ -93,7 +93,6 @@ export const wsResponseRouter = {
       console.error("Error in playerAction handler:", payload.data);
       return
     }
-console.log("Player action:" , payload.data.action.type)
     playerActioner[payload.data.action.type].handle(payload.data)
   },
 };

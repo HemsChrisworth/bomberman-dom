@@ -15,6 +15,10 @@ export const keyConvert = {
 };
 
 // this turns arrow keys and wsad into a single direction
+keyConvert.W = keyConvert.w;
+keyConvert.S = keyConvert.s;
+keyConvert.A = keyConvert.a;
+keyConvert.D = keyConvert.d;
 keyConvert.ArrowUp = keyConvert.w;
 keyConvert.ArrowDown = keyConvert.s;
 keyConvert.ArrowLeft = keyConvert.a;

@@ -199,9 +199,11 @@ export class Player { // add all player properties here, for example image, move
     // So if getTilesOnWay returns not false value it means tiles arary contains omnly 1 element. But let it be.
     const tiles = mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[direction]());
     if (!tiles) { return false; }
-    for (let tile in tiles) {
+    for (let tile of tiles) {
+      console.log("checkTilesOnWay, tile : ", tile)
       if (tile.powerup != null) {//!=null or undefined
-        this.stats[direction]();
+        this.stats[tile.powerup]();
+        console.log("checkTilesOnWay, player stat  : " + this.stats)
         tile.removePowerUp();
       }
     }
@@ -211,8 +213,8 @@ export class Player { // add all player properties here, for example image, move
   [PLAYER_MOVE_DOWN] = () => {
     let [oldModel, shiftX] = this.adgustByX();
 
-    
-    if (this.model.offsetY == 0 && !mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_DOWN]())) {
+
+    if (this.model.offsetY == 0 && !this.checkTilesOnWay(PLAYER_MOVE_DOWN)) {
       Object.assign(this.model, oldModel);
       return false;
     }
@@ -222,7 +224,7 @@ export class Player { // add all player properties here, for example image, move
 
     if (this.model.offsetY >= MAP_TILE_SIZE) {
       this.model.index = this.model.changePosition[PLAYER_MOVE_DOWN]();
-      if (!mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_DOWN]())) {
+      if (!this.checkTilesOnWay(PLAYER_MOVE_DOWN)) {
         shiftY -= this.model.offsetY - MAP_TILE_SIZE
         this.model.offsetY = 0;
       } else {
@@ -235,7 +237,7 @@ export class Player { // add all player properties here, for example image, move
   [PLAYER_MOVE_UP] = () => {
     let [oldModel, shiftX] = this.adgustByX();
 
-    if (this.model.offsetY == 0 && !mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_UP]())) {
+    if (this.model.offsetY == 0 && !this.checkTilesOnWay(PLAYER_MOVE_UP)) {
       Object.assign(this.model, oldModel);
       return false;
     }
@@ -244,7 +246,7 @@ export class Player { // add all player properties here, for example image, move
     this.model.offsetY += shiftY;
 
     if (this.model.offsetY < 0) {
-      if (!mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_UP]())) {
+      if (!this.checkTilesOnWay(PLAYER_MOVE_UP)) {
         shiftY -= this.model.offsetY
         this.model.offsetY = 0;
       } else {
@@ -259,7 +261,7 @@ export class Player { // add all player properties here, for example image, move
   [PLAYER_MOVE_LEFT] = () => {
     let [oldModel, shiftY] = this.adgustByY();
 
-    if (this.model.offsetX == 0 && !mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_LEFT]())) {
+    if (this.model.offsetX == 0 && !this.checkTilesOnWay(PLAYER_MOVE_LEFT)) {
       Object.assign(this.model, oldModel);
       return false;
     }
@@ -268,7 +270,7 @@ export class Player { // add all player properties here, for example image, move
     this.model.offsetX += shiftX;
 
     if (this.model.offsetX < 0) {
-      if (!mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_LEFT]())) {
+      if (!this.checkTilesOnWay(PLAYER_MOVE_LEFT)) {
         shiftX -= this.model.offsetX
         this.model.offsetX = 0;
       } else {
@@ -283,7 +285,7 @@ export class Player { // add all player properties here, for example image, move
   [PLAYER_MOVE_RIGHT] = () => {
     let [oldModel, shiftY] = this.adgustByY();
 
-    if (this.model.offsetX == 0 && !mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_RIGHT]())) {
+    if (this.model.offsetX == 0 && !this.checkTilesOnWay(PLAYER_MOVE_RIGHT)) {
       Object.assign(this.model, oldModel);
       return false;
     }
@@ -292,7 +294,7 @@ export class Player { // add all player properties here, for example image, move
 
     if (this.model.offsetX >= MAP_TILE_SIZE) {
       this.model.index = this.model.changePosition[PLAYER_MOVE_RIGHT]();
-      if (!mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[PLAYER_MOVE_RIGHT]())) {
+      if (!this.checkTilesOnWay(PLAYER_MOVE_RIGHT)) {
         shiftX -= this.model.offsetX - MAP_TILE_SIZE
         this.model.offsetX = 0;
       } else {
@@ -334,6 +336,13 @@ class PlayerStats {
       content: `${this.lives}favorite`,
     });
   }
+  toString() {
+    return `
+  lives: ${this.lives}
+  bombAmount: ${this.bombAmount}
+  fireTiles: ${this.fireTiles}
+  moveSpeed: ${this.moveSpeed}`
+  }
   loseLife() {
     this.lives--
     this.vPlayerStatsBar.content = `${this.lives}favorite`;
@@ -345,6 +354,6 @@ class PlayerStats {
     this.fireTiles++;
   }
   [SPEEDPUP] = () => {
-    this.moveSpeed += PLAYER_MOVEMENT_SPEED;
+    this.moveSpeed += 1;
   }
 }

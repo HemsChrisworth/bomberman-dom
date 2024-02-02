@@ -50,18 +50,18 @@ export class GameMap {
   }
 
   getTilesOnWay(tilesToCheck) {
-    const powersup = [];
+    const powerups = [];
     for (const tile of tilesToCheck) {
       const mapTile = this.baseMap[tile.row][tile.column]
       if (!mapTile.passable) {
         return false;
       } else {
-        if (mapTile.powersup) {
-          powersup.push(mapTile.powersup)
+        if (mapTile.powerup) {
+          powerups.push(mapTile)
         }
       }
     }
-    return powersup;
+    return powerups;
   }
   getTileToDestroy(tilesToCheck) {
     const tile = this.baseMap[tilesToCheck.row][tilesToCheck.column];
