@@ -1,5 +1,21 @@
 import { VElement } from "../../../../../framework/VElement.js";
-import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK, BOMBPUP, FIREPUP, SPEEDPUP } from "../../consts/consts.js";
+import { mainView } from "../../../app.js";
+import { getSpriteSheetXYbyIndex } from "../../../utils/spriteSheetCalc.js";
+import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK, BOMBPUP, FIREPUP, SPEEDPUP, SPRITE_SHEET_URL } from "../../consts/consts.js";
+
+function setTileStyle(x, y, spriteOffsetX, spriteOffsetY) {
+  const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
+  return {
+    left: `${x}px`,
+    top: `${y}px`,
+    ["background-image"]: `url(${SPRITE_SHEET_URL})`,
+    ["background-position"]: `${spriteSheetPosition}`,
+    width: `${MAP_TILE_SIZE}px`,
+    height: `${MAP_TILE_SIZE}px`,
+    position: "absolute"
+  };
+}
+
 
 export class Tile {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
@@ -8,20 +24,13 @@ export class Tile {
     this.sprite = 'src/assets/images/spritesheets/spritesheet.png';
     this.passable = false;
     this.destroyable = false;
-    const spriteSheetPosition = `-${spriteOffsetX}px -${spriteOffsetY}px`;
     this.vElement = new VElement({
       tag: "div",
-      attrs: {
-        src: this.sprite,
-        style: `background-image: url(${this.sprite});
-            background-position: ${spriteSheetPosition};
-            left: ${this.x}px;
-            top: ${this.y}px;
-            width: ${MAP_TILE_SIZE}px;
-            height: ${MAP_TILE_SIZE}px;
-            position: absolute;`,
-      },
+      style: setTileStyle(x, y, spriteOffsetX, spriteOffsetY),
     });
+  }
+  convertXYoffsetToBackgroundPosition() {
+    return `${spriteOffsetX}px ${spriteOffsetY}px`;
   }
 }
 
@@ -31,14 +40,16 @@ class DestroyableBlock extends Tile {
     super(x, y, spriteOffsetX, spriteOffsetY);
     this.passable = false;
     this.destroyable = true;
-    
   }
-    destroy() {
-      console.log("destroy: ", this);
-      this.destroyable = false;
-      this.passable = true;
-      // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - new coords for bkg-pos or animate
-    }
+  destroy() {
+    console.log("destroy: ", this);
+    this.destroyable = false;
+    this.passable = true;
+    const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(GRASS)
+    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
+    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`) // TODO - new coords for bkg-pos or animate
+    //mainView.gameMap.vElement.delChild(this.vElement._vId)
+  }
 }
 
 class SolidBlock extends Tile {
@@ -56,6 +67,7 @@ class GrassBlock extends Tile {
   }
 }
 
+
 class BombPowerUp extends DestroyableBlock {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
     super(x, y, spriteOffsetX, spriteOffsetY);
@@ -64,10 +76,16 @@ class BombPowerUp extends DestroyableBlock {
   }
 
   destroy() {
-     super.destroy();
-
-      // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
-    }
+    super.destroy();
+    const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(
+      this.powerup
+    );
+    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
+    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`); // TODO - new coords for bkg-pos or animate
+  }
+  activatePowerUp() {
+    mainView.currentPlayer.bombAmount++;
+  }
 }
 
 class FirePowerUp extends DestroyableBlock {
@@ -78,10 +96,17 @@ class FirePowerUp extends DestroyableBlock {
   }
 
   destroy() {
-     super.destroy();
-
-      // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
-    }
+    super.destroy();
+    const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(
+      this.powerup
+    );
+    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
+    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`); // TODO - new coords for bkg-pos or animate
+    // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
+  }
+  activatePowerUp() {
+    mainView.currentPlayer.fireTiles++;
+  }
 }
 
 class SpeedPowerUp extends DestroyableBlock {
@@ -92,10 +117,17 @@ class SpeedPowerUp extends DestroyableBlock {
   }
 
   destroy() {
-     super.destroy();
-
-      // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
-    }
+    super.destroy();
+    const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(
+      this.powerup
+    );
+    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
+    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`); // TODO - new coords for bkg-pos or animate
+    // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
+  }
+  activatePowerUp() {
+    mainView.currentPlayer.moveSpeed++
+  }
 }
 
 export const tileTranslator = {

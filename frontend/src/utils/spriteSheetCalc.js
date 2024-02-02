@@ -9,7 +9,7 @@ import { MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../js_modules/consts/consts.
 
 export function getSpriteSheetXYbyIndex(tileIndex) {
   return [
-    (tileIndex % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE,
-    Math.floor(tileIndex / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE,
+    -(tileIndex % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE,
+    -Math.floor(tileIndex / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE,
   ];
 }

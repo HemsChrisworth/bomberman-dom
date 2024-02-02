@@ -20,11 +20,4 @@ const actionConverter = {
 export function actionSender(currentAction) {
   const actionType = actionConverter.getActionType(currentAction);
   playerActioner[actionType].send(currentAction);
-  // if (currentAction !== PLAYER_PLACE_BOMB) {
-  //   playerMovementThrottler(currentAction);
-  // } else if (currentAction === PLAYER_PLACE_BOMB) {
-  //   // create a throttler type function that places
-  //   bombPlaceThrottle()
-  // send ws request with the bomb payload
-  // }
 }

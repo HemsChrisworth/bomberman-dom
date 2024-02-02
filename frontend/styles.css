@@ -350,7 +350,7 @@ body {
 }
 
 .player {
-    background-image: url("src/assets/images/spritesheets/spritesheet.png");
+    background-image: url("src/assets/images/spritesheets/bomberman.png");
     position: absolute;
 }
 

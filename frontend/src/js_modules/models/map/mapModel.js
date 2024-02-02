@@ -41,11 +41,6 @@ export class GameMap {
   getMapTileInitial(tileCode) {
     return BACKEND_TILE_TYPE_CODES[tileCode];
   }
-  // getSpritePositions(tileIndex) {
-  //   const sourceX = (tileIndex % SPRITESHEET_COLUMNS) * MAP_TILE_SIZE;
-  //   const sourceY = Math.floor(tileIndex / SPRITESHEET_COLUMNS) * MAP_TILE_SIZE;
-  //   return [sourceX, sourceY];
-  // }
   renderMap() {
     for (const row of this.baseMap) {
       for (const tile of row) {
@@ -75,5 +70,8 @@ export class GameMap {
     } else {
       return tile;
     }
+  }
+  addTile() {
+    
   }
 }

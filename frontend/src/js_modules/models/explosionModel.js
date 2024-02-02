@@ -14,7 +14,7 @@ function setExplosionStyle(x, y) {
 }
 function setExplosionPicture(direction) {
     const [spriteOffsetX, spriteOffsetY] = SPRITE_POS[direction];
-    const spriteSheetPosition = `-${spriteOffsetX}px -${spriteOffsetY}px`
+    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`
     return {
         ["background-position"]: `${spriteSheetPosition}`,
     }
@@ -38,6 +38,7 @@ class ExplosionModel {
             [EXPLOSION_UP]: [],
             [EXPLOSION_DOWN]: [],
         };
+        this.destroyedTiles = []
         for (let i = 1; i <= power; i++) {
             const block = { row: this.row, column: this.column - i };
             const tile = mainView.gameMap?.getTileToDestroy(block);
@@ -139,9 +140,19 @@ export class Explosion {
             this.addBeam(direction, blocks);
         }
         this.renderExplosion();
+        //this.removeDestroyedBlocks()
         setTimeout(this.delEsplosion, EXPLOSION_LASTING_TIMER); // set timer for bomb to explose after placing
     }
-
+    /* removeDestroyedBlocks() {
+        Object.values(this.model.blocks).forEach(destroyedTileDirection => {
+            destroyedTileDirection.forEach(tileModel => {
+              console.log(tileModel);
+              mainView.gameMap.baseMap[tileModel.row][tileModel.column] = tile;
+              const grasstile = ""
+              mainView.vElement.delChild(tileModel.tile?.vElement._vId); // replace with grass tile
+            });
+        });
+    } */
     addBeam = (direction, blocks) => {
         if (blocks.length === 0) { return }
         for (let i = 0; i < blocks.length - 1; i++) {
@@ -169,6 +180,7 @@ export class Explosion {
         // if the last one is destroyable tile, destroy it
         blocks[blocks.length - 1].tile?.destroy();
     }
+    // have the explosion remove blocks
     renderExplosion = () => {
         for (const vElement of this.vElements) { mainView.gameMap.vElement.addChild(vElement) }
     }

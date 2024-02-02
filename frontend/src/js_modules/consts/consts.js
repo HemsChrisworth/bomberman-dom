@@ -27,16 +27,16 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   FIREPUP = 197,
   SPEEDPUP = 199,
   BOMB = 43,
-  EXPLOSION_CENTER = 47, // TODO set right number
-  EXPLOSION_LEFT = 48,// TODO set right number
-  EXPLOSION_RIGHT = 49,// TODO set right number
-  EXPLOSION_UP = 50,// TODO set right number
-  EXPLOSION_DOWN = 51,// TODO set right number
+  EXPLOSION_CENTER = 156, 
+  EXPLOSION_LEFT = 155,
+  EXPLOSION_RIGHT = 157,
+  EXPLOSION_UP = 142,
+  EXPLOSION_DOWN = 170,
   EXPLOSION_EDGES = {
-    [EXPLOSION_LEFT]: 55,// TODO set right number
-    [EXPLOSION_RIGHT]: 56,// TODO set right number
-    [EXPLOSION_UP]: 57,// TODO set right number
-    [EXPLOSION_DOWN]: 58,// TODO set right number
+    [EXPLOSION_LEFT]: 154,
+    [EXPLOSION_RIGHT]: 158,
+    [EXPLOSION_UP]: 128,
+    [EXPLOSION_DOWN]: 184,
 
   },
   SPRITE_POS = {
@@ -45,6 +45,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
     [DBLOCK]: getSpriteSheetXYbyIndex(DBLOCK),
     [BOMBPUP]: getSpriteSheetXYbyIndex(BOMBPUP),
     [SPEEDPUP]: getSpriteSheetXYbyIndex(SPEEDPUP),
+    [FIREPUP]: getSpriteSheetXYbyIndex(FIREPUP),
     [BOMB]: getSpriteSheetXYbyIndex(BOMB),
     [EXPLOSION_CENTER]: getSpriteSheetXYbyIndex(EXPLOSION_CENTER),
     [EXPLOSION_LEFT]: getSpriteSheetXYbyIndex(EXPLOSION_LEFT),

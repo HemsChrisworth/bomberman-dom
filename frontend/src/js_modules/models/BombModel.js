@@ -5,7 +5,7 @@ import { Explosion } from "./explosionModel.js";
 
 function setBombStyle(x, y) {
     const [spriteOffsetX, spriteOffsetY] = SPRITE_POS[BOMB];
-    const spriteSheetPosition = `-${spriteOffsetX}px -${spriteOffsetY}px`
+    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`
     return {
         left: `${x}px`,
         top: `${y}px`,
@@ -74,7 +74,7 @@ export class Bomb {
         mainView.gameMap.vElement.addChild(this.vElement)
     }
 
-    explode = (bombvID) =>{
+    explode = () =>{
         this.hasExploded = true;
         mainView.vElement.delChild(this.vElement.vId); // removes bomb element
         const esplosion = new Explosion(this.model)

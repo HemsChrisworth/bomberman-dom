@@ -9,6 +9,7 @@ function createAvatar() {
     });
 }
 
+
 function createStatus(playerLives) {
     return new VElement({
       tag: "span",
@@ -26,16 +27,17 @@ function createUsername(playerName) {
 }
 
 function createOnePlayer(player) {
-    return new VElement({ // One element of the players list
-        tag: 'div',
-        attrs: { class: 'playerone' },
-        children: [
-            // Avatar (hero + color) + nickname + status icon: "In game" OR "Died but online (can write in chat)" OR "Offline"
-            // If in game => <3 <3 <3 + Lives
-            createAvatar(),
-            createUsername(player.name),
-            createStatus(player.lives),
-        ],
+    return new VElement({
+      // One element of the players list
+      tag: "div",
+      attrs: { class: "playerone" },
+      children: [
+        // Avatar (hero + color) + nickname + status icon: "In game" OR "Died but online (can write in chat)" OR "Offline"
+        // If in game => <3 <3 <3 + Lives
+        createAvatar(),
+        createUsername(player.name),
+        player.stats.vPlayerStatsBar,
+      ],
     });
 }
 
