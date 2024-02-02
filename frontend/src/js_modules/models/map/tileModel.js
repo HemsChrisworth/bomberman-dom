@@ -4,7 +4,7 @@ import { getSpriteSheetXYbyIndex, spriteSheetXYtoStyleString } from "../../../ut
 import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK, BOMBPUP, FIREPUP, SPEEDPUP, SPRITE_SHEET_URL } from "../../consts/consts.js";
 
 function setTileStyle(x, y, spriteOffsetX, spriteOffsetY) {
-  const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX,spriteOffsetY);
+  const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY);
   return {
     left: `${x}px`,
     top: `${y}px`,
@@ -14,6 +14,11 @@ function setTileStyle(x, y, spriteOffsetX, spriteOffsetY) {
     height: `${MAP_TILE_SIZE}px`,
     position: "absolute"
   };
+}
+
+function getGrassSpriteSheetPosition() {
+  const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(GRASS);
+  return spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY);
 }
 
 
@@ -42,10 +47,9 @@ class DestroyableBlock extends Tile {
     console.log("destroy: ", this);
     this.destroyable = false;
     this.passable = true;
-    const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(GRASS)
-    const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY)
-    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`) // TODO - new coords for bkg-pos or animate
-    //mainView.gameMap.vElement.delChild(this.vElement._vId)
+    // const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(GRASS)
+    // const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY)
+    this.vElement.setStyle(`background-position: ${getGrassSpriteSheetPosition()}`) // TODO - new coords for bkg-pos or animate
   }
 }
 
@@ -69,7 +73,6 @@ class BombPowerUp extends DestroyableBlock {
   constructor(x, y, spriteOffsetX, spriteOffsetY) {
     super(x, y, spriteOffsetX, spriteOffsetY);
     this.powerup = BOMBPUP;
-    // if block is touched by player => mainView.currentPlayer.bombAmount++;
   }
 
   destroy() {
@@ -77,11 +80,15 @@ class BombPowerUp extends DestroyableBlock {
     const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(
       this.powerup
     );
-    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
-    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`); // TODO - new coords for bkg-pos or animate
+    const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY)
+    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`) // TODO - if class DestroyableBlock animates destroing, put this in setTimer
   }
-  activatePowerUp() {
-    mainView.currentPlayer.bombAmount++;
+  // activatePowerUp() {
+  //   mainView.currentPlayer.bombAmount++;
+  // }
+  removePowerUp() {
+    this.powerup = null;
+    this.vElement.setStyle(`background-position: ${getGrassSpriteSheetPosition()}`);
   }
 }
 
@@ -97,12 +104,15 @@ class FirePowerUp extends DestroyableBlock {
     const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(
       this.powerup
     );
-    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
-    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`); // TODO - new coords for bkg-pos or animate
-    // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
+    const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY)
+    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`); // TODO - if class DestroyableBlock animates destroing, put this in setTimer
   }
-  activatePowerUp() {
-    mainView.currentPlayer.fireTiles++;
+  // activatePowerUp() {
+  //   mainView.currentPlayer.fireTiles++;
+  // }
+  removePowerUp() {
+    this.powerup = null;
+    this.vElement.setStyle(`background-position: ${getGrassSpriteSheetPosition()}`);
   }
 }
 
@@ -118,12 +128,15 @@ class SpeedPowerUp extends DestroyableBlock {
     const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(
       this.powerup
     );
-    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
-    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`); // TODO - new coords for bkg-pos or animate
-    // TODO this.vElement.setStyle({background-position: getSpriteSheetXYbyIndex(index)}) - picture of the powerUp
+    const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY)
+    this.vElement.setStyle(`background-position: ${spriteSheetPosition}`); // TODO - if class DestroyableBlock animates destroing, put this in setTimer
   }
-  activatePowerUp() {
-    mainView.currentPlayer.moveSpeed++
+  // activatePowerUp() {
+  //   mainView.currentPlayer.moveSpeed++
+  // }
+  removePowerUp() {
+    this.powerup = null;
+    this.vElement.setStyle(`background-position: ${getGrassSpriteSheetPosition()}`);
   }
 }
 
