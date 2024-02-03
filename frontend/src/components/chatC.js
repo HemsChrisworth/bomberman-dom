@@ -45,9 +45,10 @@ export function createChatC(sendMessage) {
           }),
         ],
         '@submit.prevent': (velem, event) => {
+          
           const chatMessage = event.target[CHAT_MESSAGE_FORM_INPUT_NAME].value
           sendMessage(chatMessage)
-
+          event.target[CHAT_MESSAGE_FORM_INPUT_NAME].value = ""
           // send message to backend via 'ws.request()'
           // in ws_response_router, add the new message into the chatMessageArea VElement with addChild() method
 

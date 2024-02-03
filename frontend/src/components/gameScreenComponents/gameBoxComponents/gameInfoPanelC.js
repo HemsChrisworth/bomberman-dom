@@ -9,15 +9,6 @@ function createAvatar() {
     });
 }
 
-
-function createStatus(playerLives) {
-    return new VElement({
-      tag: "span",
-      attrs: { class: "userGameStatus", class: "material-symbols-outlined" },
-      content: `${playerLives}favorite`,
-    });
-}
-
 function createUsername(playerName) {
     return new VElement({
         tag: 'span',
@@ -59,13 +50,53 @@ function createPlayersOnline(playerList) {
   });
 }
 
+// Children of game specs:
+function ShowFPS(playerList) {
+  return new VElement({
+    tag: "div",
+    content: "FPS: 60", // Change the content when the real specs will be added
+  });
+}
+
+function ShowScore(playerList) {
+  return new VElement({
+    tag: "div",
+    content: "Score: 1500", // Change the content when the real specs will be added
+  });
+}
+
+function ShowBombPUP(playerList) { // The amount of bomb powerups
+  return new VElement({
+    tag: "div",
+    content: "Bombs: 3", // Change the content when the real specs will be added
+  });
+}
+
+function ShowFlamePUP(playerList) { // The amount of bomb powerups
+  return new VElement({
+    tag: "div",
+    content: "Flame: 3", // Change the content when the real specs will be added
+  });
+}
+
+function ShowSpeedPUP(playerList) { // The amount of bomb powerups
+  return new VElement({
+    tag: "div",
+    content: "Speed: 3", // Change the content when the real specs will be added
+  });
+}
+
+// Powerups will be in player panel
 function createGameSpecs() {
     return new VElement({ // The list of game details: Lives, Score, FPS, etc
         tag: 'div',
         attrs: { id: 'gamespecs' },
-        content: "Score: 1500", // Remove the content when the eal specs will be added
         children: [
-            // children
+          ShowFPS(),
+          //ShowScore(),
+          ShowBombPUP(),
+          ShowFlamePUP(),
+          ShowSpeedPUP(),
         ],
     });
 }
