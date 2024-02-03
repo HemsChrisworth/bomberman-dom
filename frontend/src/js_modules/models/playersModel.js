@@ -5,9 +5,8 @@ import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_
 import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js";
 
 const OFFSET_IGNORED = 10;
-function setPlayerStyleAttrs(x, y) {
-  const style = `transform: translate(${x}px, ${y}px);
-                 z-index: ${PLAYER_Z_INDEX};
+function setPlayerStyleAttrs() {
+  const style = `z-index: ${PLAYER_Z_INDEX};
                  width: ${MAP_TILE_SIZE}px;
                  height: ${MAP_TILE_SIZE}px;`;
   return style;
@@ -102,25 +101,25 @@ class PlayerModel {
 export class Player { // add all player properties here, for example image, movements etc
   constructor(name, number) {
     this.name = name;
-    if (number) {
-      this._number = number;
-      const { row, column } = PLAYER_START_POSITIONS[number - 1];
-      console.log("new player: ", number, "-", name, row, " : ", column);
-      this.model = new PlayerModel(row, column);
-      this.x = this.model.column * MAP_TILE_SIZE; // have x and y randomly allocated
-      this.y = this.model.row * MAP_TILE_SIZE;
-    }
     this.stats = new PlayerStats(); // for lives in the vElement
     this.dead = false
     this.sprite = "src/assets/images/spritesheets/bomberman.png"; // currently uses url in style.css
-
+    
     this.vElement = new VElement({
       tag: "div",
       attrs: {
         class: "player",
-        style: setPlayerStyleAttrs(this.x, this.y),
+        style: setPlayerStyleAttrs(),
       },
     });
+    if (number) {
+      this.number =number;
+      // this._number = number;
+      // const { row, column } = PLAYER_START_POSITIONS[number - 1];
+      // this.model = new PlayerModel(row, column);
+      // this.x = this.model.column * MAP_TILE_SIZE; // have x and y randomly allocated
+      // this.y = this.model.row * MAP_TILE_SIZE;
+    }
   }
   set position([x, y]) {
     this.x = x
@@ -140,11 +139,8 @@ export class Player { // add all player properties here, for example image, move
   set number(number) {
     this._number = number;
     const { row, column } = PLAYER_START_POSITIONS[number - 1];
-    console.log("new player add num: ", number, '-', name, row, ' : ', column)
-
     this.model = new PlayerModel(row, column);
-    this.x = this.model.column * MAP_TILE_SIZE; // have x and y randomly allocated
-    this.y = this.model.row * MAP_TILE_SIZE;
+    [this.x, this.y] = convertRowColumnToXY(this.model.row, this.model.column)
     this.setVPosition();
   }
   get number() {
@@ -166,7 +162,7 @@ export class Player { // add all player properties here, for example image, move
     const [x, y] = convertRowColumnToXY(row, column)
     this.position = [x, y] // add websocket stuff later
   }
-  adgustByX() {
+  adjustByX() {
     let shiftX = 0;
     const oldModel = {
       offsetX: this.model.offsetX,
@@ -182,7 +178,7 @@ export class Player { // add all player properties here, for example image, move
     }
     return [oldModel, shiftX]
   }
-  adgustByY() {
+  adjustByY() {
     let shiftY = 0;
     const oldModel = {
       offsetY: this.model.offsetY,
@@ -206,11 +202,11 @@ export class Player { // add all player properties here, for example image, move
     const tiles = mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[direction]());
     if (!tiles) { return false; }
     for (let tile of tiles) {
+      console.log("checkTilesOnWay, tile : ",tile.onFire)
       if (tile.onFire) {
         mainView.currentPlayer.die()
         return
       }
-      console.log("checkTilesOnWay, tile : ", tile)
       if (tile.powerup != null) {//!=null or undefined
         this.stats[tile.powerup]();
         console.log("checkTilesOnWay, player stat  : " + this.stats)
@@ -221,7 +217,7 @@ export class Player { // add all player properties here, for example image, move
   }
 
   [PLAYER_MOVE_DOWN] = () => {
-    let [oldModel, shiftX] = this.adgustByX();
+    let [oldModel, shiftX] = this.adjustByX();
 
 
     if (this.model.offsetY == 0 && !this.checkTilesOnWay(PLAYER_MOVE_DOWN)) {
@@ -245,7 +241,7 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_UP] = () => {
-    let [oldModel, shiftX] = this.adgustByX();
+    let [oldModel, shiftX] = this.adjustByX();
 
     if (this.model.offsetY == 0 && !this.checkTilesOnWay(PLAYER_MOVE_UP)) {
       Object.assign(this.model, oldModel);
@@ -269,7 +265,7 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_LEFT] = () => {
-    let [oldModel, shiftY] = this.adgustByY();
+    let [oldModel, shiftY] = this.adjustByY();
 
     if (this.model.offsetX == 0 && !this.checkTilesOnWay(PLAYER_MOVE_LEFT)) {
       Object.assign(this.model, oldModel);
@@ -293,7 +289,7 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_RIGHT] = () => {
-    let [oldModel, shiftY] = this.adgustByY();
+    let [oldModel, shiftY] = this.adjustByY();
 
     if (this.model.offsetX == 0 && !this.checkTilesOnWay(PLAYER_MOVE_RIGHT)) {
       Object.assign(this.model, oldModel);

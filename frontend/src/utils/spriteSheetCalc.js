@@ -20,5 +20,5 @@ export function spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY) {
 }
 
 export function convertRowColumnToXY(row, column) {
-  return [row*MAP_TILE_SIZE, column*MAP_TILE_SIZE]
+  return [column*MAP_TILE_SIZE, row*MAP_TILE_SIZE]
 }

@@ -73,7 +73,7 @@ export class GameMap {
    */
   getTileToDestroy(tilesToCheck) {
     const tile = this.baseMap[tilesToCheck.row][tilesToCheck.column];
-    this.baseMap[tilesToCheck.row][tilesToCheck.column].onFire = true
+    tile.onFire = true;
     if (tile.passable) {
       return false;
     } else {

@@ -36,6 +36,8 @@ class ExplosionModel {
     constructor(row, column, power) {
       this.row = row;
       this.column = column;
+      this.center = mainView.gameMap.baseMap[row][column];
+      this.center.onFire = true; // for central block
       this.blocks = {
         [EXPLOSION_LEFT]: [],
         [EXPLOSION_RIGHT]: [],
@@ -74,7 +76,6 @@ class ExplosionModel {
       for (let i = 1; i <= power; i++) {
         const block = { row: this.row - i, column: this.column };
         const tile = mainView.gameMap?.getTileToDestroy(block);
-        mainView.gameMap.baseMap[block.row][block.column].onFire = true
         if (!tile) { // false is grass block
           this.blocks[EXPLOSION_UP].push(block);
 
@@ -187,11 +188,12 @@ export class Explosion {
     }
     delEsplosion = () => {
         for (const vElement of this.vElements) { 
-            mainView.gameMap.vElement.delChild(vElement.vId)
+            mainView.gameMap.vElement.delChild(vElement.vId);
         }
+        this.model.center.onFire = false;
         for (const blocks of Object.values(this.model.blocks)) {
           blocks.forEach(tile => {
-            mainView.gameMap.baseMap[tile.row][tile.column].onFire = false
+            tile.onFire = false;
           })
         }
     }

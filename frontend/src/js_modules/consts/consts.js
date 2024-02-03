@@ -21,7 +21,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   PLAYER_Z_INDEX = 10,
   // blocks
   SPRITE_SHEET_URL = "src/assets/images/spritesheets/spritesheet.png",
-  GRASS = 70,
+  GRASS = 6,
   SOLID = 45,
   DBLOCK = 46,
   BOMBPUP = 196,
