@@ -7,6 +7,7 @@ body {
     width: 180px;
     margin: 0 auto;
     padding: 20px;
+    margin-bottom: 10px;
 }
 
 #welcome {
@@ -87,15 +88,15 @@ body {
     font-family: 'Luckiest Guy', cursive;
     text-align: center;
     text-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-    padding: 20px;
+    padding: 10px;
     margin: 30px;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
     border-radius: 70px;
-    width: 60px;
-    height: 60px;
-    font-size: 50px;
+    width: 40px;
+    height: 40px;
+    font-size: 30px;
     outline: 5px solid rgb(100, 100, 100);
-    outline-offset: 10px;
+    outline-offset: 7px;
     background: linear-gradient(180deg, rgba(195,73,25,1) 0%, rgba(212,203,23,1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
