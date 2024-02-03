@@ -157,6 +157,7 @@ export class Player { // add all player properties here, for example image, move
     //setTimeout(this.respawn, PLAYER_RESPAWN_TIME); //
   }
   respawn() {
+    // const {row, column} = PLAYER_START_POSITIONS[this._number - 1];
     const {row, column} = this._number ? PLAYER_START_POSITIONS[this._number - 1] : PLAYER_START_POSITIONS[0];
     this.model = new PlayerModel(row, column);
     const [x, y] = convertRowColumnToXY(row, column)
@@ -202,14 +203,14 @@ export class Player { // add all player properties here, for example image, move
     const tiles = mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[direction]());
     if (!tiles) { return false; }
     for (let tile of tiles) {
-      console.log("checkTilesOnWay, tile : ",tile.onFire)
       if (tile.onFire) {
         mainView.currentPlayer.die()
+        console.log("checkTilesOnWay, player stat  : " + this.stats)
+        console.log("checkTilesOnWay, tile  : " ,tile)
         return
       }
       if (tile.powerup != null) {//!=null or undefined
         this.stats[tile.powerup]();
-        console.log("checkTilesOnWay, player stat  : " + this.stats)
         tile.removePowerUp();
       }
     }
