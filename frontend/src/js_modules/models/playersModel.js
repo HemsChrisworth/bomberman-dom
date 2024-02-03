@@ -129,9 +129,10 @@ export class Player { // add all player properties here, for example image, move
     return [this.x, this.y]
   }
 
-  moveOn(shiftX, shiftY) {
-    this.x += shiftX;
-    this.y += shiftY;
+  moveOn() {
+    [this.x, this.y] = convertRowColumnToXY(this.model.row, this.model.column);
+    this.x+=this.model.offsetX;
+    this.y+=this.model.offsetY;
   }
   setVPosition() {
     this.vElement.setStyle(newPlayerStyleTransform(this.x, this.y))
@@ -140,7 +141,7 @@ export class Player { // add all player properties here, for example image, move
     this._number = number;
     const { row, column } = PLAYER_START_POSITIONS[number - 1];
     this.model = new PlayerModel(row, column);
-    [this.x, this.y] = convertRowColumnToXY(this.model.row, this.model.column)
+    [this.x, this.y] = convertRowColumnToXY(this.model.row, this.model.column);
     this.setVPosition();
   }
   get number() {
@@ -151,7 +152,7 @@ export class Player { // add all player properties here, for example image, move
   }
 
   die() {
-    this.dead = true
+    this.dead = true;
     this.stats.loseLife();
     this.respawn();
     //setTimeout(this.respawn, PLAYER_RESPAWN_TIME); //
@@ -162,6 +163,7 @@ export class Player { // add all player properties here, for example image, move
     this.model = new PlayerModel(row, column);
     const [x, y] = convertRowColumnToXY(row, column)
     this.position = [x, y] // add websocket stuff later
+    console.log("respawn position:" , this.position)
   }
   adjustByX() {
     let shiftX = 0;
@@ -238,7 +240,7 @@ export class Player { // add all player properties here, for example image, move
         this.model.offsetY -= MAP_TILE_SIZE;
       }
     }
-    this.moveOn(shiftX, shiftY);
+    this.moveOn();
     return true;
   }
   [PLAYER_MOVE_UP] = () => {
@@ -262,7 +264,7 @@ export class Player { // add all player properties here, for example image, move
       }
     }
 
-    this.moveOn(shiftX, shiftY);
+    this.moveOn();
     return true;
   }
   [PLAYER_MOVE_LEFT] = () => {
@@ -286,7 +288,7 @@ export class Player { // add all player properties here, for example image, move
       }
     }
 
-    this.moveOn(shiftX, shiftY);
+    this.moveOn();
     return true;
   }
   [PLAYER_MOVE_RIGHT] = () => {
@@ -309,7 +311,7 @@ export class Player { // add all player properties here, for example image, move
       }
     }
 
-    this.moveOn(shiftX, shiftY);
+    this.moveOn();
     return true;
   }
 
