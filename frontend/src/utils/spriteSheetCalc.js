@@ -18,3 +18,7 @@ export function getSpriteSheetXYbyIndex(tileIndex) {
 export function spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY) {
   return `${spriteOffsetX}px ${spriteOffsetY}px`;
 }
+
+export function convertRowColumnToXY(row, column) {
+  return [row*MAP_TILE_SIZE, column*MAP_TILE_SIZE]
+}

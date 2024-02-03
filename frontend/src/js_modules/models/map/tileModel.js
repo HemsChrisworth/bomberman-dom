@@ -29,6 +29,7 @@ export class Tile {
     this.sprite = 'src/assets/images/spritesheets/spritesheet.png';
     this.passable = false;
     this.destroyable = false;
+    this.onFire = false
     this.vElement = new VElement({
       tag: "div",
       style: setTileStyle(x, y, spriteOffsetX, spriteOffsetY),

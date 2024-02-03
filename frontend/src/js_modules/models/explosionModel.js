@@ -3,11 +3,6 @@ import { mainView } from "../../app.js";
 import { SPRITE_POS, SPRITE_SHEET_URL, MAP_TILE_SIZE, EXPLOSION_Z_INDEX, EXPLOSION_CENTER, EXPLOSION_LEFT, EXPLOSION_RIGHT, EXPLOSION_UP, EXPLOSION_DOWN, EXPLOSION_LASTING_TIMER, EXPLOSION_EDGES } from "../consts/consts.js";
 
 function checkPlayerInExplosion(column, row) {
-    for (const player of Object.values(mainView.PlayerList.players)) {
-      if (player.model.column == column &&player.model.row == row) {
-        console.log("player dead");
-      }
-    }
 }
 
 
@@ -39,73 +34,75 @@ function setExplosionPicture(direction) {
  */
 class ExplosionModel {
     constructor(row, column, power) {
-        this.row = row;
-        this.column = column;
-        this.blocks = {
-            [EXPLOSION_LEFT]: [],
-            [EXPLOSION_RIGHT]: [],
-            [EXPLOSION_UP]: [],
-            [EXPLOSION_DOWN]: [],
-        };
-        this.destroyedTiles = []
-        for (let i = 1; i <= power; i++) {
-            const block = { row: this.row, column: this.column - i };
-            const tile = mainView.gameMap?.getTileToDestroy(block);
-            if (!tile) {
-                this.blocks[EXPLOSION_LEFT].push(block);
-                checkPlayerInExplosion(block.row, block.column)
-                continue; // it was passable tile
-            }
-            if (tile.destroyable) {
-                block.tile = tile;
-                this.blocks[EXPLOSION_LEFT].push(block);
-            }
-            break; // tile was not passable 
+      this.row = row;
+      this.column = column;
+      this.blocks = {
+        [EXPLOSION_LEFT]: [],
+        [EXPLOSION_RIGHT]: [],
+        [EXPLOSION_UP]: [],
+        [EXPLOSION_DOWN]: [],
+      };
+      // check left side of center
+      for (let i = 1; i <= power; i++) {
+        const block = { row: this.row, column: this.column - i };
+        const tile = mainView.gameMap?.getTileToDestroy(block);
+        if (!tile) {
+          this.blocks[EXPLOSION_LEFT].push(block);
+          continue; // it was passable tile
         }
-        for (let i = 1; i <= power; i++) {
-            const block = { row: this.row, column: this.column + i };
-            const tile = mainView.gameMap?.getTileToDestroy(block);
-            if (!tile) {
-                this.blocks[EXPLOSION_RIGHT].push(block);
-                checkPlayerInExplosion(block.row, block.column);
-                continue;
-            }
-            if (tile.destroyable) {
-                block.tile = tile;
-                this.blocks[EXPLOSION_RIGHT].push(block);
-            }
-            break;
+        if (tile.destroyable) {
+          block.tile = tile;
+          this.blocks[EXPLOSION_LEFT].push(block);
         }
-        for (let i = 1; i <= power; i++) {
-            const block = { row: this.row - i, column: this.column };
-            const tile = mainView.gameMap?.getTileToDestroy(block);
-            if (!tile) {
-                this.blocks[EXPLOSION_UP].push(block);
-                checkPlayerInExplosion(block.row, block.column);
-                continue;
-            }
-            if (tile.destroyable) {
-                block.tile = tile;
-                this.blocks[EXPLOSION_UP].push(block);
-            }
-            break;
+        break; // tile was not passable
+      }
+      // check right side of center
+      for (let i = 1; i <= power; i++) {
+        const block = { row: this.row, column: this.column + i };
+        const tile = mainView.gameMap?.getTileToDestroy(block);
+        if (!tile) {
+          this.blocks[EXPLOSION_RIGHT].push(block);
+          continue;
         }
-        for (let i = 1; i <= power; i++) {
-            const block = { row: this.row + i, column: this.column };
-            const tile = mainView.gameMap?.getTileToDestroy(block);
-            console.log("down expl: ",tile)
-            // if player is on tile, dead
-            if (!tile) {
-                this.blocks[EXPLOSION_DOWN].push(block);
-                checkPlayerInExplosion(block.row, block.column);
-                continue;
-            }
-            if (tile.destroyable) {
-                block.tile = tile;
-                this.blocks[EXPLOSION_DOWN].push(block);
-            }
-            break;
+        if (tile.destroyable) {
+          block.tile = tile;
+          this.blocks[EXPLOSION_RIGHT].push(block);
         }
+        break;
+      }
+      // check up side of center
+      for (let i = 1; i <= power; i++) {
+        const block = { row: this.row - i, column: this.column };
+        const tile = mainView.gameMap?.getTileToDestroy(block);
+        mainView.gameMap.baseMap[block.row][block.column].onFire = true
+        if (!tile) { // false is grass block
+          this.blocks[EXPLOSION_UP].push(block);
+
+          continue;
+        }
+        if (tile.destroyable) {
+          block.tile = tile;
+          this.blocks[EXPLOSION_UP].push(block);
+        }
+        break;
+      }
+      // check down side of center
+      for (let i = 1; i <= power; i++) {
+        const block = { row: this.row + i, column: this.column };
+        const tile = mainView.gameMap?.getTileToDestroy(block);
+        console.log("down expl: ", tile);
+        // if player is on tile, dead
+        if (!tile) {
+          this.blocks[EXPLOSION_DOWN].push(block);
+
+          continue;
+        }
+        if (tile.destroyable) {
+          block.tile = tile;
+          this.blocks[EXPLOSION_DOWN].push(block);
+        }
+        break;
+      }
     }
 
     toString() {
@@ -140,7 +137,7 @@ export class Explosion {
         this.affectedPlayers = [];
         //this.sprite = "src/assets/images/spritesheets/spritesheet.png";
         this.vElements = []
-        // center
+        // center of explosion
         this.vElements.push(new VElement({
             tag: "div",
             attrs: {
@@ -150,22 +147,13 @@ export class Explosion {
         }).setStyle(setExplosionPicture(EXPLOSION_CENTER))
         );
         for (const [direction, blocks] of Object.entries(this.model.blocks)) {
+            // check if player is moving inside blocks
             this.addBeam(direction, blocks);
         }
         this.renderExplosion();
         //this.removeDestroyedBlocks()
         setTimeout(this.delEsplosion, EXPLOSION_LASTING_TIMER); // set timer for bomb to explose after placing
     }
-    /* removeDestroyedBlocks() {
-        Object.values(this.model.blocks).forEach(destroyedTileDirection => {
-            destroyedTileDirection.forEach(tileModel => {
-              console.log(tileModel);
-              mainView.gameMap.baseMap[tileModel.row][tileModel.column] = tile;
-              const grasstile = ""
-              mainView.vElement.delChild(tileModel.tile?.vElement._vId); // replace with grass tile
-            });
-        });
-    } */
     addBeam = (direction, blocks) => {
         if (blocks.length === 0) { return }
         for (let i = 0; i < blocks.length - 1; i++) {
@@ -198,7 +186,14 @@ export class Explosion {
         for (const vElement of this.vElements) { mainView.gameMap.vElement.addChild(vElement) }
     }
     delEsplosion = () => {
-        for (const vElement of this.vElements) { mainView.gameMap.vElement.delChild(vElement.vId) }
+        for (const vElement of this.vElements) { 
+            mainView.gameMap.vElement.delChild(vElement.vId)
+        }
+        for (const blocks of Object.values(this.model.blocks)) {
+          blocks.forEach(tile => {
+            mainView.gameMap.baseMap[tile.row][tile.column].onFire = false
+          })
+        }
     }
 }
 

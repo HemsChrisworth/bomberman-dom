@@ -15,6 +15,7 @@ export class GameMap {
     this.tileSize = MAP_TILE_SIZE; // depends on sprite sheet ig
     //this.tileMap = tileMap;
     this.baseMap = []
+    //this.explosionMap = []
     this.createMap(tileMap)
     this.vElement = new VElement({
       // here we add all the tiles of the game as VElement children
@@ -28,6 +29,7 @@ export class GameMap {
   createMap(tileMap) {
     for (let row = 0; row < this.rows; row++) {
       this.baseMap[row] = [];
+      //this.explosionMap[row] = []
       for (let column = 0; column < this.columns; column++) {
         const tileCode = tileMap[row * this.columns + column]; // number of the tile to get from spritesheet
         const tileInitialObj = this.getMapTileInitial(tileCode);
@@ -35,6 +37,7 @@ export class GameMap {
         const y = row * this.tileSize;
         const tile = tileTranslator[tileInitialObj.TileIndex](x, y, ...tileInitialObj.IntitialSpritePos);
         this.baseMap[row][column] = tile;
+        //this.explosionMap[row][column] = 0 // to add explosion later
       }
     }
   }
@@ -56,15 +59,21 @@ export class GameMap {
       if (!mapTile.passable) {
         return false;
       } else {
-        if (mapTile.powerup) {
+        if (mapTile.powerup || mapTile.onFire) {
           powerups.push(mapTile)
         }
-      }
+      } 
     }
     return powerups;
   }
+  /**
+   * 
+   * @param {*} tilesToCheck 
+   * @returns {Tile}
+   */
   getTileToDestroy(tilesToCheck) {
     const tile = this.baseMap[tilesToCheck.row][tilesToCheck.column];
+    this.baseMap[tilesToCheck.row][tilesToCheck.column].onFire = true
     if (tile.passable) {
       return false;
     } else {

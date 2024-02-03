@@ -78,10 +78,8 @@ export class Bomb {
     explode = () =>{
         this.hasExploded = true;
         mainView.vElement.delChild(this.vElement.vId); // removes bomb element
-        const esplosion = new Explosion(this.model)
-
-        // add explosion elements
-        // handle player lives and block destroying within radius
+        const explosion = new Explosion(this.model)
+        //console.log(explosion.model.blocks)
     }
 }
 

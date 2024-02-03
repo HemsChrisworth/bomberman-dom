@@ -5,6 +5,7 @@ import { getSpriteSheetXYbyIndex } from "../../utils/spriteSheetCalc.js";
 export const PLAYER_NAME_FORM_INPUT = "playerName",
   CHAT_MESSAGE_FORM_INPUT_NAME = "chatMessage",
   WS_REQUEST_TYPE_PLAYER_ACTION = "playerAction",
+  WS_REQUEST_TYPE_PLAYER_LOSE_LIFE = "loseLife",
   WAIT_FOR_PLAYERS = 5, //TODO set to 20 and 10
   START_IN = 2,
   // map tiles
@@ -75,6 +76,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   // player actions
 
   PLAYER_MOVEMENT_SPEED = 2,
+  PLAYER_RESPAWN_TIME = 300,
 
 
   // bomb

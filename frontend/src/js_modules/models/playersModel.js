@@ -1,6 +1,7 @@
 import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js"
-import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP } from "../consts/consts.js"
+import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
+import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME } from "../consts/consts.js"
 import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js";
 
 const OFFSET_IGNORED = 10;
@@ -110,7 +111,7 @@ export class Player { // add all player properties here, for example image, move
       this.y = this.model.row * MAP_TILE_SIZE;
     }
     this.stats = new PlayerStats(); // for lives in the vElement
-
+    this.dead = false
     this.sprite = "src/assets/images/spritesheets/bomberman.png"; // currently uses url in style.css
 
     this.vElement = new VElement({
@@ -119,11 +120,6 @@ export class Player { // add all player properties here, for example image, move
         class: "player",
         style: setPlayerStyleAttrs(this.x, this.y),
       },
-    });
-    this.vLivesDisplay = new VElement({
-      tag: "span",
-      attrs: { class: "userGameStatus", class: "material-symbols-outlined" },
-      content: `${this.lives}favorite`,
     });
   }
   set position([x, y]) {
@@ -157,8 +153,18 @@ export class Player { // add all player properties here, for example image, move
   renderPlayer(gameBoxM) {
     gameBoxM.vElement.addChild(this.vElement)
   }
-  respawn() {
 
+  die() {
+    this.dead = true
+    this.stats.loseLife();
+    this.respawn();
+    //setTimeout(this.respawn, PLAYER_RESPAWN_TIME); //
+  }
+  respawn() {
+    const {row, column} = this._number ? PLAYER_START_POSITIONS[this._number - 1] : PLAYER_START_POSITIONS[0];
+    this.model = new PlayerModel(row, column);
+    const [x, y] = convertRowColumnToXY(row, column)
+    this.position = [x, y] // add websocket stuff later
   }
   adgustByX() {
     let shiftX = 0;
@@ -200,6 +206,10 @@ export class Player { // add all player properties here, for example image, move
     const tiles = mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[direction]());
     if (!tiles) { return false; }
     for (let tile of tiles) {
+      if (tile.onFire) {
+        mainView.currentPlayer.die()
+        return
+      }
       console.log("checkTilesOnWay, tile : ", tile)
       if (tile.powerup != null) {//!=null or undefined
         this.stats[tile.powerup]();
