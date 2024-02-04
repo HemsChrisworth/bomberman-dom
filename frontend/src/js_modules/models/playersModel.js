@@ -2,7 +2,8 @@ import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js"
 import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
 import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME } from "../consts/consts.js"
-import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js";
+import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_RESPAWN } from "../consts/playerActionTypes.js";
+import { activeEvent } from "../player_actions/playerDyingRespawn.js";
 
 const OFFSET_IGNORED = 10;
 function setPlayerStyleAttrs() {
@@ -104,7 +105,7 @@ export class Player { // add all player properties here, for example image, move
     this.stats = new PlayerStats(); // for lives in the vElement
     this.dead = false
     this.sprite = "src/assets/images/spritesheets/bomberman.png"; // currently uses url in style.css
-    
+
     this.vElement = new VElement({
       tag: "div",
       attrs: {
@@ -113,7 +114,7 @@ export class Player { // add all player properties here, for example image, move
       },
     });
     if (number) {
-      this.number =number;
+      this.number = number;
       // this._number = number;
       // const { row, column } = PLAYER_START_POSITIONS[number - 1];
       // this.model = new PlayerModel(row, column);
@@ -131,8 +132,8 @@ export class Player { // add all player properties here, for example image, move
 
   moveOn() {
     [this.x, this.y] = convertRowColumnToXY(this.model.row, this.model.column);
-    this.x+=this.model.offsetX;
-    this.y+=this.model.offsetY;
+    this.x += this.model.offsetX;
+    this.y += this.model.offsetY;
   }
   setVPosition() {
     this.vElement.setStyle(newPlayerStyleTransform(this.x, this.y))
@@ -150,20 +151,40 @@ export class Player { // add all player properties here, for example image, move
   renderPlayer(gameBoxM) {
     gameBoxM.vElement.addChild(this.vElement)
   }
+  getLives() {
+    return this.stats.lives;
+  }
+  setLives(lives) {
+    if (lives > 0) {
+      this.stats.lives = lives;
+    }
+    else{
+      console.log("PLAYER LOST ALL LIVES");
 
+    }
+  }
   die() {
     this.dead = true;
     this.stats.loseLife();
-    this.respawn();
+    activeEvent.initiateEvent(PLAYER_DIE);
+    if (this.stats.lives == 0) {
+      console.log("PLAYER LOST ALL LIVES");
+      return;
+    }
+    const { row, column } = this._number ? PLAYER_START_POSITIONS[this._number - 1] : PLAYER_START_POSITIONS[0];
+    //todo: try to nit respawn if the start position is onFire
+    setTimeout(() => {
+      this.respawn(row, column);
+    }
+      , PLAYER_RESPAWN_TIME);
+
     //setTimeout(this.respawn, PLAYER_RESPAWN_TIME); //
   }
-  respawn() {
-    // const {row, column} = PLAYER_START_POSITIONS[this._number - 1];
-    const {row, column} = this._number ? PLAYER_START_POSITIONS[this._number - 1] : PLAYER_START_POSITIONS[0];
+  respawn(row, column) {
     this.model = new PlayerModel(row, column);
     const [x, y] = convertRowColumnToXY(row, column)
     this.position = [x, y] // add websocket stuff later
-    console.log("respawn position:" , this.position)
+    activeEvent.initiateEvent(PLAYER_RESPAWN);
   }
   adjustByX() {
     const oldModel = {
@@ -201,8 +222,9 @@ export class Player { // add all player properties here, for example image, move
     for (let tile of tiles) {
       if (tile.onFire) {
         mainView.currentPlayer.die()
+
         console.log("checkTilesOnWay, player stat  : " + this.stats)
-        console.log("checkTilesOnWay, tile  : " ,tile)
+        console.log("checkTilesOnWay, tile  : ", tile)
         return
       }
       if (tile.powerup != null) {//!=null or undefined
@@ -327,7 +349,7 @@ export class Player { // add all player properties here, for example image, move
 
 class PlayerStats {
   constructor() {
-    this.lives = 3;
+    this._lives = 3;
     // potentially those stats could be display on the status bar - 
     // to do this we need to add setters which will change the statsBar and after the player moves, send to server these stats along with the position 
     this.bombAmount = 1; // the amount of bombs
@@ -336,19 +358,26 @@ class PlayerStats {
     this.vPlayerStatsBar = new VElement({
       tag: "span",
       attrs: { class: "userGameStatus", class: "material-symbols-outlined" },
-      content: `${this.lives}favorite`,
+      content: `${this._lives}favorite`,
     });
   }
   toString() {
     return `
-  lives: ${this.lives}
+  lives: ${this._lives}
   bombAmount: ${this.bombAmount}
   fireTiles: ${this.fireTiles}
   moveSpeed: ${this.moveSpeed}`
   }
+  get lives() { return this._lives }
+  set lives(lives) {
+    console.log("in lives setter " + this._lives + "->" + lives)
+    this._lives = lives;
+    this.vPlayerStatsBar.content = `${this._lives}favorite`;
+
+  }
   loseLife() {
-    this.lives--
-    this.vPlayerStatsBar.content = `${this.lives}favorite`;
+    this.lives--;
+    //this.vPlayerStatsBar.content = `${this._lives}favorite`;
   }
   [BOMBPUP] = () => {
     this.bombAmount++;

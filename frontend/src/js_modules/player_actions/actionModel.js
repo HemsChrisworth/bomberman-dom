@@ -1,8 +1,9 @@
 import { throttle } from "../../utils/throttler.js"
 import { BOMB_PLACEMENT_DELAY } from "../consts/consts.js"
-import { PLAYER_MOVE, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js"
+import { PLAYER_DIE, PLAYER_MOVE, PLAYER_PLACE_BOMB, PLAYER_RESPAWN } from "../consts/playerActionTypes.js"
 import { bombPlace, bombPlaceHandler } from "./bombPlace.js"
-import { getNewPlayerPosition, movementHandler } from "./playerMovement.js"
+import { dyingHandler, playerDie, playerRespawn } from "./playerDyingRespawn.js"
+import { movePlayer, movementHandler } from "./playerMovement.js"
 
 class PlayerAction {
     constructor(type) {
@@ -24,13 +25,34 @@ export class PlaceBomb extends PlayerAction {
     }
 }
 
+export class PlayerDie extends PlayerAction {
+    constructor(lives) {
+        super(PLAYER_DIE);
+        this.lives = lives;
+    }
+}
+// export class PlayerRespawn extends PlayerAction {
+//     constructor(coords) {
+//         super(PLAYER_RESPAWN);
+//         this.coords = coords;
+//     }
+// } use PlayerMove instead
+
 export const playerActioner = {
     [PLAYER_MOVE]: {
-        send:  throttle(getNewPlayerPosition, 20),
+        send: throttle(movePlayer, 20),
         handle: (data) => movementHandler(data.playerName, data.action.coords)
     },
     [PLAYER_PLACE_BOMB]: {
         send: throttle(bombPlace, 150),
         handle: (data) => bombPlaceHandler(data.action.coords)
     },
+    [PLAYER_DIE]: {
+        send: playerDie,
+        handle: (data) => dyingHandler(data.playerName, data.action.lives)
+    },
+    [PLAYER_RESPAWN]: {
+        send: playerRespawn,
+        handle: (data) => movementHandler(data.playerName, data.action.coords)
+    }
 }

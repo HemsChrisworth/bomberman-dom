@@ -1,4 +1,5 @@
-import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js"
+import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js"
+import { currentEvent } from "./playerDyingRespawn.js";
 
 /**
  * turns keyboard keys into strings of player actions
@@ -24,17 +25,20 @@ keyConvert.ArrowDown = keyConvert.s;
 keyConvert.ArrowLeft = keyConvert.a;
 keyConvert.ArrowRight = keyConvert.d;
 
-export let currentAction = null
-
+export let currentAction = null;
 const activeAction = {
   [PLAYER_MOVE_LEFT]: false,
   [PLAYER_MOVE_RIGHT]: false,
   [PLAYER_MOVE_UP]: false,
   [PLAYER_MOVE_DOWN]: false,
   [PLAYER_PLACE_BOMB]: false,
+
   initiateAction(action) {
+    if (currentEvent){
+      return;
+    }
     this[action] = true;
-    currentAction = action
+    currentAction = action;
   },
   endAction(action) {
     this[action] = false
@@ -43,7 +47,6 @@ const activeAction = {
     }
   }
 };
-
 
 export function listenPlayerActions() {
   //TODO need to put these while focused on gamebox, to prevent chat breaking(gamebox attr "tabindex=0" and focus() when the game starts)

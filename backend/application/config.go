@@ -32,7 +32,7 @@ func New(serverAddress string) *Application {
 		WriteBufferSize: 1024,
 		CheckOrigin: func(r *http.Request) bool {
 			origin := r.Header.Get("Origin")
-			return origin == "http://localhost:8080" || origin == "http://127.0.0.1:8080"
+			return origin == "http://localhost:8080" || origin == "http://127.0.0.1:8080" || origin == "http://www.localhost:8080" || origin == "http://www.127.0.0.1:8080"
 			// return true
 		},
 	}

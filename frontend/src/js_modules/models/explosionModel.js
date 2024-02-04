@@ -185,17 +185,20 @@ export class Explosion {
     renderExplosion = () => {
         for (const vElement of this.vElements) { mainView.gameMap.vElement.addChild(vElement) }
     }
+    delOnFire=() => {
+        mainView.gameMap.baseMap[this.model.row][this.model.column].onFire = false; // for central tile
+        for (const blocks of Object.values(this.model.blocks)) {
+            blocks.forEach(tile => {
+              mainView.gameMap.baseMap[tile.row][tile.column].onFire = false;
+          })
+        }
+    }
     delEsplosion = () => {
         for (const vElement of this.vElements) { 
             mainView.gameMap.vElement.delChild(vElement.vId);
         }
-        mainView.gameMap.baseMap[this.model.row][this.model.column].onFire = false; // for central tile
-        for (const blocks of Object.values(this.model.blocks)) {
-            blocks.forEach(tile => {
-              console.log("del esplos: ",tile)
-              mainView.gameMap.baseMap[tile.row][tile.column].onFire = false;
-          })
-        }
+       
+        this.delOnFire();
     }
 }
 

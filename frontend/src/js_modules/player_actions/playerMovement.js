@@ -8,7 +8,7 @@ import { PlayerMove } from "./actionModel.js";
  * 
  * @param {string} currentAction the action of the player, ex 'moveLeft' or 'moveRight'
 */
-export function getNewPlayerPosition(currentAction) {
+export function movePlayer(currentAction) {
   if (mainView.currentPlayer[currentAction]()) {
     const newPosition = mainView.currentPlayer.position;
 
