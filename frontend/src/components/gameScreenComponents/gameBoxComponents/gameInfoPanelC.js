@@ -109,6 +109,31 @@ function createGameInfoHeader() {
     });
 }
 
+function youDied(playerList) { // The amount of bomb powerups
+  return new VElement({
+    tag: "span",
+    attrs: { id: "youdied" },
+    content: "You died", 
+  });
+}
+function helperdiv(playerList) { // The amount of bomb powerups
+  return new VElement({
+    tag: "span",
+    attrs: { id: "helpdivyoudied" },
+    content: "You died", 
+  });
+}
+function GameOverScreen(playerList) { // The amount of bomb powerups
+  return new VElement({
+    tag: "div",
+    attrs: { id: "gameover" },
+    children: [
+      helperdiv(),
+      youDied(),
+    ],
+  });
+}
+
 export function createGameInfoPanelC(playerList) {
     return new VElement({
       tag: "div",
@@ -117,6 +142,7 @@ export function createGameInfoPanelC(playerList) {
         createGameInfoHeader(),
         createPlayersOnline(playerList),
         createGameSpecs(),
+        //GameOverScreen(),
       ],
     });
 }

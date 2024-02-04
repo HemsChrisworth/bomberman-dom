@@ -127,11 +127,42 @@ body {
     transform: scale(1.01);
 }
 
+#gameover {
+    position: absolute;
+    width: 554px;
+    height: 362px;
+    background-color: #1a1a1a8d;
+    box-shadow: 0 5px 5px #1a1a1a;
+    top: 143px;
+    right: calc(49.5vw - 270px);
+    z-index: 100;
+}
+
+#youdied {
+    position: absolute;
+    color: rgb(195,73,25);
+    background: linear-gradient(180deg, rgba(195,73,25,1) 0%, rgba(212,203,23,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Luckiest Guy', cursive;
+    left: 115px;
+    top: 115px;
+    font-size: 80px;
+}
+#helpdivyoudied {
+    position: absolute;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 80px;
+    color: #00000000;
+    text-shadow: 0px 0px 100px rgb(0, 0, 0), 3px 3px 10px rgba(0, 0, 0, 0.605);
+    left: 115px;
+    top: 115px;
+}
 #chat { /* the chat component */
     position: absolute;
     display: block;
     right: calc(49.5vw - 546px);
-    top: 138px;
+    top: 148px;
     color: rgb(219, 219, 219);
     width: 250px;
     height: 332px;
