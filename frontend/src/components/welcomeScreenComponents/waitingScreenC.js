@@ -25,6 +25,7 @@ export function createWaitingTimerC(waitingTimerXsecC) {
   return new VElement({
     tag: 'span',
     content: 'Waiting...',
+    attrs: { class: 'welcometext', },
     children: [
       waitingTimerXsecC,
     ],

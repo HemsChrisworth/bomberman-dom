@@ -324,7 +324,20 @@ export class Player { // add all player properties here, for example image, move
     return { row, column, power };
   }
 }
-
+function numberOfLives(lives) {
+  return new VElement({
+      tag: 'span',
+      attrs: { class: 'gamePlayerUsername' },
+      content: `${lives} x`,
+  });
+}
+function liveIcon(playerName) {
+  return new VElement({
+      tag: 'span',
+      attrs: { id: "hearticon", class: "material-symbols-outlined" },
+      content: `favorite`,
+  });
+}
 class PlayerStats {
   constructor() {
     this.lives = 3;
@@ -335,8 +348,13 @@ class PlayerStats {
     this.moveSpeed = PLAYER_MOVEMENT_SPEED; // for powerup
     this.vPlayerStatsBar = new VElement({
       tag: "span",
-      attrs: { class: "userGameStatus", class: "material-symbols-outlined" },
-      content: `${this.lives}favorite`,
+      attrs: { class: "userGameStatus" },
+      children: [
+        // Avatar (hero + color) + nickname + status icon: "In game" OR "Died but online (can write in chat)" OR "Offline"
+        // If in game => <3 <3 <3 + Lives
+        numberOfLives(this.lives),
+        liveIcon(),
+      ],
     });
   }
   toString() {
@@ -348,7 +366,7 @@ class PlayerStats {
   }
   loseLife() {
     this.lives--
-    this.vPlayerStatsBar.content = `${this.lives}favorite`;
+    this.vPlayerStatsBar.content = `${this.lives}xfavorite`;
   }
   [BOMBPUP] = () => {
     this.bombAmount++;
