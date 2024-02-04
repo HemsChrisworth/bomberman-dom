@@ -166,36 +166,30 @@ export class Player { // add all player properties here, for example image, move
     console.log("respawn position:" , this.position)
   }
   adjustByX() {
-    let shiftX = 0;
     const oldModel = {
       offsetX: this.model.offsetX,
       column: this.model.column
     };
     if (this.model.offsetX <= OFFSET_IGNORED) {
-      shiftX = -this.model.offsetX;
       this.model.offsetX = 0;
     } else if (this.model.offsetX >= MAP_TILE_SIZE - OFFSET_IGNORED) {
-      shiftX = MAP_TILE_SIZE - this.model.offsetX;
       this.model.offsetX = 0;
       this.model.column++;
     }
-    return [oldModel, shiftX]
+    return oldModel
   }
   adjustByY() {
-    let shiftY = 0;
     const oldModel = {
       offsetY: this.model.offsetY,
       row: this.model.row
     };
     if (this.model.offsetY <= OFFSET_IGNORED) {
-      shiftY = -this.model.offsetY;
       this.model.offsetY = 0;
     } else if (this.model.offsetY >= MAP_TILE_SIZE - OFFSET_IGNORED) {
-      shiftY = MAP_TILE_SIZE - this.model.offsetY;
       this.model.offsetY = 0;
       this.model.row++;
     }
-    return [oldModel, shiftY]
+    return oldModel
   }
 
   checkTilesOnWay(direction) {
@@ -220,7 +214,7 @@ export class Player { // add all player properties here, for example image, move
   }
 
   [PLAYER_MOVE_DOWN] = () => {
-    let [oldModel, shiftX] = this.adjustByX();
+    let oldModel = this.adjustByX();
 
 
     if (this.model.offsetY == 0 && !this.checkTilesOnWay(PLAYER_MOVE_DOWN)) {
@@ -244,7 +238,7 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_UP] = () => {
-    let [oldModel, shiftX] = this.adjustByX();
+    let oldModel = this.adjustByX();
 
     if (this.model.offsetY == 0 && !this.checkTilesOnWay(PLAYER_MOVE_UP)) {
       Object.assign(this.model, oldModel);
@@ -268,7 +262,7 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_LEFT] = () => {
-    let [oldModel, shiftY] = this.adjustByY();
+    let oldModel = this.adjustByY();
 
     if (this.model.offsetX == 0 && !this.checkTilesOnWay(PLAYER_MOVE_LEFT)) {
       Object.assign(this.model, oldModel);
@@ -292,7 +286,7 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_RIGHT] = () => {
-    let [oldModel, shiftY] = this.adjustByY();
+    let oldModel = this.adjustByY();
 
     if (this.model.offsetX == 0 && !this.checkTilesOnWay(PLAYER_MOVE_RIGHT)) {
       Object.assign(this.model, oldModel);
