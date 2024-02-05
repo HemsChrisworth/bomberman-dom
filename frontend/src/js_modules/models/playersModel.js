@@ -159,6 +159,7 @@ export class Player { // add all player properties here, for example image, move
       this.stats.lives = lives;
     }
     else{
+      this.stats.lives = lives;
       console.log("PLAYER LOST ALL LIVES");
 
     }
@@ -169,6 +170,10 @@ export class Player { // add all player properties here, for example image, move
     activeEvent.initiateEvent(PLAYER_DIE);
     if (this.stats.lives == 0) {
       console.log("PLAYER LOST ALL LIVES");
+      setTimeout(() => {
+        activeEvent.endEvent();
+      }
+        , PLAYER_RESPAWN_TIME);
       return;
     }
     const { row, column } = this._number ? PLAYER_START_POSITIONS[this._number - 1] : PLAYER_START_POSITIONS[0];
@@ -368,13 +373,14 @@ class PlayerStats {
     this.bombAmount = 1; // the amount of bombs
     this.fireTiles = 1; // the lenght of explosion in tiles
     this.moveSpeed = PLAYER_MOVEMENT_SPEED; // for powerup
+    this.vNumberOfLives = numberOfLives(this._lives);
     this.vPlayerStatsBar = new VElement({
       tag: "span",
       attrs: { class: "userGameStatus" },
       children: [
         // Avatar (hero + color) + nickname + status icon: "In game" OR "Died but online (can write in chat)" OR "Offline"
         // If in game => <3 <3 <3 + Lives
-        numberOfLives(this._lives),
+        this.vNumberOfLives,
         liveIcon(),
       ],
     });
@@ -390,11 +396,11 @@ class PlayerStats {
   set lives(lives) {
     console.log("in lives setter " + this._lives + "->" + lives)
     this._lives = lives;
-    this.vPlayerStatsBar.content = `${this._lives}xfavorite`;
+    this.vNumberOfLives.content = `${this._lives} x`;
 
   }
   loseLife() {
-    this.lives--
+    this._lives--
   }
   [BOMBPUP] = () => {
     this.bombAmount++;

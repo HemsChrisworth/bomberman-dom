@@ -21,7 +21,7 @@ export const activeEvent = {
     }
     currentEvent = event;
   },
-  endEvent(event) {
+  endEvent() {
     this[PLAYER_DIE] = false;
     this[PLAYER_RESPAWN] = false;
 
