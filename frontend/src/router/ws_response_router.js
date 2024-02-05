@@ -3,7 +3,15 @@ import { Player } from "../js_modules/models/playersModel.js";
 import { playerActioner } from "../js_modules/player_actions/actionModel.js";
 import { movementHandler } from "../js_modules/player_actions/playerMovement.js";
 import { chatMessage } from "../js_modules/models/ws/chatMessageModel.js";
+import { VElement } from "../../../framework/VElement.js";
 
+function oneMessage(message) {
+  return new VElement({
+      tag: 'span',
+      attrs: { class: "chatmessage" },
+      content: message,
+  });
+}
 export const wsResponseRouter = {
   usersInRoom(payload) {
     if (!mainView.isInRegisterState()) {
@@ -83,7 +91,7 @@ export const wsResponseRouter = {
     
     let formatedDate = mess.dateCreate.slice(11, 19)
 
-    mainView.chatModel.chatMessageArea.addChild(`\n` + formatedDate + ` ${mess.userName}:` + ` ${mess.content}`)
+    mainView.chatModel.chatMessageArea.addChild(oneMessage(formatedDate + ` ${mess.userName}:` + ` ${mess.content}`));
   },
 
   sendMessageToChat(payload) {

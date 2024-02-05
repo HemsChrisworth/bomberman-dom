@@ -17,6 +17,14 @@ function createUsername(playerName) {
     });
 }
 
+function liveIcon(player) {
+  return new VElement({
+      tag: 'span',
+      attrs: { id: "hearticon", class: "material-symbols-outlined" },
+      content: `favorite`,
+  });
+}
+
 function createOnePlayer(player) {
     return new VElement({
       // One element of the players list
@@ -28,6 +36,7 @@ function createOnePlayer(player) {
         createAvatar(),
         createUsername(player.name),
         player.stats.vPlayerStatsBar,
+        liveIcon(),
       ],
     });
 }
@@ -58,12 +67,12 @@ function ShowFPS(playerList) {
   });
 }
 
-function ShowScore(playerList) {
+/*function ShowScore(playerList) {
   return new VElement({
     tag: "div",
     content: "Score: 1500", // Change the content when the real specs will be added
   });
-}
+}*/
 
 function ShowBombPUP(playerList) { // The amount of bomb powerups
   return new VElement({
