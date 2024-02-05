@@ -2,8 +2,7 @@ import { mainView } from "../app.js";
 import { Player } from "../js_modules/models/playersModel.js";
 import { playerActioner } from "../js_modules/player_actions/actionModel.js";
 import { movementHandler } from "../js_modules/player_actions/playerMovement.js";
-
-// routes the response from websocket to various functions for components
+import { chatMessage } from "../js_modules/models/ws/chatMessageModel.js";
 
 export const wsResponseRouter = {
   usersInRoom(payload) {
@@ -81,7 +80,10 @@ export const wsResponseRouter = {
       return
     }
     const mess = payload.data;
-    mainView.chatModel.chatMessageArea.addChild(`${mess.userName} - ${mess.dateCreate}\n ${mess.content} `)
+    
+    let formatedDate = mess.dateCreate.slice(11, 19)
+
+    mainView.chatModel.chatMessageArea.addChild(`\n` + formatedDate + ` ${mess.userName}:` + ` ${mess.content}`)
   },
 
   sendMessageToChat(payload) {
