@@ -183,7 +183,7 @@ export class Explosion {
     }
     // for the explosion edges
     if (!this.killed) { this.checkPlayerInExplosion(blocks[blocks.length - 1]); }
-   
+
     const x = blocks[blocks.length - 1].column * MAP_TILE_SIZE;
     const y = blocks[blocks.length - 1].row * MAP_TILE_SIZE;
     this.vElements.push(new VElement({
@@ -203,16 +203,18 @@ export class Explosion {
     for (const vElement of this.vElements) { mainView.gameMap.vElement.addChild(vElement) }
   }
   delOnFire = () => {
-    mainView.gameMap.baseMap[this.model.row][this.model.column].onFire = false; // for central tile
-    for (const blocks of Object.values(this.model.blocks)) {
-      blocks.forEach(tile => {
-        mainView.gameMap.baseMap[tile.row][tile.column].onFire = false;
-      })
+    if (mainView.gameMap) { // check it here because when the player dies, the gameMap is set to null
+      mainView.gameMap.baseMap[this.model.row][this.model.column].onFire = false; // for central tile
+      for (const blocks of Object.values(this.model.blocks)) {
+        blocks.forEach(tile => {
+          mainView.gameMap.baseMap[tile.row][tile.column].onFire = false;
+        })
+      }
     }
   }
   delEsplosion = () => {
     for (const vElement of this.vElements) {
-      mainView.gameMap.vElement.delChild(vElement.vId);
+      mainView.gameMap?.vElement.delChild(vElement.vId);
     }
 
     this.delOnFire();

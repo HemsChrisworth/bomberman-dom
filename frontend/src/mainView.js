@@ -54,10 +54,10 @@ export class MainView {
         },
         [GAME_OVER_VIEW]: () => {
             this._newPlayerList();
+            this.gameMap = null;
             this.currentViewModel.vElement.addChild(GameOverScreen())
         },
         [REGISTER_VIEW]: () => {
-            this.gameMap = null;
             this._showNewView(new RegisterScreenView);
         }
     }
@@ -66,10 +66,6 @@ export class MainView {
         this.currentViewModel = newView;
 
     }
-    // showWaitingScreen = 
-
-    // showGameBox = 
-
 
     renderPlayers = () => {
         // Object.values(this.PlayerList.players).forEach((player) => {
