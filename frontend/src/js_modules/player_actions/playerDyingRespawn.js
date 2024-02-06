@@ -29,4 +29,15 @@ export function playerRespawnHandler(playerName, position) {
 }
 export function dyingHandler(playerName, lives) {
   mainView.PlayerList.players[playerName].setLives(lives); // in draw, it will render the newly set x and y position into the VElement
+  if (lives < 1) {
+    mainView.gameMap.vElement.delChild(
+      mainView.PlayerList.players[playerName].vElement.vId
+    );
+    delete mainView.PlayerList.players[playerName]
+  }
+  if (Object.keys(mainView.PlayerList.players).length == 1) { // check win condition
+    if (mainView.PlayerList.players[mainView.currentPlayer.name]) {
+      console.log("you win")
+    }
+  }
 }
