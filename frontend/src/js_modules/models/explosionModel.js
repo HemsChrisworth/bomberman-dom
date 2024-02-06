@@ -3,17 +3,6 @@ import { mainView } from "../../app.js";
 import { SPRITE_POS, SPRITE_SHEET_URL, MAP_TILE_SIZE, EXPLOSION_Z_INDEX, EXPLOSION_CENTER, EXPLOSION_LEFT, EXPLOSION_RIGHT, EXPLOSION_UP, EXPLOSION_DOWN, EXPLOSION_LASTING_TIMER, EXPLOSION_EDGES } from "../consts/consts.js";
 import { PLAYER_POSITION_CURRENT } from "../consts/playerActionTypes.js";
 
-function checkPlayerInExplosion(block) {
-  const currentPlayerRowsColumns = mainView.currentPlayer.model.getBlocksOn[PLAYER_POSITION_CURRENT]();
-  // get the blocks that player is standing on
-  currentPlayerRowsColumns.forEach((rowColumn) => {
-    if (rowColumn.column == block.column && rowColumn.row == block.row) {
-      mainView.currentPlayer.die();
-      console.log("player dead")
-    }
-  });
-}
-
 
 function setExplosionStyle(x, y) {
   return {
@@ -157,20 +146,30 @@ export class Explosion {
     }).setStyle(setExplosionPicture(EXPLOSION_CENTER))
     );
     const centerBlock = { row: row, column: column }
-    checkPlayerInExplosion(centerBlock); // check if player is in the center of explosion
+    this.checkPlayerInExplosion(centerBlock); // check if player is in the center of explosion
     for (const [direction, blocks] of Object.entries(this.model.blocks)) {
       this.addBeam(direction, blocks); // in here checks if player is in other beams of explosion
     }
     this.renderExplosion();
     setTimeout(this.delEsplosion, EXPLOSION_LASTING_TIMER); // set timer for bomb to explose after placing
   }
+  checkPlayerInExplosion(block) {
+    const currentPlayerRowsColumns = mainView.currentPlayer.model.getBlocksOn[PLAYER_POSITION_CURRENT]();
+    // get the blocks that player is standing on
+    currentPlayerRowsColumns.forEach((rowColumn) => {
+      if (rowColumn.column == block.column && rowColumn.row == block.row) {
+        mainView.currentPlayer.die();
+        this.killed = true;
+        console.log("player dead")
+      }
+    });
+  }
   addBeam = (direction, blocks) => {
     if (blocks.length === 0) {
       return
     }
     for (let i = 0; i < blocks.length - 1; i++) { // for the explosion inner fire
-
-      checkPlayerInExplosion(blocks[i]);
+      if (!this.killed) { this.checkPlayerInExplosion(blocks[i]); }
       const x = blocks[i].column * MAP_TILE_SIZE;
       const y = blocks[i].row * MAP_TILE_SIZE;
       this.vElements.push(new VElement({
@@ -183,7 +182,8 @@ export class Explosion {
       );
     }
     // for the explosion edges
-    checkPlayerInExplosion(blocks[blocks.length - 1]);
+    if (!this.killed) { this.checkPlayerInExplosion(blocks[blocks.length - 1]); }
+   
     const x = blocks[blocks.length - 1].column * MAP_TILE_SIZE;
     const y = blocks[blocks.length - 1].row * MAP_TILE_SIZE;
     this.vElements.push(new VElement({

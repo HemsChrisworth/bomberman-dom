@@ -57,6 +57,7 @@ export class MainView {
             this.currentViewModel.vElement.addChild(GameOverScreen())
         },
         [REGISTER_VIEW]: () => {
+            this.gameMap = null;
             this._showNewView(new RegisterScreenView);
         }
     }
