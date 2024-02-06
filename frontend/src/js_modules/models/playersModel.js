@@ -1,5 +1,6 @@
 import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js"
+import { creatLliveIcon, createNumberOfLives, createShowBombPUP, createShowFlamePUP, createShowSpeedPUP } from "../../components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
 import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
 import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME, SEND_TO_WS_DELAY } from "../consts/consts.js"
 import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_RESPAWN, POWER_IS_PICKED } from "../consts/playerActionTypes.js";
@@ -341,11 +342,9 @@ export class Player { // add all player properties here, for example image, move
   }
 
   [PLAYER_PLACE_BOMB] = () => {
-    console.log("place Bomb start: " + this.stats.bombAmount);
     if (this.stats.bombAmount <= 0) { return false; }
     this.stats.bombAmount--;
     setTimeout(() => { this.stats.bombAmount++ }, BOMB_EXPLOSION_TIMER);
-    console.log("place Bomb .bombAmount--: " + this.stats.bombAmount);
     let { row, column } = this.model;
     const power = this.stats.fireTiles;
     if (this.model.offsetX > MAP_TILE_SIZE / 2) {
@@ -357,20 +356,7 @@ export class Player { // add all player properties here, for example image, move
     return { row, column, power };
   }
 }
-function numberOfLives(lives) {
-  return new VElement({
-    tag: 'span',
-    attrs: { class: 'gamePlayerUsername' },
-    content: `${lives} x`,
-  });
-}
-function liveIcon(playerName) {
-  return new VElement({
-    tag: 'span',
-    attrs: { id: "hearticon", class: "material-symbols-outlined" },
-    content: `favorite`,
-  });
-}
+
 class PlayerStats {
   constructor() {
     this._lives = 3;
@@ -379,7 +365,7 @@ class PlayerStats {
     this.bombAmount = 1; // the amount of bombs
     this.fireTiles = 1; // the lenght of explosion in tiles
     this.moveSpeed = PLAYER_MOVEMENT_SPEED; // for powerup
-    this.vNumberOfLives = numberOfLives(this._lives);
+    this.vNumberOfLives = createNumberOfLives(this._lives);
     this.vPlayerStatsBar = new VElement({
       tag: "span",
       attrs: { class: "userGameStatus" },
@@ -387,9 +373,12 @@ class PlayerStats {
         // Avatar (hero + color) + nickname + status icon: "In game" OR "Died but online (can write in chat)" OR "Offline"
         // If in game => <3 <3 <3 + Lives
         this.vNumberOfLives,
-        liveIcon(),
+        creatLliveIcon(),
       ],
     });
+    this.vShowBombPUP = createShowBombPUP(`Bombs: ${this.bombAmount}`);
+    this.vShowFlamePUP = createShowFlamePUP(`Flame: ${this.fireTiles}`);
+    this.vShowSpeedPUP = createShowSpeedPUP(`Speed: ${this.moveSpeed}`);
   }
   toString() {
     return `
@@ -410,11 +399,14 @@ class PlayerStats {
   }
   [BOMBPUP] = () => {
     this.bombAmount++;
+    this.vShowBombPUP.content = `Bombs: ${this.bombAmount}`;
   }
   [FIREPUP] = () => {
     this.fireTiles++;
+    this.vShowFlamePUP.content = `Flame: ${this.fireTiles}`;
   }
   [SPEEDPUP] = () => {
     this.moveSpeed += 1;
+    this.vShowSpeedPUP.content = `Speed: ${this.moveSpeed}`;
   }
 }
