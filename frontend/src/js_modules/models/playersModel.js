@@ -2,9 +2,10 @@ import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js"
 import { creatLiveIcon, createNumberOfLives, createShowBombPUP, createShowFlamePUP, createShowSpeedPUP } from "../../components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
 import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
-import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME, SEND_TO_WS_DELAY } from "../consts/consts.js"
-import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_RESPAWN, POWER_IS_PICKED } from "../consts/playerActionTypes.js";
+import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME, GAME_OVER_VIEW } from "../consts/consts.js"
+import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_POSITION_CURRENT, PLAYER_RESPAWN, POWER_IS_PICKED } from "../consts/playerActionTypes.js";
 import { ActiveEvent, currentEvent, endEvent } from "../player_actions/eventModel.js";
+import { stopListenPlayerActions } from "../player_actions/keypresses.js";
 
 const OFFSET_IGNORED = 12;
 function setPlayerStyleAttrs() {
@@ -175,13 +176,10 @@ export class Player { // add all player properties here, for example image, move
   }
   setLives(lives) {
     if (lives > 0) {
-      console.log("in setLives", lives);
       this.stats.lives = lives;
     }
     else {
       this.stats.lives = lives;
-      console.log("PLAYER LOST ALL LIVES");
-
     }
   }
   die() {
@@ -190,13 +188,12 @@ export class Player { // add all player properties here, for example image, move
     new ActiveEvent(PLAYER_DIE);
     console.log("die() set event:", currentEvent);
     if (this.stats.lives == 0) {
-      console.log("PLAYER LOST ALL LIVES");
+      stopListenPlayerActions();
       setTimeout(() => {
-        console.log("die() ends event start:", currentEvent);
+        mainView.showScreen[GAME_OVER_VIEW]();
         endEvent(currentEvent);
-        console.log("die() ends event end:", currentEvent);
       }
-        , SEND_TO_WS_DELAY);
+        , PLAYER_RESPAWN_TIME);
       return;
     }
     const { row, column } = this._number ? PLAYER_START_POSITIONS[this._number - 1] : PLAYER_START_POSITIONS[0];
@@ -386,7 +383,7 @@ class PlayerStats {
     this.vPlayerStatsBar = new VElement({
       tag: "span",
       attrs: { class: "userGameStatus" },
-      content: `${this.lives} x`,
+      //content: `${this.lives} x`,
       children: [
         // Avatar (hero + color) + nickname + status icon: "In game" OR "Died but online (can write in chat)" OR "Offline"
         // If in game => <3 <3 <3 + Lives
@@ -407,9 +404,12 @@ class PlayerStats {
   }
   get lives() { return this._lives }
   set lives(lives) {
-    console.log("in lives setter " + this._lives + "->" + lives)
     this._lives = lives;
-    this.vNumberOfLives.content = `${this._lives} x`;
+    if (this._lives != 0) {
+      this.vNumberOfLives.content = `${this._lives} x`;
+    } else {
+      this.vNumberOfLives.content = `died`; 
+    }
 
   }
   loseLife() {
