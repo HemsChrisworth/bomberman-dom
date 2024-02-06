@@ -58,6 +58,7 @@ export class MainView {
             this.currentViewModel.vElement.addChild(GameOverScreen())
         },
         [REGISTER_VIEW]: () => {
+            this.chatModel.stop(1000);
             this._showNewView(new RegisterScreenView);
         }
     }

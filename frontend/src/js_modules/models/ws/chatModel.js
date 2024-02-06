@@ -13,8 +13,8 @@ export class ChatModel {
         this.socket = new Socket(`joinGame?name=${playerName}`);
     }
 
-    stop() {
-        this.socket.closeWebsocket();
+    stop(code) {
+        this.socket.closeWebsocket(code);
     }
 
     requestServer(type, payload) {
