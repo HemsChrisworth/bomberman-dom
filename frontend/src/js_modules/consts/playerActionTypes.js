@@ -6,5 +6,6 @@ PLAYER_PLACE_BOMB = "placeBomb", // space key
 PLAYER_MOVE = "movePlayer",
 PLAYER_DIE = "die",
 PLAYER_RESPAWN = "respawn",
-POWER_IS_PICKED = "powerPicked"
+POWER_IS_PICKED = "powerPicked",
+PLAYER_POSITION_CURRENT = "currentPosition"
 

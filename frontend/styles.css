@@ -234,6 +234,12 @@ body {
     background-color: #1c1c1c;
 }
 
+.chatmessage {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1px;
+}
+
 #ChatStatusConnected {
     color: rgba(188, 188, 188, 0.445);
     font-family: 'Open Sans', sans-serif;
@@ -332,8 +338,17 @@ body {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 70px;
+    color: rgba(188, 188, 188, 0.783);
+    width: 40px;
+    padding-top: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+    font-family: 'Open Sans', sans-serif;
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.644);
+    font-weight: 400;
+    font-size: 14px;
 }
+
 #hearticon {
     color: rgb(104, 39, 39);
     text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.189);

@@ -58,12 +58,12 @@ function ShowFPS(playerList) {
   });
 }
 
-function ShowScore(playerList) {
+/*function ShowScore(playerList) {
   return new VElement({
     tag: "div",
     content: "Score: 1500", // Change the content when the real specs will be added
   });
-}
+}*/
 
 export function createShowBombPUP(content) { // The amount of bomb powerups
   return new VElement({
@@ -108,7 +108,7 @@ export function createNumberOfLives(lives) {
     content: `${lives} x`,
   });
 }
-export function creatLliveIcon() {
+export function creatLiveIcon() {
   return new VElement({
     tag: 'span',
     attrs: { id: "hearticon", class: "material-symbols-outlined" },

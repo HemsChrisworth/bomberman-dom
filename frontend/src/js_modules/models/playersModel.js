@@ -1,6 +1,6 @@
 import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js"
-import { creatLliveIcon, createNumberOfLives, createShowBombPUP, createShowFlamePUP, createShowSpeedPUP } from "../../components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
+import { creatLiveIcon, createNumberOfLives, createShowBombPUP, createShowFlamePUP, createShowSpeedPUP } from "../../components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
 import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
 import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME, SEND_TO_WS_DELAY } from "../consts/consts.js"
 import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_RESPAWN, POWER_IS_PICKED } from "../consts/playerActionTypes.js";
@@ -87,6 +87,24 @@ class PlayerModel {
         blocks.push({ row: this.row + 1, column: this.column }, { row: this.row + 1, column: this.column + 1 })
       } else {
         blocks.push({ row: this.row + 1, column: this.column })
+      }
+      return blocks;
+    },
+    [PLAYER_POSITION_CURRENT]: () => {
+      const blocks = [];
+      // checks current block and the next block
+      if (this.offsetX > 0) {
+        blocks.push(
+          { row: this.row, column: this.column },
+          { row: this.row, column: this.column + 1 }
+        );
+      } else if (this.offsetY > 0) {
+        blocks.push(
+          { row: this.row, column: this.column },
+          { row: this.row + 1, column: this.column }
+        );
+      } else {
+        blocks.push({ row: this.row, column: this.column });
       }
       return blocks;
     }
@@ -356,7 +374,6 @@ export class Player { // add all player properties here, for example image, move
     return { row, column, power };
   }
 }
-
 class PlayerStats {
   constructor() {
     this._lives = 3;
@@ -369,11 +386,12 @@ class PlayerStats {
     this.vPlayerStatsBar = new VElement({
       tag: "span",
       attrs: { class: "userGameStatus" },
+      content: `${this.lives} x`,
       children: [
         // Avatar (hero + color) + nickname + status icon: "In game" OR "Died but online (can write in chat)" OR "Offline"
         // If in game => <3 <3 <3 + Lives
         this.vNumberOfLives,
-        creatLliveIcon(),
+        creatLiveIcon(),
       ],
     });
     this.vShowBombPUP = createShowBombPUP(`Bombs: ${this.bombAmount}`);
