@@ -1,11 +1,11 @@
 import { mainView } from "../../app.js";
 import { WS_REQUEST_TYPE_PLAYER_ACTION } from "../consts/consts.js";
 import { PlayerDie, PlayerMove } from "./actionModel.js";
-import { currentEvent, endEvent } from "./eventModel.js";
+import { endEvent } from "./eventModel.js";
 
 export function playerDieSender() {
+  
   const newLives = mainView.currentPlayer.getLives();
-
   const playerAction = new PlayerDie(newLives);
   mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, playerAction);
 }

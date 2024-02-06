@@ -410,7 +410,6 @@ class PlayerStats {
     } else {
       this.vNumberOfLives.content = `died`; 
     }
-
   }
   loseLife() {
     this._lives--

@@ -12,6 +12,6 @@ export function testTileTranslator() {
 
 export function testGameBox() {
     
-    mainView.showGameBox();
+    mainView.showScreen[GAME_VIEW]();
     juice.renderPlayer(mainView.currentViewModel);
 }

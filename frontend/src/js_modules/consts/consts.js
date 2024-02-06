@@ -3,6 +3,12 @@ import { getSpriteSheetXYbyIndex } from "../../utils/spriteSheetCalc.js";
 
 
 export const PLAYER_NAME_FORM_INPUT = "playerName",
+  // main views
+  REGISTER_VIEW = "registerView",
+  WAITING_VIEW = "waitingView",
+  GAME_VIEW = "gameView",
+  GAME_OVER_VIEW = "gameOverView",
+  //
   CHAT_MESSAGE_FORM_INPUT_NAME = "chatMessage",
   WS_REQUEST_TYPE_PLAYER_ACTION = "playerAction",
   WS_REQUEST_TYPE_PLAYER_LOSE_LIFE = "loseLife",

@@ -49,7 +49,7 @@ export const activeAction = {
   }
 };
 
-function keyDownHandler(event) {
+const keyDownHandler = throttle((event) => {
   try {
     const action = keyConvert.getAction(event.key);
     if (action) {
@@ -61,9 +61,9 @@ function keyDownHandler(event) {
   } catch {
     console.log("error: invalid key");
   }
-}
+}, 15);
 
-function keyUpHandler(event) {
+const keyUpHandler = (event) => {
   try {
     const action = keyConvert[event.key];
     if (action) {
@@ -76,6 +76,11 @@ function keyUpHandler(event) {
 
 export function listenPlayerActions() {
   //TODO need to put these while focused on gamebox, to prevent chat breaking(gamebox attr "tabindex=0" and focus() when the game starts)
-  document.addEventListener("keydown", throttle(keyDownHandler, 2));
+  document.addEventListener("keydown", keyDownHandler);
   document.addEventListener("keyup", keyUpHandler);
+}
+export function stopListenPlayerActions() {
+  currentAction = null;
+  document.removeEventListener("keydown", keyDownHandler);
+  document.removeEventListener("keyup", keyUpHandler);
 }
