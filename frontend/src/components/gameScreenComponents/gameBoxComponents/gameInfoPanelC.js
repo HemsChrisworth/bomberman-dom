@@ -1,5 +1,6 @@
 import { VElement } from "../../../../../framework/VElement.js";
 import { mainView } from "../../../app.js";
+import { REGISTER_VIEW } from "../../../js_modules/consts/consts.js";
 
 function createAvatar() {
   return new VElement({
@@ -138,7 +139,7 @@ function helperdiv(playerList) { // The amount of bomb powerups
     content: "You died",
   });
 }
-function GameOverScreen(playerList) { // The amount of bomb powerups
+export function GameOverScreen() { // The amount of bomb powerups
   return new VElement({
     tag: "div",
     attrs: { id: "gameover" },
@@ -146,6 +147,9 @@ function GameOverScreen(playerList) { // The amount of bomb powerups
       helperdiv(),
       youDied(),
     ],
+    "@click":(velem, event)=>{
+      mainView.showScreen[REGISTER_VIEW]();
+    },
   });
 }
 

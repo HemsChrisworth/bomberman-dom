@@ -6,6 +6,8 @@ import { GameMap } from "./js_modules/models/map/mapModel.js";
 import { Player } from "./js_modules/models/playersModel.js";
 import { RegisterScreenView } from "./views/registerScreenView.js";
 import { WaitingScreenView } from "./views/waitingScreenView.js";
+import { GAME_OVER_VIEW, GAME_VIEW, REGISTER_VIEW, WAITING_VIEW } from "./js_modules/consts/consts.js";
+import { GameOverScreen } from "./components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
 
 //TODO maybe move waitingScreenModel, registerScreenModel, gameBoxModel fom models to views
 export class MainView {
@@ -18,15 +20,17 @@ export class MainView {
             tag: 'div',
             attrs: { id: "main" },
             children: [
-                this.HeaderC, this.currentViewModel.vElement, this.chatModel.chatC
+                this.HeaderC, this.currentViewModel.vElement
                 // HeaderC, gameBoxC
                 // can put chatC into this component as well so view changes don't affect the chat element
             ],
         });
 
-        this.PlayerList = { players: {}, length: 0 };
+        this._newPlayerList();
     }
-
+    
+    _newPlayerList() { this.PlayerList = { players: {}, length: 0 } }
+    
     isInRegisterState() {
         if (this.currentViewModel instanceof RegisterScreenView) {
             return true;
@@ -34,25 +38,36 @@ export class MainView {
         return false;
     }
 
-    showWaitingScreen = (...players) => {
-        for (const player of players) {
-            this.PlayerList.players[player.name] = player
-            this.PlayerList.length++;
+    showScreen = {
+        [WAITING_VIEW]: (...players) => {
+            for (const player of players) {
+                this.PlayerList.players[player.name] = player
+                this.PlayerList.length++;
+            }
+            this._showNewView(new WaitingScreenView(...players));
+            this.vElement.addChild(this.chatModel.vElement);
+        },
+        [GAME_VIEW]: (gameMapString) => {
+            this.gameMap = new GameMap(gameMapString)
+            this._showNewView(new gameBoxModel(this.gameMap, this.PlayerList.players));
+            this.renderPlayers()
+        },
+        [GAME_OVER_VIEW]: () => {
+            this._newPlayerList();
+            this.currentViewModel.vElement.addChild(GameOverScreen())
+        },
+        [REGISTER_VIEW]: () => {
+            this._showNewView(new RegisterScreenView);
         }
-        const WaitingScreenM = new WaitingScreenView(...players);
-        this.vElement.replaceChild(this.currentViewChildIndex, WaitingScreenM.vElement);
-        //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
-        this.currentViewModel = WaitingScreenM;
     }
+    _showNewView(newView) {
+        this.vElement.replaceChild(this.currentViewChildIndex, newView.vElement);
+        this.currentViewModel = newView;
 
-    showGameBox = (gameMapString) => {
-        this.gameMap = new GameMap(gameMapString)
-        const gameBoxM = new gameBoxModel(this.gameMap, this.PlayerList.players);
-        this.vElement.replaceChild(this.currentViewChildIndex, gameBoxM.vElement);
-        //this.vElement.replaceChild(this.currentViewModel.vElement.vId,gameBoxM.vElement);
-        this.currentViewModel = gameBoxM;
-        this.renderPlayers()
     }
+    // showWaitingScreen = 
+
+    // showGameBox = 
 
 
     renderPlayers = () => {

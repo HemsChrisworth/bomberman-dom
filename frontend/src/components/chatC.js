@@ -1,11 +1,13 @@
 
 import { VElement } from "../../../framework/VElement.js";
+import { mainView } from "../app.js";
 import { CHAT_MESSAGE_FORM_INPUT_NAME } from "../js_modules/consts/consts.js";
 
 export function createChatMessageArea() {
   return new VElement({
     tag: 'div',
     attrs: { id: 'chatmessagearea' },
+    style: { overflow: "auto" },
     children: [
       // chat messages here, new messages as addChild
       new VElement({
@@ -17,6 +19,12 @@ export function createChatMessageArea() {
   });
 }
 
+export function createNewMessageC(date, userName, content) {
+  return new VElement({
+    tag: "p",
+    content: date + ` ${userName}: ` + ` ${content}`
+  });
+}
 
 export function createChatC(sendMessage) {
   return new VElement({
@@ -45,10 +53,12 @@ export function createChatC(sendMessage) {
           }),
         ],
         '@submit.prevent': (velem, event) => {
-          
+
           const chatMessage = event.target[CHAT_MESSAGE_FORM_INPUT_NAME].value
           sendMessage(chatMessage)
-          event.target[CHAT_MESSAGE_FORM_INPUT_NAME].value = ""
+          event.target[CHAT_MESSAGE_FORM_INPUT_NAME].value = "";
+          if (mainView.gameMap) { event.target[CHAT_MESSAGE_FORM_INPUT_NAME].blur(); }
+          //mainView.gameMap?.vElement.$elem.focus();
           // send message to backend via 'ws.request()'
           // in ws_response_router, add the new message into the chatMessageArea VElement with addChild() method
 

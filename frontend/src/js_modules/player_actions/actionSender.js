@@ -16,8 +16,10 @@ const actionConverter = {
 
 export function actionSender(currentAction) {
   const actionType = actionConverter.getActionType(currentAction);
+  console.log("send action : " + currentAction)
   playerActioner[actionType].send(currentAction);
 }
 export function eventSender(currentEvent) {
+  console.log("send evnet : " + currentEvent.type)
   playerActioner[currentEvent.type].send(currentEvent);
 }

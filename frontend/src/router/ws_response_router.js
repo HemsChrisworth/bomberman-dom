@@ -3,6 +3,8 @@ import { Player } from "../js_modules/models/playersModel.js";
 import { playerActioner } from "../js_modules/player_actions/actionModel.js";
 import { movementHandler } from "../js_modules/player_actions/playerMovement.js";
 import { chatMessage } from "../js_modules/models/ws/chatMessageModel.js";
+import { GAME_VIEW, WAITING_VIEW } from "../js_modules/consts/consts.js";
+import { createNewMessageC } from "../components/chatC.js";
 
 export const wsResponseRouter = {
   usersInRoom(payload) {
@@ -20,8 +22,6 @@ export const wsResponseRouter = {
       return
     }
 
-    console.log("handle usersInRoom message with payload:", payload);
-
     const players = [];
     payload.data.forEach(user => {
       if (user.playerName === mainView.currentPlayer.name) {
@@ -32,7 +32,7 @@ export const wsResponseRouter = {
       }
     });
 
-    mainView.showWaitingScreen(...players);
+    mainView.showScreen[WAITING_VIEW](...players);
   },
 
   registerNewPlayer(payload) {
@@ -54,7 +54,7 @@ export const wsResponseRouter = {
     }
     let gameMapString = payload.data;
     console.log("Game map--", gameMapString);
-    mainView.showGameBox(gameMapString);
+    mainView.showScreen[GAME_VIEW](gameMapString);
   },
 
   userQuitChat(payload) {
@@ -80,10 +80,12 @@ export const wsResponseRouter = {
       return
     }
     const mess = payload.data;
-    
+
     let formatedDate = mess.dateCreate.slice(11, 19)
 
-    mainView.chatModel.chatMessageArea.addChild(`\n` + formatedDate + ` ${mess.userName}:` + ` ${mess.content}`)
+    const newMessage = createNewMessageC(formatedDate, mess.userName, mess.content);
+    mainView.chatModel.chatMessageArea.addChild(newMessage);
+    newMessage.$elem.scrollIntoView();
   },
 
   sendMessageToChat(payload) {
