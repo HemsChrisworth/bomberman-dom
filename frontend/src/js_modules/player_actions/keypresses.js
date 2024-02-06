@@ -1,5 +1,6 @@
-import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js"
-import { currentEvent } from "./playerDyingRespawn.js";
+import { throttle } from "../../utils/throttler.js";
+import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js"
+import { currentEvent } from "./eventModel.js";
 
 /**
  * turns keyboard keys into strings of player actions
@@ -26,7 +27,7 @@ keyConvert.ArrowLeft = keyConvert.a;
 keyConvert.ArrowRight = keyConvert.d;
 
 export let currentAction = null;
-const activeAction = {
+export const activeAction = {
   [PLAYER_MOVE_LEFT]: false,
   [PLAYER_MOVE_RIGHT]: false,
   [PLAYER_MOVE_UP]: false,
@@ -34,7 +35,7 @@ const activeAction = {
   [PLAYER_PLACE_BOMB]: false,
 
   initiateAction(action) {
-    if (currentEvent){
+    if (currentEvent?.stopAction) {
       return;
     }
     this[action] = true;
@@ -48,29 +49,33 @@ const activeAction = {
   }
 };
 
+function keyDownHandler(event) {
+  try {
+    const action = keyConvert.getAction(event.key);
+    if (action) {
+      if (!activeAction[action]) {
+        activeAction.initiateAction(action);
+      }
+    }
+
+  } catch {
+    console.log("error: invalid key");
+  }
+}
+
+function keyUpHandler(event) {
+  try {
+    const action = keyConvert[event.key];
+    if (action) {
+      activeAction.endAction(action);
+    }
+  } catch {
+    console.log("error: invalid key");
+  }
+}
+
 export function listenPlayerActions() {
   //TODO need to put these while focused on gamebox, to prevent chat breaking(gamebox attr "tabindex=0" and focus() when the game starts)
-  document.addEventListener("keydown", (event) => {
-    try {
-      const action = keyConvert.getAction(event.key);
-      if (action) {
-        if (!activeAction[action]) {
-          activeAction.initiateAction(action);
-        }
-      }
-
-    } catch {
-      console.log("error: invalid key");
-    }
-  });
-  document.addEventListener("keyup", (event) => {
-    try {
-      const action = keyConvert[event.key];
-      if (action) {
-        activeAction.endAction(action);
-      }
-    } catch {
-      console.log("error: invalid key");
-    }
-  });
+  document.addEventListener("keydown", throttle(keyDownHandler, 2));
+  document.addEventListener("keyup", keyUpHandler);
 }

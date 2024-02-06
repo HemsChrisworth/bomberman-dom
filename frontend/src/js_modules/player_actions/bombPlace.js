@@ -3,14 +3,16 @@ import { BOMB, BOMB_PLACEMENT_DELAY, SPRITE_POS, WS_REQUEST_TYPE_PLAYER_ACTION }
 import { PLAYER_PLACE_BOMB } from "../consts/playerActionTypes.js";
 import { Bomb } from "../models/BombModel.js";
 import { PlaceBomb } from "./actionModel.js";
+import { activeAction } from "./keypresses.js";
 
 
-export function bombPlace() {
+export function bombPlace(currentAction) {
     const bombInitData = mainView.currentPlayer[PLAYER_PLACE_BOMB]();
     if (bombInitData) {
         const playerAction = new PlaceBomb(bombInitData);
         mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, playerAction)
     }
+    activeAction.endAction(currentAction);
 }
 
 

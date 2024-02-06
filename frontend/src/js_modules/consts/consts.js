@@ -28,7 +28,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   FIREPUP = 197,
   SPEEDPUP = 199,
   BOMB = 43,
-  EXPLOSION_CENTER = 156, 
+  EXPLOSION_CENTER = 156,
   EXPLOSION_LEFT = 155,
   EXPLOSION_RIGHT = 157,
   EXPLOSION_UP = 142,
@@ -77,7 +77,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
 
   PLAYER_MOVEMENT_SPEED = 2,
   PLAYER_RESPAWN_TIME = 300,
-
+  SEND_TO_WS_DELAY = 20, //delay to stop die-event,
 
   // bomb
   BOMB_EXPLOSION_TIMER = 3000, // time between placing bomb and explosion

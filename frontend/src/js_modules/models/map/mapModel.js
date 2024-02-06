@@ -60,9 +60,9 @@ export class GameMap {
         return false;
       } else {
         if (mapTile.powerup || mapTile.onFire) {
-          powerups.push(mapTile)
+          powerups.push({ mapCoords: { row: tile.row, column: tile.column }, mapTile })
         }
-      } 
+      }
     }
     return powerups;
   }
@@ -80,7 +80,10 @@ export class GameMap {
       return tile;
     }
   }
+  removePowerUp({row, column}) {
+    this.baseMap[row][column].removePowerUp?.();
+  }
   addTile() {
-    
+
   }
 }

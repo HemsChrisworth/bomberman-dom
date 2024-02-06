@@ -1,11 +1,11 @@
 import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js"
 import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
-import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME } from "../consts/consts.js"
-import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_RESPAWN } from "../consts/playerActionTypes.js";
-import { activeEvent } from "../player_actions/playerDyingRespawn.js";
+import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME, SEND_TO_WS_DELAY } from "../consts/consts.js"
+import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_RESPAWN, POWER_IS_PICKED } from "../consts/playerActionTypes.js";
+import { ActiveEvent, currentEvent, endEvent } from "../player_actions/eventModel.js";
 
-const OFFSET_IGNORED = 10;
+const OFFSET_IGNORED = 12;
 function setPlayerStyleAttrs() {
   const style = `z-index: ${PLAYER_Z_INDEX};
                  width: ${MAP_TILE_SIZE}px;
@@ -156,9 +156,10 @@ export class Player { // add all player properties here, for example image, move
   }
   setLives(lives) {
     if (lives > 0) {
+      console.log("in setLives", lives);
       this.stats.lives = lives;
     }
-    else{
+    else {
       this.stats.lives = lives;
       console.log("PLAYER LOST ALL LIVES");
 
@@ -167,29 +168,33 @@ export class Player { // add all player properties here, for example image, move
   die() {
     this.dead = true;
     this.stats.loseLife();
-    activeEvent.initiateEvent(PLAYER_DIE);
+    new ActiveEvent(PLAYER_DIE);
+    console.log("die() set event:", currentEvent);
     if (this.stats.lives == 0) {
       console.log("PLAYER LOST ALL LIVES");
       setTimeout(() => {
-        activeEvent.endEvent();
+        console.log("die() ends event start:", currentEvent);
+        endEvent(currentEvent);
+        console.log("die() ends event end:", currentEvent);
       }
-        , PLAYER_RESPAWN_TIME);
+        , SEND_TO_WS_DELAY);
       return;
     }
     const { row, column } = this._number ? PLAYER_START_POSITIONS[this._number - 1] : PLAYER_START_POSITIONS[0];
-    //todo: try to nit respawn if the start position is onFire
+    //todo: try to handle respawn if the start position is onFire
     setTimeout(() => {
       this.respawn(row, column);
     }
       , PLAYER_RESPAWN_TIME);
 
-    //setTimeout(this.respawn, PLAYER_RESPAWN_TIME); //
   }
   respawn(row, column) {
     this.model = new PlayerModel(row, column);
     const [x, y] = convertRowColumnToXY(row, column)
     this.position = [x, y] // add websocket stuff later
-    activeEvent.initiateEvent(PLAYER_RESPAWN);
+    new ActiveEvent(PLAYER_RESPAWN);
+    console.log("respawn() set event:", currentEvent);
+
   }
   adjustByX() {
     const oldModel = {
@@ -225,16 +230,15 @@ export class Player { // add all player properties here, for example image, move
     const tiles = mainView.gameMap?.getTilesOnWay(this.model.getBlocksOn[direction]());
     if (!tiles) { return false; }
     for (let tile of tiles) {
-      if (tile.onFire) {
+      if (tile.mapTile.onFire) {
         mainView.currentPlayer.die()
-
-        console.log("checkTilesOnWay, player stat  : " + this.stats)
-        console.log("checkTilesOnWay, tile  : ", tile)
         return
       }
-      if (tile.powerup != null) {//!=null or undefined
-        this.stats[tile.powerup]();
-        tile.removePowerUp();
+      if (tile.mapTile.powerup != null) {//!=null or undefined
+        this.stats[tile.mapTile.powerup]();
+        new ActiveEvent(POWER_IS_PICKED, tile.mapCoords);
+
+        //tile.removePowerUp(); // will be removed in the event handler
       }
     }
     return true; // if we want to send the stats changes to the server, it has to return object with changed stats properties
@@ -337,9 +341,11 @@ export class Player { // add all player properties here, for example image, move
   }
 
   [PLAYER_PLACE_BOMB] = () => {
+    console.log("place Bomb start: " + this.stats.bombAmount);
     if (this.stats.bombAmount <= 0) { return false; }
     this.stats.bombAmount--;
     setTimeout(() => { this.stats.bombAmount++ }, BOMB_EXPLOSION_TIMER);
+    console.log("place Bomb .bombAmount--: " + this.stats.bombAmount);
     let { row, column } = this.model;
     const power = this.stats.fireTiles;
     if (this.model.offsetX > MAP_TILE_SIZE / 2) {
@@ -353,16 +359,16 @@ export class Player { // add all player properties here, for example image, move
 }
 function numberOfLives(lives) {
   return new VElement({
-      tag: 'span',
-      attrs: { class: 'gamePlayerUsername' },
-      content: `${lives} x`,
+    tag: 'span',
+    attrs: { class: 'gamePlayerUsername' },
+    content: `${lives} x`,
   });
 }
 function liveIcon(playerName) {
   return new VElement({
-      tag: 'span',
-      attrs: { id: "hearticon", class: "material-symbols-outlined" },
-      content: `favorite`,
+    tag: 'span',
+    attrs: { id: "hearticon", class: "material-symbols-outlined" },
+    content: `favorite`,
   });
 }
 class PlayerStats {

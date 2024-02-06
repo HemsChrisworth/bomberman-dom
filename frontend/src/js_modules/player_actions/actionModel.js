@@ -1,9 +1,10 @@
 import { throttle } from "../../utils/throttler.js"
-import { BOMB_PLACEMENT_DELAY } from "../consts/consts.js"
-import { PLAYER_DIE, PLAYER_MOVE, PLAYER_PLACE_BOMB, PLAYER_RESPAWN } from "../consts/playerActionTypes.js"
+import { BOMB_PLACEMENT_DELAY, PLAYER_RESPAWN_TIME } from "../consts/consts.js"
+import { PLAYER_DIE, PLAYER_MOVE, PLAYER_PLACE_BOMB, PLAYER_RESPAWN, POWER_IS_PICKED } from "../consts/playerActionTypes.js"
 import { bombPlace, bombPlaceHandler } from "./bombPlace.js"
-import { dyingHandler, playerDie, playerRespawn } from "./playerDyingRespawn.js"
+import { dyingHandler, playerDieSender, playerRespawnHandler, playerRespawnSender } from "./playerDyingRespawn.js"
 import { movePlayer, movementHandler } from "./playerMovement.js"
+import { powerPickupHandler, powerPickupSender } from "./powerPickup.js"
 
 class PlayerAction {
     constructor(type) {
@@ -14,6 +15,13 @@ class PlayerAction {
 export class PlayerMove extends PlayerAction {
     constructor(coords) {
         super(PLAYER_MOVE)
+        this.coords = coords
+    }
+}
+
+export class PowerPickup extends PlayerAction {
+    constructor(coords) {
+        super(POWER_IS_PICKED)
         this.coords = coords
     }
 }
@@ -40,19 +48,24 @@ export class PlayerDie extends PlayerAction {
 
 export const playerActioner = {
     [PLAYER_MOVE]: {
-        send: throttle(movePlayer, 20),
+        send: throttle(movePlayer, 17),
         handle: (data) => movementHandler(data.playerName, data.action.coords)
     },
     [PLAYER_PLACE_BOMB]: {
-        send: throttle(bombPlace, 150),
+        send: throttle(bombPlace, 100),
         handle: (data) => bombPlaceHandler(data.action.coords)
     },
     [PLAYER_DIE]: {
-        send: playerDie,
+        send: throttle(playerDieSender, PLAYER_RESPAWN_TIME),
         handle: (data) => dyingHandler(data.playerName, data.action.lives)
     },
     [PLAYER_RESPAWN]: {
-        send: playerRespawn,
-        handle: (data) => movementHandler(data.playerName, data.action.coords)
-    }
+        send: throttle(playerRespawnSender, 25),
+        handle: (data) => playerRespawnHandler(data.playerName, data.action.coords)
+    },
+    [POWER_IS_PICKED]: {
+        send: throttle(powerPickupSender, 25),
+        handle: (data) => powerPickupHandler(data.playerName, data.action.coords)
+
+    },
 }
