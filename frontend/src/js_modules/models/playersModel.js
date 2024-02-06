@@ -88,6 +88,24 @@ class PlayerModel {
         blocks.push({ row: this.row + 1, column: this.column })
       }
       return blocks;
+    },
+    "current": () => {
+      const blocks = [];
+      // checks current block and the next block
+      if (this.offsetX > 0) {
+        blocks.push(
+          { row: this.row, column: this.column },
+          { row: this.row, column: this.column + 1 }
+        );
+      } else if (this.offsetY > 0) {
+        blocks.push(
+          { row: this.row, column: this.column },
+          { row: this.row + 1, column: this.column }
+        );
+      } else {
+        blocks.push({ row: this.row, column: this.column });
+      }
+      return blocks;
     }
   }
 

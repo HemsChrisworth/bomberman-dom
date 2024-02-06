@@ -2,7 +2,16 @@ import { VElement } from "../../../../framework/VElement.js";
 import { mainView } from "../../app.js";
 import { SPRITE_POS, SPRITE_SHEET_URL, MAP_TILE_SIZE, EXPLOSION_Z_INDEX, EXPLOSION_CENTER, EXPLOSION_LEFT, EXPLOSION_RIGHT, EXPLOSION_UP, EXPLOSION_DOWN, EXPLOSION_LASTING_TIMER, EXPLOSION_EDGES } from "../consts/consts.js";
 
-function checkPlayerInExplosion(column, row) {
+function checkPlayerInExplosion(block) {
+  const currentPlayerRowsColumns = mainView.currentPlayer.model.getBlocksOn["current"]();
+  console.log(block, "player pos: ", currentPlayerRowsColumns)
+  // get the blocks that player is standing on
+  currentPlayerRowsColumns.forEach((rowColumn) => {
+    if (rowColumn.column == block.column && rowColumn.row == block.row) {
+      mainView.currentPlayer.die();
+      console.log("player dead")
+    }
+  });
 }
 
 
@@ -47,6 +56,7 @@ class ExplosionModel {
       for (let i = 1; i <= power; i++) {
         const block = { row: this.row, column: this.column - i };
         const tile = mainView.gameMap?.getTileToDestroy(block);
+        
         if (!tile) {
           this.blocks[EXPLOSION_LEFT].push(block);
           continue; // it was passable tile
@@ -91,10 +101,9 @@ class ExplosionModel {
         const block = { row: this.row + i, column: this.column };
         const tile = mainView.gameMap?.getTileToDestroy(block);
         console.log("down expl: ", tile);
-        // if player is on tile, dead
         if (!tile) {
           this.blocks[EXPLOSION_DOWN].push(block);
-
+          
           continue;
         }
         if (tile.destroyable) {
@@ -146,28 +155,34 @@ export class Explosion {
             style: setExplosionStyle(this.x, this.y),
         }).setStyle(setExplosionPicture(EXPLOSION_CENTER))
         );
+        const centerBlock = {row: row, column: column}
+        checkPlayerInExplosion(centerBlock); // check if player is in the center of explosion
         for (const [direction, blocks] of Object.entries(this.model.blocks)) {
-            // check if player is moving inside blocks
-            this.addBeam(direction, blocks);
+            this.addBeam(direction, blocks); // in here checks if player is in other beams of explosion
         }
         this.renderExplosion();
-        //this.removeDestroyedBlocks()
         setTimeout(this.delEsplosion, EXPLOSION_LASTING_TIMER); // set timer for bomb to explose after placing
     }
     addBeam = (direction, blocks) => {
-        if (blocks.length === 0) { return }
-        for (let i = 0; i < blocks.length - 1; i++) {
-            const x = blocks[i].column * MAP_TILE_SIZE;
-            const y = blocks[i].row * MAP_TILE_SIZE;
-            this.vElements.push(new VElement({
-                tag: "div",
-                attrs: {
-                    class: 'explosion',
-                },
-                style: setExplosionStyle(x, y),
-            }).setStyle(setExplosionPicture(direction))
-            );
+        if (blocks.length === 0) { 
+          return 
         }
+        for (let i = 0; i < blocks.length - 1; i++) { // for the explosion inner fire
+          
+          checkPlayerInExplosion(blocks[i]);
+          const x = blocks[i].column * MAP_TILE_SIZE;
+          const y = blocks[i].row * MAP_TILE_SIZE;
+          this.vElements.push(new VElement({
+              tag: "div",
+              attrs: {
+                  class: 'explosion',
+              },
+              style: setExplosionStyle(x, y),
+          }).setStyle(setExplosionPicture(direction))
+          );
+        }
+        // for the explosion edges
+        checkPlayerInExplosion(blocks[blocks.length - 1]);
         const x = blocks[blocks.length - 1].column * MAP_TILE_SIZE;
         const y = blocks[blocks.length - 1].row * MAP_TILE_SIZE;
         this.vElements.push(new VElement({
