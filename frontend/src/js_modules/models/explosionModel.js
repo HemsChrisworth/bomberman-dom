@@ -1,10 +1,10 @@
 import { VElement } from "../../../../framework/VElement.js";
 import { mainView } from "../../app.js";
 import { SPRITE_POS, SPRITE_SHEET_URL, MAP_TILE_SIZE, EXPLOSION_Z_INDEX, EXPLOSION_CENTER, EXPLOSION_LEFT, EXPLOSION_RIGHT, EXPLOSION_UP, EXPLOSION_DOWN, EXPLOSION_LASTING_TIMER, EXPLOSION_EDGES } from "../consts/consts.js";
+import { PLAYER_POSITION_CURRENT } from "../consts/playerActionTypes.js";
 
 function checkPlayerInExplosion(block) {
-  const currentPlayerRowsColumns = mainView.currentPlayer.model.getBlocksOn["current"]();
-  console.log(block, "player pos: ", currentPlayerRowsColumns)
+  const currentPlayerRowsColumns = mainView.currentPlayer.model.getBlocksOn[PLAYER_POSITION_CURRENT]();
   // get the blocks that player is standing on
   currentPlayerRowsColumns.forEach((rowColumn) => {
     if (rowColumn.column == block.column && rowColumn.row == block.row) {

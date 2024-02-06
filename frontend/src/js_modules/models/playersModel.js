@@ -2,7 +2,7 @@ import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js"
 import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
 import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME } from "../consts/consts.js"
-import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_RESPAWN } from "../consts/playerActionTypes.js";
+import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_POSITION_CURRENT, PLAYER_RESPAWN } from "../consts/playerActionTypes.js";
 import { activeEvent } from "../player_actions/playerDyingRespawn.js";
 
 const OFFSET_IGNORED = 10;
@@ -89,7 +89,7 @@ class PlayerModel {
       }
       return blocks;
     },
-    "current": () => {
+    [PLAYER_POSITION_CURRENT]: () => {
       const blocks = [];
       // checks current block and the next block
       if (this.offsetX > 0) {
