@@ -376,9 +376,9 @@ class PlayerStats {
     this._lives = 3;
     // potentially those stats could be display on the status bar - 
     // to do this we need to add setters which will change the statsBar and after the player moves, send to server these stats along with the position 
-    this.bombAmount = 1; // the amount of bombs
-    this.fireTiles = 1; // the lenght of explosion in tiles
-    this.moveSpeed = PLAYER_MOVEMENT_SPEED; // for powerup
+    this._bombAmount = 1; // the amount of bombs
+    this._fireTiles = 1; // the lenght of explosion in tiles
+    this._moveSpeed = PLAYER_MOVEMENT_SPEED; // for powerup
     this.vNumberOfLives = createNumberOfLives(this._lives);
     this.vPlayerStatsBar = new VElement({
       tag: "span",
@@ -406,24 +406,36 @@ class PlayerStats {
   set lives(lives) {
     this._lives = lives;
     if (this._lives != 0) {
-      this.vNumberOfLives.content = `${this._lives} x`;
+      this.vNumberOfLives.content = `${this._lives}`;
     } else {
-      this.vNumberOfLives.content = `died`; 
+      this.vNumberOfLives.content = `died`;
     }
+  }
+  get bombAmount() { return this._bombAmount }
+  get fireTiles() { return this._fireTiles }
+  get moveSpeed() { return this._moveSpeed }
+  set bombAmount(bombAmount) {
+    this._bombAmount = bombAmount;
+    this.vShowBombPUP.content = `Bombs: ${this._bombAmount}`;
+  }
+  set fireTiles(fireTiles) {
+    this._fireTiles = fireTiles;
+    this.vShowFlamePUP.content = `Flame: ${this._fireTiles}`;
+  }
+  set moveSpeed(moveSpeed) {
+    this._moveSpeed = moveSpeed;
+    this.vShowSpeedPUP.content = `Speed: ${this._moveSpeed}`;
   }
   loseLife() {
     this._lives--
   }
   [BOMBPUP] = () => {
     this.bombAmount++;
-    this.vShowBombPUP.content = `Bombs: ${this.bombAmount}`;
   }
   [FIREPUP] = () => {
     this.fireTiles++;
-    this.vShowFlamePUP.content = `Flame: ${this.fireTiles}`;
   }
   [SPEEDPUP] = () => {
     this.moveSpeed += 1;
-    this.vShowSpeedPUP.content = `Speed: ${this.moveSpeed}`;
   }
 }

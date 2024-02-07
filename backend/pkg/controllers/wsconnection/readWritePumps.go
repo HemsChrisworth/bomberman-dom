@@ -43,10 +43,7 @@ func (uc *UsersConnection) ReadPump() {
 
 		close(uc.Client.ReceivedMessages)
 		err = uc.Client.Conn.Close()
-		if err != nil {
-			uc.WsServer.ErrLog.Printf("ReadPump: error closing connection %p: %v", uc.Client.Conn, err)
-		}
-		uc.WsServer.InfoLog.Printf("ReadPump closed connection %p", uc.Client.Conn)
+		uc.WsServer.InfoLog.Printf("ReadPump closed connection %p because: %s", uc.Client.Conn, err)
 	}()
 
 	uc.Client.Conn.SetReadLimit(maxMessageSize)
@@ -57,10 +54,10 @@ func (uc *UsersConnection) ReadPump() {
 		err := uc.Client.Conn.ReadJSON(&message)
 		uc.WsServer.InfoLog.Printf("Message received from js: %s\n ", message)
 		if err != nil {
-			if websocket.IsUnexpectedCloseError(err, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
+			if websocket.IsUnexpectedCloseError(err, websocket.CloseNormalClosure, websocket.CloseGoingAway, websocket.CloseAbnormalClosure) {
 				uc.WsServer.ErrLog.Printf("websocket connection %p to '%s' was unexpected closed: %#v", uc.Client.Conn, uc.Client.Conn.LocalAddr(), err)
 			}
-			uc.WsServer.ErrLog.Printf("ReadPump is closing connection %p  of client  '%s' : %#v", uc.Client.Conn, uc.Client, err)
+			uc.WsServer.InfoLog.Printf("ReadPump is closing connection %p  of client  '%s' : %#v", uc.Client.Conn, uc.Client, err)
 			break
 		}
 
@@ -89,9 +86,9 @@ func (uc *UsersConnection) WritePump() {
 		ticker.Stop()
 		err := uc.Client.Conn.Close()
 		if err != nil {
-			uc.WsServer.ErrLog.Printf("WritePump: error closing connection: %v", err)
+			uc.WsServer.InfoLog.Printf("WritePump: error closing connection: %v", err)
 		} else {
-			uc.WsServer.InfoLog.Printf("WritePump closed connection %p", uc.Client.Conn)
+			uc.WsServer.InfoLog.Printf("WritePump closed connection %p because %s", uc.Client.Conn, err)
 		}
 	}()
 	for {

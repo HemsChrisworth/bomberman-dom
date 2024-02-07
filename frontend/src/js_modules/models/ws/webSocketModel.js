@@ -41,8 +41,8 @@ export default class Socket {
     //console.log("Type: ", event, " Payload:", payload); // for troubleshooting
     wsResponseRouter[event](payload); // routes the data to a handler based on the event
   }
-  closeWebsocket() {
-    this.connection.close();
+  closeWebsocket(code) {
+    this.connection.close(code);
   }
   request(type, payload) {
     // handles the websocket request message and converts to json as well

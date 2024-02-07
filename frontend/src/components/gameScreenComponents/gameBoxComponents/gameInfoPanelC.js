@@ -106,7 +106,7 @@ export function createNumberOfLives(lives) {
   return new VElement({
     tag: 'span',
     attrs: { class: 'gamePlayerUsername' },
-    content: `${lives} x`,
+    content: `${lives}`,
   });
 }
 export function creatLiveIcon() {
@@ -147,7 +147,7 @@ export function GameOverScreen() { // The amount of bomb powerups
       helperdiv(),
       youDied(),
     ],
-    "@click":(velem, event)=>{
+    "@click": (velem, event) => {
       mainView.showScreen[REGISTER_VIEW]();
     },
   });
