@@ -37,7 +37,6 @@ export function dyingHandler(playerName, lives) {
   }
   if (Object.keys(mainView.PlayerList.players).length == 1) { // check win condition
     if (mainView.PlayerList.players[mainView.currentPlayer.name]) {
-      console.log("you win")
       mainView.showScreen[YOU_WIN_VIEW]();
     }
   }
