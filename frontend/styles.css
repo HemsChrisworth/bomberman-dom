@@ -158,6 +158,51 @@ body {
     left: 115px;
     top: 115px;
 }
+
+#youwon {
+    position: absolute;
+    color: rgb(195,73,25);
+    background: linear-gradient(180deg, rgba(195,73,25,1) 0%, rgba(212,203,23,1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Luckiest Guy', cursive;
+    left: 115px;
+    top: 115px;
+    font-size: 80px;
+    animation: won.5s infinite;
+}
+
+@keyframes won {
+    0%{transform:scale(1.05)}
+    50%{
+        transform:scale(1)
+    }
+    100%{transform:scale(1.05)}
+}
+
+#helpdivyouwon {
+    position: absolute;
+    font-family: 'Luckiest Guy', cursive;
+    font-size: 80px;
+    color: #00000000;
+    text-shadow: 0px 0px 100px rgb(255, 56, 179), 3px 3px 10px rgb(0, 0, 0);
+    left: 115px;
+    top: 115px;
+    animation: won.5s infinite;
+}
+
+#youwonthegame {
+    position: absolute;
+    width: 554px;
+    height: 362px;
+    background-color: #ffffff8d;
+    box-shadow: 0 5px 5px #1a1a1a;
+    background: linear-gradient(180deg, rgba(255, 136, 0, 0.779) 0%, rgba(255, 234, 0, 0.806) 50%, rgba(255, 183, 0, 0.737) 100%);
+    top: 143px;
+    right: calc(49.5vw - 270px);
+    z-index: 100;
+}
+
 #chat { /* the chat component */
     position: absolute;
     display: block;

@@ -6,8 +6,8 @@ import { GameMap } from "./js_modules/models/map/mapModel.js";
 import { Player } from "./js_modules/models/playersModel.js";
 import { RegisterScreenView } from "./views/registerScreenView.js";
 import { WaitingScreenView } from "./views/waitingScreenView.js";
-import { GAME_OVER_VIEW, GAME_VIEW, REGISTER_VIEW, WAITING_VIEW } from "./js_modules/consts/consts.js";
-import { GameOverScreen } from "./components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
+import { GAME_OVER_VIEW, GAME_VIEW, REGISTER_VIEW, WAITING_VIEW, YOU_WIN_VIEW } from "./js_modules/consts/consts.js";
+import { GameOverScreen, YouWonScreen } from "./components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
 
 //TODO maybe move waitingScreenModel, registerScreenModel, gameBoxModel fom models to views
 export class MainView {
@@ -56,6 +56,11 @@ export class MainView {
             this._newPlayerList();
             this.gameMap = null;
             this.currentViewModel.vElement.addChild(GameOverScreen())
+        },
+        [YOU_WIN_VIEW]: () => {
+             this._newPlayerList();
+            this.gameMap = null;
+            this.currentViewModel.vElement.addChild(YouWonScreen())
         },
         [REGISTER_VIEW]: () => {
             this.chatModel.stop(1000);

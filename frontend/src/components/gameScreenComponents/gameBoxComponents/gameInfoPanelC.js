@@ -125,21 +125,22 @@ function createGameInfoHeader() {
   });
 }
 
-function youDied(playerList) { // The amount of bomb powerups
+function youDied(playerList) { // The "You DIED" screen
   return new VElement({
     tag: "span",
     attrs: { id: "youdied" },
     content: "You died",
   });
 }
-function helperdiv(playerList) { // The amount of bomb powerups
+
+function helperdiv(playerList) { // The "You DIED" screen
   return new VElement({
     tag: "span",
     attrs: { id: "helpdivyoudied" },
     content: "You died",
   });
 }
-export function GameOverScreen() { // The amount of bomb powerups
+export function GameOverScreen(playerList) { // The "You DIED" screen
   return new VElement({
     tag: "div",
     attrs: { id: "gameover" },
@@ -153,15 +154,41 @@ export function GameOverScreen() { // The amount of bomb powerups
   });
 }
 
-export function createGameInfoPanelC(playerList) {
+function youWon(playerList) { // The "You WON" screen
+  return new VElement({
+    tag: "span",
+    attrs: { id: "youwon" },
+    content: "You Won!", 
+  });
+}
+
+function helperdivWon(playerList) { // The "You WON" screen
+  return new VElement({
+    tag: "span",
+    attrs: { id: "helpdivyouwon" },
+    content: "You Won!",
+  });
+}
+
+export function YouWonScreen(playerList) { // The "You WON" screen
   return new VElement({
     tag: "div",
-    attrs: { id: "gameinfo" },
-    children: [
-      createGameInfoHeader(),
-      createPlayersOnline(playerList),
-      createGameSpecs(mainView.currentPlayer),
-      //GameOverScreen(),
-    ],
+    attrs: { id: "youwonthegame" },
+    children: [helperdivWon(), youWon()],
+    "@click": (velem, event) => {
+      mainView.showScreen[REGISTER_VIEW]();
+    },
   });
+}
+
+export function createGameInfoPanelC(playerList) {
+    return new VElement({
+      tag: "div",
+      attrs: { id: "gameinfo" },
+      children: [
+        createGameInfoHeader(),
+        createPlayersOnline(playerList),
+        createGameSpecs(mainView.currentPlayer),
+      ],
+    });
 }

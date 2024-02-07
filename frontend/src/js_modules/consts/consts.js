@@ -8,6 +8,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   WAITING_VIEW = "waitingView",
   GAME_VIEW = "gameView",
   GAME_OVER_VIEW = "gameOverView",
+  YOU_WIN_VIEW = "youWinView",
   //
   CHAT_MESSAGE_FORM_INPUT_NAME = "chatMessage",
   WS_REQUEST_TYPE_PLAYER_ACTION = "playerAction",
@@ -44,7 +45,6 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
     [EXPLOSION_RIGHT]: 158,
     [EXPLOSION_UP]: 128,
     [EXPLOSION_DOWN]: 184,
-
   },
   SPRITE_POS = {
     [GRASS]: getSpriteSheetXYbyIndex(GRASS),
@@ -59,10 +59,18 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
     [EXPLOSION_RIGHT]: getSpriteSheetXYbyIndex(EXPLOSION_RIGHT),
     [EXPLOSION_UP]: getSpriteSheetXYbyIndex(EXPLOSION_UP),
     [EXPLOSION_DOWN]: getSpriteSheetXYbyIndex(EXPLOSION_DOWN),
-    [EXPLOSION_EDGES[EXPLOSION_LEFT]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_LEFT]]),
-    [EXPLOSION_EDGES[EXPLOSION_RIGHT]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_RIGHT]]),
-    [EXPLOSION_EDGES[EXPLOSION_UP]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_UP]]),
-    [EXPLOSION_EDGES[EXPLOSION_DOWN]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_DOWN]]),
+    [EXPLOSION_EDGES[EXPLOSION_LEFT]]: getSpriteSheetXYbyIndex([
+      EXPLOSION_EDGES[EXPLOSION_LEFT],
+    ]),
+    [EXPLOSION_EDGES[EXPLOSION_RIGHT]]: getSpriteSheetXYbyIndex([
+      EXPLOSION_EDGES[EXPLOSION_RIGHT],
+    ]),
+    [EXPLOSION_EDGES[EXPLOSION_UP]]: getSpriteSheetXYbyIndex([
+      EXPLOSION_EDGES[EXPLOSION_UP],
+    ]),
+    [EXPLOSION_EDGES[EXPLOSION_DOWN]]: getSpriteSheetXYbyIndex([
+      EXPLOSION_EDGES[EXPLOSION_DOWN],
+    ]),
   },
   BACKEND_TILE_TYPE_CODES = {
     B: { TileIndex: SOLID, IntitialSpritePos: SPRITE_POS[SOLID] },
@@ -84,11 +92,10 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   PLAYER_MOVEMENT_SPEED = 2,
   PLAYER_RESPAWN_TIME = 300,
   SEND_TO_WS_DELAY = 20, //delay to stop die-event,
-
   // bomb
   BOMB_EXPLOSION_TIMER = 3000, // time between placing bomb and explosion
-  EXPLOSION_LASTING_TIMER = 3000, // explosion lasts 
-  BOMB_PLACEMENT_DELAY = 200
+  EXPLOSION_LASTING_TIMER = 3000, // explosion lasts
+  BOMB_PLACEMENT_DELAY = 200;
 
 //directions
 

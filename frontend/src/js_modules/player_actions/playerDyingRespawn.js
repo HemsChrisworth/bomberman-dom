@@ -1,5 +1,5 @@
 import { mainView } from "../../app.js";
-import { WS_REQUEST_TYPE_PLAYER_ACTION } from "../consts/consts.js";
+import { WS_REQUEST_TYPE_PLAYER_ACTION, YOU_WIN_VIEW } from "../consts/consts.js";
 import { PlayerDie, PlayerMove } from "./actionModel.js";
 import { endEvent } from "./eventModel.js";
 
@@ -38,6 +38,7 @@ export function dyingHandler(playerName, lives) {
   if (Object.keys(mainView.PlayerList.players).length == 1) { // check win condition
     if (mainView.PlayerList.players[mainView.currentPlayer.name]) {
       console.log("you win")
+      mainView.showScreen[YOU_WIN_VIEW]();
     }
   }
 }
