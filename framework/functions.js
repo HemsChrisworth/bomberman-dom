@@ -94,16 +94,22 @@ export function diffAttrs(oldAttrs, newAttrs) {
  */
 export function diffChildren(oldVChildren, newVChildren) {
     const childrenPatches = [];
-    oldVChildren?.forEach((oldVChild, i) => {
-        childrenPatches.push(diff(oldVChild, newVChildren[i]));
-    });
-
     const additionalPatches = [];
-    for (const additionalVChild of newVChildren.slice(oldVChildren.length)) {
-        additionalPatches.push($node => {
-            $node.appendChild(additionalVChild.render().$elem);
-            return $node;
+    if (newVChildren == null) {
+        oldVChildren?.forEach((oldVChild) => {
+            childrenPatches.push(diff(oldVChild, undefined));
+        })
+
+    } else {
+        oldVChildren?.forEach((oldVChild, i) => {
+            childrenPatches.push(diff(oldVChild, newVChildren[i]));
         });
+        for (const additionalVChild of newVChildren.slice(oldVChildren.length)) {
+            additionalPatches.push($node => {
+                $node.appendChild(additionalVChild.render().$elem);
+                return $node;
+            });
+        }
     }
 
     return $parent => {

@@ -113,7 +113,6 @@ export class VElement {
                     }
 
                     if (key === 'tag') {
-
                         stateObj.tag = value;
                         if (this.$elem instanceof Element) {
                             const $oldElm = this.$elem //neeed to keep the old $elem because after render (in the next row) it will be renewed
@@ -160,11 +159,11 @@ export class VElement {
 
                     // works if we assign a Map or undefined as children
                     if (key === 'children') {
-
                         if (value == null || (value instanceof Array && stateObj.tag)) {
+
                             const oldChildren = stateObj.children;
                             stateObj.children = value;
-                            if (this.content !==''){
+                            if (this.content && this.content !== '') {
                                 oldChildren.unshift(this.content);
                                 value.unshift(this.content);
                             }

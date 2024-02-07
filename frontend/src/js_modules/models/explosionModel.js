@@ -34,7 +34,7 @@ class ExplosionModel {
   constructor(row, column, power) {
     this.row = row;
     this.column = column;
-    mainView.gameMap.baseMap[row][column].onFire = true; // for central block
+    if (mainView.baseMap) { mainView.gameMap.baseMap[row][column].onFire = true }; // for central block
     this.blocks = {
       [EXPLOSION_LEFT]: [],
       [EXPLOSION_RIGHT]: [],

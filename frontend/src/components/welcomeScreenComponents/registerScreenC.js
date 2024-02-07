@@ -1,7 +1,7 @@
 import { VElement } from "../../../../framework/VElement.js";
 import { PLAYER_NAME_FORM_INPUT } from "../../js_modules/consts/consts.js";
 
-export function createErrorMessageC(){
+export function createErrorMessageC() {
     return new VElement({
         tag: 'div',
         attrs: { id: 'error', class: 'errormessage hide' },
@@ -44,7 +44,7 @@ function createFormChildren() {
     return [
         new VElement({
             tag: 'input',
-            attrs: { required: "", type: 'text', id: 'chooseusername', autocomplete: "off", name: PLAYER_NAME_FORM_INPUT },
+            attrs: { required: "", type: 'text', autofocus: "", id: 'chooseusername', autocomplete: "off", name: PLAYER_NAME_FORM_INPUT },
             "@input": (velem, event) => {
                 limitCharacters(event, 15) // Limits the number of nickname symbols to 15
             },

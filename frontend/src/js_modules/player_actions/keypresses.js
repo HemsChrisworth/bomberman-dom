@@ -75,7 +75,6 @@ const keyUpHandler = (event) => {
 }
 
 export function listenPlayerActions() {
-  //TODO need to put these while focused on gamebox, to prevent chat breaking(gamebox attr "tabindex=0" and focus() when the game starts)
   document.addEventListener("keydown", keyDownHandler);
   document.addEventListener("keyup", keyUpHandler);
 }

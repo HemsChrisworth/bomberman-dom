@@ -58,7 +58,6 @@ export function createChatC(sendMessage) {
           sendMessage(chatMessage)
           event.target[CHAT_MESSAGE_FORM_INPUT_NAME].value = "";
           if (mainView.gameMap) { event.target[CHAT_MESSAGE_FORM_INPUT_NAME].blur(); }
-          //mainView.gameMap?.vElement.$elem.focus();
           // send message to backend via 'ws.request()'
           // in ws_response_router, add the new message into the chatMessageArea VElement with addChild() method
 

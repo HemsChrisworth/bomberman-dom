@@ -9,7 +9,6 @@ import { WaitingScreenView } from "./views/waitingScreenView.js";
 import { GAME_OVER_VIEW, GAME_VIEW, REGISTER_VIEW, WAITING_VIEW } from "./js_modules/consts/consts.js";
 import { GameOverScreen } from "./components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
 
-//TODO maybe move waitingScreenModel, registerScreenModel, gameBoxModel fom models to views
 export class MainView {
     constructor() {
         this.HeaderC = createHeaderC();
@@ -28,9 +27,9 @@ export class MainView {
 
         this._newPlayerList();
     }
-    
+
     _newPlayerList() { this.PlayerList = { players: {}, length: 0 } }
-    
+
     isInRegisterState() {
         if (this.currentViewModel instanceof RegisterScreenView) {
             return true;
@@ -59,6 +58,8 @@ export class MainView {
         },
         [REGISTER_VIEW]: () => {
             this.chatModel.stop(1000);
+            this.chatModel.clearChatArea();
+            this.vElement.delChild(this.chatModel.vElement.vId);
             this._showNewView(new RegisterScreenView);
         }
     }

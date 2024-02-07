@@ -24,4 +24,9 @@ export class ChatModel {
     sendChatMessage = (text) => {
         this.socket.request("sendMessageToChat", { content: text, dateCreate: new Date() })
     }
+
+    clearChatArea = () => {
+        this.chatC.delChild(this.chatMessageArea.vId)
+        this.chatMessageArea = createChatMessageArea();
+        this.chatC.addChild(this.chatMessageArea);}
 }

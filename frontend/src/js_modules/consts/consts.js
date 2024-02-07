@@ -12,8 +12,8 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   CHAT_MESSAGE_FORM_INPUT_NAME = "chatMessage",
   WS_REQUEST_TYPE_PLAYER_ACTION = "playerAction",
   WS_REQUEST_TYPE_PLAYER_LOSE_LIFE = "loseLife",
-  WAIT_FOR_PLAYERS = 5, //TODO set to 20 and 10
-  START_IN = 2,
+  WAIT_FOR_PLAYERS = 20, 
+  START_IN = 10,
   // map tiles
   MAP_TILE_SIZE = 32,
   SPRITESHEET_ROWS = 23,

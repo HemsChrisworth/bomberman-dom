@@ -28,5 +28,5 @@ export function playerRespawnHandler(playerName, position) {
   mainView.PlayerList.players[playerName].position = position; // in draw, it will render the newly set x and y position into the VElement
 }
 export function dyingHandler(playerName, lives) {
-  mainView.PlayerList.players[playerName].setLives(lives); // in draw, it will render the newly set x and y position into the VElement
+  mainView.PlayerList.players[playerName]?.setLives(lives); // in draw, it will render the newly set x and y position into the VElement
 }
