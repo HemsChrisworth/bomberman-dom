@@ -109,27 +109,54 @@ function createGameInfoHeader() {
     });
 }
 
-function youDied(playerList) { // The amount of bomb powerups
+function youDied(playerList) { // The "You DIED" screen
   return new VElement({
     tag: "span",
     attrs: { id: "youdied" },
     content: "You died", 
   });
 }
-function helperdiv(playerList) { // The amount of bomb powerups
+
+function helperdiv(playerList) { // The "You DIED" screen
   return new VElement({
     tag: "span",
     attrs: { id: "helpdivyoudied" },
     content: "You died", 
   });
 }
-function GameOverScreen(playerList) { // The amount of bomb powerups
+function GameOverScreen(playerList) { // The "You DIED" screen
   return new VElement({
     tag: "div",
     attrs: { id: "gameover" },
     children: [
       helperdiv(),
       youDied(),
+    ],
+  });
+}
+
+function youWon(playerList) { // The "You WON" screen
+  return new VElement({
+    tag: "span",
+    attrs: { id: "youwon" },
+    content: "You Won!", 
+  });
+}
+
+function helperdivWon(playerList) { // The "You WON" screen
+  return new VElement({
+    tag: "span",
+    attrs: { id: "helpdivyouwon" },
+    content: "You Won!",
+  });
+}
+function YouWonScreen(playerList) { // The "You WON" screen
+  return new VElement({
+    tag: "div",
+    attrs: { id: "youwonthegame" },
+    children: [
+      helperdivWon(),
+      youWon(),
     ],
   });
 }
@@ -142,7 +169,8 @@ export function createGameInfoPanelC(playerList) {
         createGameInfoHeader(),
         createPlayersOnline(playerList),
         createGameSpecs(),
-        //GameOverScreen(),
+        // GameOverScreen(),
+        // YouWonScreen(),
       ],
     });
 }
