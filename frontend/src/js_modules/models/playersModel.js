@@ -5,7 +5,7 @@ import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
 import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME, GAME_OVER_VIEW } from "../consts/consts.js"
 import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_POSITION_CURRENT, PLAYER_RESPAWN, POWER_IS_PICKED } from "../consts/playerActionTypes.js";
 import { ActiveEvent, currentEvent, endEvent } from "../player_actions/eventModel.js";
-import { stopListenPlayerActions } from "../player_actions/keypresses.js";
+import { currentAction, stopListenPlayerActions } from "../player_actions/keypresses.js";
 
 const OFFSET_IGNORED = 12;
 function setPlayerStyleAttrs() {
@@ -14,10 +14,7 @@ function setPlayerStyleAttrs() {
                  height: ${MAP_TILE_SIZE}px;`;
   return style;
 }
-function newPlayerStyleTransform(x, y) {
-  return { transform: `translate(${x}px, ${y}px)` }
 
-}
 /**player's position on the game map
  * 
  * @property row - current row on the map grid
@@ -126,6 +123,9 @@ export class Player { // add all player properties here, for example image, move
     this.dead = false
     this.sprite = "src/assets/images/spritesheets/bomberman.png"; // currently uses url in style.css
 
+    this.direction = "moveDown";
+    this.currentFrame = 0; // max three frames
+
     this.vElement = new VElement({
       tag: "div",
       attrs: {
@@ -149,14 +149,20 @@ export class Player { // add all player properties here, for example image, move
   get position() {
     return [this.x, this.y]
   }
-
+  set spriteInfo([direction, currentFrame]) {
+    this.direction = direction;
+    this.currentFrame = currentFrame;
+  }
+  get spriteInfo(){
+    return [this.direction, this.currentFrame]
+  }
   moveOn() {
     [this.x, this.y] = convertRowColumnToXY(this.model.row, this.model.column);
     this.x += this.model.offsetX;
     this.y += this.model.offsetY;
   }
   setVPosition() {
-    this.vElement.setStyle(newPlayerStyleTransform(this.x, this.y))
+    this.vElement.setStyle({ transform: `translate(${this.x}px, ${this.y}px)` });
   }
   set number(number) {
     this._number = number;
@@ -261,8 +267,9 @@ export class Player { // add all player properties here, for example image, move
   }
 
   [PLAYER_MOVE_DOWN] = () => {
-    let oldModel = this.adjustByX();
+    this.direction = currentAction; 
 
+    let oldModel = this.adjustByX();
 
     if (this.model.offsetY == 0 && !this.checkTilesOnWay(PLAYER_MOVE_DOWN)) {
       Object.assign(this.model, oldModel);
@@ -285,6 +292,8 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_UP] = () => {
+    this.direction = currentAction; 
+
     let oldModel = this.adjustByX();
 
     if (this.model.offsetY == 0 && !this.checkTilesOnWay(PLAYER_MOVE_UP)) {
@@ -309,6 +318,8 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_LEFT] = () => {
+    this.direction = currentAction; 
+
     let oldModel = this.adjustByY();
 
     if (this.model.offsetX == 0 && !this.checkTilesOnWay(PLAYER_MOVE_LEFT)) {
@@ -333,6 +344,8 @@ export class Player { // add all player properties here, for example image, move
     return true;
   }
   [PLAYER_MOVE_RIGHT] = () => {
+    this.direction = currentAction; 
+
     let oldModel = this.adjustByY();
 
     if (this.model.offsetX == 0 && !this.checkTilesOnWay(PLAYER_MOVE_RIGHT)) {

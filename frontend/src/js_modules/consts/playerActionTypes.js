@@ -1,3 +1,5 @@
+
+// these are player actions!
 export const PLAYER_MOVE_LEFT = "moveLeft",
 PLAYER_MOVE_RIGHT = "moveRight",
 PLAYER_MOVE_UP = "moveUp",
@@ -8,4 +10,3 @@ PLAYER_DIE = "die",
 PLAYER_RESPAWN = "respawn",
 POWER_IS_PICKED = "powerPicked",
 PLAYER_POSITION_CURRENT = "currentPosition"
-
