@@ -7,7 +7,6 @@ export function update() {
     // update player position based on key press
     // update
     if (currentEvent) {
-      
         eventSender(currentEvent);
         return;
     }

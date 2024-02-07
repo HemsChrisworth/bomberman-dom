@@ -1,6 +1,5 @@
 import { getSpriteSheetXYbyIndex } from "../../utils/spriteSheetCalc.js";
-
-
+import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP } from "../consts/playerActionTypes.js";
 
 export const PLAYER_NAME_FORM_INPUT = "playerName",
   // main views
@@ -80,6 +79,13 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
     F: { TileIndex: FIREPUP, IntitialSpritePos: SPRITE_POS[DBLOCK] },
     M: { TileIndex: SPEEDPUP, IntitialSpritePos: SPRITE_POS[DBLOCK] },
   },
+  //player sprite animation
+  PLAYER_VIEW = {
+    [PLAYER_MOVE_UP]: [getSpriteSheetXYbyIndex(18),getSpriteSheetXYbyIndex(19),getSpriteSheetXYbyIndex(20)],
+    [PLAYER_MOVE_DOWN]: [getSpriteSheetXYbyIndex(3),getSpriteSheetXYbyIndex(4),getSpriteSheetXYbyIndex(5)],
+    [PLAYER_MOVE_LEFT]: [getSpriteSheetXYbyIndex(0),getSpriteSheetXYbyIndex(1),getSpriteSheetXYbyIndex(2)],
+    [PLAYER_MOVE_RIGHT]: [getSpriteSheetXYbyIndex(15),getSpriteSheetXYbyIndex(16),getSpriteSheetXYbyIndex(17)],
+  },
   // player start
   PLAYER_START_POSITIONS = [
     { row: 1, column: 1 },
@@ -96,8 +102,4 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   BOMB_EXPLOSION_TIMER = 3000, // time between placing bomb and explosion
   EXPLOSION_LASTING_TIMER = 3000, // explosion lasts
   BOMB_PLACEMENT_DELAY = 200;
-
-//directions
-
-
 

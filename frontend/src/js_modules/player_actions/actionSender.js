@@ -3,6 +3,7 @@ import { playerActioner } from "./actionModel.js";
 // import { bombPlaceThrottle } from "./bombPlace.js";
 // import { playerMovementThrottler } from "./playerMovement.js";
 
+// convert actions to events
 const actionConverter = {
   [PLAYER_MOVE_LEFT]: PLAYER_MOVE,
   [PLAYER_MOVE_RIGHT]: PLAYER_MOVE,
@@ -16,10 +17,11 @@ const actionConverter = {
 
 export function actionSender(currentAction) {
   const actionType = actionConverter.getActionType(currentAction);
-  console.log("send action : " + currentAction)
+  //console.log("send action : " + currentAction)
   playerActioner[actionType].send(currentAction);
 }
+
 export function eventSender(currentEvent) {
-  console.log("send evnet : " + currentEvent.type)
+  //console.log("send evnet : " + currentEvent.type)
   playerActioner[currentEvent.type].send(currentEvent);
 }
