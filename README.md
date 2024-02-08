@@ -64,6 +64,17 @@ To place a bomb, use Space button
 
 * The game room has an online chat where players can talk.
 * After destroying a block, player can randomly receive a power-up: bomb amount, fire or speed increase. Not all the blocks contain power-ups.
+* Training mode
+
+<br>
+
+### Training mode
+
+We implemented a training zone to let you check the game mechanics and train before the real battle. To open it, please type your nickname on the main page, and then choose "Training zone".
+<br>
+In the opened game, you will be alone without enemies. You can check all the controls and mechanics including placing bombs, destroying blocks, and receiving power-ups. If you lose all of your lives, you will die. If you destroy all the blocks, you will win. 
+
+**Feel free to discover the game from the new side!**
 
 <br>
 
