@@ -27,6 +27,7 @@ export class GameMap {
     this.renderMap()
   }
   createMap(tileMap) {
+    this.destroyableTiles = 0;
     for (let row = 0; row < this.rows; row++) {
       this.baseMap[row] = [];
       //this.explosionMap[row] = []
@@ -37,6 +38,9 @@ export class GameMap {
         const y = row * this.tileSize;
         const tile = tileTranslator[tileInitialObj.TileIndex](x, y, ...tileInitialObj.IntitialSpritePos);
         this.baseMap[row][column] = tile;
+        if (tile.destroyable){
+          this.destroyableTiles++;
+        }
         //this.explosionMap[row][column] = 0 // to add explosion later
       }
     }

@@ -36,12 +36,12 @@ export const wsResponseRouter = {
         players.push(new Player(user.playerName, user.playerNumber));
       }
     });
-if(mainView.solo){
-  mainView.addPlayers(mainView.currentPlayer)
-  mainView.chatModel.requestServer("startGame", "");
-}else{
-  mainView.showScreen[WAITING_VIEW](...players);
-}
+    if(mainView.solo){
+      mainView.addPlayers(mainView.currentPlayer)
+      mainView.chatModel.requestServer("startGame", "");
+    }else{
+      mainView.showScreen[WAITING_VIEW](...players);
+    }
   },
 
   registerNewPlayer(payload) {

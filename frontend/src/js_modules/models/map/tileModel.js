@@ -1,7 +1,7 @@
 import { VElement } from "../../../../../framework/VElement.js";
 import { mainView } from "../../../app.js";
 import { getSpriteSheetXYbyIndex, spriteSheetXYtoStyleString } from "../../../utils/spriteSheetCalc.js";
-import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK, BOMBPUP, FIREPUP, SPEEDPUP, SPRITE_SHEET_URL } from "../../consts/consts.js";
+import { GRASS, MAP_TILE_SIZE, SOLID, DBLOCK, BOMBPUP, FIREPUP, YOU_WIN_VIEW, SPEEDPUP, SPRITE_SHEET_URL } from "../../consts/consts.js";
 
 function setTileStyle(x, y, spriteOffsetX, spriteOffsetY) {
   const spriteSheetPosition = spriteSheetXYtoStyleString(spriteOffsetX, spriteOffsetY);
@@ -45,7 +45,10 @@ class DestroyableBlock extends Tile {
     this.destroyable = true;
   }
   destroy() {
-    console.log("destroy: ", this);
+    mainView.gameMap.destroyableTiles--;
+    if (mainView.gameMap.destroyableTiles==0 && mainView.solo){
+      mainView.showScreen[YOU_WIN_VIEW]();
+    }
     this.destroyable = false;
     this.passable = true;
     // const [spriteOffsetX, spriteOffsetY] = getSpriteSheetXYbyIndex(GRASS)

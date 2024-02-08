@@ -58,7 +58,7 @@ export class MainView {
             this.currentViewModel.vElement.addChild(GameOverScreen())
         },
         [YOU_WIN_VIEW]: () => {
-             this._newPlayerList();
+            this._newPlayerList();
             this.gameMap = null;
             this.currentViewModel.vElement.addChild(YouWonScreen())
         },
