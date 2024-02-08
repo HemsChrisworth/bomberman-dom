@@ -72,7 +72,7 @@ export class Bomb {
         setTimeout(this.explode, BOMB_EXPLOSION_TIMER); // set timer for bomb to explose after placing
     }
     renderBomb() {
-        mainView.gameMap.vElement.addChild(this.vElement)
+        mainView.gameMap?.vElement.addChild(this.vElement)
     }
 
     explode = () =>{

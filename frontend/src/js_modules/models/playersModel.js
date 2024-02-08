@@ -7,7 +7,7 @@ import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAY
 import { ActiveEvent, currentEvent, endEvent } from "../player_actions/eventModel.js";
 import { currentAction, stopListenPlayerActions } from "../player_actions/keypresses.js";
 
-const OFFSET_IGNORED = 12;
+const OFFSET_IGNORED = 15;
 function setPlayerStyleAttrs() {
   const style = `z-index: ${PLAYER_Z_INDEX};
                  width: ${MAP_TILE_SIZE}px;

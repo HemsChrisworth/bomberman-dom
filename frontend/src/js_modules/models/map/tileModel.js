@@ -47,6 +47,7 @@ class DestroyableBlock extends Tile {
   destroy() {
     mainView.gameMap.destroyableTiles--;
     if (mainView.gameMap.destroyableTiles==0 && mainView.solo){
+      mainView.currentViewModel.stopCountdowns();
       mainView.showScreen[YOU_WIN_VIEW]();
     }
     this.destroyable = false;

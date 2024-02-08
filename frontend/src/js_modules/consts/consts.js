@@ -12,9 +12,9 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   CHAT_MESSAGE_FORM_INPUT_NAME = "chatMessage",
   WS_REQUEST_TYPE_PLAYER_ACTION = "playerAction",
   WS_REQUEST_TYPE_PLAYER_LOSE_LIFE = "loseLife",
-  WAIT_FOR_PLAYERS = 20, 
+  WAIT_FOR_PLAYERS = 20,
   START_IN = 10,
-  GAME_TIME = 3*60*1000,
+  GAME_TIME = 3 * 60,
   // map tiles
   MAP_TILE_SIZE = 32,
   SPRITESHEET_ROWS = 23,
@@ -82,10 +82,10 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   },
   //player sprite animation
   PLAYER_VIEW = {
-    [PLAYER_MOVE_UP]: [getSpriteSheetXYbyIndex(18),getSpriteSheetXYbyIndex(19),getSpriteSheetXYbyIndex(20)],
-    [PLAYER_MOVE_DOWN]: [getSpriteSheetXYbyIndex(3),getSpriteSheetXYbyIndex(4),getSpriteSheetXYbyIndex(5)],
-    [PLAYER_MOVE_LEFT]: [getSpriteSheetXYbyIndex(0),getSpriteSheetXYbyIndex(1),getSpriteSheetXYbyIndex(2)],
-    [PLAYER_MOVE_RIGHT]: [getSpriteSheetXYbyIndex(15),getSpriteSheetXYbyIndex(16),getSpriteSheetXYbyIndex(17)],
+    [PLAYER_MOVE_UP]: [getSpriteSheetXYbyIndex(18), getSpriteSheetXYbyIndex(19), getSpriteSheetXYbyIndex(20)],
+    [PLAYER_MOVE_DOWN]: [getSpriteSheetXYbyIndex(3), getSpriteSheetXYbyIndex(4), getSpriteSheetXYbyIndex(5)],
+    [PLAYER_MOVE_LEFT]: [getSpriteSheetXYbyIndex(0), getSpriteSheetXYbyIndex(1), getSpriteSheetXYbyIndex(2)],
+    [PLAYER_MOVE_RIGHT]: [getSpriteSheetXYbyIndex(15), getSpriteSheetXYbyIndex(16), getSpriteSheetXYbyIndex(17)],
   },
   // player start
   PLAYER_START_POSITIONS = [

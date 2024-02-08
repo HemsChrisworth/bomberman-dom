@@ -16,6 +16,7 @@ export class ActiveEvent {
 };
 
 export function endEvent(event) {
+    if(!event) return;
     event.stopAction = false;
     if (currentEvent === event) {
         currentEvent = null;

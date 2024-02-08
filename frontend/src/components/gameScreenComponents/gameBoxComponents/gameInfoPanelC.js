@@ -1,5 +1,6 @@
 import { VElement } from "../../../../../framework/VElement.js";
 import { mainView } from "../../../app.js";
+import { GAME_TIME } from "../../../js_modules/consts/consts.js";
 
 function createAvatar() {
   return new VElement({
@@ -124,8 +125,15 @@ function createGameInfoHeader() {
   });
 }
 
-export function createGameInfoPanelC(playerList) {
+export function createGameTimer() {
   return new VElement({
+    tag: "div",
+    content: GAME_TIME,
+  });
+}
+
+export function createGameInfoPanelC(playerList, gameTimer) {
+  const infoPanel = new VElement({
     tag: "div",
     attrs: { id: "gameinfo" },
     children: [
@@ -134,4 +142,9 @@ export function createGameInfoPanelC(playerList) {
       createGameSpecs(mainView.currentPlayer),
     ],
   });
+  if (gameTimer) {
+    infoPanel.addChild(gameTimer);
+  }
+
+  return infoPanel;
 }

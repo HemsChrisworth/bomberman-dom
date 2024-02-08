@@ -132,7 +132,6 @@ export class Explosion {
     this.x = this.model.column * MAP_TILE_SIZE
     this.y = this.model.row * MAP_TILE_SIZE
     this.z = EXPLOSION_Z_INDEX;
-    console.log("new explosion: " + this.model)
     this.affectedPlayers = [];
     //this.sprite = "src/assets/images/spritesheets/spritesheet.png";
     this.vElements = []
