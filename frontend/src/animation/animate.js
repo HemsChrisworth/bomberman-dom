@@ -24,8 +24,6 @@ export function animate(timestamp) {
 function update() {
     // update player position based on key press or events
     updatePlayerPosition();
-    // Update player animation frames
-    updatePlayerFrames();
 }
 
 function updatePlayerPosition() {
@@ -36,20 +34,6 @@ function updatePlayerPosition() {
     if (currentAction) {
         actionSender(currentAction);
     }
-}
-
-// Update the animation frame of all players
-function updatePlayerFrames() {
-  Object.values(mainView.PlayerList.players).forEach(updatePlayerFrame);
-}
-
-// Update the animation frame of a single player
-function updatePlayerFrame(player) {
-  if (player.currentFrame < 2) {
-    player.currentFrame++;
-  } else {
-    player.currentFrame = 0;
-  }
 }
 
 function draw() {

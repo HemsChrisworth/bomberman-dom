@@ -82,10 +82,10 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   },
   //player sprite animation
   PLAYER_VIEW = {
-    [PLAYER_MOVE_UP]: [getSpriteSheetXYbyIndex(18),getSpriteSheetXYbyIndex(19),getSpriteSheetXYbyIndex(20)],
+    [PLAYER_MOVE_UP]: [getSpriteSheetXYbyIndex(17),getSpriteSheetXYbyIndex(18),getSpriteSheetXYbyIndex(19)],
     [PLAYER_MOVE_DOWN]: [getSpriteSheetXYbyIndex(3),getSpriteSheetXYbyIndex(4),getSpriteSheetXYbyIndex(5)],
     [PLAYER_MOVE_LEFT]: [getSpriteSheetXYbyIndex(0),getSpriteSheetXYbyIndex(1),getSpriteSheetXYbyIndex(2)],
-    [PLAYER_MOVE_RIGHT]: [getSpriteSheetXYbyIndex(15),getSpriteSheetXYbyIndex(16),getSpriteSheetXYbyIndex(17)],
+    [PLAYER_MOVE_RIGHT]: [getSpriteSheetXYbyIndex(14),getSpriteSheetXYbyIndex(15),getSpriteSheetXYbyIndex(16)],
   },
   // player start
   PLAYER_START_POSITIONS = [

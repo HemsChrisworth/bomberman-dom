@@ -32,11 +32,17 @@ export function movementHandler(playerName, position, spriteInfo) {
   mainView.PlayerList.players[playerName].spriteInfo = spriteInfo;
 }
 
+let now = new Date().getTime();
 function loopThreeFrames(currentPlayer) {
-  if (currentPlayer.currentFrame < 2) {
-    currentPlayer.currentFrame++;
-  } else {
-    currentPlayer.currentFrame = 0;
+  const later = new Date().getTime();
+  if (later - now > 200) {
+    if (currentPlayer.currentFrame < 2) {
+      currentPlayer.currentFrame++;
+    } else {
+      currentPlayer.currentFrame = 0;
+    }
+    now = later
   }
+  
   return currentPlayer.currentFrame;
 }

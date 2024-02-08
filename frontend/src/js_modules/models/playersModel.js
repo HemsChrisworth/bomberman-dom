@@ -174,7 +174,6 @@ export class Player { // add all player properties here, for example image, move
     }
     const [spriteOffsetX, spriteOffsetY] = PLAYER_VIEW[this.direction][this.currentFrame];
     const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
-    console.log(spriteSheetPosition);
     this.vElement.setStyle({ "background-position": spriteSheetPosition });
   }
   set number(number) {
