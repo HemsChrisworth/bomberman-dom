@@ -2,17 +2,20 @@ import { VElement } from "../../../../framework/VElement.js"
 import { mainView } from "../../app.js"
 import { creatLiveIcon, createNumberOfLives, createShowBombPUP, createShowFlamePUP, createShowSpeedPUP } from "../../components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
 import { convertRowColumnToXY } from "../../utils/spriteSheetCalc.js";
-import { MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME, GAME_OVER_VIEW } from "../consts/consts.js"
+import { SPRITE_SHEET_URL, PLAYER_VIEW, MAP_TILE_SIZE, PLAYER_START_POSITIONS, PLAYER_Z_INDEX, PLAYER_MOVEMENT_SPEED, BOMB_EXPLOSION_TIMER, BOMBPUP, FIREPUP, SPEEDPUP, PLAYER_RESPAWN_TIME, GAME_OVER_VIEW } from "../consts/consts.js"
 import { PLAYER_DIE, PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP, PLAYER_PLACE_BOMB, PLAYER_POSITION_CURRENT, PLAYER_RESPAWN, POWER_IS_PICKED } from "../consts/playerActionTypes.js";
 import { ActiveEvent, currentEvent, endEvent } from "../player_actions/eventModel.js";
 import { currentAction, stopListenPlayerActions } from "../player_actions/keypresses.js";
 
 const OFFSET_IGNORED = 12;
+
 function setPlayerStyleAttrs() {
-  const style = `z-index: ${PLAYER_Z_INDEX};
-                 width: ${MAP_TILE_SIZE}px;
-                 height: ${MAP_TILE_SIZE}px;`;
-  return style;
+  return {
+    ["z-index"]: `${PLAYER_Z_INDEX}`,
+    ["background-image"]: `url(${SPRITE_SHEET_URL})`,
+    width: `${MAP_TILE_SIZE}px`,
+    height: `${MAP_TILE_SIZE}px`
+  }
 }
 
 /**player's position on the game map
@@ -121,18 +124,17 @@ export class Player { // add all player properties here, for example image, move
     this.name = name;
     this.stats = new PlayerStats(); // for lives in the vElement
     this.dead = false
-    this.sprite = "src/assets/images/spritesheets/bomberman.png"; // currently uses url in style.css
-
     this.direction = "moveDown";
     this.currentFrame = 0; // max three frames
 
     this.vElement = new VElement({
       tag: "div",
       attrs: {
-        class: "player",
-        style: setPlayerStyleAttrs(),
+        class: 'player',
       },
-    });
+      style: setPlayerStyleAttrs(),
+    })
+
     if (number) {
       this.number = number;
       // this._number = number;
@@ -165,6 +167,12 @@ export class Player { // add all player properties here, for example image, move
   }
   setVPosition() {
     this.vElement.setStyle({ transform: `translate(${this.x}px, ${this.y}px)` });
+  }
+  setVAnimation() {
+    const [spriteOffsetX, spriteOffsetY] = PLAYER_VIEW[this.direction][this.currentFrame];
+    const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
+    console.log(spriteSheetPosition);
+    this.vElement.setStyle({ "background-position": spriteSheetPosition });
   }
   set number(number) {
     this._number = number;

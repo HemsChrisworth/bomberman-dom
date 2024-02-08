@@ -12,7 +12,8 @@ import { PlayerMove } from "./actionModel.js";
 export function movePlayer(currentAction) {
   if (mainView.currentPlayer[currentAction]()) {
     const newPosition = mainView.currentPlayer.position;
-    const spriteInfo = [currentAction, mainView.currentPlayer.currentFrame]
+    const newFrame = loopThreeFrames(mainView.currentPlayer);
+    const spriteInfo = [currentAction, newFrame];
     const playerAction = new PlayerMove(newPosition, spriteInfo);
     mainView.chatModel.socket.request(WS_REQUEST_TYPE_PLAYER_ACTION, playerAction); // send request to ws with playerAction
   }
@@ -29,4 +30,13 @@ export function movePlayer(currentAction) {
 export function movementHandler(playerName, position, spriteInfo) {
   mainView.PlayerList.players[playerName].position = position; // in draw, it will render the newly set x and y position into the VElement
   mainView.PlayerList.players[playerName].spriteInfo = spriteInfo;
+}
+
+function loopThreeFrames(currentPlayer) {
+  if (currentPlayer.currentFrame < 2) {
+    currentPlayer.currentFrame++;
+  } else {
+    currentPlayer.currentFrame = 0;
+  }
+  return currentPlayer.currentFrame;
 }

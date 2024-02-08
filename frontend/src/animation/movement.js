@@ -20,9 +20,9 @@ export function draw() {
     // draw bomb placement
 }
 
-
 function drawPlayerPositions() {
     Object.keys(mainView.PlayerList.players).forEach((player) => {
         mainView.PlayerList.players[player].setVPosition();
+        mainView.PlayerList.players[player].setVAnimation();
     });
 }
