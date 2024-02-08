@@ -1,6 +1,5 @@
 import { VElement } from "../../../../../framework/VElement.js";
-import { mainView } from "../../../app.js";
-import { BACKEND_TILE_TYPE_CODES, MAP_COLUMNS, MAP_ROWS, MAP_TILE_SIZE, SPRITESHEET_COLUMNS } from "../../consts/consts.js";
+import { BACKEND_TILE_TYPE_CODES, MAP_COLUMNS, MAP_ROWS, MAP_TILE_SIZE } from "../../consts/consts.js";
 import { Tile, tileTranslator } from "./tileModel.js";
 
 export class GameMap {
@@ -24,7 +23,7 @@ export class GameMap {
       children: [
       ],
     });
-    this.renderMap()
+    this.renderMap();
   }
   createMap(tileMap) {
     this.destroyableTiles = 0;
@@ -38,7 +37,7 @@ export class GameMap {
         const y = row * this.tileSize;
         const tile = tileTranslator[tileInitialObj.TileIndex](x, y, ...tileInitialObj.IntitialSpritePos);
         this.baseMap[row][column] = tile;
-        if (tile.destroyable){
+        if (tile.destroyable) {
           this.destroyableTiles++;
         }
         //this.explosionMap[row][column] = 0 // to add explosion later
@@ -55,7 +54,6 @@ export class GameMap {
       }
     }
   }
-
   getTilesOnWay(tilesToCheck) {
     const powerups = [];
     for (const tile of tilesToCheck) {
@@ -84,7 +82,7 @@ export class GameMap {
       return tile;
     }
   }
-  removePowerUp({row, column}) {
+  removePowerUp({ row, column }) {
     this.baseMap[row][column].removePowerUp?.();
   }
   addTile() {

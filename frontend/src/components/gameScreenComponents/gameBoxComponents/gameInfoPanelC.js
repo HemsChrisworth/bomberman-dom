@@ -1,6 +1,5 @@
 import { VElement } from "../../../../../framework/VElement.js";
 import { mainView } from "../../../app.js";
-import { REGISTER_VIEW } from "../../../js_modules/consts/consts.js";
 
 function createAvatar() {
   return new VElement({
@@ -125,70 +124,14 @@ function createGameInfoHeader() {
   });
 }
 
-function youDied(playerList) { // The "You DIED" screen
-  return new VElement({
-    tag: "span",
-    attrs: { id: "youdied" },
-    content: "You died",
-  });
-}
-
-function helperdiv(playerList) { // The "You DIED" screen
-  return new VElement({
-    tag: "span",
-    attrs: { id: "helpdivyoudied" },
-    content: "You died",
-  });
-}
-export function GameOverScreen(playerList) { // The "You DIED" screen
-  return new VElement({
-    tag: "div",
-    attrs: { id: "gameover" },
-    children: [
-      helperdiv(),
-      youDied(),
-    ],
-    "@click": (velem, event) => {
-      mainView.showScreen[REGISTER_VIEW]();
-    },
-  });
-}
-
-function youWon(playerList) { // The "You WON" screen
-  return new VElement({
-    tag: "span",
-    attrs: { id: "youwon" },
-    content: "You Won!", 
-  });
-}
-
-function helperdivWon(playerList) { // The "You WON" screen
-  return new VElement({
-    tag: "span",
-    attrs: { id: "helpdivyouwon" },
-    content: "You Won!",
-  });
-}
-
-export function YouWonScreen(playerList) { // The "You WON" screen
-  return new VElement({
-    tag: "div",
-    attrs: { id: "youwonthegame" },
-    children: [helperdivWon(), youWon()],
-    "@click": (velem, event) => {
-      mainView.showScreen[REGISTER_VIEW]();
-    },
-  });
-}
-
 export function createGameInfoPanelC(playerList) {
-    return new VElement({
-      tag: "div",
-      attrs: { id: "gameinfo" },
-      children: [
-        createGameInfoHeader(),
-        createPlayersOnline(playerList),
-        createGameSpecs(mainView.currentPlayer),
-      ],
-    });
+  return new VElement({
+    tag: "div",
+    attrs: { id: "gameinfo" },
+    children: [
+      createGameInfoHeader(),
+      createPlayersOnline(playerList),
+      createGameSpecs(mainView.currentPlayer),
+    ],
+  });
 }

@@ -28,12 +28,13 @@ export function playerRespawnHandler(playerName, position) {
   mainView.PlayerList.players[playerName].position = position; // in draw, it will render the newly set x and y position into the VElement
 }
 export function dyingHandler(playerName, lives) {
-  mainView.PlayerList.players[playerName].setLives(lives); // in draw, it will render the newly set x and y position into the VElement
+  const player =  mainView.PlayerList.players[playerName];
+  player?.setLives(lives); // in draw, it will render the newly set x and y position into the VElement
   if (lives < 1) {
     mainView.gameMap.vElement.delChild(
-      mainView.PlayerList.players[playerName].vElement.vId
+      player?.vElement.vId
     );
-    delete mainView.PlayerList.players[playerName]
+    delete mainView.delPlayers(player);
   }
   if ( !mainView.solo && Object.keys(mainView.PlayerList.players).length == 1) { // check win condition
     if (mainView.PlayerList.players[mainView.currentPlayer.name]) {

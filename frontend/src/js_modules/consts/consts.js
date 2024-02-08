@@ -14,6 +14,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   WS_REQUEST_TYPE_PLAYER_LOSE_LIFE = "loseLife",
   WAIT_FOR_PLAYERS = 20, 
   START_IN = 10,
+  GAME_TIME = 3*60*1000,
   // map tiles
   MAP_TILE_SIZE = 32,
   SPRITESHEET_ROWS = 23,
