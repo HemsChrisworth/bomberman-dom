@@ -25,9 +25,10 @@ export class RegisterScreenView {
         this.hideError();
         mainView.createCurrentPlayer(playerName);
         mainView.chatModel.launch(playerName);
+        mainView.solo = false;
     }
     registerSoloPlayer = (playerName) => {
-        mainView.solo = true;
         this.registerPlayer(playerName);
+        mainView.solo = true;
     }
 }
