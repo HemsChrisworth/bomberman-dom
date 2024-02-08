@@ -86,7 +86,7 @@ export class WaitingScreenView {
             if (waiting10sec === 0) {
                 mainView.chatModel.requestServer("startGame", "");
             } else {
-                setTimeout(this.countdown10sec, 1000, waiting10sec);
+                this.timeoutID = setTimeout(this.countdown10sec, 1000, waiting10sec);
             }
         }
 
@@ -110,5 +110,8 @@ export class WaitingScreenView {
         this.WaitingTimerC.delChild(0);
         this.WaitingTimerC.addChild(this.waitingTimer10secC);
         this.countdown10sec(START_IN);
+    }
+    stopCountdowns() {
+        clearTimeout(this.timeoutID)
     }
 }
