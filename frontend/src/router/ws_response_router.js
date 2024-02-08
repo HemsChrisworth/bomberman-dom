@@ -3,6 +3,8 @@ import { Player } from "../js_modules/models/playersModel.js";
 import { playerActioner } from "../js_modules/player_actions/actionModel.js";
 import { GAME_VIEW, WAITING_VIEW } from "../js_modules/consts/consts.js";
 import { createNewMessageC } from "../components/chatC.js";
+import { RegisterScreenView } from "../views/registerScreenView.js";
+import { gameBoxModel } from "../views/gameBoxView.js";
 
 function oneMessage(message) {
   return new VElement({
@@ -78,16 +80,8 @@ export const wsResponseRouter = {
       } else if (player.number > user.playerNumber) {
         player.number--;
       }
-
     });
-    // stop countdown if length of players is 1
-    if (mainView.PlayerList.length==1) {
-      mainView.currentViewModel.stopCountdowns()
-    }
-    if(mainView.PlayerList.length>0)
-    mainView.showScreen[WAITING_VIEW]( // prevents game starting if one player is left after others leave
-      ...Object.values(mainView.PlayerList.players)
-    );
+    
   },
 
   inputChatMessage(payload) {

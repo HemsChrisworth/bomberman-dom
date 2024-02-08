@@ -113,12 +113,35 @@ export class MainView {
     }
     delPlayers(...players) {
         for (const player of players) {
+            if (this.currentViewModel instanceof gameBoxModel) {
+              this.gameMap.vElement.delChild(
+                this.PlayerList.players[player.name].vElement.vId
+              );
+              delete this.PlayerList.players[player.name];
+              this.PlayerList.length--;
+              if (!this.solo && Object.keys(this.PlayerList.players).length == 1) {
+                // check win condition
+                if (this.PlayerList.players[this.currentPlayer.name]) {
+                  this.showScreen[YOU_WIN_VIEW]();
+                }
+              }
+              return
+            }
             delete this.PlayerList.players[player.name]
             this.PlayerList.length--;
+            
         }
         if (this.currentViewModel instanceof WaitingScreenView) {
             this.currentViewModel.delPlayers(...players);
+            if (this.PlayerList.length == 1) {
+              // stop countdown if length of players is 1
+              this.currentViewModel.stopCountdowns();
+            }
+            if (this.PlayerList.length > 0)
+              this.showScreen[WAITING_VIEW](
+                // prevents game starting if one player is left after others leave
+                ...Object.values(this.PlayerList.players)
+              );
         }
     }
-
 }
