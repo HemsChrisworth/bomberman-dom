@@ -80,7 +80,13 @@ if(mainView.solo){
       }
 
     });
-
+    // stop countdown if length of players is 1
+    if (mainView.PlayerList.length==1) {
+      mainView.currentViewModel.stopCountdowns()
+    }
+    mainView.showScreen[WAITING_VIEW]( // prevents game starting if one player is left after others leave
+      ...Object.values(mainView.PlayerList.players)
+    );
   },
 
   inputChatMessage(payload) {

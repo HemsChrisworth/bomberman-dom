@@ -42,7 +42,7 @@ export class MainView {
         [WAITING_VIEW]: (...players) => {
             for (const player of players) {
                 this.PlayerList.players[player.name] = player
-                this.PlayerList.length++;
+                this.PlayerList.length = Object.keys(this.PlayerList.players).length
             }
             this._showNewView(new WaitingScreenView(...players));
             this.vElement.addChild(this.chatModel.vElement);
