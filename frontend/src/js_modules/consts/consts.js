@@ -101,6 +101,6 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   SEND_TO_WS_DELAY = 20, //delay to stop die-event,
   // bomb
   BOMB_EXPLOSION_TIMER = 3000, // time between placing bomb and explosion
-  EXPLOSION_LASTING_TIMER = 3000, // explosion lasts
+  EXPLOSION_LASTING_TIMER = 2000, // explosion lasts
   BOMB_PLACEMENT_DELAY = 200;
 
