@@ -21,7 +21,7 @@ function setExplosionPicture(direction) {
     ["background-position"]: `${spriteSheetPosition}`,
   }
 }
-
+ 
 /**bomb's position on the game map
  * 
  * @property row - current row on the map grid
