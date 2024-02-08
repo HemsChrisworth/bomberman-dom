@@ -35,7 +35,7 @@ export function dyingHandler(playerName, lives) {
     );
     delete mainView.PlayerList.players[playerName]
   }
-  if (Object.keys(mainView.PlayerList.players).length == 1) { // check win condition
+  if ( !mainView.solo && Object.keys(mainView.PlayerList.players).length == 1) { // check win condition
     if (mainView.PlayerList.players[mainView.currentPlayer.name]) {
       mainView.showScreen[YOU_WIN_VIEW]();
     }

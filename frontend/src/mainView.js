@@ -15,6 +15,7 @@ export class MainView {
         this.chatModel = new ChatModel;
         this.currentViewModel = new RegisterScreenView;
         this.currentViewChildIndex = 1;
+        this.solo = false;
         this.vElement = new VElement({
             tag: 'div',
             attrs: { id: "main" },
