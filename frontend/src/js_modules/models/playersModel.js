@@ -169,6 +169,14 @@ export class Player { // add all player properties here, for example image, move
     this.vElement.setStyle({ transform: `translate(${this.x}px, ${this.y}px)` });
   }
   setVAnimation() {
+    if (!PLAYER_VIEW[this.direction]) {
+      console.error(`Invalid direction: ${this.direction}`);
+      return;
+    }
+    if (this.currentFrame < 0 || this.currentFrame >= PLAYER_VIEW[this.direction].length) {
+      console.error(`Invalid frame index: ${this.currentFrame}`);
+      return;
+    }
     const [spriteOffsetX, spriteOffsetY] = PLAYER_VIEW[this.direction][this.currentFrame];
     const spriteSheetPosition = `${spriteOffsetX}px ${spriteOffsetY}px`;
     console.log(spriteSheetPosition);
