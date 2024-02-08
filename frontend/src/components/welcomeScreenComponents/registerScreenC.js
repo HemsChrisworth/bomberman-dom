@@ -49,23 +49,24 @@ function createFormChildren(registerPlayer, registerSoloPlayer) {
                 limitCharacters(event, 15) // Limits the number of nickname symbols to 15
             },
         }),
+        
         new VElement({
             tag: 'input',
-            attrs: { type: 'button', class: "startgame", value: 'Solo' },
+            attrs: { type: 'button', class: "startgame", value: 'Start' },
+            "@click": (velem, event) => {
+                const playerName = event.target.form[PLAYER_NAME_FORM_INPUT].value;
+
+                registerPlayer(playerName)
+            },
+        }),
+        new VElement({
+            tag: 'input',
+            attrs: { type: 'button', id: "trainingbutton", value: 'Training mode' },
             "@click": (velem, event) => {
                 const playerName = event.target.form[PLAYER_NAME_FORM_INPUT].value;
 
                 registerSoloPlayer(playerName)
             },
         }),
-        new VElement({
-            tag: 'input',
-            attrs: { type: 'button', class: "startgame", value: 'Co-Op' },
-            "@click": (velem, event) => {
-                const playerName = event.target.form[PLAYER_NAME_FORM_INPUT].value;
-
-                registerPlayer(playerName)
-            },
-        })
     ];
 }
