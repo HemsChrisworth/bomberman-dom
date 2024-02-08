@@ -44,7 +44,7 @@ export const activeAction = {
   endAction(action) {
     this[action] = false
     if (action === currentAction) { // if another action has been made before cancelling previous action, do not cancel current action
-      currentAction = null; // TODO:  for some reason doesn't work with space bar
+      currentAction = null; 
     }
   }
 };

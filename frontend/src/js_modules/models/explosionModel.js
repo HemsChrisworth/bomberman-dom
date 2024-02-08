@@ -200,7 +200,7 @@ export class Explosion {
 
   // have the explosion remove blocks
   renderExplosion = () => {
-    for (const vElement of this.vElements) { mainView.gameMap.vElement.addChild(vElement) }
+    for (const vElement of this.vElements) { mainView.gameMap?.vElement.addChild(vElement) }
   }
   delOnFire = () => {
     if (mainView.gameMap) { // check it here because when the player dies, the gameMap is set to null

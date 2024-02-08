@@ -1,5 +1,5 @@
 import { mainView } from "../../app.js";
-import { WS_REQUEST_TYPE_PLAYER_ACTION } from "../consts/consts.js";
+import { WS_REQUEST_TYPE_PLAYER_ACTION, YOU_WIN_VIEW } from "../consts/consts.js";
 import { PlayerDie, PlayerMove } from "./actionModel.js";
 import { endEvent } from "./eventModel.js";
 
@@ -28,5 +28,16 @@ export function playerRespawnHandler(playerName, position) {
   mainView.PlayerList.players[playerName].position = position; // in draw, it will render the newly set x and y position into the VElement
 }
 export function dyingHandler(playerName, lives) {
-  mainView.PlayerList.players[playerName]?.setLives(lives); // in draw, it will render the newly set x and y position into the VElement
+  mainView.PlayerList.players[playerName].setLives(lives); // in draw, it will render the newly set x and y position into the VElement
+  if (lives < 1) {
+    mainView.gameMap.vElement.delChild(
+      mainView.PlayerList.players[playerName].vElement.vId
+    );
+    delete mainView.PlayerList.players[playerName]
+  }
+  if (Object.keys(mainView.PlayerList.players).length == 1) { // check win condition
+    if (mainView.PlayerList.players[mainView.currentPlayer.name]) {
+      mainView.showScreen[YOU_WIN_VIEW]();
+    }
+  }
 }

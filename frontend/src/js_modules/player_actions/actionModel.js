@@ -13,9 +13,10 @@ class PlayerAction {
 }
 
 export class PlayerMove extends PlayerAction {
-    constructor(coords) {
+    constructor(coords, spriteInfo) {
         super(PLAYER_MOVE)
         this.coords = coords
+        this.spriteInfo = spriteInfo
     }
 }
 
@@ -49,14 +50,14 @@ export class PlayerDie extends PlayerAction {
 export const playerActioner = {
     [PLAYER_MOVE]: {
         send: throttle(movePlayer, 17),
-        handle: (data) => movementHandler(data.playerName, data.action.coords)
+        handle: (data) => movementHandler(data.playerName, data.action.coords, data.action.spriteInfo)
     },
     [PLAYER_PLACE_BOMB]: {
         send: throttle(bombPlace, 100),
         handle: (data) => bombPlaceHandler(data.action.coords)
     },
     [PLAYER_DIE]: {
-        send: throttle(playerDieSender, PLAYER_RESPAWN_TIME),
+        send: throttle(playerDieSender, PLAYER_RESPAWN_TIME/2),
         handle: (data) => dyingHandler(data.playerName, data.action.lives)
     },
     [PLAYER_RESPAWN]: {
@@ -66,6 +67,5 @@ export const playerActioner = {
     [POWER_IS_PICKED]: {
         send: throttle(powerPickupSender, 25),
         handle: (data) => powerPickupHandler(data.playerName, data.action.coords)
-
     },
 }

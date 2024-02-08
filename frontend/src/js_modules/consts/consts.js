@@ -1,6 +1,5 @@
 import { getSpriteSheetXYbyIndex } from "../../utils/spriteSheetCalc.js";
-
-
+import { PLAYER_MOVE_DOWN, PLAYER_MOVE_LEFT, PLAYER_MOVE_RIGHT, PLAYER_MOVE_UP } from "../consts/playerActionTypes.js";
 
 export const PLAYER_NAME_FORM_INPUT = "playerName",
   // main views
@@ -8,6 +7,7 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   WAITING_VIEW = "waitingView",
   GAME_VIEW = "gameView",
   GAME_OVER_VIEW = "gameOverView",
+  YOU_WIN_VIEW = "youWinView",
   //
   CHAT_MESSAGE_FORM_INPUT_NAME = "chatMessage",
   WS_REQUEST_TYPE_PLAYER_ACTION = "playerAction",
@@ -44,7 +44,6 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
     [EXPLOSION_RIGHT]: 158,
     [EXPLOSION_UP]: 128,
     [EXPLOSION_DOWN]: 184,
-
   },
   SPRITE_POS = {
     [GRASS]: getSpriteSheetXYbyIndex(GRASS),
@@ -59,10 +58,18 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
     [EXPLOSION_RIGHT]: getSpriteSheetXYbyIndex(EXPLOSION_RIGHT),
     [EXPLOSION_UP]: getSpriteSheetXYbyIndex(EXPLOSION_UP),
     [EXPLOSION_DOWN]: getSpriteSheetXYbyIndex(EXPLOSION_DOWN),
-    [EXPLOSION_EDGES[EXPLOSION_LEFT]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_LEFT]]),
-    [EXPLOSION_EDGES[EXPLOSION_RIGHT]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_RIGHT]]),
-    [EXPLOSION_EDGES[EXPLOSION_UP]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_UP]]),
-    [EXPLOSION_EDGES[EXPLOSION_DOWN]]: getSpriteSheetXYbyIndex([EXPLOSION_EDGES[EXPLOSION_DOWN]]),
+    [EXPLOSION_EDGES[EXPLOSION_LEFT]]: getSpriteSheetXYbyIndex([
+      EXPLOSION_EDGES[EXPLOSION_LEFT],
+    ]),
+    [EXPLOSION_EDGES[EXPLOSION_RIGHT]]: getSpriteSheetXYbyIndex([
+      EXPLOSION_EDGES[EXPLOSION_RIGHT],
+    ]),
+    [EXPLOSION_EDGES[EXPLOSION_UP]]: getSpriteSheetXYbyIndex([
+      EXPLOSION_EDGES[EXPLOSION_UP],
+    ]),
+    [EXPLOSION_EDGES[EXPLOSION_DOWN]]: getSpriteSheetXYbyIndex([
+      EXPLOSION_EDGES[EXPLOSION_DOWN],
+    ]),
   },
   BACKEND_TILE_TYPE_CODES = {
     B: { TileIndex: SOLID, IntitialSpritePos: SPRITE_POS[SOLID] },
@@ -71,6 +78,13 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
     O: { TileIndex: BOMBPUP, IntitialSpritePos: SPRITE_POS[DBLOCK] },
     F: { TileIndex: FIREPUP, IntitialSpritePos: SPRITE_POS[DBLOCK] },
     M: { TileIndex: SPEEDPUP, IntitialSpritePos: SPRITE_POS[DBLOCK] },
+  },
+  //player sprite animation
+  PLAYER_VIEW = {
+    [PLAYER_MOVE_UP]: [getSpriteSheetXYbyIndex(18),getSpriteSheetXYbyIndex(19),getSpriteSheetXYbyIndex(20)],
+    [PLAYER_MOVE_DOWN]: [getSpriteSheetXYbyIndex(3),getSpriteSheetXYbyIndex(4),getSpriteSheetXYbyIndex(5)],
+    [PLAYER_MOVE_LEFT]: [getSpriteSheetXYbyIndex(0),getSpriteSheetXYbyIndex(1),getSpriteSheetXYbyIndex(2)],
+    [PLAYER_MOVE_RIGHT]: [getSpriteSheetXYbyIndex(15),getSpriteSheetXYbyIndex(16),getSpriteSheetXYbyIndex(17)],
   },
   // player start
   PLAYER_START_POSITIONS = [
@@ -84,13 +98,8 @@ export const PLAYER_NAME_FORM_INPUT = "playerName",
   PLAYER_MOVEMENT_SPEED = 2,
   PLAYER_RESPAWN_TIME = 300,
   SEND_TO_WS_DELAY = 20, //delay to stop die-event,
-
   // bomb
   BOMB_EXPLOSION_TIMER = 3000, // time between placing bomb and explosion
-  EXPLOSION_LASTING_TIMER = 3000, // explosion lasts 
-  BOMB_PLACEMENT_DELAY = 200
-
-//directions
-
-
+  EXPLOSION_LASTING_TIMER = 3000, // explosion lasts
+  BOMB_PLACEMENT_DELAY = 200;
 
