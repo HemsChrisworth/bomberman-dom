@@ -7,7 +7,7 @@ import { Player } from "./js_modules/models/playersModel.js";
 import { RegisterScreenView } from "./views/registerScreenView.js";
 import { WaitingScreenView } from "./views/waitingScreenView.js";
 import { GAME_OVER_VIEW, GAME_VIEW, REGISTER_VIEW, WAITING_VIEW, YOU_WIN_VIEW } from "./js_modules/consts/consts.js";
-import { GameOverScreen, YouWonScreen } from "./components/gameScreenComponents/gameBoxComponents/gameInfoPanelC.js";
+import { GameOverScreen, YouWonScreen } from "./components/gameScreenComponents/gameBoxComponents/gameOverC.js";
 
 export class MainView {
     constructor() {
@@ -15,6 +15,7 @@ export class MainView {
         this.chatModel = new ChatModel;
         this.currentViewModel = new RegisterScreenView;
         this.currentViewChildIndex = 1;
+        this.solo = false;
         this.vElement = new VElement({
             tag: 'div',
             attrs: { id: "main" },
@@ -57,7 +58,7 @@ export class MainView {
             this.currentViewModel.vElement.addChild(GameOverScreen())
         },
         [YOU_WIN_VIEW]: () => {
-             this._newPlayerList();
+            this._newPlayerList();
             this.gameMap = null;
             this.currentViewModel.vElement.addChild(YouWonScreen())
         },

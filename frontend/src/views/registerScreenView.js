@@ -5,7 +5,7 @@ import { mainView } from "../app.js";
 export class RegisterScreenView {
     constructor() {
         this.errorMessageC = createErrorMessageC();
-        this.registerScreenC = createRegisterScreenC(this.registerPlayer, this.errorMessageC);
+        this.registerScreenC = createRegisterScreenC(this.registerPlayer, this.registerSoloPlayer, this.errorMessageC);
     }
 
     get vElement() {
@@ -25,5 +25,10 @@ export class RegisterScreenView {
         this.hideError();
         mainView.createCurrentPlayer(playerName);
         mainView.chatModel.launch(playerName);
+        mainView.solo = false;
+    }
+    registerSoloPlayer = (playerName) => {
+        this.registerPlayer(playerName);
+        mainView.solo = true;
     }
 }

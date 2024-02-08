@@ -135,11 +135,6 @@ export class Player { // add all player properties here, for example image, move
     });
     if (number) {
       this.number = number;
-      // this._number = number;
-      // const { row, column } = PLAYER_START_POSITIONS[number - 1];
-      // this.model = new PlayerModel(row, column);
-      // this.x = this.model.column * MAP_TILE_SIZE; // have x and y randomly allocated
-      // this.y = this.model.row * MAP_TILE_SIZE;
     }
   }
   set position([x, y]) {
@@ -183,12 +178,7 @@ export class Player { // add all player properties here, for example image, move
     return this.stats.lives;
   }
   setLives(lives) {
-    // if (lives > 0) {
-    //   this.stats.lives = lives;
-    // }
-    // else {
     this.stats.lives = lives;
-    // }
   }
   die() {
     this.dead = true;

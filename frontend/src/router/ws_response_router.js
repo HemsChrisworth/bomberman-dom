@@ -36,8 +36,12 @@ export const wsResponseRouter = {
         players.push(new Player(user.playerName, user.playerNumber));
       }
     });
-
-    mainView.showScreen[WAITING_VIEW](...players);
+    if(mainView.solo){
+      mainView.addPlayers(mainView.currentPlayer)
+      mainView.chatModel.requestServer("startGame", "");
+    }else{
+      mainView.showScreen[WAITING_VIEW](...players);
+    }
   },
 
   registerNewPlayer(payload) {
@@ -80,6 +84,7 @@ export const wsResponseRouter = {
     if (mainView.PlayerList.length==1) {
       mainView.currentViewModel.stopCountdowns()
     }
+    if(mainView.PlayerList.length>0)
     mainView.showScreen[WAITING_VIEW]( // prevents game starting if one player is left after others leave
       ...Object.values(mainView.PlayerList.players)
     );
