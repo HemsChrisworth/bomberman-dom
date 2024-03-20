@@ -4,7 +4,6 @@
 
 This is a complex project of a multi-player version of the game "Bomberman" for 2 to 4 players. To create it, we used our own framework written in JavaScript, which can be found in the `Framework` folder. 
 
-Here you can find the [task description](https://github.com/01-edu/public/tree/master/subjects/bomberman-dom) and [>>> AUDIT QUESTIONS <<<](https://github.com/01-edu/public/tree/master/subjects/bomberman-dom/audit).
 <br>
 <br>
 
